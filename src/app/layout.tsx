@@ -7,10 +7,11 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'FPL Analytics Dashboard',
   description: 'Advanced Fantasy Premier League analytics and player recommendations',
-  keywords: 'Fantasy Premier League, FPL, Football, Soccer, Analytics, Statistics',
-  authors: [{ name: 'FPL Analytics' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#37003c', // Premier League purple
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+  },
+  themeColor: '#37003c',
   icons: {
     icon: '/favicon.ico',
   },

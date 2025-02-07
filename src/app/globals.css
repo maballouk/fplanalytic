@@ -11,6 +11,10 @@
   body {
     @apply antialiased text-gray-900;
   }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
 }
 
 @layer components {
@@ -91,4 +95,9 @@
   html {
     font-size: 16px;
   }
+}
+
+/* Fix for Next.js metadata viewport warnings */
+head > meta[name="viewport"] {
+  display: none;
 }
