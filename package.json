@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "^5.9.4",
+    "@netlify/plugin-nextjs": "4.41.3",
     "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "next": "14.1.0",
@@ -30,5 +30,10 @@
   },
   "engines": {
     "node": ">=18.17.0"
+  },
+  "overrides": {
+    "@netlify/plugin-nextjs": {
+      "next": "14.1.0"
+    }
   }
 }
