@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --premier-league-purple: #37003c;
+  --premier-league-green: #00ff87;
+}
+
+@layer base {
+  body {
+    @apply antialiased text-gray-900;
+  }
+}
+
+@layer components {
+  .bg-premier-league-purple {
+    background-color: var(--premier-league-purple);
+  }
+
+  .text-premier-league-purple {
+    color: var(--premier-league-purple);
+  }
+
+  .bg-premier-league-green {
+    background-color: var(--premier-league-green);
+  }
+
+  .text-premier-league-green {
+    color: var(--premier-league-green);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--premier-league-purple);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a002e;
+}
+
+/* Loading animation for skeletons */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Chart tooltip customization */
+.chartjs-tooltip {
+  background-color: rgba(17, 24, 39, 0.9) !important;
+  border-radius: 8px !important;
+  padding: 12px !important;
+  color: rgb(243, 244, 246) !important;
+  font-family: inherit !important;
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  html {
+    font-size: 16px;
+  }
+}
