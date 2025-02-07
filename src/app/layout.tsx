@@ -4,14 +4,18 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Viewport configuration
+export const generateViewport = () => {
+  return {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#37003c',
+  }
+}
+
 export const metadata: Metadata = {
   title: 'FPL Analytics Dashboard',
   description: 'Advanced Fantasy Premier League analytics and player recommendations',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-  },
-  themeColor: '#37003c',
   icons: {
     icon: '/favicon.ico',
   },
