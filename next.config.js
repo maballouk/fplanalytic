@@ -6,9 +6,8 @@ const nextConfig = {
     unoptimized: true,
     domains: ['fantasy.premierleague.com'],
   },
-  experimental: {
-    optimizeCss: true,
-  },
+  // Configure CSS optimization with critters
+  optimizeCss: true,
   // Ensure proper handling of API routes
   async rewrites() {
     return [
@@ -49,5 +48,3 @@ const nextConfig = {
     ]
   }
 }
-
-module.exports = nextConfig
