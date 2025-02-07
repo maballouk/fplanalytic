@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/plugin-nextjs": "5.9.4",
     "axios": "^1.6.7",
     "chart.js": "^4.4.1",
     "next": "14.1.0",
