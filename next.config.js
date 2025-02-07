@@ -6,8 +6,15 @@ const nextConfig = {
     unoptimized: true,
     domains: ['fantasy.premierleague.com'],
   },
-  // Configure CSS optimization with critters
-  optimizeCss: true,
+  experimental: {
+    optimizeCss: {
+      inlineCriticalCss: true,
+      critters: {
+        preload: 'media',
+        pruneSource: true,
+      },
+    },
+  },
   // Ensure proper handling of API routes
   async rewrites() {
     return [
