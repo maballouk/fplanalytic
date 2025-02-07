@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ./"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
@@ -10,7 +9,6 @@
   NEXT_TELEMETRY_DISABLED = "1"
   NODE_VERSION = "18.17.0"
   NEXT_USE_NETLIFY_EDGE = "true"
-  NEXT_FORCE_EDGE_IMAGES = "true"
 
 [functions]
   node_bundler = "esbuild"
