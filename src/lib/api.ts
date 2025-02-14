@@ -9,10 +9,10 @@ interface ApiResponse<T> {
   lastUpdated: string;
 }
 
-async function fetchFromApi(endpoint: string) {
+async function fetchFromApi(endpoint: string): Promise<ApiResponse<any>> {
   try {
     const response = await axios.get(`/api/fpl?endpoint=${endpoint}`);
-    return response.data.data;
+    return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
@@ -27,8 +27,7 @@ async function fetchFromApi(endpoint: string) {
 }
 
 export async function fetchBootstrapStatic() {
-  const data = await fetchFromApi('bootstrap-static');
-  return data;
+  return await fetchFromApi('bootstrap-static');
 }
 
 export async function fetchFixtures() {

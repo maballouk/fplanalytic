@@ -28,12 +28,10 @@ export default function Home() {
         setLoading(true);
         setError(null);
         const response = await getTopPlayers();
-        setPlayers({
-          allPlayers: response.allPlayers,
-          budgetSuggestions: response.budgetSuggestions,
-          premiumSuggestions: response.premiumSuggestions
-        });
-        setLastUpdate(new Date(response.lastUpdated).toLocaleString());
+        setPlayers(response);
+        if (response.lastUpdated) {
+          setLastUpdate(new Date(response.lastUpdated).toLocaleString());
+        }
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to fetch player data';
         setError(errorMessage);
