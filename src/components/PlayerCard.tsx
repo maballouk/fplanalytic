@@ -30,11 +30,11 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     // 3: Normal (gray)
     // 4-5: Hard (red)
     if (difficulty <= 2) {
-      return 'bg-green-500 hover:bg-green-600';
+      return 'bg-green-500';
     } else if (difficulty >= 4) {
-      return 'bg-red-500 hover:bg-red-600';
+      return 'bg-red-500';
     }
-    return 'bg-gray-500 hover:bg-gray-600';
+    return 'bg-gray-500';
   };
 
   const getDifficultyLabel = (difficulty: number): string => {
@@ -81,18 +81,16 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Next Match (GW{nextFixture.gameweek})</p>
-              <p className="font-medium flex items-center space-x-2">
-                <span>{nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}</span>
+              <div className="flex items-center space-x-2">
+                <p className="font-medium">
+                  {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
+                </p>
                 <div
-                  className={`w-3 h-3 rounded-full ${getDifficultyColor(nextFixture.difficulty)}`}
-                  title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)}`}
+                  className={`w-4 h-4 rounded-full cursor-help ${getDifficultyColor(nextFixture.difficulty)}`}
+                  title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
                 />
-              </p>
+              </div>
             </div>
-            <div 
-              className={`w-4 h-4 rounded cursor-help transition-colors duration-200 ${getDifficultyColor(nextFixture.difficulty)}`}
-              title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
-            />
           </div>
         </div>
       )}
