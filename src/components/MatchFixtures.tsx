@@ -8,6 +8,7 @@ interface Match {
   time: string;
   isLive?: boolean;
   channel: string;
+  difficulty?: number;
 }
 
 interface MatchDay {
@@ -21,6 +22,18 @@ interface MatchFixturesProps {
 }
 
 export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProps) {
+  const getDifficultyColor = (difficulty: number = 3): string => {
+    if (difficulty <= 2) return 'bg-green-500';
+    if (difficulty >= 4) return 'bg-red-500';
+    return 'bg-gray-500';
+  };
+
+  const getDifficultyLabel = (difficulty: number = 3): string => {
+    if (difficulty <= 2) return 'Easy';
+    if (difficulty >= 4) return 'Hard';
+    return 'Normal';
+  };
+
   return (
     <div className="bg-white rounded-xl shadow-lg p-4 w-full lg:w-80">
       {/* Header */}
@@ -55,11 +68,17 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
                       </div>
                     </div>
                   </div>
-                  <img 
-                    src={`/channels/${match.channel}.svg`} 
-                    alt={match.channel}
-                    className="w-16 h-4 object-contain ml-2"
-                  />
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className={`w-2 h-2 rounded-full ${getDifficultyColor(match.difficulty)}`}
+                      title={`Difficulty: ${getDifficultyLabel(match.difficulty)}`}
+                    />
+                    <img
+                      src={`/channels/${match.channel}.svg`}
+                      alt={match.channel}
+                      className="w-16 h-4 object-contain"
+                    />
+                  </div>
                 </div>
               ))}
             </div>

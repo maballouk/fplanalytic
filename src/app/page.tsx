@@ -64,7 +64,8 @@ export default function Home() {
                   awayScore: 0,
                   time: "90+5'",
                   isLive: true,
-                  channel: "bein-sports"
+                  channel: "bein-sports",
+                  difficulty: 2
                 }
               ]
             },
@@ -75,25 +76,29 @@ export default function Home() {
                   homeTeam: "LEI",
                   awayTeam: "ARS",
                   time: "15:30",
-                  channel: "bein-sports"
+                  channel: "bein-sports",
+                  difficulty: 4
                 },
                 {
                   homeTeam: "AVL",
                   awayTeam: "IPS",
                   time: "18:00",
-                  channel: "bein-sports"
+                  channel: "bein-sports",
+                  difficulty: 3
                 },
                 {
                   homeTeam: "FUL",
                   awayTeam: "NFO",
                   time: "18:00",
-                  channel: "bein-sports"
+                  channel: "bein-sports",
+                  difficulty: 2
                 },
                 {
                   homeTeam: "MCI",
                   awayTeam: "NEW",
                   time: "18:00",
-                  channel: "bein-sports"
+                  channel: "bein-sports",
+                  difficulty: 3
                 },
                 {
                   homeTeam: "SOU",
