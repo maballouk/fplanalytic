@@ -8,6 +8,16 @@ interface PlayerCardProps {
 export default function PlayerCard({ prediction }: PlayerCardProps) {
   const { player, team, nextFixture, predictedPoints, buyRecommendation, form } = prediction;
 
+  const getPositionText = (elementType: number): string => {
+    switch (elementType) {
+      case 1: return 'GKP';
+      case 2: return 'DEF';
+      case 3: return 'MID';
+      case 4: return 'FWD';
+      default: return '';
+    }
+  };
+
   // Format numbers to handle undefined/null values
   const formatNumber = (value: number | null | undefined, decimals = 1): string => {
     if (value === null || value === undefined || isNaN(value)) return '0.0';
@@ -56,7 +66,7 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
       <div className="flex items-center justify-between mb-4">
         <div className="flex-grow">
           <h3 className="text-xl font-bold text-gray-900">
-            {`${player.first_name} ${player.second_name}`}
+            {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
           </h3>
           <p className="text-gray-600 font-medium">{team.name}</p>
         </div>
