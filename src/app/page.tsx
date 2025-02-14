@@ -48,9 +48,9 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50 flex">
+    <main className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
       {/* Fixtures Section */}
-      <div className="p-8">
+      <div className="p-4 lg:p-8 mx-auto lg:mx-0">
         <MatchFixtures
           matchweek={25}
           fixtures={[

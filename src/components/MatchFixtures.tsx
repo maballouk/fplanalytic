@@ -22,7 +22,7 @@ interface MatchFixturesProps {
 
 export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProps) {
   return (
-    <div className="bg-white rounded-xl shadow-lg p-4 w-80">
+    <div className="bg-white rounded-xl shadow-lg p-4 w-full lg:w-80">
       {/* Header */}
       <div className="bg-gradient-to-r from-premier-league-purple to-blue-500 rounded-lg p-4 mb-4">
         <div className="flex items-center space-x-2">
