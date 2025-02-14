@@ -5,6 +5,7 @@ import PlayerCard from '../components/PlayerCard';
 import PlayerCardSkeleton from '../components/PlayerCardSkeleton';
 import { PlayerPrediction } from '../types/fpl';
 import { getTopPlayers } from '../lib/api';
+import MatchFixtures from '../components/MatchFixtures';
 
 interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
@@ -47,8 +48,68 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50">
-      {/* Header */}
+    <main className="min-h-screen bg-gray-50 flex">
+      {/* Fixtures Section */}
+      <div className="p-8">
+        <MatchFixtures
+          matchweek={25}
+          fixtures={[
+            {
+              date: "Friday 14 February",
+              matches: [
+                {
+                  homeTeam: "BHA",
+                  awayTeam: "CHE",
+                  homeScore: 3,
+                  awayScore: 0,
+                  time: "90+5'",
+                  isLive: true,
+                  channel: "bein-sports"
+                }
+              ]
+            },
+            {
+              date: "Saturday 15 February",
+              matches: [
+                {
+                  homeTeam: "LEI",
+                  awayTeam: "ARS",
+                  time: "15:30",
+                  channel: "bein-sports"
+                },
+                {
+                  homeTeam: "AVL",
+                  awayTeam: "IPS",
+                  time: "18:00",
+                  channel: "bein-sports"
+                },
+                {
+                  homeTeam: "FUL",
+                  awayTeam: "NFO",
+                  time: "18:00",
+                  channel: "bein-sports"
+                },
+                {
+                  homeTeam: "MCI",
+                  awayTeam: "NEW",
+                  time: "18:00",
+                  channel: "bein-sports"
+                },
+                {
+                  homeTeam: "SOU",
+                  awayTeam: "BOU",
+                  time: "18:00",
+                  channel: "bein-sports"
+                }
+              ]
+            }
+          ]}
+        />
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-1">
+        {/* Header */}
       <div className="bg-premier-league-purple">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between">
@@ -160,6 +221,7 @@ export default function Home() {
             Data is automatically refreshed twice daily to ensure you have the latest insights
           </p>
         </div>
+      </div>
       </div>
     </main>
   );
