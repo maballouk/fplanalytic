@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-const CURRENT_SEASON = '2023-24';
+const CURRENT_SEASON = '2024-25';
 const BASE_URL = 'https://fantasy.premierleague.com/api';
 
 export async function GET(request: Request) {

@@ -181,19 +181,20 @@ interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
   budgetSuggestions: PlayerPrediction[];
   premiumSuggestions: PlayerPrediction[];
+  lastUpdated: string;
 }
 
 export async function getTopPlayers(): Promise<TopPlayersResult> {
   try {
-    const data = await fetchBootstrapStatic();
+    const { data: bootstrapData, lastUpdated } = await fetchBootstrapStatic();
     
-    if (!data?.elements || !data?.teams) {
+    if (!bootstrapData?.elements || !bootstrapData?.teams) {
       throw new Error('Invalid data structure received from API');
     }
     
     const fixtures = await fetchFixtures();
-    const players: FplPlayer[] = data.elements;
-    const teams: Team[] = data.teams;
+    const players: FplPlayer[] = bootstrapData.elements;
+    const teams: Team[] = bootstrapData.teams;
     
     const allPredictions: PlayerPrediction[] = players
       .filter(player => {
@@ -274,7 +275,8 @@ export async function getTopPlayers(): Promise<TopPlayersResult> {
     return {
       allPlayers: selectedPredictions,
       budgetSuggestions: budgetPlayers,
-      premiumSuggestions: premiumPlayers
+      premiumSuggestions: premiumPlayers,
+      lastUpdated
     };
   } catch (error) {
     console.error('Error in getTopPlayers:', error);

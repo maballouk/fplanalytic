@@ -6,14 +6,14 @@ import PlayerCardSkeleton from '../components/PlayerCardSkeleton';
 import { PlayerPrediction } from '../types/fpl';
 import { getTopPlayers } from '../lib/api';
 
-interface PlayerData {
+interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
   budgetSuggestions: PlayerPrediction[];
   premiumSuggestions: PlayerPrediction[];
 }
 
 export default function Home() {
-  const [players, setPlayers] = useState<PlayerData>({
+  const [players, setPlayers] = useState<TopPlayersResult>({
     allPlayers: [],
     budgetSuggestions: [],
     premiumSuggestions: []
@@ -21,17 +21,19 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
-  const [season, setSeason] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
         setError(null);
-        const data = await getTopPlayers();
-        setPlayers(data);
-        setLastUpdate(new Date().toLocaleString());
-        setSeason('2023-24');
+        const response = await getTopPlayers();
+        setPlayers({
+          allPlayers: response.allPlayers,
+          budgetSuggestions: response.budgetSuggestions,
+          premiumSuggestions: response.premiumSuggestions
+        });
+        setLastUpdate(new Date(response.lastUpdated).toLocaleString());
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to fetch player data';
         setError(errorMessage);
@@ -59,11 +61,9 @@ export default function Home() {
               <p className="mt-2 text-premier-league-green font-medium">
                 Top 25 Premier League players based on form and next gameweek potential
               </p>
-              {season && (
-                <p className="mt-1 text-white/80 text-sm">
-                  Season {season}
-                </p>
-              )}
+              <p className="mt-1 text-white/80 text-sm">
+                Season 2024-25
+              </p>
             </div>
             <div className="flex items-center space-x-4">
               <div className="bg-white/10 rounded-lg px-4 py-2">
@@ -105,7 +105,7 @@ export default function Home() {
           </div>
         )}
 
-        {/* Budget Suggestions */}
+        {/* Budget Picks */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Budget-Friendly Picks (Under £7.0m)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -119,7 +119,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Premium Suggestions */}
+        {/* Premium Picks */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Top Premium Picks (£7.0m+)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
