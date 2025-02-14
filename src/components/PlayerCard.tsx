@@ -81,8 +81,12 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Next Match (GW{nextFixture.gameweek})</p>
-              <p className="font-medium">
-                {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
+              <p className="font-medium flex items-center space-x-2">
+                <span>{nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}</span>
+                <div
+                  className={`w-3 h-3 rounded-full ${getDifficultyColor(nextFixture.difficulty)}`}
+                  title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)}`}
+                />
               </p>
             </div>
             <div 
