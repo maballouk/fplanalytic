@@ -69,21 +69,15 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
             {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
           </h3>
           <p className="text-gray-600 font-medium">{team.name}</p>
-          {nextFixture && (
-            <div className="text-sm text-gray-600 mt-2">
-              <p>Next Match (GW{nextFixture.gameweek})</p>
-              <div className="flex items-center mt-0.5">
-                <span>{nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}</span>
-                <div
-                  className={`ml-2 w-2.5 h-2.5 ${getDifficultyColor(nextFixture.difficulty)}`}
-                  title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
-                />
-              </div>
-            </div>
-          )}
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-sm font-medium text-gray-600">£{(player.now_cost / 10).toFixed(1)}m</span>
+          <span className="text-sm font-medium text-gray-600 mr-1">£{(player.now_cost / 10).toFixed(1)}m</span>
+          {nextFixture && (
+            <div
+              className={`w-3 h-3 ${getDifficultyColor(nextFixture.difficulty)}`}
+              title={`Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
+            />
+          )}
         </div>
       </div>
 
