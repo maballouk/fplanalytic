@@ -65,29 +65,24 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
       <div className="flex items-center justify-between mb-4">
         <div className="flex-grow">
-          <h3 className="text-xl font-bold text-gray-900">
+          <h3 className="text-xl font-bold text-gray-900 mb-1">
             {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
           </h3>
           <p className="text-gray-600 font-medium">{team.name}</p>
+          {nextFixture && (
+            <p className="text-sm text-gray-600 mt-1">
+              Next Match (GW{nextFixture.gameweek}): {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
+              <span
+                className={`inline-block w-2 h-2 ml-2 ${getDifficultyColor(nextFixture.difficulty)}`}
+                title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
+              />
+            </p>
+          )}
         </div>
         <div className="flex items-center space-x-2">
           <span className="text-sm font-medium text-gray-600">£{(player.now_cost / 10).toFixed(1)}m</span>
         </div>
       </div>
-
-      {/* Next Fixture */}
-      {nextFixture && (
-        <div className="mb-4 bg-gray-50 rounded-lg p-3">
-          <p className="text-sm text-gray-600">Next Match (GW{nextFixture.gameweek})</p>
-          <p className="font-medium mt-1">
-            {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
-            <span
-              className={`inline-block w-3 h-3 ml-2 align-middle ${getDifficultyColor(nextFixture.difficulty)}`}
-              title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
-            />
-          </p>
-        </div>
-      )}
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="bg-gray-50 rounded-lg p-3">
