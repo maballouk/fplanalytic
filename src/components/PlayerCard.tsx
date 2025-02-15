@@ -65,18 +65,23 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
       <div className="flex items-center justify-between mb-4">
         <div className="flex-grow">
-          <h3 className="text-xl font-bold text-gray-900 mb-1">
+          <h3 className="text-xl font-bold text-gray-900">
             {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
           </h3>
           <p className="text-gray-600 font-medium">{team.name}</p>
           {nextFixture && (
-            <p className="text-sm text-gray-600 mt-1">
-              Next Match (GW{nextFixture.gameweek}): {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
-              <span
-                className={`inline-block w-2 h-2 ml-2 ${getDifficultyColor(nextFixture.difficulty)}`}
+            <div className="mt-2 space-y-1">
+              <p className="text-sm text-gray-600">
+                Next Match (GW{nextFixture.gameweek})
+              </p>
+              <p className="text-sm text-gray-600">
+                {nextFixture.isHome ? 'vs' : '@'} {nextFixture.opponent.name}
+              </p>
+              <div
+                className={`w-3 h-3 ${getDifficultyColor(nextFixture.difficulty)}`}
                 title={`Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
               />
-            </p>
+            </div>
           )}
         </div>
         <div className="flex items-center space-x-2">
