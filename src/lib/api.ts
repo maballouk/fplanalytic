@@ -31,8 +31,8 @@ export async function fetchBootstrapStatic() {
 }
 
 export async function fetchFixtures() {
-  const data = await fetchFromApi('fixtures');
-  return Array.isArray(data) ? data : [];
+  const response = await fetchFromApi('fixtures');
+  return Array.isArray(response.data) ? response.data : [];
 }
 
 function safeParseFloat(value: string | number | null | undefined): number {

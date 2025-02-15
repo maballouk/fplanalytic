@@ -7,6 +7,11 @@ interface PlayerCardProps {
 
 export default function PlayerCard({ prediction }: PlayerCardProps) {
   const { player, team, nextFixture, predictedPoints, buyRecommendation, form } = prediction;
+  
+  console.log('Player:', player.first_name, player.second_name);
+  console.log('Next Fixture:', nextFixture);
+  console.log('Difficulty:', nextFixture?.difficulty);
+  console.log('Opponent:', nextFixture?.opponent?.name);
 
   const getPositionText = (elementType: number): string => {
     switch (elementType) {
@@ -71,13 +76,14 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
           <p className="text-gray-600 font-medium">{team.name}</p>
         </div>
         <div className="flex items-center space-x-2">
-          <span className="text-sm font-medium text-gray-600 mr-1">£{(player.now_cost / 10).toFixed(1)}m</span>
-          {nextFixture && (
-            <div
-              className={`w-3 h-3 ${getDifficultyColor(nextFixture.difficulty)}`}
-              title={`Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`}
-            />
-          )}
+          <span className="text-sm font-medium text-gray-600 mr-2">£{(player.now_cost / 10).toFixed(1)}m</span>
+          <div
+            className={`w-4 h-4 flex-shrink-0 ${nextFixture ? getDifficultyColor(nextFixture.difficulty) : 'bg-gray-300'}`}
+            title={nextFixture
+              ? `Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`
+              : "No upcoming fixture"
+            }
+          />
         </div>
       </div>
 

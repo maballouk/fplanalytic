@@ -11,13 +11,15 @@ interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
   budgetSuggestions: PlayerPrediction[];
   premiumSuggestions: PlayerPrediction[];
+  lastUpdated: string;
 }
 
 export default function Home() {
   const [players, setPlayers] = useState<TopPlayersResult>({
     allPlayers: [],
     budgetSuggestions: [],
-    premiumSuggestions: []
+    premiumSuggestions: [],
+    lastUpdated: new Date().toISOString()
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
