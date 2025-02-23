@@ -10,6 +10,7 @@ export interface ConsensusPlayer {
   name: string;
   club: string;
   position: string;
+  imageUrl: string;
   mentions: BlogMention[];
   mentionPercentage: number;
   form: number;

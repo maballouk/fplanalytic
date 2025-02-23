@@ -32,25 +32,36 @@ export default function ConsensusPanel() {
 
   const renderPlayer = (player: ConsensusPlayer) => (
     <div key={player.id} className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow">
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900">
-            {player.name}
-            <span className="ml-2 text-sm font-medium text-gray-500">
-              {player.position} | {player.club}
-            </span>
-          </h3>
-          <div className="mt-1 space-y-1">
-            {player.mentions.map((mention, index) => (
-              <p key={index} className="text-sm text-gray-600">
-                <span className="font-medium text-gray-700">{mention.source}:</span> {mention.reason}
-              </p>
-            ))}
-          </div>
+      <div className="flex items-start space-x-4">
+        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+          <img 
+            src={player.imageUrl} 
+            alt={player.name}
+            className="w-full h-full object-cover"
+          />
         </div>
-        <div className="flex flex-col items-end">
-          <div className="text-lg font-bold text-green-600">{player.mentionPercentage}%</div>
-          <div className="text-sm text-gray-500">consensus</div>
+        <div className="flex-grow">
+          <div className="flex items-start justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900">
+                {player.name}
+                <span className="ml-2 text-sm font-medium text-gray-500">
+                  {player.position} | {player.club}
+                </span>
+              </h3>
+              <div className="mt-1 space-y-1">
+                {player.mentions.map((mention, index) => (
+                  <p key={index} className="text-sm text-gray-600">
+                    {mention.reason}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <div className="flex flex-col items-end">
+              <div className="text-lg font-bold text-green-600">{player.mentionPercentage}%</div>
+              <div className="text-sm text-gray-500">consensus</div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
@@ -89,12 +100,29 @@ export default function ConsensusPanel() {
       <div className="space-y-4">
         {[1, 2, 3].map((i) => (
           <div key={i} className="bg-white rounded-xl shadow-sm p-4 animate-pulse">
-            <div className="h-6 w-48 bg-gray-200 rounded mb-2" />
-            <div className="h-4 w-64 bg-gray-200 rounded mb-4" />
-            <div className="grid grid-cols-3 gap-4">
-              <div className="h-8 bg-gray-200 rounded" />
-              <div className="h-8 bg-gray-200 rounded" />
-              <div className="h-8 bg-gray-200 rounded" />
+            <div className="flex items-start space-x-4">
+              <div className="w-16 h-16 bg-gray-200 rounded-lg flex-shrink-0" />
+              <div className="flex-grow">
+                <div className="flex items-start justify-between">
+                  <div>
+                    <div className="h-6 w-48 bg-gray-200 rounded mb-2" />
+                    <div className="h-4 w-64 bg-gray-200 rounded mb-4" />
+                    <div className="space-y-2">
+                      <div className="h-4 w-56 bg-gray-200 rounded" />
+                      <div className="h-4 w-48 bg-gray-200 rounded" />
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-end">
+                    <div className="h-6 w-12 bg-gray-200 rounded mb-1" />
+                    <div className="h-4 w-16 bg-gray-200 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
+              <div className="h-12 bg-gray-200 rounded" />
+              <div className="h-12 bg-gray-200 rounded" />
+              <div className="h-12 bg-gray-200 rounded" />
             </div>
           </div>
         ))}
@@ -173,12 +201,6 @@ export default function ConsensusPanel() {
         {activeTab === 'top' && data.topPicks.map(renderPlayer)}
         {activeTab === 'rising' && data.risingPicks.map(renderPlayer)}
         {activeTab === 'falling' && data.fallingPicks.map(renderPlayer)}
-      </div>
-
-      <div className="mt-6 pt-6 border-t border-gray-100">
-        <p className="text-sm text-gray-500">
-          Based on analysis from: {data.sources.join(', ')}
-        </p>
       </div>
     </div>
   );

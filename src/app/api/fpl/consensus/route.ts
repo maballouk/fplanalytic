@@ -16,15 +16,16 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     name: 'Mohamed Salah',
     club: 'Liverpool',
     position: 'MID',
+    imageUrl: 'https://resources.premierleague.com/premierleague/photos/players/250x250/p118748.png',
     mentions: [
       {
-        source: 'Fantasy Football Scout',
+        source: 'Expert Analysis',
         reason: 'Excellent home record and on penalties',
         timestamp: new Date().toISOString(),
         sentiment: 'positive'
       },
       {
-        source: 'Fantasy Football Geek',
+        source: 'Performance Data',
         reason: 'High ownership and consistent returns',
         timestamp: new Date().toISOString(),
         sentiment: 'positive'
@@ -43,9 +44,10 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     name: 'Erling Haaland',
     club: 'Manchester City',
     position: 'FWD',
+    imageUrl: 'https://resources.premierleague.com/premierleague/photos/players/250x250/p223094.png',
     mentions: [
       {
-        source: 'Fantasy Football Hub',
+        source: 'Performance Data',
         reason: 'Premier League top scorer and fixture-proof',
         timestamp: new Date().toISOString(),
         sentiment: 'positive'
