@@ -120,7 +120,15 @@ export default function MatchFixtures() {
           <img src="/premier-league-logo.svg" alt="Premier League" className="w-8 h-8" />
           <h2 className="text-xl font-bold text-white">Matchweek {matchweek}</h2>
         </div>
-        <p className="text-xs text-white/80 mt-1">All times shown are your local time</p>
+        <div className="flex items-center justify-between mt-2">
+          <p className="text-xs text-white/80">All times shown are your local time</p>
+          {hasLiveMatches && (
+            <span className="flex items-center space-x-1">
+              <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+              <span className="text-xs text-green-400">Live</span>
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Fixtures */}
@@ -134,24 +142,34 @@ export default function MatchFixtures() {
                   <div className="flex items-center space-x-3 flex-1">
                     <div className="flex items-center justify-between flex-1">
                       <div className="flex items-center space-x-2">
-                        <span className="font-medium text-gray-900 w-12">{match.homeTeam}</span>
+                        <span className={`font-medium w-12 ${
+                          match.status === 'live' ? 'text-green-700' :
+                          match.status === 'finished' ? 'text-gray-700' :
+                          'text-blue-700'
+                        }`}>{match.homeTeam}</span>
                         {match.status === 'live' && (
                           <div className="flex items-center space-x-1">
-                            <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
-                            <span className="text-sm bg-red-100 text-red-600 px-2 py-0.5 rounded-md font-medium">
+                            <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                            <span className="text-sm bg-green-100 text-green-700 px-2 py-0.5 rounded-md font-medium">
                               {match.homeScore} - {match.awayScore} ({match.time})
                             </span>
                           </div>
                         )}
                         {match.status === 'finished' && (
-                          <span className="text-sm text-gray-700 font-medium px-2">
+                          <span className="text-sm bg-gray-100 text-gray-700 font-medium px-2 py-0.5 rounded-md">
                             {match.homeScore} - {match.awayScore}
                           </span>
                         )}
                         {match.status === 'upcoming' && (
-                          <span className="text-sm text-gray-600 px-2">{match.time}</span>
+                          <span className="text-sm bg-blue-50 text-blue-600 px-2 py-0.5 rounded-md">
+                            {match.time}
+                          </span>
                         )}
-                        <span className="font-medium text-gray-900 w-12 text-right">{match.awayTeam}</span>
+                        <span className={`font-medium w-12 text-right ${
+                          match.status === 'live' ? 'text-green-700' :
+                          match.status === 'finished' ? 'text-gray-700' :
+                          'text-blue-700'
+                        }`}>{match.awayTeam}</span>
                       </div>
                     </div>
                   </div>

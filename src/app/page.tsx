@@ -6,6 +6,7 @@ import PlayerCardSkeleton from '../components/PlayerCardSkeleton';
 import { PlayerPrediction } from '../types/fpl';
 import { getTopPlayers } from '../lib/api';
 import MatchFixtures from '../components/MatchFixtures';
+import ConsensusPanel from '../components/ConsensusPanel';
 
 interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
@@ -112,6 +113,11 @@ export default function Home() {
             </div>
           </div>
         )}
+
+        {/* Expert Consensus */}
+        <div className="mb-8">
+          <ConsensusPanel />
+        </div>
 
         {/* Budget Picks */}
         <div className="mb-8">
