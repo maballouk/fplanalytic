@@ -53,60 +53,7 @@ export default function Home() {
     <main className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
       {/* Fixtures Section */}
       <div className="p-4 lg:p-8 mx-auto lg:mx-0">
-        <MatchFixtures
-          matchweek={25}
-          fixtures={[
-            {
-              date: "Friday 14 February",
-              matches: [
-                {
-                  homeTeam: "BHA",
-                  awayTeam: "CHE",
-                  homeScore: 3,
-                  awayScore: 0,
-                  time: "90+5'",
-                  isLive: true,
-                  channel: "bein-sports"
-                }
-              ]
-            },
-            {
-              date: "Saturday 15 February",
-              matches: [
-                {
-                  homeTeam: "LEI",
-                  awayTeam: "ARS",
-                  time: "15:30",
-                  channel: "bein-sports"
-                },
-                {
-                  homeTeam: "AVL",
-                  awayTeam: "IPS",
-                  time: "18:00",
-                  channel: "bein-sports"
-                },
-                {
-                  homeTeam: "FUL",
-                  awayTeam: "NFO",
-                  time: "18:00",
-                  channel: "bein-sports"
-                },
-                {
-                  homeTeam: "MCI",
-                  awayTeam: "NEW",
-                  time: "18:00",
-                  channel: "bein-sports"
-                },
-                {
-                  homeTeam: "SOU",
-                  awayTeam: "BOU",
-                  time: "18:00",
-                  channel: "bein-sports"
-                }
-              ]
-            }
-          ]}
-        />
+        <MatchFixtures />
       </div>
 
       {/* Main Content */}
