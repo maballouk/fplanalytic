@@ -13,6 +13,9 @@ interface LiveFixture {
   finished: boolean;
   kickoff_time: string;
   minutes: number;
+  provisional_start_time: boolean;
+  finished_provisional: boolean;
+  stats: any[];
 }
 
 interface Team {
@@ -21,29 +24,52 @@ interface Team {
   short_name: string;
 }
 
+interface Event {
+  id: number;
+  name: string;
+  deadline_time: string;
+  average_entry_score: number;
+  finished: boolean;
+  data_checked: boolean;
+  highest_scoring_entry: number;
+  deadline_time_epoch: number;
+  deadline_time_game_offset: number;
+  highest_score: number;
+  is_previous: boolean;
+  is_current: boolean;
+  is_next: boolean;
+}
+
 export async function GET() {
   try {
-    // Fetch teams data
-    const teamsResponse = await fetch(`${BASE_URL}/bootstrap-static/`, {
+    // Fetch bootstrap data for teams and current gameweek
+    const bootstrapResponse = await fetch(`${BASE_URL}/bootstrap-static/`, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
       },
-      next: { revalidate: 60 } // Revalidate every minute
+      next: { revalidate: 30 } // Revalidate every 30 seconds for live data
     });
 
-    if (!teamsResponse.ok) {
-      throw new Error(`Failed to fetch teams: ${teamsResponse.status}`);
+    if (!bootstrapResponse.ok) {
+      throw new Error(`Failed to fetch bootstrap data: ${bootstrapResponse.status}`);
     }
 
-    const teamsData = await teamsResponse.json();
-    const teams: Team[] = teamsData.teams;
+    const bootstrapData = await bootstrapResponse.json();
+    const teams: Team[] = bootstrapData.teams;
+    const events: Event[] = bootstrapData.events;
 
-    // Fetch live fixtures
-    const fixturesResponse = await fetch(`${BASE_URL}/fixtures/?future=1`, {
+    // Find current gameweek
+    const currentEvent = events.find(e => e.is_current);
+    if (!currentEvent) {
+      throw new Error('No current gameweek found');
+    }
+
+    // Fetch live fixtures for current gameweek
+    const fixturesResponse = await fetch(`${BASE_URL}/fixtures/?event=${currentEvent.id}`, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
       },
-      next: { revalidate: 60 } // Revalidate every minute
+      next: { revalidate: 30 } // Revalidate every 30 seconds for live data
     });
 
     if (!fixturesResponse.ok) {
@@ -71,14 +97,27 @@ export async function GET() {
 
       if (!homeTeam || !awayTeam) return acc;
 
+      // Determine match status
+      let status = 'upcoming';
+      let displayTime = timeStr;
+
+      if (fixture.started && !fixture.finished) {
+        status = 'live';
+        displayTime = `${fixture.minutes}'`;
+      } else if (fixture.finished) {
+        status = 'finished';
+        displayTime = 'FT';
+      }
+
       const match = {
         homeTeam: homeTeam.short_name,
         awayTeam: awayTeam.short_name,
         homeScore: fixture.team_h_score,
         awayScore: fixture.team_a_score,
-        time: fixture.started ? `${fixture.minutes}'` : timeStr,
-        isLive: fixture.started && !fixture.finished,
-        channel: 'bein-sports' // Default channel, could be fetched from a configuration
+        time: displayTime,
+        status,
+        isLive: status === 'live',
+        channel: 'bein-sports'
       };
 
       if (!acc[dateStr]) {
@@ -95,7 +134,7 @@ export async function GET() {
     const matchDays = Object.values(groupedFixtures);
 
     return NextResponse.json({
-      matchweek: fixtures[0]?.event || 0,
+      matchweek: currentEvent.id,
       fixtures: matchDays,
       lastUpdated: new Date().toISOString()
     });

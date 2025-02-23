@@ -9,7 +9,8 @@ interface Match {
   homeScore?: number;
   awayScore?: number;
   time: string;
-  isLive?: boolean;
+  status: 'upcoming' | 'live' | 'finished';
+  isLive: boolean;
   channel: string;
 }
 
@@ -29,12 +30,20 @@ export default function MatchFixtures() {
   const [fixtures, setFixtures] = useState<MatchDay[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [hasLiveMatches, setHasLiveMatches] = useState(false);
 
   const fetchFixtures = async () => {
     try {
       const response = await axios.get<LiveFixturesResponse>('/api/fpl/live-fixtures');
       setMatchweek(response.data.matchweek);
       setFixtures(response.data.fixtures);
+      
+      // Check if there are any live matches
+      const liveMatches = response.data.fixtures.some(day => 
+        day.matches.some(match => match.status === 'live')
+      );
+      setHasLiveMatches(liveMatches);
+      
       setError(null);
     } catch (err) {
       setError('Failed to fetch fixtures');
@@ -46,10 +55,11 @@ export default function MatchFixtures() {
 
   useEffect(() => {
     fetchFixtures();
-    // Refresh every minute
-    const interval = setInterval(fetchFixtures, 60000);
+    
+    // Set refresh interval based on whether there are live matches
+    const interval = setInterval(fetchFixtures, hasLiveMatches ? 30000 : 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [hasLiveMatches]);
 
   if (loading) {
     return (
@@ -125,14 +135,20 @@ export default function MatchFixtures() {
                     <div className="flex items-center justify-between flex-1">
                       <div className="flex items-center space-x-2">
                         <span className="font-medium text-gray-900 w-12">{match.homeTeam}</span>
-                        {match.isLive ? (
+                        {match.status === 'live' && (
                           <div className="flex items-center space-x-1">
                             <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse" />
                             <span className="text-sm bg-red-100 text-red-600 px-2 py-0.5 rounded-md font-medium">
-                              {match.homeScore} - {match.awayScore}
+                              {match.homeScore} - {match.awayScore} ({match.time})
                             </span>
                           </div>
-                        ) : (
+                        )}
+                        {match.status === 'finished' && (
+                          <span className="text-sm text-gray-700 font-medium px-2">
+                            {match.homeScore} - {match.awayScore}
+                          </span>
+                        )}
+                        {match.status === 'upcoming' && (
                           <span className="text-sm text-gray-600 px-2">{match.time}</span>
                         )}
                         <span className="font-medium text-gray-900 w-12 text-right">{match.awayTeam}</span>
