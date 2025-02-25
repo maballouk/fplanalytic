@@ -51,46 +51,38 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col lg:flex-row">
-      {/* Fixtures Section */}
-      <div className="p-4 lg:p-8 mx-auto lg:mx-0">
-        <MatchFixtures />
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1">
+    <main className="min-h-screen bg-gray-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-      <div className="bg-premier-league-purple">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-            <div className="mb-4 md:mb-0">
-              <h1 className="text-3xl md:text-4xl font-bold text-white">
-                FPL Analytics Dashboard
-              </h1>
-              <p className="mt-2 text-premier-league-green font-medium">
-                Top 25 Premier League players based on form and next gameweek potential
-              </p>
-              <p className="mt-1 text-white/80 text-sm">
-                Season 2024-25
-              </p>
-            </div>
-            <div className="flex items-center space-x-4">
-              <div className="bg-white/10 rounded-lg px-4 py-2">
-                <p className="text-sm text-white/80">Updates</p>
-                <p className="text-xl font-bold text-white">Twice Daily</p>
-                {lastUpdate && (
-                  <p className="text-xs text-white/60 mt-1">
-                    Last update: {lastUpdate}
-                  </p>
-                )}
+        <div className="bg-premier-league-purple">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div className="mb-4 md:mb-0">
+                <h1 className="text-3xl md:text-4xl font-bold text-white">
+                  FPL Analytics Dashboard
+                </h1>
+                <p className="mt-2 text-premier-league-green font-medium">
+                  Top 25 Premier League players based on form and next gameweek potential
+                </p>
+                <p className="mt-1 text-white/80 text-sm">
+                  Season 2024-25
+                </p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <div className="bg-white/10 rounded-lg px-4 py-2">
+                  <p className="text-sm text-white/80">Updates</p>
+                  <p className="text-xl font-bold text-white">Twice Daily</p>
+                  {lastUpdate && (
+                    <p className="text-xs text-white/60 mt-1">
+                      Last update: {lastUpdate}
+                    </p>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-8 rounded-r-lg">
             <div className="flex">
@@ -176,7 +168,71 @@ export default function Home() {
             Data is automatically refreshed twice daily to ensure you have the latest insights
           </p>
         </div>
-      </div>
+
+        {/* Match Fixtures Section */}
+        <div className="mt-12 mb-8">
+          <MatchFixtures 
+            matchweek={26}
+            fixtures={[
+              {
+                date: "Friday 21 February",
+                matches: [
+                  {
+                    homeTeam: "LEI",
+                    awayTeam: "BRE",
+                    homeScore: 0,
+                    awayScore: 4,
+                    time: "FT",
+                    channel: "bein-sports"
+                  }
+                ]
+              },
+              {
+                date: "Saturday 22 February",
+                matches: [
+                  {
+                    homeTeam: "EVE",
+                    awayTeam: "MUN",
+                    homeScore: 2,
+                    awayScore: 2,
+                    time: "FT",
+                    channel: "bein-sports"
+                  },
+                  {
+                    homeTeam: "ARS",
+                    awayTeam: "WHU",
+                    homeScore: 0,
+                    awayScore: 1,
+                    time: "FT",
+                    channel: "bein-sports"
+                  },
+                  {
+                    homeTeam: "BOU",
+                    awayTeam: "WOL",
+                    homeScore: 0,
+                    awayScore: 1,
+                    time: "FT",
+                    channel: "bein-sports"
+                  }
+                ]
+              },
+              {
+                date: "Sunday 23 February",
+                matches: [
+                  {
+                    homeTeam: "MCI",
+                    awayTeam: "LIV",
+                    time: "17:30",
+                    isLive: true,
+                    homeScore: 0,
+                    awayScore: 2,
+                    channel: "bein-sports"
+                  }
+                ]
+              }
+            ]}
+          />
+        </div>
       </div>
     </main>
   );
