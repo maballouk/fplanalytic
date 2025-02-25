@@ -7,12 +7,26 @@ import { PlayerPrediction } from '../types/fpl';
 import { getTopPlayers } from '../lib/api';
 import MatchFixtures from '../components/MatchFixtures';
 import ConsensusPanel from '../components/ConsensusPanel';
+import axios from 'axios';
 
 interface TopPlayersResult {
   allPlayers: PlayerPrediction[];
   budgetSuggestions: PlayerPrediction[];
   premiumSuggestions: PlayerPrediction[];
   lastUpdated: string;
+}
+
+interface MatchDay {
+  date: string;
+  matches: {
+    homeTeam: string;
+    awayTeam: string;
+    homeScore?: number;
+    awayScore?: number;
+    time: string;
+    isLive?: boolean;
+    channel: string;
+  }[];
 }
 
 export default function Home() {
@@ -25,6 +39,36 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [lastUpdate, setLastUpdate] = useState<string | null>(null);
+  const [fixtures, setFixtures] = useState<MatchDay[]>([]);
+  const [currentMatchweek, setCurrentMatchweek] = useState(0);
+
+  const fetchFixtures = async () => {
+    try {
+      const response = await axios.get('/api/fpl/live-fixtures');
+      if (response.data.data) {
+        const processedFixtures = response.data.data.map((day: any) => ({
+          date: new Date(day.date).toLocaleDateString('en-GB', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
+          }),
+          matches: day.matches.map((match: any) => ({
+            homeTeam: match.homeTeam,
+            awayTeam: match.awayTeam,
+            homeScore: match.homeScore,
+            awayScore: match.awayScore,
+            time: match.time,
+            isLive: match.isLive,
+            channel: 'bein-sports'
+          }))
+        }));
+        setFixtures(processedFixtures);
+        setCurrentMatchweek(response.data.matchweek || 0);
+      }
+    } catch (err) {
+      console.error('Error fetching fixtures:', err);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +80,7 @@ export default function Home() {
         if (response.lastUpdated) {
           setLastUpdate(new Date(response.lastUpdated).toLocaleString());
         }
+        await fetchFixtures();
       } catch (err) {
         const errorMessage = err instanceof Error ? err.message : 'Failed to fetch player data';
         setError(errorMessage);
@@ -45,9 +90,16 @@ export default function Home() {
     };
 
     fetchData();
-    // Update twice daily (every 12 hours)
-    const interval = setInterval(fetchData, 12 * 60 * 60 * 1000);
-    return () => clearInterval(interval);
+
+    // Update fixtures every minute
+    const fixturesInterval = setInterval(fetchFixtures, 60000);
+    // Update player data twice daily
+    const playersInterval = setInterval(fetchData, 12 * 60 * 60 * 1000);
+
+    return () => {
+      clearInterval(fixturesInterval);
+      clearInterval(playersInterval);
+    };
   }, []);
 
   return (
@@ -171,67 +223,12 @@ export default function Home() {
 
         {/* Match Fixtures Section */}
         <div className="mt-12 mb-8">
-          <MatchFixtures 
-            matchweek={26}
-            fixtures={[
-              {
-                date: "Friday 21 February",
-                matches: [
-                  {
-                    homeTeam: "LEI",
-                    awayTeam: "BRE",
-                    homeScore: 0,
-                    awayScore: 4,
-                    time: "FT",
-                    channel: "bein-sports"
-                  }
-                ]
-              },
-              {
-                date: "Saturday 22 February",
-                matches: [
-                  {
-                    homeTeam: "EVE",
-                    awayTeam: "MUN",
-                    homeScore: 2,
-                    awayScore: 2,
-                    time: "FT",
-                    channel: "bein-sports"
-                  },
-                  {
-                    homeTeam: "ARS",
-                    awayTeam: "WHU",
-                    homeScore: 0,
-                    awayScore: 1,
-                    time: "FT",
-                    channel: "bein-sports"
-                  },
-                  {
-                    homeTeam: "BOU",
-                    awayTeam: "WOL",
-                    homeScore: 0,
-                    awayScore: 1,
-                    time: "FT",
-                    channel: "bein-sports"
-                  }
-                ]
-              },
-              {
-                date: "Sunday 23 February",
-                matches: [
-                  {
-                    homeTeam: "MCI",
-                    awayTeam: "LIV",
-                    time: "17:30",
-                    isLive: true,
-                    homeScore: 0,
-                    awayScore: 2,
-                    channel: "bein-sports"
-                  }
-                ]
-              }
-            ]}
-          />
+          <div className="bg-white/40 rounded-xl p-1">
+            <MatchFixtures 
+              matchweek={currentMatchweek}
+              fixtures={fixtures}
+            />
+          </div>
         </div>
       </div>
     </main>

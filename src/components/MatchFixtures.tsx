@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 
 interface Match {
   homeTeam: string;
@@ -23,69 +23,87 @@ interface MatchFixturesProps {
 }
 
 export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProps) {
-  const [isExpanded, setIsExpanded] = useState(false);
-
   return (
-    <div className="w-full bg-white rounded-xl shadow-sm overflow-hidden">
-      {/* Header - Always visible */}
-      <button 
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full px-4 py-3 flex items-center justify-between bg-gradient-to-r from-premier-league-purple to-blue-500 hover:from-premier-league-purple/90 hover:to-blue-500/90 transition-colors"
-      >
-        <div className="flex items-center space-x-2">
-          <img src="/premier-league-logo.svg" alt="Premier League" className="w-6 h-6" />
-          <div>
-            <h2 className="text-white font-semibold">Matchweek {matchweek}</h2>
-            <p className="text-xs text-white/80">Latest Results & Fixtures</p>
+    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="bg-gradient-to-r from-premier-league-purple to-blue-500 px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-3">
+            <img src="/premier-league-logo.svg" alt="Premier League" className="w-8 h-8" />
+            <div>
+              <h2 className="text-xl font-bold text-white">Matchweek {matchweek}</h2>
+              <p className="text-sm text-white/80">Latest Results & Fixtures</p>
+            </div>
           </div>
         </div>
-        <svg 
-          className={`w-5 h-5 text-white transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+      </div>
 
-      {/* Collapsible Content */}
-      {isExpanded && (
-        <div className="divide-y divide-gray-100">
-          {fixtures.map((matchDay, index) => (
-            <div key={index} className="p-4">
-              <h3 className="text-sm font-medium text-gray-500 mb-3">{matchDay.date}</h3>
-              <div className="space-y-2">
-                {matchDay.matches.map((match, matchIndex) => (
-                  <div key={matchIndex} className="flex items-center justify-between text-sm">
-                    <div className="flex items-center space-x-4 flex-1">
-                      <div className="w-24 text-right font-medium text-gray-900">{match.homeTeam}</div>
-                      <div className="flex items-center">
-                        {match.isLive ? (
-                          <div className="flex items-center space-x-1">
-                            <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-                            <span className="font-medium text-red-600 min-w-[60px] text-center">
-                              {match.homeScore} - {match.awayScore}
-                            </span>
-                          </div>
-                        ) : (
-                          <span className="text-gray-600 min-w-[60px] text-center">{match.time}</span>
-                        )}
-                      </div>
-                      <div className="w-24 text-left font-medium text-gray-900">{match.awayTeam}</div>
+      {/* Matches Grid */}
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+        {fixtures.map((matchDay, dayIndex) => (
+          <div 
+            key={dayIndex} 
+            className="bg-gray-50 rounded-lg overflow-hidden"
+          >
+            <div className="bg-gray-100/80 px-4 py-2">
+              <h3 className="text-sm font-semibold text-gray-600">{matchDay.date}</h3>
+            </div>
+            <div className="divide-y divide-gray-100">
+              {matchDay.matches.map((match, matchIndex) => (
+                <div 
+                  key={matchIndex} 
+                  className="px-4 py-3 hover:bg-gray-50 transition-colors"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center space-x-2">
+                      {match.isLive && (
+                        <span className="flex items-center">
+                          <span className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse mr-1.5" />
+                          <span className="text-xs font-medium text-red-600 uppercase">Live</span>
+                        </span>
+                      )}
+                      {!match.isLive && match.homeScore !== undefined && (
+                        <span className="text-xs font-medium text-gray-500 uppercase">FT</span>
+                      )}
+                      {!match.isLive && match.homeScore === undefined && (
+                        <span className="text-xs font-medium text-blue-600">{match.time}</span>
+                      )}
                     </div>
                     <img
                       src={`/channels/${match.channel}.svg`}
                       alt={match.channel}
-                      className="w-12 h-3 object-contain opacity-60"
+                      className="h-3 w-12 object-contain opacity-60"
                     />
                   </div>
-                ))}
-              </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 flex items-center justify-between min-w-0">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-sm font-semibold text-gray-900 truncate">
+                          {match.homeTeam}
+                        </p>
+                      </div>
+                      <div className="mx-4 text-sm font-bold">
+                        {match.homeScore !== undefined ? (
+                          <span className={`${match.isLive ? 'text-red-600' : 'text-gray-900'}`}>
+                            {match.homeScore} - {match.awayScore}
+                          </span>
+                        ) : (
+                          <span className="text-gray-300">vs</span>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0 text-right">
+                        <p className="text-sm font-semibold text-gray-900 truncate">
+                          {match.awayTeam}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-      )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
