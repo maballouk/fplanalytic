@@ -57,7 +57,7 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
       <div className="flex items-start space-x-3 mb-4">
         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
           <img
-            src={getPlayerPhotoUrl(player.id.toString())}
+            src={getPlayerPhotoUrl(player.code)}
             alt={`${player.first_name} ${player.second_name}`}
             className="w-full h-full object-contain"
             loading="lazy"

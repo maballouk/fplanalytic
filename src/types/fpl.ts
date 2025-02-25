@@ -29,13 +29,7 @@ export interface FplPlayer {
   form: string;
   chance_of_playing_next_round: number | null;
   chance_of_playing_this_round: number | null;
-  photo: string;
-}
-
-// Helper function to get player photo URL
-export function getPlayerPhotoUrl(code: string): string {
-  const playerId = code.replace('_', '').replace('.jpg', '').replace('.png', '');
-  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${playerId}.png`;
+  code: number;
 }
 
 export interface Team {
@@ -49,6 +43,21 @@ export interface Team {
   strength_attack_away: number;
   strength_defence_home: number;
   strength_defence_away: number;
+}
+
+export interface GameweekFixture {
+  id: number;
+  event: number;
+  team_h: number;
+  team_a: number;
+  team_h_score: number | null;
+  team_a_score: number | null;
+  started: boolean;
+  finished: boolean;
+  kickoff_time: string;
+  minutes: number;
+  team_h_difficulty: number;
+  team_a_difficulty: number;
 }
 
 export interface PlayerPrediction {
@@ -69,17 +78,7 @@ export interface PlayerPrediction {
   formHistory: number[];
 }
 
-export interface GameweekFixture {
-  id: number;
-  event: number | null; // gameweek number
-  team_h: number;
-  team_a: number;
-  team_h_score: number | null;
-  team_a_score: number | null;
-  team_h_difficulty: number;
-  team_a_difficulty: number;
-  finished: boolean;
-  started: boolean;
-  kickoff_time: string;
-  difficulty: number;
+// Helper function to get player photo URL
+export function getPlayerPhotoUrl(code: number): string {
+  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`;
 }
