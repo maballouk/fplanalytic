@@ -29,6 +29,12 @@ export interface FplPlayer {
   form: string;
   chance_of_playing_next_round: number | null;
   chance_of_playing_this_round: number | null;
+  photo: string;
+}
+
+// Helper function to get player photo URL
+export function getPlayerPhotoUrl(code: string): string {
+  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`;
 }
 
 export interface Team {

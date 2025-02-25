@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlayerPrediction } from '../types/fpl';
+import { PlayerPrediction, getPlayerPhotoUrl } from '../types/fpl';
 
 interface PlayerCardProps {
   prediction: PlayerPrediction;
@@ -68,22 +68,36 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex-grow">
-          <h3 className="text-xl font-bold text-gray-900">
-            {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
-          </h3>
-          <p className="text-gray-600 font-medium">{team.name}</p>
-        </div>
-        <div className="flex items-center space-x-2">
-          <span className="text-sm font-medium text-gray-600 mr-2">£{(player.now_cost / 10).toFixed(1)}m</span>
-          <div
-            className={`w-4 h-4 flex-shrink-0 ${nextFixture ? getDifficultyColor(nextFixture.difficulty) : 'bg-gray-300'}`}
-            title={nextFixture
-              ? `Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`
-              : "No upcoming fixture"
-            }
+      <div className="flex items-start space-x-3 mb-4">
+        <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+          <img
+            src={getPlayerPhotoUrl(player.photo)}
+            alt={`${player.first_name} ${player.second_name}`}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.currentTarget.src = 'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
+            }}
           />
+        </div>
+        <div className="flex-grow">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold text-gray-900">
+                {`${player.first_name} ${player.second_name} (${getPositionText(player.element_type)})`}
+              </h3>
+              <p className="text-gray-600 font-medium">{team.name}</p>
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium text-gray-600 mr-2">£{(player.now_cost / 10).toFixed(1)}m</span>
+              <div
+                className={`w-4 h-4 flex-shrink-0 ${nextFixture ? getDifficultyColor(nextFixture.difficulty) : 'bg-gray-300'}`}
+                title={nextFixture
+                  ? `Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`
+                  : "No upcoming fixture"
+                }
+              />
+            </div>
+          </div>
         </div>
       </div>
 
