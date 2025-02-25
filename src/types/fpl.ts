@@ -34,7 +34,8 @@ export interface FplPlayer {
 
 // Helper function to get player photo URL
 export function getPlayerPhotoUrl(code: string): string {
-  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${code}.png`;
+  const playerId = code.replace('_', '').replace('.jpg', '').replace('.png', '');
+  return `https://resources.premierleague.com/premierleague/photos/players/110x140/p${playerId}.png`;
 }
 
 export interface Team {

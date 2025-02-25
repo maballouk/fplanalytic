@@ -7,11 +7,6 @@ interface PlayerCardProps {
 
 export default function PlayerCard({ prediction }: PlayerCardProps) {
   const { player, team, nextFixture, predictedPoints, buyRecommendation, form } = prediction;
-  
-  console.log('Player:', player.first_name, player.second_name);
-  console.log('Next Fixture:', nextFixture);
-  console.log('Difficulty:', nextFixture?.difficulty);
-  console.log('Opponent:', nextFixture?.opponent?.name);
 
   const getPositionText = (elementType: number): string => {
     switch (elementType) {
@@ -23,22 +18,14 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     }
   };
 
-  // Format numbers to handle undefined/null values
   const formatNumber = (value: number | null | undefined, decimals = 1): string => {
     if (value === null || value === undefined || isNaN(value)) return '0.0';
     return value.toFixed(decimals);
   };
 
   const getDifficultyColor = (difficulty: number): string => {
-    // FPL API difficulty ratings:
-    // 1-2: Easy (green)
-    // 3: Normal (gray)
-    // 4-5: Hard (red)
-    if (difficulty <= 2) {
-      return 'bg-green-500';
-    } else if (difficulty >= 4) {
-      return 'bg-red-500';
-    }
+    if (difficulty <= 2) return 'bg-green-500';
+    if (difficulty >= 4) return 'bg-red-500';
     return 'bg-gray-500';
   };
 
@@ -63,7 +50,6 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     return 'text-red-600';
   };
 
-  // Ensure buyRecommendation is a valid number between 0 and 100
   const validBuyRecommendation = isNaN(buyRecommendation) || buyRecommendation === null ? 0 : Math.min(100, Math.max(0, buyRecommendation));
 
   return (
@@ -71,9 +57,10 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
       <div className="flex items-start space-x-3 mb-4">
         <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
           <img
-            src={getPlayerPhotoUrl(player.photo)}
+            src={getPlayerPhotoUrl(player.id.toString())}
             alt={`${player.first_name} ${player.second_name}`}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
+            loading="lazy"
             onError={(e) => {
               e.currentTarget.src = 'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
             }}
