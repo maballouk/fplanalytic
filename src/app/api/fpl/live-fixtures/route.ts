@@ -34,9 +34,10 @@ interface Team {
 
 export async function GET() {
   try {
-    // Get current date
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    // Get current date in user's timezone
+    const now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Riyadh' });
+    const today = new Date(now);
+    today.setHours(0, 0, 0, 0);
 
     // Fetch teams data
     const teamsResponse = await fetch(`${BASE_URL}/bootstrap-static/`, {
@@ -74,17 +75,24 @@ export async function GET() {
 
     // Group fixtures by date
     const groupedFixtures = fixtures.reduce((acc: any, fixture) => {
-      const date = new Date(fixture.kickoff_time);
+      // Get user's timezone
+      const userTimeZone = 'Asia/Riyadh'; // Using Riyadh timezone as per environment details
+
+      // Convert UTC date to local timezone
+      const utcDate = new Date(fixture.kickoff_time);
+      const localDate = new Date(utcDate.toLocaleString('en-US', { timeZone: userTimeZone }));
       
       // Get fixture date at midnight for comparison
-      const fixtureDate = new Date(date);
-      fixtureDate.setHours(0, 0, 0, 0);
+      const fixtureDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
 
-      // Format date in "Day DD Month" format
-      const day = date.toLocaleDateString('en-GB', { weekday: 'long' });
-      const dayNum = date.getDate();
-      const month = date.toLocaleDateString('en-GB', { month: 'long' });
-      const dateStr = `${day} ${dayNum} ${month}`;
+      // Format date in "Day DD Month" format using local timezone
+      const formatter = new Intl.DateTimeFormat('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+      });
+      const dateStr = formatter.format(localDate);
 
       // Add "Today" for today's matches
       const isToday = fixtureDate.getTime() === today.getTime();
@@ -102,11 +110,14 @@ export async function GET() {
       } else if (fixture.finished) {
         displayTime = 'FT';
       } else {
-        displayTime = date.toLocaleTimeString('en-GB', {
+        // Format time in user's timezone
+        const timeFormatter = new Intl.DateTimeFormat('en-GB', {
           hour: '2-digit',
           minute: '2-digit',
-          hour12: false
+          hour12: false,
+          timeZone: 'Asia/Riyadh'
         });
+        displayTime = timeFormatter.format(utcDate);
       }
 
       // Process match events
