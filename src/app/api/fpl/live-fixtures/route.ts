@@ -34,6 +34,10 @@ interface Team {
 
 export async function GET() {
   try {
+    // Get current date
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
     // Fetch teams data
     const teamsResponse = await fetch(`${BASE_URL}/bootstrap-static/`, {
       headers: {
@@ -54,7 +58,7 @@ export async function GET() {
       throw new Error('No current gameweek found');
     }
 
-    // Fetch all fixtures for current gameweek
+    // Fetch fixtures for current gameweek
     const fixturesResponse = await fetch(`${BASE_URL}/fixtures/?event=${currentEvent.id}`, {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -71,11 +75,20 @@ export async function GET() {
     // Group fixtures by date
     const groupedFixtures = fixtures.reduce((acc: any, fixture) => {
       const date = new Date(fixture.kickoff_time);
+      
+      // Get fixture date at midnight for comparison
+      const fixtureDate = new Date(date);
+      fixtureDate.setHours(0, 0, 0, 0);
+
       // Format date in "Day DD Month" format
       const day = date.toLocaleDateString('en-GB', { weekday: 'long' });
       const dayNum = date.getDate();
       const month = date.toLocaleDateString('en-GB', { month: 'long' });
       const dateStr = `${day} ${dayNum} ${month}`;
+
+      // Add "Today" for today's matches
+      const isToday = fixtureDate.getTime() === today.getTime();
+      const displayDate = isToday ? `${dateStr} (Today)` : dateStr;
 
       const homeTeam = teams.find(t => t.id === fixture.team_h);
       const awayTeam = teams.find(t => t.id === fixture.team_a);
@@ -215,18 +228,20 @@ export async function GET() {
         events: events.length > 0 ? events : undefined
       };
 
-      if (!acc[dateStr]) {
-        acc[dateStr] = {
-          date: dateStr,
-          matches: []
+      const dateKey = fixtureDate.toISOString();
+      if (!acc[dateKey]) {
+        acc[dateKey] = {
+          date: displayDate,
+          matches: [],
+          timestamp: fixtureDate.getTime()
         };
       }
 
-      acc[dateStr].matches.push(match);
+      acc[dateKey].matches.push(match);
       return acc;
     }, {});
 
-    // Sort matches by kickoff time within each day
+    // Sort matches within each day by time
     Object.values(groupedFixtures).forEach((day: any) => {
       day.matches.sort((a: any, b: any) => {
         // Put live matches first
@@ -240,7 +255,9 @@ export async function GET() {
       });
     });
 
-    const matchDays = Object.values(groupedFixtures);
+    // Convert to array and sort by date
+    const matchDays = Object.values(groupedFixtures)
+      .sort((a: any, b: any) => a.timestamp - b.timestamp);
 
     return NextResponse.json({
       matchweek: currentEvent.id,
