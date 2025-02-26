@@ -17,7 +17,7 @@ export interface ConsensusPlayer {
   expectedPoints: number;
   fixturesDifficulty: number;
   priceChange: number;
-  trend: 'rising' | 'falling' | 'stable';
+  trend: 'rising' | 'falling' | 'stable' | 'differential';
   lastUpdated: string;
 }
 
@@ -25,16 +25,22 @@ export interface ConsensusResponse {
   topPicks: ConsensusPlayer[];
   risingPicks: ConsensusPlayer[];
   fallingPicks: ConsensusPlayer[];
+  differentialPicks: ConsensusPlayer[];
   lastUpdated: string;
   sources: string[];
 }
 
-export interface BlogSource {
-  name: string;
-  url: string;
-  selector: {
-    container: string;
-    playerName: string;
-    reason: string;
-  };
-}
+export const BLOG_SOURCES = [
+  'Fantasy Football Scout',
+  'Fantasy Football Geek',
+  'Fantasy Football Hub',
+  'All About FPL',
+  'FPL Hints'
+];
+
+export const TREND_LABELS = {
+  rising: 'Rising Stars',
+  falling: 'Falling Stars',
+  differential: 'Differentials',
+  stable: 'Consistent Performers'
+};

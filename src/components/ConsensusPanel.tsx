@@ -2,13 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { ConsensusPlayer, ConsensusResponse } from '@/types/consensus';
+import { ConsensusPlayer, ConsensusResponse, TREND_LABELS } from '@/types/consensus';
 
 export default function ConsensusPanel() {
   const [data, setData] = useState<ConsensusResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'top' | 'rising' | 'falling'>('top');
+  const [activeTab, setActiveTab] = useState<'rising' | 'falling' | 'differential' | 'stable'>('stable');
 
   const fetchConsensus = async () => {
     try {
@@ -33,11 +33,15 @@ export default function ConsensusPanel() {
   const renderPlayer = (player: ConsensusPlayer) => (
     <div key={player.id} className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start space-x-4">
-        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
           <img 
             src={player.imageUrl} 
             alt={player.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-contain"
+            loading="lazy"
+            onError={(e) => {
+              e.currentTarget.src = 'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
+            }}
           />
         </div>
         <div className="flex-grow">
@@ -164,43 +168,33 @@ export default function ConsensusPanel() {
         </div>
       </div>
 
-      <div className="flex space-x-4 mb-6">
-        <button
-          onClick={() => setActiveTab('top')}
-          className={`px-4 py-2 rounded-lg font-medium ${
-            activeTab === 'top'
-              ? 'bg-blue-100 text-blue-700'
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Top Picks
-        </button>
-        <button
-          onClick={() => setActiveTab('rising')}
-          className={`px-4 py-2 rounded-lg font-medium ${
-            activeTab === 'rising'
-              ? 'bg-green-100 text-green-700'
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Rising
-        </button>
-        <button
-          onClick={() => setActiveTab('falling')}
-          className={`px-4 py-2 rounded-lg font-medium ${
-            activeTab === 'falling'
-              ? 'bg-red-100 text-red-700'
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Falling
-        </button>
+      <div className="flex space-x-4 mb-6 overflow-x-auto pb-2">
+        {Object.entries(TREND_LABELS).map(([key, label]) => (
+          <button
+            key={key}
+            onClick={() => setActiveTab(key as any)}
+            className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap ${
+              activeTab === key
+                ? key === 'rising'
+                  ? 'bg-green-100 text-green-700'
+                  : key === 'falling'
+                  ? 'bg-red-100 text-red-700'
+                  : key === 'differential'
+                  ? 'bg-purple-100 text-purple-700'
+                  : 'bg-blue-100 text-blue-700'
+                : 'text-gray-600 hover:text-gray-900'
+            }`}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       <div className="space-y-4">
-        {activeTab === 'top' && data.topPicks.map(renderPlayer)}
+        {activeTab === 'stable' && data.topPicks.map(renderPlayer)}
         {activeTab === 'rising' && data.risingPicks.map(renderPlayer)}
         {activeTab === 'falling' && data.fallingPicks.map(renderPlayer)}
+        {activeTab === 'differential' && data.differentialPicks.map(renderPlayer)}
       </div>
     </div>
   );

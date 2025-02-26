@@ -13,6 +13,17 @@ interface LiveFixture {
   finished: boolean;
   kickoff_time: string;
   minutes: number;
+  stats: Array<{
+    identifier: string;
+    a: Array<{ element: number; value: number }>;
+    h: Array<{ element: number; value: number }>;
+  }>;
+}
+
+interface MatchEvent {
+  player: string;
+  type: 'goal' | 'assist' | 'yellow' | 'red';
+  minute: number;
 }
 
 interface Team {
@@ -85,6 +96,114 @@ export async function GET() {
         });
       }
 
+      // Process match events
+      const events: MatchEvent[] = [];
+      
+      if (fixture.stats) {
+        // Process goals
+        const goals = fixture.stats.find(s => s.identifier === 'goals');
+        if (goals) {
+          goals.h.forEach(g => {
+            const player = teamsData.elements.find((p: any) => p.id === g.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'goal',
+                minute: g.value
+              });
+            }
+          });
+          goals.a.forEach(g => {
+            const player = teamsData.elements.find((p: any) => p.id === g.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'goal',
+                minute: g.value
+              });
+            }
+          });
+        }
+
+        // Process assists
+        const assists = fixture.stats.find(s => s.identifier === 'assists');
+        if (assists) {
+          assists.h.forEach(a => {
+            const player = teamsData.elements.find((p: any) => p.id === a.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'assist',
+                minute: a.value
+              });
+            }
+          });
+          assists.a.forEach(a => {
+            const player = teamsData.elements.find((p: any) => p.id === a.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'assist',
+                minute: a.value
+              });
+            }
+          });
+        }
+
+        // Process yellow cards
+        const yellows = fixture.stats.find(s => s.identifier === 'yellow_cards');
+        if (yellows) {
+          yellows.h.forEach(y => {
+            const player = teamsData.elements.find((p: any) => p.id === y.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'yellow',
+                minute: y.value
+              });
+            }
+          });
+          yellows.a.forEach(y => {
+            const player = teamsData.elements.find((p: any) => p.id === y.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'yellow',
+                minute: y.value
+              });
+            }
+          });
+        }
+
+        // Process red cards
+        const reds = fixture.stats.find(s => s.identifier === 'red_cards');
+        if (reds) {
+          reds.h.forEach(r => {
+            const player = teamsData.elements.find((p: any) => p.id === r.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'red',
+                minute: r.value
+              });
+            }
+          });
+          reds.a.forEach(r => {
+            const player = teamsData.elements.find((p: any) => p.id === r.element);
+            if (player) {
+              events.push({
+                player: `${player.first_name} ${player.second_name}`,
+                type: 'red',
+                minute: r.value
+              });
+            }
+          });
+        }
+      }
+
+      // Sort events by minute
+      events.sort((a, b) => a.minute - b.minute);
+
       const match = {
         homeTeam: homeTeam.short_name,
         awayTeam: awayTeam.short_name,
@@ -92,7 +211,8 @@ export async function GET() {
         awayScore: fixture.team_a_score,
         time: displayTime,
         isLive: fixture.started && !fixture.finished,
-        channel: 'bein-sports' // Default channel
+        channel: 'bein-sports',
+        events: events.length > 0 ? events : undefined
       };
 
       if (!acc[dateStr]) {
