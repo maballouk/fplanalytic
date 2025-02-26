@@ -128,8 +128,10 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
               {matchDay.matches.map((match, matchIndex) => (
                 <div key={matchIndex}>
                   <button 
-                    onClick={() => setSelectedMatch(match)}
-                    className="w-full px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+                    onClick={() => setSelectedMatch(selectedMatch === match ? null : match)}
+                    className={`w-full px-4 py-3 hover:bg-gray-50 transition-colors text-left ${
+                      selectedMatch === match ? 'bg-gray-50' : ''
+                    }`}
                   >
                     <div className="flex items-center justify-between mb-1">
                       <div className="flex items-center space-x-2">
@@ -176,9 +178,18 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
                       </div>
                     </div>
                   </button>
-                  {selectedMatch === match && match.events && (
+                  {selectedMatch === match && (
                     <div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
-                      {renderMatchEvents(match.events)}
+                      {match.events && match.events.length > 0 ? (
+                        renderMatchEvents(match.events)
+                      ) : (
+                        <div className="text-sm text-gray-500 text-center py-2">
+                          {match.homeScore !== undefined ? 
+                            'No major events recorded for this match' :
+                            'Match events will appear here when the game starts'
+                          }
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

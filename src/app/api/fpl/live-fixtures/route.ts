@@ -71,11 +71,11 @@ export async function GET() {
     // Group fixtures by date
     const groupedFixtures = fixtures.reduce((acc: any, fixture) => {
       const date = new Date(fixture.kickoff_time);
-      const dateStr = date.toLocaleDateString('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long'
-      });
+      // Format date in "Day DD Month" format
+      const day = date.toLocaleDateString('en-GB', { weekday: 'long' });
+      const dayNum = date.getDate();
+      const month = date.toLocaleDateString('en-GB', { month: 'long' });
+      const dateStr = `${day} ${dayNum} ${month}`;
 
       const homeTeam = teams.find(t => t.id === fixture.team_h);
       const awayTeam = teams.find(t => t.id === fixture.team_a);
