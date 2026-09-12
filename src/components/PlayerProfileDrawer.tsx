@@ -4,9 +4,11 @@
 // next-5 fixtures and the Decision block. Shared by the Asset Finder (home)
 // and the Value Lens (TASKS.md 1.4/1.7).
 
+import { useEffect } from 'react';
 import FixtureStrip from '@/components/ds/FixtureStrip';
 import PlayerDrawer from '@/components/ds/PlayerDrawer';
 import ThresholdBar from '@/components/ds/ThresholdBar';
+import { track } from '@/lib/analytics';
 import { meanNext5Fdr, thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
 import { decide } from '@/lib/defcon/decision';
 
@@ -25,6 +27,10 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
     meanNext5Fdr: meanNext5Fdr(player),
     status: player.status,
   });
+
+  useEffect(() => {
+    track('drawer_decision_view', { player: player.name, verdict: decision.verdict });
+  }, [player.name, decision.verdict]);
 
   return (
     <PlayerDrawer

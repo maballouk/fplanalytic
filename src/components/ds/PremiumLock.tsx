@@ -1,5 +1,11 @@
+'use client';
+
 // DESIGN.md §2: blur + lock + one-line value prop + CTA. Never hides the
 // EXISTENCE of data, only detail. Inline, never a modal wall (§6).
+// Fires the premium_lock_view event once when it scrolls into view (1.9).
+
+import { useEffect, useRef } from 'react';
+import { track } from '@/lib/analytics';
 
 export interface PremiumLockProps {
   /** The locked content, rendered blurred and inert behind the lock */
@@ -11,8 +17,22 @@ export interface PremiumLockProps {
 }
 
 export default function PremiumLock({ children, valueProp, ctaLabel, ctaHref }: PremiumLockProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!ref.current || typeof IntersectionObserver === 'undefined') return;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        track('premium_lock_view');
+        observer.disconnect();
+      }
+    });
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="relative overflow-hidden rounded-card" data-testid="premium-lock">
+    <div ref={ref} className="relative overflow-hidden rounded-card" data-testid="premium-lock">
       <div aria-hidden className="pointer-events-none select-none blur-sm">
         {children}
       </div>

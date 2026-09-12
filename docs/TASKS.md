@@ -84,8 +84,12 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       *(OG image is an edge route (next/og cannot prerender on a Windows build host) reading the new
       `defcon_latest.json` alias; sitemap.xml + robots.txt added; target queries in the home meta
       description; metadataBase set to https://fplanalytic.com.)*
-- [ ] **1.9 Analytics.** Privacy-friendly analytics (Plausible/Umami). Events: row_click, drawer_decision_view,
+- [x] **1.9 Analytics.** Privacy-friendly analytics (Plausible/Umami). Events: row_click, drawer_decision_view,
       filter_change, premium_lock_view. Needed to size the funnel before building payments.
+      *(Umami Cloud chosen by Mohamad 2026-09-12. All four events wired via `src/lib/analytics.ts`;
+      the script loads only when `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set in the Netlify build env.
+      REMAINING FOR MOHAMAD: create the account at cloud.umami.is, add fplanalytic.com, set the env
+      var in Netlify, redeploy; gate 1's "analytics receiving events" is confirmed then.)*
 - [ ] **1.10 Old dashboard.** Move the current "Top 25 / Budget picks" content to `/picks`; link from nav
       as secondary. Do not delete until Phase 2 review.
       *(Move + secondary nav link done with 1.4; still open: retire the legacy `/api/fpl*` routes and

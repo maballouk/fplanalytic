@@ -12,6 +12,7 @@ import PremiumLock from '@/components/ds/PremiumLock';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import PlayerProfileDrawer from '@/components/PlayerProfileDrawer';
+import { track } from '@/lib/analytics';
 import { thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
 
 type PositionFilter = 'ALL' | 'DEF' | 'MID' | 'FWD';
@@ -42,6 +43,18 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
 
   const teams = useMemo(() => Array.from(new Set(players.map((p) => p.team))).sort(), [players]);
 
+  // TASKS.md 1.9 funnel events
+  const changeFilter = <T,>(name: string, setter: (v: T) => void) => {
+    return (value: T) => {
+      setter(value);
+      track('filter_change', { filter: name });
+    };
+  };
+  const openPlayer = (p: DefconFilePlayer) => {
+    track('row_click', { player: p.name });
+    setSelected(p);
+  };
+
   const filtered = useMemo(() => {
     const price = maxPrice === '' ? Infinity : Number(maxPrice);
     const minutes = minMinutes === '' ? 0 : Number(minMinutes);
@@ -68,7 +81,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
         <SegmentedTabs
           label="Position"
           value={position}
-          onChange={setPosition}
+          onChange={changeFilter('position', setPosition)}
           options={[
             { value: 'ALL', label: 'All' },
             { value: 'DEF', label: 'DEF' },
@@ -83,7 +96,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
             step="0.5"
             min="3.5"
             value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
+            onChange={(e) => changeFilter('max_price', setMaxPrice)(e.target.value)}
             placeholder="any"
             className={inputClass}
           />
@@ -95,14 +108,18 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
             step="90"
             min="0"
             value={minMinutes}
-            onChange={(e) => setMinMinutes(e.target.value)}
+            onChange={(e) => changeFilter('min_minutes', setMinMinutes)(e.target.value)}
             placeholder="0"
             className={inputClass}
           />
         </label>
         <label className="flex items-center gap-2 text-sm text-text-muted">
           Team
-          <select value={team} onChange={(e) => setTeam(e.target.value)} className={inputClass}>
+          <select
+            value={team}
+            onChange={(e) => changeFilter('team', setTeam)(e.target.value)}
+            className={inputClass}
+          >
             <option value="ALL">All</option>
             {teams.map((t) => (
               <option key={t} value={t}>
@@ -167,7 +184,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
                   team={p.team}
                   position={p.position}
                   price={p.price}
-                  onClick={() => setSelected(p)}
+                  onClick={() => openPlayer(p)}
                 >
                   <td className="num px-3 py-2">{pct(p.hit_rate)}</td>
                   <td className="px-3 py-2">
