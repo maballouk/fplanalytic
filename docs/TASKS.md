@@ -134,8 +134,12 @@ additions in `docs/COPY.md`). Gate closes when the post copy is approved.
       *(`.github/workflows/ucl-data.yml`; the CLI auto-resolves the next matchday when `--matchday` is
       omitted and expands `{md}` in `--out`. REMAINING FOR MOHAMAD: add the `FOOTBALL_DATA_TOKEN`
       secret in GitHub → Settings → Secrets and variables → Actions.)*
-- [ ] **1.5.5 `/ucl` Matchday Hub** (`DESIGN.md §4.1`) reading `/lib/ucl/loadMatchday.ts`. Fixture cards with
+- [x] **1.5.5 `/ucl` Matchday Hub** (`DESIGN.md §4.1`) reading `/lib/ucl/loadMatchday.ts`. Fixture cards with
       xG, 1X2 bar, CS odds, most-likely score, `MethodNote`. xPts table with breakdown chips. Free: top 40.
+      *(Built 2026-09-12 in the canvas-approved "Broadcast dark" direction: hero with live kickoff
+      countdown, captain-picks strip (with an honest rotation-v0 caveat), 18 fixture cards in club
+      colours, xPts table with position filter, rotation amber below 70% and breakdown chips.
+      Engine output now carries kickoff_utc per fixture. Club colours/codes in `src/lib/ucl/clubs.ts`.)*
 - [ ] **1.5.6 `/ucl/player/[id]`** (`§4.2`).
 - [ ] **1.5.7 Backtest page (internal).** Brier score and log-loss of match probabilities vs results, per
       matchday; calibration plot. Publish a summary on `/methodology` once ≥ 3 matchdays exist.

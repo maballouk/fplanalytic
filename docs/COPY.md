@@ -17,6 +17,13 @@ adjectives. British football English. No em-dashes. No hype.
   12+ including recoveries. xPts is the hit probability times 2."
 - Premium page: "Premium launches later this season. The free tier stays complete."
 - Methodology page: full prose at /methodology (src/app/methodology/page.tsx)
+- /ucl hub (approved via the design canvas "Build A" pick, 2026-09-12): "European Nights" /
+  "Matchday {N}", sub "Match predictions and expected points for every squad, built for your
+  captain call.", "Captain picks", "Match predictions", "Expected points · all positions",
+  "First kickoff", "Model fit", "most likely {score}", rotation caveat "Rotation model is v0:
+  P(start) is a minutes proxy until lineups firm up", empty state "Predictions land once the
+  engine has run." / "The engine runs every Monday and Thursday.", MethodNote bodies (Elo +
+  Dixon-Coles fit note; xPts shares note ending "treat small gaps between players as noise")
 - Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
   closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
   "No DEFCON-relevant minutes yet."

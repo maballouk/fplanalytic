@@ -4,6 +4,7 @@ export const NAV = [
   { href: '/', label: 'DEFCON' },
   { href: '/live', label: 'Live' },
   { href: '/value', label: 'Value' },
+  { href: '/ucl', label: 'European Nights' },
   { href: '/methodology', label: 'Methodology' },
   { href: '/picks', label: 'Picks' },
 ];

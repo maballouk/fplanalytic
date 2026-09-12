@@ -27,6 +27,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'JetBrains Mono', 'ui-monospace', 'monospace'],
+        display: ['var(--font-archivo)', 'Archivo', 'Inter', 'sans-serif'],
       },
       fontSize: {
         // DESIGN.md type scale

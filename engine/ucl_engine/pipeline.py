@@ -83,11 +83,18 @@ def run_matchday(
         "rho": round(params.rho, 4) if params else None,
         "half_life_days": 180,
     }
+    # preds is built from fixtures in order, so zipping restores kickoff times
+    # (the hub needs them for the countdown and card ordering).
+    fixture_dicts = []
+    for f, p in zip(fixtures, preds):
+        d = p.to_dict()
+        d["kickoff_utc"] = f.kickoff_utc.isoformat()
+        fixture_dicts.append(d)
     return MatchdayOutput(
         matchday=matchday,
         generated_at=datetime.now(timezone.utc).isoformat(),
         model=model_info,
-        fixtures=[p.to_dict() for p in preds],
+        fixtures=fixture_dicts,
         players=[x.to_dict() for x in ranked],
         notes=notes or [],
     )

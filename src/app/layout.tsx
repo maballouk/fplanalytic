@@ -1,6 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, JetBrains_Mono } from 'next/font/google';
+import { Archivo, Inter, JetBrains_Mono } from 'next/font/google';
 import Script from 'next/script';
 
 // Both fonts exposed as CSS variables for the DESIGN.md token fonts
@@ -9,6 +9,12 @@ import Script from 'next/script';
 // Phase 2 review (TASKS.md 1.10).
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' });
+// Display face from the approved "Broadcast dark" direction (design canvas)
+const archivo = Archivo({
+  subsets: ['latin'],
+  weight: ['600', '700', '900'],
+  variable: '--font-archivo',
+});
 
 export const generateViewport = () => {
   return {
@@ -29,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${archivo.variable}`}>
       <body className={`${inter.className} min-h-screen antialiased`}>
         {children}
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (

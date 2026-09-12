@@ -62,6 +62,7 @@ TEAM_ALIASES: Dict[str, str] = {
     # 2026/27 league phase: UEFA fantasy feed vs football-data shortName spellings
     # (mismatches found on the 2026-09-12 live run; both sides converge here)
     "pae aek": "AEK Athens", "aek athens": "AEK Athens", "aek": "AEK Athens",
+    "atleti": "Atlético Madrid",
     "b dortmund": "Borussia Dortmund",
     "barcelona": "Barcelona", "barça": "Barcelona", "barca": "Barcelona",
     "bayern münchen": "Bayern Munich",
