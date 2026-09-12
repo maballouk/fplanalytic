@@ -36,6 +36,8 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       `pytest engine` (21 tests must pass), run `python -m ucl_engine.cli demo --out public/data/ucl_demo.json`.
 
 **Release gate 0:** padlock in all browsers · `npm run check` green · tokens page renders · DEFCON fields recorded.
+✅ **PASSED 2026-09-12.** Padlock verified on the production deploy (zero mixed content in HTML and
+bundles); check green; /design renders every token; DEFCON fields in ARCHITECTURE.md §5.
 
 ---
 
@@ -88,8 +90,8 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       filter_change, premium_lock_view. Needed to size the funnel before building payments.
       *(Umami Cloud chosen by Mohamad 2026-09-12. All four events wired via `src/lib/analytics.ts`;
       the script loads only when `NEXT_PUBLIC_UMAMI_WEBSITE_ID` is set in the Netlify build env.
-      REMAINING FOR MOHAMAD: create the account at cloud.umami.is, add fplanalytic.com, set the env
-      var in Netlify, redeploy; gate 1's "analytics receiving events" is confirmed then.)*
+      Account created, env var set, and events confirmed arriving at gateway.umami.is from the
+      production site on 2026-09-12.)*
 - [ ] **1.10 Old dashboard.** Move the current "Top 25 / Budget picks" content to `/picks`; link from nav
       as secondary. Do not delete until Phase 2 review.
       *(Move + secondary nav link done with 1.4; still open: retire the legacy `/api/fpl*` routes and
@@ -97,6 +99,10 @@ with Mohamad before building. Do not start a phase before the previous phase's "
 
 **Release gate 1:** all §3 screens live · Lighthouse ≥ 90 perf/a11y on mobile · tests green ·
 r/FantasyPL launch post drafted (copy approved) · analytics receiving events.
+**Status 2026-09-12:** screens live in production ✓ · Lighthouse mobile 93 perf / 97 a11y ✓ ·
+66 tests green, CI green ✓ · analytics events confirmed ✓ · launch post drafted
+(`docs/LAUNCH-POST.md`) but **copy approval from Mohamad still pending** (also the PROPOSED
+additions in `docs/COPY.md`). Gate closes when the post copy is approved.
 
 ---
 
