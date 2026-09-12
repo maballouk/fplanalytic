@@ -56,10 +56,13 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       "Existing schedule" reinterpreted: the old cadence was the 12h ISR cache, so the job runs from
       `.github/workflows/defcon-data.yml` (cron 06:10/18:10 UTC) and commits the JSON, which triggers
       the Netlify deploy — same pattern as 1.5.4. Verified against the live API: GW3, 246 profiles.)*
-- [ ] **1.3 Components.** Build `DESIGN.md §2` components with render tests: `StatCard`, `PlayerRow`,
+- [x] **1.3 Components.** Build `DESIGN.md §2` components with render tests: `StatCard`, `PlayerRow`,
       `PlayerDrawer`, `ThresholdBar`, `FixtureStrip`, `RankBadge`, `PremiumLock`, `MethodNote`,
       `SegmentedTabs`, `EmptyState`, `AppShell`.
       **Decision to confirm:** copy strings for empty/error states and the hero line.
+      *(All 11 built in `src/components/ds/` with 15 render tests. Copy comes in via props; the
+      strings themselves are PROPOSED in `docs/COPY.md` and must be approved before 1.4 bakes
+      them into screens.)*
 - [ ] **1.4 Home = Asset Finder** (`DESIGN.md §3.1`). Default sort DEFCON xPts; filters; drawer with
       Decision block. Decision logic (`/lib/defcon/decision.ts`): Buy if hit_rate ≥ 0.6 and next-5 mean
       FDR ≤ 3; Hold if 0.4–0.6; Avoid if < 0.4 or minutes risk. Unit-tested. Free shows top 30.
