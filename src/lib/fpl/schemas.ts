@@ -59,6 +59,8 @@ export const FixtureSchema = z.object({
   kickoff_time: z.string().nullable(),
   team_h: z.number(),
   team_a: z.number(),
+  team_h_score: z.number().nullable().optional(),
+  team_a_score: z.number().nullable().optional(),
   team_h_difficulty: z.number(),
   team_a_difficulty: z.number(),
   finished: z.boolean(),

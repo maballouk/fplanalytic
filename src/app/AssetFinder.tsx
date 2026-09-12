@@ -7,13 +7,12 @@
 import { useMemo, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
 import FixtureStrip from '@/components/ds/FixtureStrip';
-import PlayerDrawer from '@/components/ds/PlayerDrawer';
 import PlayerRow from '@/components/ds/PlayerRow';
 import PremiumLock from '@/components/ds/PremiumLock';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
 import ThresholdBar from '@/components/ds/ThresholdBar';
-import { meanNext5Fdr, thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
-import { decide } from '@/lib/defcon/decision';
+import PlayerProfileDrawer from '@/components/PlayerProfileDrawer';
+import { thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
 
 type PositionFilter = 'ALL' | 'DEF' | 'MID' | 'FWD';
 type SortKey = 'hit_rate' | 'mean_actions' | 'near_miss_rate' | 'defcon_xpts' | 'value_per_million';
@@ -59,16 +58,6 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
 
   const visible = filtered.slice(0, freeLimit);
   const locked = filtered.slice(freeLimit, freeLimit + 5);
-
-  const decision = selected
-    ? decide({
-        hitRate: selected.hit_rate,
-        threshold: thresholdFor(selected.position),
-        last5Actions: selected.last5_actions,
-        meanNext5Fdr: meanNext5Fdr(selected),
-        status: selected.status,
-      })
-    : null;
 
   const inputClass =
     'w-24 rounded-pill border border-line bg-bg-raised px-3 py-1 text-sm text-text placeholder:text-text-faint';
@@ -232,58 +221,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
         </div>
       )}
 
-      {selected && decision && (
-        <PlayerDrawer
-          open
-          onClose={() => setSelected(null)}
-          title={selected.name}
-          subtitle={`${selected.team} · ${selected.position} · £${selected.price.toFixed(1)}m`}
-          decision={decision}
-          decisionLabel="Decision"
-          closeLabel="Close"
-        >
-          <dl className="grid grid-cols-2 gap-3 text-sm">
-            {(
-              [
-                ['Hit rate', pct(selected.hit_rate)],
-                ['Avg actions', selected.mean_actions.toFixed(1)],
-                ['Near miss', pct(selected.near_miss_rate)],
-                ['Consistency', pct(selected.consistency)],
-                ['DEFCON xPts', selected.defcon_xpts.toFixed(2)],
-                ['Value /£m', selected.value_per_million.toFixed(3)],
-              ] as const
-            ).map(([label, value]) => (
-              <div key={label} className="rounded-card border border-line bg-bg-overlay p-3">
-                <dt className="text-xs text-text-muted">{label}</dt>
-                <dd className="num mt-1 text-lg">{value}</dd>
-              </div>
-            ))}
-          </dl>
-          <div>
-            <h3 className="mb-2 text-sm text-text-muted">Last 5 matches</h3>
-            <div className="space-y-1">
-              {selected.last5_actions.map((a, i) => (
-                <ThresholdBar
-                  key={i}
-                  actions={a}
-                  threshold={thresholdFor(selected.position)}
-                  label={`${a} of ${thresholdFor(selected.position)} defensive actions`}
-                />
-              ))}
-            </div>
-          </div>
-          <div>
-            <h3 className="mb-2 text-sm text-text-muted">Next 5</h3>
-            <FixtureStrip
-              fixtures={selected.next5.map((f) => ({
-                opponent: f.opponent,
-                isHome: f.is_home,
-                difficulty: f.difficulty,
-              }))}
-            />
-          </div>
-        </PlayerDrawer>
-      )}
+      {selected && <PlayerProfileDrawer player={selected} onClose={() => setSelected(null)} />}
     </section>
   );
 }

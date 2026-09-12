@@ -71,9 +71,14 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       Decision reasons use copy additions flagged in `docs/COPY.md`.)*
 - [x] **1.5 Methodology page** (`§3.4`). Plain English. Link from every `MethodNote`.
       *(Prose flagged for approval in `docs/COPY.md`.)*
-- [ ] **1.6 Live tracker** (`§3.2`). 60s polling of FPL live endpoint on this route only; threshold bars;
+- [x] **1.6 Live tracker** (`§3.2`). 60s polling of FPL live endpoint on this route only; threshold bars;
       "closest to threshold" sort; last-refreshed stamp. No notifications yet (premium, Phase 2).
-- [ ] **1.7 Value lens** (`§3.3`). Recharts scatter with quadrants; sidebar top-10 with reasons.
+      *(Browser polls `/api/defcon/live` (route composes bootstrap+fixtures+live via the adapter;
+      upstream cached 60s so pollers share one request). Payload builder is pure and unit-tested.)*
+- [x] **1.7 Value lens** (`§3.3`). Recharts scatter with quadrants; sidebar top-10 with reasons.
+      *(y-axis is DEFCON xPts only until the engine supplies clean-sheet odds (stated in the
+      MethodNote). Positions double-encoded: CVD-validated info/warn/danger + circle/triangle/diamond
+      shapes. Quadrants split at the medians.)*
 - [ ] **1.8 SEO & sharing.** Titles/descriptions per route, OG image per GW ("Top DEFCON picks GW N"),
       sitemap. Target queries: "FPL DEFCON", "defensive contribution stats", "best defensive assets FPL".
 - [ ] **1.9 Analytics.** Privacy-friendly analytics (Plausible/Umami). Events: row_click, drawer_decision_view,

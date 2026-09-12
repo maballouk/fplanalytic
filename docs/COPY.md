@@ -17,6 +17,14 @@ adjectives. British football English. No em-dashes. No hype.
   12+ including recoveries. xPts is the hit probability times 2."
 - Premium page: "Premium launches later this season. The free tier stays complete."
 - Methodology page: full prose at /methodology (src/app/methodology/page.tsx)
+- Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
+  closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
+  "No DEFCON-relevant minutes yet."
+- Value page: title "Defensive value lens", sub "Price against DEFCON expected points. Up and
+  left is where the value lives.", quadrants "Underpriced engines" / "Premium but earned" /
+  "Cheap for a reason" / "Paying for attack", sidebar heading "Top 10 by value",
+  reason line "{pct} hit rate at £{price}m.", MethodNote note that clean-sheet xPts joins
+  when the engine goes live
 
 ### Hero (home, §3.1)
 
