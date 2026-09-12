@@ -6,14 +6,20 @@ from a JSON feed. It is not a documented public API and can change without
 notice, which is exactly why it lives behind this adapter. If the shape
 changes, fix `parse_players()` here and nothing else in the engine moves.
 
-Known feed (2024/25–2025/26 seasons; re-verify each season by inspecting the
-network tab on the game's "Transfers" page):
+Known feed (verified 2026-09-12 for the 2026/27 season in the browser network
+tab; re-verify each season):
 
-    https://gaming.uefa.com/en/uclfantasy/services/feeds/players/players_{MATCHDAY}_en_{N}.json
+    https://gaming.uefa.com/en/uclfantasy/services/feeds/players/players_{TOUR}_en_{MATCHDAY}.json
 
-The JSON carries, per player: id, name, club, position (1=GK,2=DEF,3=MID,4=FWD),
-value (price), total points, per-matchday points and stat lines (goals,
-assists, clean sheets, saves, recoveries, minutes...).
+where TOUR is a per-season internal id (90 for 2026/27; override with the
+UCL_TOUR_ID env var when a new season starts) and MATCHDAY is 1..17. Shape:
+{"data": {"value": {"playerList": [...]}}} with per-player id, pDName, tName,
+skill (1=GK..4=FWD), value (price), minsPlyd, gS, assist, saves, bR, yC, rC, mOM.
+
+The endpoint sits behind a TLS-fingerprinting WAF that times out plain Python
+clients, so we fetch with curl_cffi's Chrome impersonation (falling back to
+requests if curl_cffi is missing). A local file can stand in for the feed via
+fetch_players(path=...) / the CLI's --players-file for manual runs.
 
 Respect UEFA's terms of use: fetch once per matchday, cache the result, never
 hammer the endpoint, and do not redistribute the raw feed.
@@ -22,6 +28,7 @@ hammer the endpoint, and do not redistribute the raw feed.
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass
 from typing import Dict, List, Optional
 
@@ -30,7 +37,8 @@ import requests
 from ..fantasy import PlayerProfile
 from .teams import canonical
 
-FEED_URL = "https://gaming.uefa.com/en/uclfantasy/services/feeds/players/players_{md}_en_{n}.json"
+FEED_URL = "https://gaming.uefa.com/en/uclfantasy/services/feeds/players/players_{tour}_en_{md}.json"
+DEFAULT_TOUR_ID = "90"  # 2026/27 league phase; changes each season
 POS_MAP = {1: "GK", 2: "DEF", 3: "MID", 4: "FWD", "1": "GK", "2": "DEF", "3": "MID", "4": "FWD",
            "GK": "GK", "DEF": "DEF", "MID": "MID", "FWD": "FWD", "GOALKEEPER": "GK", "DEFENDER": "DEF",
            "MIDFIELDER": "MID", "FORWARD": "FWD"}
@@ -54,8 +62,19 @@ class RawPlayer:
     team_goals_when_playing: Optional[int] = None  # filled from fixtures if available
 
 
-def fetch_players(matchday: int, n: int = 1, timeout: int = 20) -> List[RawPlayer]:
-    r = requests.get(FEED_URL.format(md=matchday, n=n), timeout=timeout, headers={"User-Agent": "fplanalytic/1.0"})
+def fetch_players(matchday: int, timeout: int = 30, path: Optional[str] = None) -> List[RawPlayer]:
+    """Fetch the player feed for a matchday, or parse a local copy via `path`."""
+    if path:
+        with open(path, encoding="utf-8") as f:
+            return parse_players(json.load(f))
+    tour = os.environ.get("UCL_TOUR_ID", DEFAULT_TOUR_ID)
+    url = FEED_URL.format(tour=tour, md=matchday)
+    try:
+        from curl_cffi import requests as curl_requests
+
+        r = curl_requests.get(url, impersonate="chrome", timeout=timeout)
+    except ImportError:
+        r = requests.get(url, timeout=timeout, headers={"User-Agent": "fplanalytic/1.0"})
     r.raise_for_status()
     return parse_players(r.json())
 
@@ -124,14 +143,24 @@ def build_profiles(
     """
     domestic_shares = domestic_shares or {}
     w_ucl = matchdays_played / (matchdays_played + shrink_matches)
+    # Without domestic data the blend must NOT fall back to the raw UCL share
+    # (a defender scoring 1 of his team's 2 MD1 goals would keep a 50% goal
+    # share and absurd xPts). Shrink toward a position prior instead.
+    position_prior = {
+        "GK": (0.0, 0.01),
+        "DEF": (0.03, 0.04),
+        "MID": (0.10, 0.12),
+        "FWD": (0.22, 0.12),
+    }
     profiles: List[PlayerProfile] = []
     for p in raw:
         tg = max(team_goals.get(p.team, 0), 1)
         ucl_gs = p.goals / tg
         ucl_as = p.assists / tg
+        prior_gs, prior_as = position_prior.get(p.position, (0.08, 0.08))
         dom = domestic_shares.get(p.player_id, {})
-        gs = w_ucl * ucl_gs + (1 - w_ucl) * dom.get("goal_share", ucl_gs)
-        as_ = w_ucl * ucl_as + (1 - w_ucl) * dom.get("assist_share", ucl_as)
+        gs = w_ucl * ucl_gs + (1 - w_ucl) * dom.get("goal_share", prior_gs)
+        as_ = w_ucl * ucl_as + (1 - w_ucl) * dom.get("assist_share", prior_as)
         mins_per_md = p.minutes / max(matchdays_played, 1)
         p_start = float(min(max(mins_per_md / 80.0, 0.05), 0.97))
         per90 = 90.0 / max(p.minutes, 90)

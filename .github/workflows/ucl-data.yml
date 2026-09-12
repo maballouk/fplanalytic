@@ -1,0 +1,41 @@
+name: UCL prediction build
+
+# Runs the prediction engine Mon + Thu 09:00 UTC (TASKS.md 1.5.4) and commits
+# public/data/ucl_md{N}.json; the push triggers the Netlify deploy.
+# Needs the FOOTBALL_DATA_TOKEN repository secret (free key, football-data.org).
+on:
+  schedule:
+    - cron: '0 9 * * 1,4'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  predict:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - run: pip install -e engine
+
+      - name: Run prediction for the next matchday
+        env:
+          FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
+        run: python -m ucl_engine.cli predict --out "public/data/ucl_md{md}.json"
+
+      - name: Commit updated predictions
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/data/ucl_md*.json
+          if git diff --cached --quiet; then
+            echo "No prediction changes"
+          else
+            git commit -m "Update UCL predictions ($(date -u +'%Y-%m-%d %H:%M') UTC)"
+            git push
+          fi

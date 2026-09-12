@@ -66,22 +66,44 @@ def cmd_demo(args):
 
 
 def cmd_predict(args):
+    import time
+
     from .adapters.clubelo import fetch_clubelo
     from .adapters.fixtures import fetch_ucl_matches
     from .adapters.uefa_fantasy import fetch_players, build_profiles
 
-    elo = fetch_clubelo()
+    # ClubElo is a free hobby API and goes down; the model runs without the
+    # prior (pipeline handles elo=None), so degrade rather than fail the run.
+    notes = []
+    elo = None
+    for attempt in range(3):
+        try:
+            elo = fetch_clubelo()
+            break
+        except Exception as exc:  # noqa: BLE001 - any network/HTTP failure degrades the same way
+            if attempt == 2:
+                notes.append(f"ClubElo unavailable ({type(exc).__name__}); fitted without Elo priors")
+            else:
+                time.sleep(2 * (attempt + 1))
     completed, upcoming = fetch_ucl_matches()
-    fixtures = [f for f in upcoming if args.matchday is None or f.matchday == args.matchday]
-    raw = fetch_players(args.matchday or 1)
+    # --matchday omitted: predict the next matchday with unplayed fixtures,
+    # so the scheduled run (1.5.4) needs no manual input.
+    matchday = args.matchday
+    if matchday is None:
+        matchday = min((f.matchday for f in upcoming if f.matchday is not None), default=None)
+        if matchday is None:
+            raise SystemExit("No upcoming fixtures found; pass --matchday explicitly")
+    fixtures = [f for f in upcoming if f.matchday == matchday]
+    raw = fetch_players(matchday, path=args.players_file)
     team_goals = {}
     for m in completed:
         team_goals[m.home] = team_goals.get(m.home, 0) + m.home_goals
         team_goals[m.away] = team_goals.get(m.away, 0) + m.away_goals
-    profiles = build_profiles(raw, team_goals, matchdays_played=max((args.matchday or 1) - 1, 0))
-    out = run_matchday(args.matchday, completed, fixtures, profiles, elo=elo)
-    write_json(out, args.out)
-    print(f"wrote {args.out}  ({len(out.fixtures)} fixtures, {len(out.players)} players, model={out.model['type']})")
+    profiles = build_profiles(raw, team_goals, matchdays_played=max(matchday - 1, 0))
+    out = run_matchday(matchday, completed, fixtures, profiles, elo=elo, notes=notes)
+    out_path = args.out.replace("{md}", str(matchday))
+    write_json(out, out_path)
+    print(f"wrote {out_path}  ({len(out.fixtures)} fixtures, {len(out.players)} players, model={out.model['type']})")
 
 
 def main(argv=None):
@@ -93,6 +115,7 @@ def main(argv=None):
     p = sub.add_parser("predict", help="live run for a matchday")
     p.add_argument("--matchday", type=int, default=None)
     p.add_argument("--out", required=True)
+    p.add_argument("--players-file", default=None, help="local copy of the UEFA player feed JSON")
     p.set_defaults(func=cmd_predict)
     args = ap.parse_args(argv)
     args.func(args)

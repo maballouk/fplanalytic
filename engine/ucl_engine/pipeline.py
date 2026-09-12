@@ -76,7 +76,8 @@ def run_matchday(
     preds = predict_fixtures(fixtures, params, elo)
     ranked = rank_players(profiles, preds)
     model_info = {
-        "type": "dixon_coles+elo_prior" if params else "elo_fallback",
+        # Honest label: "+elo_prior" only when Elo priors actually informed the fit
+        "type": ("dixon_coles+elo_prior" if elo else "dixon_coles_shrunk") if params else "elo_fallback",
         "n_matches_fit": params.n_matches if params else 0,
         "home_adv": round(params.home_adv, 4) if params else None,
         "rho": round(params.rho, 4) if params else None,

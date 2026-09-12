@@ -3,7 +3,7 @@ name = "ucl-engine"
 version = "0.1.0"
 description = "fplanalytic prediction engine: Elo + Dixon-Coles, UCL Fantasy xPts, FPL DEFCON"
 requires-python = ">=3.10"
-dependencies = ["numpy>=1.26", "scipy>=1.11", "requests>=2.31"]
+dependencies = ["numpy>=1.26", "scipy>=1.11", "requests>=2.31", "curl_cffi>=0.7"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

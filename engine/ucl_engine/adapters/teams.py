@@ -59,6 +59,21 @@ TEAM_ALIASES: Dict[str, str] = {
     "qarabag": "Qarabağ", "qarabag fk": "Qarabağ", "qarabağ": "Qarabağ",
     "kairat": "Kairat Almaty", "kairat almaty": "Kairat Almaty",
     "pafos": "Pafos", "pafos fc": "Pafos",
+    # 2026/27 league phase: UEFA fantasy feed vs football-data shortName spellings
+    # (mismatches found on the 2026-09-12 live run; both sides converge here)
+    "pae aek": "AEK Athens", "aek athens": "AEK Athens", "aek": "AEK Athens",
+    "b dortmund": "Borussia Dortmund",
+    "barcelona": "Barcelona", "barça": "Barcelona", "barca": "Barcelona",
+    "bayern münchen": "Bayern Munich",
+    "como 1907": "Como", "como": "Como",
+    "rc lens": "Lens", "lens": "Lens",
+    "man utd": "Manchester United",
+    "paris": "Paris Saint-Germain",
+    "s bratislava": "Slovan Bratislava", "sl bratislava": "Slovan Bratislava",
+    "slovan bratislava": "Slovan Bratislava",
+    "sabah": "Sabah FK", "sabah fk": "Sabah FK",
+    "shakhtar": "Shakhtar Donetsk", "shaktar": "Shakhtar Donetsk",
+    "shakhtar donetsk": "Shakhtar Donetsk", "fc shakhtar donetsk": "Shakhtar Donetsk",
 }
 
 

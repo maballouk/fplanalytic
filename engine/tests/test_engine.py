@@ -215,3 +215,23 @@ def test_pipeline_end_to_end_json_shape():
     assert out.players[0]["xpts"] >= out.players[1]["xpts"]
     assert "xpts_per_million" in out.players[0]
     assert out.model["type"].startswith("dixon_coles")
+
+# ------------------------------------------------- early-season regularisation
+def test_one_round_fit_without_priors_stays_sane():
+    """
+    2026-09-12 regression: with one match per team and NO Elo priors, the fit
+    used to leave team strengths unshrunk (a 6-0 winner got explosive attack)
+    and home advantage ran to its -1 bound, producing 0.6-6.7 xG fixtures and
+    "most likely 0-6" scorelines. Flat shrinkage + home-adv regularisation must
+    keep expected goals within football reality.
+    """
+    matches = [
+        Match("A", "B", 6, 0, days_ago=3),
+        Match("C", "D", 0, 3, days_ago=3),
+        Match("E", "F", 1, 1, days_ago=3),
+    ]
+    params = fit_dixon_coles(matches)
+    assert 0.0 < params.home_adv < 0.6  # near the 0.25 literature value
+    lam_h, lam_a = expected_goals(params, "B", "A")  # loser hosts winner
+    assert 0.3 < lam_h < 3.5
+    assert 0.3 < lam_a < 3.5

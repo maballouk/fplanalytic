@@ -53,6 +53,13 @@ SCORING: Dict[str, Dict[str, float] | float] = {
     "own_goal": -2,
     "recoveries_per_3": 1,       # ball recoveries, all positions
     "player_of_match": 3,
+    # Verified against uefa.com rules 2026/27 on 2026-09-12. These three exist
+    # in the official game but are not yet estimated in expected_points()
+    # (small expected contributions; the feed exposes gOB / pE / pC to model
+    # them later):
+    "goal_outside_box": 1,
+    "penalty_earned": 2,
+    "penalty_conceded": -1,
 }
 
 

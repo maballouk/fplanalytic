@@ -91,6 +91,7 @@ def fit_dixon_coles(
     prior_weight: float = 2.0,
     use_xg: bool = False,
     rho_shrink: float = 20.0,
+    ha_shrink: float = 10.0,
 ) -> DixonColesParams:
     """
     Fit attack/defence strengths, home advantage and rho by maximum likelihood.
@@ -155,15 +156,22 @@ def fit_dixon_coles(
             )
         )
         total = -np.sum(w * ll)
-        # Gaussian shrinkage toward the prior (acts like `prior_weight` virtual matches)
-        if prior_strength:
-            total += 0.5 * prior_weight * (np.sum((att - prior_att) ** 2) + np.sum((dfn - prior_def) ** 2))
+        # Gaussian shrinkage toward the prior (acts like `prior_weight` virtual
+        # matches). ALWAYS applied: without Elo priors the pull is toward flat
+        # strengths (zeros), which keeps a 1-match-per-team early-season fit
+        # from exploding (2026-09-12: an unshrunk MD1-only fit produced a
+        # 0.6-6.7 xG fixture and most-likely 0-6 scorelines).
+        total += 0.5 * prior_weight * (np.sum((att - prior_att) ** 2) + np.sum((dfn - prior_def) ** 2))
         # Identifiability: mean attack = 0 (soft constraint)
         total += 100.0 * np.mean(att) ** 2
         # Regularise rho toward the literature value (~ -0.06 for top European
         # football). With few matches rho is poorly identified and will otherwise
         # run to its bound and force every prediction toward 1-1.
         total += 0.5 * rho_shrink * (rho + 0.06) ** 2
+        # Regularise home advantage toward the literature value (~ +0.25 on the
+        # log scale). Same failure mode as rho: on one round of matches it ran
+        # to its -1 bound.
+        total += 0.5 * ha_shrink * (home_adv - 0.25) ** 2
         return total
 
     theta0 = np.concatenate([prior_att, prior_def, [0.25], [-0.05]])

@@ -108,20 +108,32 @@ additions in `docs/COPY.md`). Gate closes when the post copy is approved.
 
 ## Phase 1.5 — European Nights (2–3 sessions, after gate 1)
 
-- [ ] **1.5.1 Engine live run.** Get a free `FOOTBALL_DATA_TOKEN`; run
+- [x] **1.5.1 Engine live run.** Get a free `FOOTBALL_DATA_TOKEN`; run
       `python -m ucl_engine.cli predict --matchday N --out public/data/ucl_md{N}.json`. Fix any team-name
       mismatches by extending `engine/ucl_engine/adapters/teams.py` (never in the models).
       Verify the UEFA feed URL/shape for 2026/27 in the browser network tab; adjust `adapters/uefa_fantasy.py`
       if needed. Re-verify `fantasy.py::SCORING` against gaming.uefa.com rules.
+      *(Done 2026-09-12: MD2 run live, 18 fixtures + all 1163 players (11 team aliases added). Feed URL
+      changed to `players_{tourId}_en_{md}.json`, tour id 90 for 26/27, fetched via curl_cffi (WAF blocks
+      plain Python). SCORING verified vs uefa.com; added goal_outside_box +1, penalty_earned +2,
+      penalty_conceded -1 (not yet in the xPts expectation). Two model fixes while verifying output:
+      strength shrinkage now always applies (flat prior when ClubElo is down) and home advantage is
+      regularised toward +0.25; regression test added.)*
 - [ ] **1.5.2 Domestic shares.** Feed `build_profiles(domestic_shares=…)` from the FPL API for Premier League
       players (goals/assists share of team) so early-season xPts are not noise. Non-PL clubs: leave UCL-only
       for now; note as a known limitation in the `MethodNote`.
+      *(Interim step landed with 1.5.1: without domestic data the blend now shrinks toward position
+      priors instead of raw UCL shares, which killed the "defender at 15.9 xPts" blowups. FPL-based
+      shares for PL players still to do.)*
 - [ ] **1.5.3 Rotation model v1.** Replace the minutes-per-matchday proxy in `build_profiles` with:
       starts in last 3 club matches (all comps), days since last match, opponent strength gap, and a
       per-club rotation index. Output P(start). Backtest on last season's league phase if data allows.
       **This is the largest error source; budget time here, not on UI polish.**
-- [ ] **1.5.4 Schedule.** GitHub Action (cron, Mon + Thu 09:00 UTC) runs the engine and commits JSON to
+- [x] **1.5.4 Schedule.** GitHub Action (cron, Mon + Thu 09:00 UTC) runs the engine and commits JSON to
       `public/data/`, triggering a Netlify deploy. Secrets in repo settings.
+      *(`.github/workflows/ucl-data.yml`; the CLI auto-resolves the next matchday when `--matchday` is
+      omitted and expands `{md}` in `--out`. REMAINING FOR MOHAMAD: add the `FOOTBALL_DATA_TOKEN`
+      secret in GitHub → Settings → Secrets and variables → Actions.)*
 - [ ] **1.5.5 `/ucl` Matchday Hub** (`DESIGN.md §4.1`) reading `/lib/ucl/loadMatchday.ts`. Fixture cards with
       xG, 1X2 bar, CS odds, most-likely score, `MethodNote`. xPts table with breakdown chips. Free: top 40.
 - [ ] **1.5.6 `/ucl/player/[id]`** (`§4.2`).
@@ -161,6 +173,15 @@ backtest numbers on methodology page.
 - 2026-09-12: DESIGN.md tokens now own the shared Tailwind keys (`text-base`, `shadow-card`, …), so
   the legacy light screens shift slightly until Phase 1 replaces them. Deliberate; see
   ARCHITECTURE.md §6. Legacy `/api/fpl*` routes stay until 1.10.
+- 2026-09-12 (1.5.1): UEFA fantasy feed for 26/27 is `players_{tourId}_en_{md}.json` (tour id 90);
+  the endpoint TLS-fingerprints plain Python, so the adapter fetches via curl_cffi Chrome
+  impersonation with a `--players-file` manual fallback. ClubElo (free hobby API) 502s
+  intermittently: the CLI retries 3x then fits without priors.
+- 2026-09-12 (models): with 1 match per team and no Elo priors the unshrunk DC fit produced
+  0.6-6.7 xG and home_adv at its -1 bound. Fixes: strength shrinkage ALWAYS applies (flat prior
+  when Elo is absent) and home_adv is regularised toward +0.25 (ha_shrink=10). Same family as the
+  earlier rho lesson. Also: without domestic shares, build_profiles now shrinks goal/assist shares
+  toward position priors (a defender scoring 1 of 2 team MD1 goals no longer keeps a 50% share).
 - 2026-09-12: FPL `defensive_contribution` (bootstrap, element-summary history, live) is the
   position-aware composite COUNT per match (DEF: CBIT+tackles; MID/FWD: +recoveries), not the points
   awarded. Verified on Gabriel/White/Kamara GW1-3; example rows frozen in `tests/fpl-schemas.test.ts`.
