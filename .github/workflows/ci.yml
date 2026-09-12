@@ -13,7 +13,7 @@ jobs:
 
       - name: Fail on insecure http:// in source
         run: |
-          if grep -rn "http://" src public scripts 2>/dev/null | grep -vE 'localhost|127\.0\.0\.1|www\.w3\.org'; then
+          if grep -rn --exclude=check-http.mjs "http://" src public scripts 2>/dev/null | grep -vE 'localhost|127\.0\.0\.1|www\.w3\.org'; then
             echo "Insecure http:// URLs found in source"; exit 1
           fi
 
@@ -32,5 +32,5 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: pip install -e engine
+      - run: pip install -e engine pytest
       - run: python -m pytest engine -q
