@@ -1,9 +1,8 @@
-// UEFA player headshots, keyed by the fantasy feed's player id.
-// Pattern verified 2026-09-12 (200 image/jpeg); the season segment moves each
-// year: 2027 = the 2026/27 season.
-
-const SEASON_SEGMENT = 2027;
+// UEFA player headshots, self-hosted under public/img/ucl/players.
+// img.uefa.com blocks hotlinking from other origins (verified 2026-09-13), so
+// scripts/mirror_ucl_images.py downloads the shown players' photos on every
+// prediction build; the UI falls back to initials for the handful without one.
 
 export function uclPlayerPhotoUrl(playerId: string): string {
-  return `https://img.uefa.com/imgml/TP/players/1/${SEASON_SEGMENT}/324x324/${playerId}.jpg`;
+  return `/img/ucl/players/${playerId}.jpg`;
 }

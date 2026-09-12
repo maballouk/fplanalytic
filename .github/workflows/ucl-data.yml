@@ -28,11 +28,14 @@ jobs:
           FOOTBALL_DATA_TOKEN: ${{ secrets.FOOTBALL_DATA_TOKEN }}
         run: python -m ucl_engine.cli predict --out "public/data/ucl_md{md}.json"
 
+      - name: Mirror UEFA images (img.uefa.com blocks hotlinking)
+        run: python scripts/mirror_ucl_images.py
+
       - name: Commit updated predictions
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add public/data/ucl_md*.json
+          git add public/data/ucl_md*.json public/img/ucl
           if git diff --cached --quiet; then
             echo "No prediction changes"
           else

@@ -48,9 +48,11 @@ const CLUBS: Record<string, ClubIdentity> = {
   Villarreal: { code: 'VIL', color: '#FFE667', uefaId: '70691' },
 };
 
+// Crests are self-hosted (img.uefa.com blocks hotlinking; see
+// scripts/mirror_ucl_images.py, which keeps public/img/ucl/clubs in sync).
 export function uclBadgeUrl(team: string): string | null {
   const id = CLUBS[team]?.uefaId;
-  return id ? `https://img.uefa.com/imgml/TP/teams/logos/70x70/${id}.png` : null;
+  return id ? `/img/ucl/clubs/${id}.png` : null;
 }
 
 export function club(team: string): ClubIdentity {
