@@ -7,6 +7,8 @@ function player(over: Partial<DefconFilePlayer>): DefconFilePlayer {
   return {
     rank: 1,
     player_id: '1',
+    code: 199798,
+    team_code: 3,
     name: 'Player',
     team: 'ARS',
     position: 'DEF',

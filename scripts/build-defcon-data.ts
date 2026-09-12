@@ -98,6 +98,8 @@ async function main() {
     next5: { event: number | null; opponent: string; is_home: boolean; difficulty: number }[];
     status: string;
     minutes: number;
+    code: number;
+    team_code: number;
   }[] = [];
   for (const s of summaries) {
     if (s === null) continue;
@@ -129,7 +131,14 @@ async function main() {
       is_home: f.is_home,
       difficulty: f.difficulty,
     }));
-    profiles.push({ profile, next5, status: el.status, minutes: el.minutes });
+    profiles.push({
+      profile,
+      next5,
+      status: el.status,
+      minutes: el.minutes,
+      code: el.code,
+      team_code: teamById.get(el.team)?.code ?? 0,
+    });
   }
 
   const ranked = rankDefcon(profiles.map((p) => p.profile)).map((profile, i) => {
@@ -137,6 +146,8 @@ async function main() {
     return {
       rank: i + 1,
       ...profile,
+      code: extra.code,
+      team_code: extra.team_code,
       minutes: extra.minutes,
       next5: extra.next5,
       status: extra.status,

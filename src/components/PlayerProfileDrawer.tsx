@@ -6,10 +6,17 @@
 
 import { useEffect } from 'react';
 import FixtureStrip from '@/components/ds/FixtureStrip';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PlayerDrawer from '@/components/ds/PlayerDrawer';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import { track } from '@/lib/analytics';
-import { meanNext5Fdr, thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
+import { playerPhotoUrl } from '@/lib/fpl/photos';
+import {
+  difficultyWord,
+  meanNext5Fdr,
+  thresholdFor,
+  type DefconFilePlayer,
+} from '@/lib/defcon/file';
 import { decide } from '@/lib/defcon/decision';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
@@ -32,16 +39,37 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
     track('drawer_decision_view', { player: player.name, verdict: decision.verdict });
   }, [player.name, decision.verdict]);
 
+  const next = player.next5[0];
+  const NEXT_TONE = {
+    Soft: 'border-accent-dim/50 text-accent',
+    Even: 'border-line-strong text-text-muted',
+    Tough: 'border-danger/50 text-danger',
+  } as const;
+
   return (
     <PlayerDrawer
       open
       onClose={onClose}
       title={player.name}
       subtitle={`${player.team} · ${player.position} · £${player.price.toFixed(1)}m`}
+      leading={<PlayerAvatar src={playerPhotoUrl(player.code)} name={player.name} size={48} />}
       decision={decision}
       decisionLabel="Decision"
       closeLabel="Close"
     >
+      {next && (
+        <div className="flex items-center gap-2 text-sm text-text-muted">
+          <span>Next match:</span>
+          <span className="text-text">
+            {next.opponent} ({next.is_home ? 'H' : 'A'})
+          </span>
+          <span
+            className={`rounded-pill border px-2 py-0.5 text-xs font-semibold ${NEXT_TONE[difficultyWord(next.difficulty)]}`}
+          >
+            {difficultyWord(next.difficulty)}
+          </span>
+        </div>
+      )}
       <dl className="grid grid-cols-2 gap-3 text-sm">
         {(
           [

@@ -12,6 +12,8 @@ export interface PlayerDrawerProps {
   onClose: () => void;
   title: string;
   subtitle?: string;
+  /** Optional element before the title, e.g. a PlayerAvatar */
+  leading?: React.ReactNode;
   children: React.ReactNode;
   decision: { verdict: Verdict; reason: string };
   /** Heading of the decision block; copy approved via docs/COPY.md */
@@ -30,6 +32,7 @@ export default function PlayerDrawer({
   onClose,
   title,
   subtitle,
+  leading,
   children,
   decision,
   decisionLabel,
@@ -53,9 +56,12 @@ export default function PlayerDrawer({
       />
       <aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-line bg-bg-raised shadow-card transition-transform duration-panel">
         <header className="flex items-start justify-between border-b border-line px-5 py-4">
-          <div>
-            <h2 className="text-lg text-text">{title}</h2>
-            {subtitle && <p className="text-sm text-text-muted">{subtitle}</p>}
+          <div className="flex items-center gap-3">
+            {leading}
+            <div>
+              <h2 className="text-lg text-text">{title}</h2>
+              {subtitle && <p className="text-sm text-text-muted">{subtitle}</p>}
+            </div>
           </div>
           <button
             onClick={onClose}

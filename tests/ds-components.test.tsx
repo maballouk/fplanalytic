@@ -5,6 +5,7 @@ import AppShell from '@/components/ds/AppShell';
 import EmptyState from '@/components/ds/EmptyState';
 import FixtureStrip from '@/components/ds/FixtureStrip';
 import MethodNote from '@/components/ds/MethodNote';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PlayerDrawer from '@/components/ds/PlayerDrawer';
 import PlayerRow from '@/components/ds/PlayerRow';
 import PremiumLock from '@/components/ds/PremiumLock';
@@ -228,5 +229,15 @@ describe('AppShell', () => {
     expect(screen.getByText('fplanalytic')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Live' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByText('content')).toBeInTheDocument();
+  });
+});
+
+describe('PlayerAvatar', () => {
+  it('falls back to initials when the photo fails to load', () => {
+    render(<PlayerAvatar src="https://resources.premierleague.com/x.png" name="Ezri Konsa" />);
+    const img = screen.getByRole('img', { name: 'Ezri Konsa' });
+    fireEvent.error(img);
+    expect(screen.getByText('EK')).toBeInTheDocument();
+    expect(screen.queryByRole('img')).not.toBeInTheDocument();
   });
 });

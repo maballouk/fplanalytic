@@ -8,7 +8,9 @@ export default function ConsensusPanel() {
   const [data, setData] = useState<ConsensusResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'rising' | 'falling' | 'differential' | 'stable'>('stable');
+  const [activeTab, setActiveTab] = useState<'rising' | 'falling' | 'differential' | 'stable'>(
+    'stable'
+  );
 
   const fetchConsensus = async () => {
     try {
@@ -31,16 +33,20 @@ export default function ConsensusPanel() {
   }, []);
 
   const renderPlayer = (player: ConsensusPlayer) => (
-    <div key={player.id} className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow">
+    <div
+      key={player.id}
+      className="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow"
+    >
       <div className="flex items-start space-x-4">
         <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
-          <img 
-            src={player.imageUrl} 
+          <img
+            src={player.imageUrl}
             alt={player.name}
             className="w-full h-full object-contain"
             loading="lazy"
             onError={(e) => {
-              e.currentTarget.src = 'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
+              e.currentTarget.src =
+                'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
             }}
           />
         </div>
@@ -71,11 +77,15 @@ export default function ConsensusPanel() {
       <div className="mt-4 grid grid-cols-3 gap-4 pt-4 border-t border-gray-100">
         <div>
           <div className="text-sm font-medium text-gray-500">Form</div>
-          <div className={`text-lg font-semibold ${
-            player.form >= 7 ? 'text-green-600' :
-            player.form >= 5 ? 'text-yellow-600' :
-            'text-red-600'
-          }`}>
+          <div
+            className={`text-lg font-semibold ${
+              player.form >= 7
+                ? 'text-green-600'
+                : player.form >= 5
+                  ? 'text-yellow-600'
+                  : 'text-red-600'
+            }`}
+          >
             {player.form.toFixed(1)}
           </div>
         </div>
@@ -87,11 +97,15 @@ export default function ConsensusPanel() {
         </div>
         <div>
           <div className="text-sm font-medium text-gray-500">Difficulty</div>
-          <div className={`text-lg font-semibold ${
-            player.fixturesDifficulty <= 2 ? 'text-green-600' :
-            player.fixturesDifficulty >= 4 ? 'text-red-600' :
-            'text-gray-600'
-          }`}>
+          <div
+            className={`text-lg font-semibold ${
+              player.fixturesDifficulty <= 2
+                ? 'text-green-600'
+                : player.fixturesDifficulty >= 4
+                  ? 'text-red-600'
+                  : 'text-gray-600'
+            }`}
+          >
             {player.fixturesDifficulty}
           </div>
         </div>
@@ -140,12 +154,16 @@ export default function ConsensusPanel() {
         <div className="flex">
           <div className="flex-shrink-0">
             <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
+                clipRule="evenodd"
+              />
             </svg>
           </div>
           <div className="ml-3">
             <p className="text-sm text-red-700">{error}</p>
-            <button 
+            <button
               onClick={fetchConsensus}
               className="mt-2 text-sm text-red-700 hover:text-red-900 underline"
             >
@@ -178,10 +196,10 @@ export default function ConsensusPanel() {
                 ? key === 'rising'
                   ? 'bg-green-100 text-green-700'
                   : key === 'falling'
-                  ? 'bg-red-100 text-red-700'
-                  : key === 'differential'
-                  ? 'bg-purple-100 text-purple-700'
-                  : 'bg-blue-100 text-blue-700'
+                    ? 'bg-red-100 text-red-700'
+                    : key === 'differential'
+                      ? 'bg-purple-100 text-purple-700'
+                      : 'bg-blue-100 text-blue-700'
                 : 'text-gray-600 hover:text-gray-900'
             }`}
           >

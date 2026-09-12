@@ -7,8 +7,10 @@ import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import { NAV } from '@/lib/nav';
 import { club } from '@/lib/ucl/clubs';
+import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
 import { topContributors, type UclFixture, type UclPlayer } from '@/lib/ucl/file';
 import { loadLatestMatchday } from '@/lib/ucl/loadMatchday';
 import Countdown from './Countdown';
@@ -126,12 +128,6 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
       : rank === 2
         ? { badge: 'bg-bg-overlay text-info border-info/40', value: 'text-text' }
         : { badge: 'bg-bg-overlay text-warn border-warn/40', value: 'text-text' };
-  const initials = player.name
-    .split(' ')
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
   return (
     <div
       className={`relative overflow-hidden rounded-card border p-5 ${
@@ -145,12 +141,12 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
       )}
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3.5">
-          <span
-            className="flex h-12 w-12 items-center justify-center rounded-pill bg-bg-overlay text-sm font-bold"
-            style={{ border: `2px solid ${c.color}` }}
-          >
-            {initials}
-          </span>
+          <PlayerAvatar
+            src={uclPlayerPhotoUrl(player.player_id)}
+            name={player.name}
+            ringColor={c.color}
+            size={48}
+          />
           <div>
             <div className="font-semibold text-text">{player.name}</div>
             <div className="text-xs text-text-muted">

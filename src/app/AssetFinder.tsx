@@ -7,12 +7,14 @@
 import { useMemo, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
 import FixtureStrip from '@/components/ds/FixtureStrip';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PlayerRow from '@/components/ds/PlayerRow';
 import PremiumLock from '@/components/ds/PremiumLock';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import PlayerProfileDrawer from '@/components/PlayerProfileDrawer';
 import { track } from '@/lib/analytics';
+import { playerPhotoUrl } from '@/lib/fpl/photos';
 import { thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
 
 type PositionFilter = 'ALL' | 'DEF' | 'MID' | 'FWD';
@@ -184,6 +186,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
                   team={p.team}
                   position={p.position}
                   price={p.price}
+                  avatar={<PlayerAvatar src={playerPhotoUrl(p.code)} name={p.name} size={28} />}
                   onClick={() => openPlayer(p)}
                 >
                   <td className="num px-3 py-2">{pct(p.hit_rate)}</td>

@@ -5,9 +5,11 @@
 import AppShell from '@/components/ds/AppShell';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
-import StatCard from '@/components/ds/StatCard';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import type { Metadata } from 'next';
 import { loadLatestDefcon } from '@/lib/defcon/data';
+import type { DefconFilePlayer } from '@/lib/defcon/file';
+import { playerPhotoUrl } from '@/lib/fpl/photos';
 import { NAV } from '@/lib/nav';
 import AssetFinder from './AssetFinder';
 
@@ -20,6 +22,31 @@ export const metadata: Metadata = {
   description:
     'Defensive contribution stats for FPL: DEFCON hit rates, near misses and the best defensive assets, updated twice daily.',
 };
+
+function PlayerStatCard({
+  label,
+  player,
+  value,
+  accent = false,
+}: {
+  label: string;
+  player: DefconFilePlayer;
+  value: string;
+  accent?: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-4 rounded-card border border-line bg-bg-raised p-4 shadow-card">
+      <PlayerAvatar src={playerPhotoUrl(player.code)} name={player.name} size={44} />
+      <div className="min-w-0">
+        <div className="text-xs uppercase tracking-wide text-text-faint">{label}</div>
+        <div className="mt-0.5 truncate text-sm font-medium text-text">
+          {player.name} <span className="text-text-faint">· {player.team}</span>
+        </div>
+      </div>
+      <div className={`num ml-auto text-2xl ${accent ? 'text-accent' : ''}`}>{value}</div>
+    </div>
+  );
+}
 
 export default function Home() {
   const data = loadLatestDefcon();
@@ -58,24 +85,25 @@ export default function Home() {
         <>
           <section className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
             {topDef && (
-              <StatCard
+              <PlayerStatCard
                 label="Top DEFCON DEF this GW"
+                player={topDef}
                 value={topDef.defcon_xpts.toFixed(2)}
-                detail={`${topDef.name} · ${topDef.team}`}
+                accent
               />
             )}
             {topMid && (
-              <StatCard
+              <PlayerStatCard
                 label="Top DEFCON MID this GW"
+                player={topMid}
                 value={topMid.defcon_xpts.toFixed(2)}
-                detail={`${topMid.name} · ${topMid.team}`}
               />
             )}
             {bestValue && (
-              <StatCard
+              <PlayerStatCard
                 label="Best value (xPts/£m)"
+                player={bestValue}
                 value={bestValue.value_per_million.toFixed(3)}
-                detail={`${bestValue.name} · ${bestValue.team}`}
               />
             )}
           </section>

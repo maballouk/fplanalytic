@@ -4,10 +4,12 @@
 // amber, breakdown chips. Free tier shows the top 40; more behind the lock.
 
 import { useMemo, useState } from 'react';
+import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PremiumLock from '@/components/ds/PremiumLock';
 import RankBadge from '@/components/ds/RankBadge';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
 import { club } from '@/lib/ucl/clubs';
+import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
 import { topContributors, type UclPlayer } from '@/lib/ucl/file';
 
 type PositionFilter = 'ALL' | 'GK' | 'DEF' | 'MID' | 'FWD';
@@ -23,12 +25,16 @@ function Row({ player, rank }: { player: UclPlayer; rank: number }) {
         {rank <= 3 ? <RankBadge rank={rank} /> : rank}
       </td>
       <td className="px-3 py-2">
-        <span
-          className="mr-2 inline-block h-2 w-2 rounded-pill"
-          style={{ backgroundColor: c.color }}
-        />
-        <span className="text-text">{player.name}</span>
-        <span className="ml-2 text-xs text-text-faint">{c.code}</span>
+        <span className="flex items-center gap-2.5">
+          <PlayerAvatar
+            src={uclPlayerPhotoUrl(player.player_id)}
+            name={player.name}
+            ringColor={c.color}
+            size={28}
+          />
+          <span className="text-text">{player.name}</span>
+          <span className="text-xs text-text-faint">{c.code}</span>
+        </span>
       </td>
       <td className="px-3 py-2 text-text-muted">{player.position}</td>
       <td className="num px-3 py-2">{player.price.toFixed(1)}</td>

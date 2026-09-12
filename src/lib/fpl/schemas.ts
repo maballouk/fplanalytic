@@ -7,6 +7,7 @@ import { z } from 'zod';
 
 export const ElementSchema = z.object({
   id: z.number(),
+  code: z.number(), // stable photo id: resources.premierleague.com .../p{code}.png
   web_name: z.string(),
   first_name: z.string(),
   second_name: z.string(),
@@ -28,6 +29,7 @@ export const ElementSchema = z.object({
 
 export const TeamSchema = z.object({
   id: z.number(),
+  code: z.number(), // stable badge id: resources.premierleague.com .../t{code}.png
   name: z.string(),
   short_name: z.string(),
   strength_overall_home: z.number(),

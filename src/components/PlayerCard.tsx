@@ -10,11 +10,16 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
 
   const getPositionText = (elementType: number): string => {
     switch (elementType) {
-      case 1: return 'GKP';
-      case 2: return 'DEF';
-      case 3: return 'MID';
-      case 4: return 'FWD';
-      default: return '';
+      case 1:
+        return 'GKP';
+      case 2:
+        return 'DEF';
+      case 3:
+        return 'MID';
+      case 4:
+        return 'FWD';
+      default:
+        return '';
     }
   };
 
@@ -50,7 +55,10 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
     return 'text-red-600';
   };
 
-  const validBuyRecommendation = isNaN(buyRecommendation) || buyRecommendation === null ? 0 : Math.min(100, Math.max(0, buyRecommendation));
+  const validBuyRecommendation =
+    isNaN(buyRecommendation) || buyRecommendation === null
+      ? 0
+      : Math.min(100, Math.max(0, buyRecommendation));
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-100">
@@ -62,7 +70,8 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
             className="w-full h-full object-contain"
             loading="lazy"
             onError={(e) => {
-              e.currentTarget.src = 'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
+              e.currentTarget.src =
+                'https://resources.premierleague.com/premierleague/photos/players/110x140/Photo-Missing.png';
             }}
           />
         </div>
@@ -75,12 +84,15 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
               <p className="text-gray-600 font-medium">{team.name}</p>
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-sm font-medium text-gray-600 mr-2">£{(player.now_cost / 10).toFixed(1)}m</span>
+              <span className="text-sm font-medium text-gray-600 mr-2">
+                £{(player.now_cost / 10).toFixed(1)}m
+              </span>
               <div
                 className={`w-4 h-4 flex-shrink-0 ${nextFixture ? getDifficultyColor(nextFixture.difficulty) : 'bg-gray-300'}`}
-                title={nextFixture
-                  ? `Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`
-                  : "No upcoming fixture"
+                title={
+                  nextFixture
+                    ? `Next Match vs ${nextFixture.opponent.name} - Difficulty: ${getDifficultyLabel(nextFixture.difficulty)} (${nextFixture.difficulty})`
+                    : 'No upcoming fixture'
                 }
               />
             </div>
@@ -97,9 +109,7 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
         </div>
         <div className="bg-gray-50 rounded-lg p-3">
           <p className="text-sm text-gray-600 mb-1">Form</p>
-          <p className={`text-2xl font-bold ${getStatColor(form, 10)}`}>
-            {formatNumber(form)}
-          </p>
+          <p className={`text-2xl font-bold ${getStatColor(form, 10)}`}>{formatNumber(form)}</p>
         </div>
       </div>
 
@@ -113,7 +123,9 @@ export default function PlayerCard({ prediction }: PlayerCardProps) {
                 style={{ width: `${validBuyRecommendation}%` }}
               />
             </div>
-            <span className="text-sm font-bold text-gray-900">{Math.round(validBuyRecommendation)}%</span>
+            <span className="text-sm font-bold text-gray-900">
+              {Math.round(validBuyRecommendation)}%
+            </span>
           </div>
         </div>
       </div>

@@ -8,6 +8,8 @@ import type { DefconPosition } from './profile';
 export const DefconFilePlayerSchema = z.object({
   rank: z.number(),
   player_id: z.string(),
+  code: z.number(), // PL media id for the player photo
+  team_code: z.number(), // PL media id for the club badge
   name: z.string(),
   team: z.string(),
   position: z.enum(['DEF', 'MID', 'FWD']),
@@ -49,4 +51,11 @@ export function thresholdFor(position: DefconPosition): number {
 export function meanNext5Fdr(player: DefconFilePlayer): number | null {
   if (player.next5.length === 0) return null;
   return player.next5.reduce((s, f) => s + f.difficulty, 0) / player.next5.length;
+}
+
+/** Next-match difficulty in the product's language (legacy card's Easy/Hard read). */
+export function difficultyWord(fdr: number): 'Soft' | 'Even' | 'Tough' {
+  if (fdr <= 2) return 'Soft';
+  if (fdr >= 4) return 'Tough';
+  return 'Even';
 }

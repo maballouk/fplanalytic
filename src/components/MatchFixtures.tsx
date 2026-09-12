@@ -48,10 +48,16 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
             <div className="space-y-1">
               {groupedEvents.goal.map((event, i) => (
                 <div key={i} className="flex items-center text-sm">
-                  <svg className="w-4 h-4 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    className="w-4 h-4 text-green-600 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
                   </svg>
-                  <span>{event.player} ({event.minute}&apos;)</span>
+                  <span>
+                    {event.player} ({event.minute}&apos;)
+                  </span>
                 </div>
               ))}
             </div>
@@ -65,10 +71,16 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
             <div className="space-y-1">
               {groupedEvents.assist.map((event, i) => (
                 <div key={i} className="flex items-center text-sm">
-                  <svg className="w-4 h-4 text-blue-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <svg
+                    className="w-4 h-4 text-blue-600 mr-2"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
                     <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                   </svg>
-                  <span>{event.player} ({event.minute}&apos;)</span>
+                  <span>
+                    {event.player} ({event.minute}&apos;)
+                  </span>
                 </div>
               ))}
             </div>
@@ -83,13 +95,17 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
               {groupedEvents.yellow?.map((event, i) => (
                 <div key={`yellow-${i}`} className="flex items-center text-sm">
                   <div className="w-3 h-4 bg-yellow-400 mr-2 rounded-sm" />
-                  <span>{event.player} ({event.minute}&apos;)</span>
+                  <span>
+                    {event.player} ({event.minute}&apos;)
+                  </span>
                 </div>
               ))}
               {groupedEvents.red?.map((event, i) => (
                 <div key={`red-${i}`} className="flex items-center text-sm">
                   <div className="w-3 h-4 bg-red-600 mr-2 rounded-sm" />
-                  <span>{event.player} ({event.minute}&apos;)</span>
+                  <span>
+                    {event.player} ({event.minute}&apos;)
+                  </span>
                 </div>
               ))}
             </div>
@@ -117,17 +133,14 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
       {/* Matches Grid */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
         {fixtures.map((matchDay, dayIndex) => (
-          <div 
-            key={dayIndex} 
-            className="bg-gray-50 rounded-lg overflow-hidden"
-          >
+          <div key={dayIndex} className="bg-gray-50 rounded-lg overflow-hidden">
             <div className="bg-gray-100/80 px-4 py-2">
               <h3 className="text-sm font-semibold text-gray-600">{matchDay.date}</h3>
             </div>
             <div className="divide-y divide-gray-100">
               {matchDay.matches.map((match, matchIndex) => (
                 <div key={matchIndex}>
-                  <button 
+                  <button
                     onClick={() => setSelectedMatch(selectedMatch === match ? null : match)}
                     className={`w-full px-4 py-3 hover:bg-gray-50 transition-colors text-left ${
                       selectedMatch === match ? 'bg-gray-50' : ''
@@ -184,10 +197,9 @@ export default function MatchFixtures({ matchweek, fixtures }: MatchFixturesProp
                         renderMatchEvents(match.events)
                       ) : (
                         <div className="text-sm text-gray-500 text-center py-2">
-                          {match.homeScore !== undefined ? 
-                            'No major events recorded for this match' :
-                            'Match events will appear here when the game starts'
-                          }
+                          {match.homeScore !== undefined
+                            ? 'No major events recorded for this match'
+                            : 'Match events will appear here when the game starts'}
                         </div>
                       )}
                     </div>
