@@ -1,0 +1,6 @@
+engine/
+node_modules/
+.next/
+public/data/
+docs/documentation.md
+package-lock.json

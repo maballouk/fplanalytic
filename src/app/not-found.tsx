@@ -3,8 +3,8 @@ export const generateViewport = () => {
     width: 'device-width',
     initialScale: 1,
     themeColor: '#37003c',
-  }
-}
+  };
+};
 
 export default function NotFound() {
   return (
@@ -21,5 +21,5 @@ export default function NotFound() {
         </a>
       </div>
     </div>
-  )
+  );
 }

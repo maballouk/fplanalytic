@@ -36,3 +36,8 @@ next-env.d.ts
 # IDE
 .vscode/
 .idea/
+# python engine
+__pycache__/
+*.pyc
+engine/*.egg-info/
+.venv/

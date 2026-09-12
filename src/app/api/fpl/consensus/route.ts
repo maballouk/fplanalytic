@@ -8,20 +8,21 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     name: 'Mohamed Salah',
     club: 'Liverpool',
     position: 'MID',
-    imageUrl: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p118748.png',
+    imageUrl:
+      'https://resources.premierleague.com/premierleague/photos/players/110x140/p118748.png',
     mentions: [
       {
         source: 'Fantasy Football Scout',
         reason: 'Excellent home record and on penalties',
         timestamp: new Date().toISOString(),
-        sentiment: 'positive'
+        sentiment: 'positive',
       },
       {
         source: 'Fantasy Football Hub',
         reason: 'High ownership and consistent returns',
         timestamp: new Date().toISOString(),
-        sentiment: 'positive'
-      }
+        sentiment: 'positive',
+      },
     ],
     mentionPercentage: 100,
     form: 8.5,
@@ -29,21 +30,22 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     fixturesDifficulty: 2,
     priceChange: 0.2,
     trend: 'stable',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
   },
   {
     id: 2,
     name: 'Erling Haaland',
     club: 'Manchester City',
     position: 'FWD',
-    imageUrl: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png',
+    imageUrl:
+      'https://resources.premierleague.com/premierleague/photos/players/110x140/p223094.png',
     mentions: [
       {
         source: 'Fantasy Football Scout',
         reason: 'Premier League top scorer and fixture-proof',
         timestamp: new Date().toISOString(),
-        sentiment: 'positive'
-      }
+        sentiment: 'positive',
+      },
     ],
     mentionPercentage: 90,
     form: 9.0,
@@ -51,21 +53,22 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     fixturesDifficulty: 3,
     priceChange: 0.1,
     trend: 'rising',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
   },
   {
     id: 3,
     name: 'Ollie Watkins',
     club: 'Aston Villa',
     position: 'FWD',
-    imageUrl: 'https://resources.premierleague.com/premierleague/photos/players/110x140/p178301.png',
+    imageUrl:
+      'https://resources.premierleague.com/premierleague/photos/players/110x140/p178301.png',
     mentions: [
       {
         source: 'All About FPL',
         reason: 'Consistent returns and great underlying stats',
         timestamp: new Date().toISOString(),
-        sentiment: 'positive'
-      }
+        sentiment: 'positive',
+      },
     ],
     mentionPercentage: 75,
     form: 7.8,
@@ -73,7 +76,7 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     fixturesDifficulty: 2,
     priceChange: 0.3,
     trend: 'differential',
-    lastUpdated: new Date().toISOString()
+    lastUpdated: new Date().toISOString(),
   },
   {
     id: 4,
@@ -86,8 +89,8 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
         source: 'FPL Hints',
         reason: 'Recent dip in form but good fixtures ahead',
         timestamp: new Date().toISOString(),
-        sentiment: 'neutral'
-      }
+        sentiment: 'neutral',
+      },
     ],
     mentionPercentage: 60,
     form: 6.2,
@@ -95,8 +98,8 @@ const MOCK_PLAYERS: ConsensusPlayer[] = [
     fixturesDifficulty: 2,
     priceChange: -0.1,
     trend: 'falling',
-    lastUpdated: new Date().toISOString()
-  }
+    lastUpdated: new Date().toISOString(),
+  },
 ];
 
 export async function GET() {
@@ -108,10 +111,10 @@ export async function GET() {
     // 4. Determine trends based on historical data
     // 5. Categorize players into the four groups
 
-    const topPicks = MOCK_PLAYERS.filter(p => p.trend === 'stable');
-    const risingPicks = MOCK_PLAYERS.filter(p => p.trend === 'rising');
-    const fallingPicks = MOCK_PLAYERS.filter(p => p.trend === 'falling');
-    const differentialPicks = MOCK_PLAYERS.filter(p => p.trend === 'differential');
+    const topPicks = MOCK_PLAYERS.filter((p) => p.trend === 'stable');
+    const risingPicks = MOCK_PLAYERS.filter((p) => p.trend === 'rising');
+    const fallingPicks = MOCK_PLAYERS.filter((p) => p.trend === 'falling');
+    const differentialPicks = MOCK_PLAYERS.filter((p) => p.trend === 'differential');
 
     return NextResponse.json({
       topPicks,
@@ -119,14 +122,14 @@ export async function GET() {
       fallingPicks,
       differentialPicks,
       lastUpdated: new Date().toISOString(),
-      sources: BLOG_SOURCES
+      sources: BLOG_SOURCES,
     });
   } catch (error) {
     console.error('Error fetching consensus picks:', error);
     return NextResponse.json(
       {
         error: 'Failed to fetch consensus picks',
-        details: error instanceof Error ? error.message : 'Unknown error'
+        details: error instanceof Error ? error.message : 'Unknown error',
       },
       { status: 500 }
     );
