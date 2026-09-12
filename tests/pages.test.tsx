@@ -7,11 +7,12 @@ import PremiumPage from '@/app/premium/page';
 // Render test per screen (CLAUDE.md). Home reads the real
 // public/data/defcon_gw{N}.json from disk, so this also guards the file schema.
 
-describe('Home (DEFCON Asset Finder)', () => {
-  it('renders hero, stat cards and the table from the data file', () => {
+describe('Home (state-aware DEFCON hub)', () => {
+  it('renders the brief hero and the table from the data file', () => {
     render(<Home />);
     expect(screen.getByText('Defensive Contribution, decoded.')).toBeInTheDocument();
-    expect(screen.getByText('Top DEFCON DEF this GW')).toBeInTheDocument();
+    expect(screen.getByText(/GW\d+ brief/)).toBeInTheDocument();
+    expect(screen.getByText('THE BUY')).toBeInTheDocument();
     expect(screen.getByText(/Updated GW \d+/)).toBeInTheDocument();
     expect(screen.getByText('How we compute this')).toBeInTheDocument();
     expect(screen.getAllByRole('row').length).toBeGreaterThan(10);

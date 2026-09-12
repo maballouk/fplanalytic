@@ -22,6 +22,7 @@ function player(over: Partial<DefconFilePlayer>): DefconFilePlayer {
     value_per_million: 0.28,
     last5_actions: [10, 11, 9],
     minutes: 270,
+    ownership: 15,
     status: 'a',
     next5: [{ event: 4, opponent: 'SUN', is_home: true, difficulty: 2 }],
     ...over,

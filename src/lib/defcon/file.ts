@@ -23,6 +23,7 @@ export const DefconFilePlayerSchema = z.object({
   value_per_million: z.number(),
   last5_actions: z.array(z.number()),
   minutes: z.number(),
+  ownership: z.number().default(0), // selected_by_percent, e.g. 12.3
   status: z.string(),
   next5: z.array(
     z.object({
@@ -34,12 +35,24 @@ export const DefconFilePlayerSchema = z.object({
   ),
 });
 
+export const CalendarSchema = z.object({
+  gw: z.number(),
+  gw_finished: z.boolean(),
+  first_kickoff: z.string().nullable(),
+  last_kickoff: z.string().nullable(),
+  next_gw: z.number().nullable(),
+  next_deadline: z.string(),
+});
+
 export const DefconFileSchema = z.object({
   schema_version: z.number(),
   gw: z.number(),
   generated_at: z.string(),
+  calendar: CalendarSchema.optional(),
   players: z.array(DefconFilePlayerSchema),
 });
+
+export type Calendar = z.infer<typeof CalendarSchema>;
 
 export type DefconFilePlayer = z.infer<typeof DefconFilePlayerSchema>;
 export type DefconFile = z.infer<typeof DefconFileSchema>;

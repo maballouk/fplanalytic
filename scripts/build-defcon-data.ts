@@ -17,6 +17,7 @@ import {
 import {
   BootstrapSchema,
   ElementSummarySchema,
+  FixturesSchema,
   type Bootstrap,
   type ElementSummary,
 } from '../src/lib/fpl/schemas';
@@ -74,6 +75,22 @@ async function main() {
   if (!currentGw) throw new Error('No current or next gameweek in bootstrap');
   const gw = currentGw.id;
 
+  // Calendar block for the state-aware home (planning / deadline / live / review)
+  const allFixtures = FixturesSchema.parse(await getJson('fixtures/'));
+  const gwKickoffs = allFixtures
+    .filter((f) => f.event === gw && f.kickoff_time !== null)
+    .map((f) => f.kickoff_time as string)
+    .sort();
+  const nextEvent = bootstrap.events.find((e) => e.is_next);
+  const calendar = {
+    gw,
+    gw_finished: currentGw.finished,
+    first_kickoff: gwKickoffs[0] ?? null,
+    last_kickoff: gwKickoffs[gwKickoffs.length - 1] ?? null,
+    next_gw: nextEvent?.id ?? null,
+    next_deadline: nextEvent?.deadline_time ?? currentGw.deadline_time,
+  };
+
   const teamById = new Map(bootstrap.teams.map((t) => [t.id, t]));
   const candidates = bootstrap.elements.filter(
     (e) => POSITION[e.element_type] !== undefined && e.starts >= 1
@@ -100,6 +117,7 @@ async function main() {
     minutes: number;
     code: number;
     team_code: number;
+    ownership: number;
   }[] = [];
   for (const s of summaries) {
     if (s === null) continue;
@@ -138,6 +156,7 @@ async function main() {
       minutes: el.minutes,
       code: el.code,
       team_code: teamById.get(el.team)?.code ?? 0,
+      ownership: Number.parseFloat(el.selected_by_percent) || 0,
     });
   }
 
@@ -149,6 +168,7 @@ async function main() {
       code: extra.code,
       team_code: extra.team_code,
       minutes: extra.minutes,
+      ownership: extra.ownership,
       next5: extra.next5,
       status: extra.status,
     };
@@ -157,7 +177,7 @@ async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   const payload =
     JSON.stringify(
-      { schema_version: 1, gw, generated_at: new Date().toISOString(), players: ranked },
+      { schema_version: 1, gw, generated_at: new Date().toISOString(), calendar, players: ranked },
       null,
       1
     ) + '\n';

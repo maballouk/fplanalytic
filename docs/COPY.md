@@ -27,6 +27,14 @@ adjectives. British football English. No em-dashes. No hype.
 - Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
   closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
   "No DEFCON-relevant minutes yet."
+- State-aware home (approved via the flow canvas "ok", 2026-09-12): first-visit strip
+  "DEFCON is the new +2 for defensive work" / "We track who hits it, twice a day and live on
+  matchdays" / "Every number links to how it is computed"; brief chip "GW{N} brief"; card tags
+  "THE BUY" / "THE DIFFERENTIAL" / "THE TRAP"; differential reason "{pct} hit rate at £{m},
+  {pct} owned."; trap reason "{pct} hit rate, but {n} of the next {m} are rated 4 or worse.
+  Wait."; deadline banner "GW{N} deadline in {t}" + "Final checks below"; live banner "Closest
+  to the +2 right now" + "Open the live tracker"; review "GW{N} full time: the +2 ledger" +
+  "Players who keep landing one short are buys, not duds" + "missed by {n}"
 - Value page: title "Defensive value lens", sub "Price against DEFCON expected points. Up and
   left is where the value lives.", quadrants "Underpriced engines" / "Premium but earned" /
   "Cheap for a reason" / "Paying for attack", sidebar heading "Top 10 by value",
