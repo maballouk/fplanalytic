@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import UclPage from '@/app/ucl/page';
 import XptsTable from '@/app/ucl/XptsTable';
 import { loadLatestMatchday } from '@/lib/ucl/loadMatchday';
@@ -31,6 +31,8 @@ describe('UCL Matchday Hub page', () => {
 });
 
 describe('XptsTable', () => {
+  beforeEach(() => window.history.replaceState(null, '', '/'));
+
   const player = (over: Partial<UclPlayer>): UclPlayer => ({
     player_id: '1',
     name: 'Haaland',

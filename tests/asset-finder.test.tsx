@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import AssetFinder from '@/app/AssetFinder';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
 
@@ -44,6 +44,9 @@ const PLAYERS = [
 ];
 
 describe('AssetFinder', () => {
+  // Filters write to the URL; jsdom shares location across tests
+  beforeEach(() => window.history.replaceState(null, '', '/'));
+
   it('renders all players sorted by xPts by default', () => {
     render(<AssetFinder players={PLAYERS} />);
     const rows = screen.getAllByRole('row').slice(1); // skip header

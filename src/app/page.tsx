@@ -93,7 +93,7 @@ export default function Home() {
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
                 <span className="rounded-pill border border-accent/20 bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
-                  GW{data ? (data.calendar?.next_gw ?? data.gw) : ''} brief
+                  FPL · GW{data ? (data.calendar?.next_gw ?? data.gw) : ''} brief
                 </span>
                 <h1 className="mt-3 font-display text-4xl font-black tracking-tight">
                   Defensive Contribution, decoded.

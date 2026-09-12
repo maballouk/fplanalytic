@@ -30,6 +30,17 @@ export default function MethodologyPage() {
           </p>
         </header>
 
+        <Section title="Two games, one site">
+          <p>
+            fplanalytic covers two separate fantasy games. <strong>DEFCON, Live and Value</strong>{' '}
+            serve the official Premier League game (FPL), where defensive contribution is a scoring
+            rule. <strong>European Nights</strong> serves UEFA&apos;s Champions League Fantasy, a
+            different game with its own scoring; it has no DEFCON rule, though it does award a point
+            per three ball recoveries. Nothing you read on one game&apos;s pages applies to the
+            other.
+          </p>
+        </Section>
+
         <Section title="The DEFCON rule">
           <p>
             Since 2025/26, FPL awards 2 points for defensive contribution, at most once per match.

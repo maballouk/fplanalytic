@@ -27,6 +27,10 @@ adjectives. British football English. No em-dashes. No hype.
 - Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
   closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
   "No DEFCON-relevant minutes yet."
+- Game clarity (requested by Mohamad 2026-09-12): nav group labels "FPL" / "UCL Fantasy";
+  page tag chips "FPL" on /live and /value; home chip "FPL · GW{N} brief"; methodology section
+  "Two games, one site" (prose in src/app/methodology/page.tsx); /picks banner "This is the
+  old dashboard, kept for reference." + link "The new fplanalytic lives here"
 - State-aware home (approved via the flow canvas "ok", 2026-09-12): first-visit strip
   "DEFCON is the new +2 for defensive work" / "We track who hits it, twice a day and live on
   matchdays" / "Every number links to how it is computed"; brief chip "GW{N} brief"; card tags

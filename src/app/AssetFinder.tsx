@@ -4,7 +4,7 @@
 // columns, drawer with the Decision block. Free tier: full table, top 30 rows;
 // the rest sits behind an inline PremiumLock. Copy from docs/COPY.md.
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
 import FixtureStrip from '@/components/ds/FixtureStrip';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
@@ -45,6 +45,33 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
   const [selected, setSelected] = useState<DefconFilePlayer | null>(null);
 
   const teams = useMemo(() => Array.from(new Set(players.map((p) => p.team))).sort(), [players]);
+
+  // URLs reflect UI state (Web Interface Guidelines): filters live in query
+  // params so a filtered view is shareable. history.replaceState keeps the
+  // page static-rendered (no router round trip).
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const pos = q.get('pos');
+    if (pos && ['DEF', 'MID', 'FWD'].includes(pos)) setPosition(pos as PositionFilter);
+    if (q.get('price')) setMaxPrice(q.get('price') as string);
+    if (q.get('min')) setMinMinutes(q.get('min') as string);
+    if (q.get('team')) setTeam(q.get('team') as string);
+    const sort = q.get('sort');
+    if (sort && SORTABLE.some((c) => c.key === sort)) setSortBy(sort as SortKey);
+  }, []);
+
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const setOrDelete = (key: string, value: string, isDefault: boolean) =>
+      isDefault ? q.delete(key) : q.set(key, value);
+    setOrDelete('pos', position, position === 'ALL');
+    setOrDelete('price', maxPrice, maxPrice === '');
+    setOrDelete('min', minMinutes, minMinutes === '');
+    setOrDelete('team', team, team === 'ALL');
+    setOrDelete('sort', sortBy, sortBy === 'defcon_xpts');
+    const qs = q.toString();
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }, [position, maxPrice, minMinutes, team, sortBy]);
 
   // TASKS.md 1.9 funnel events
   const changeFilter = <T,>(name: string, setter: (v: T) => void) => {
@@ -96,6 +123,8 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
           Price ≤
           <input
             type="number"
+            name="max_price"
+            autoComplete="off"
             step="0.5"
             min="3.5"
             value={maxPrice}
@@ -108,6 +137,8 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
           Min minutes
           <input
             type="number"
+            name="min_minutes"
+            autoComplete="off"
             step="90"
             min="0"
             value={minMinutes}
@@ -119,6 +150,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
         <label className="flex items-center gap-2 text-sm text-text-muted">
           Team
           <select
+            name="team"
             value={team}
             onChange={(e) => changeFilter('team', setTeam)(e.target.value)}
             className={inputClass}

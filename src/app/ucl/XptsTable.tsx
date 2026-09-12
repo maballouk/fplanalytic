@@ -3,7 +3,7 @@
 // UCL xPts table (DESIGN.md §4.1): position filter, P(plays) with rotation
 // amber, breakdown chips. Free tier shows the top 40; more behind the lock.
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PremiumLock from '@/components/ds/PremiumLock';
 import RankBadge from '@/components/ds/RankBadge';
@@ -72,6 +72,19 @@ export default function XptsTable({
   freeLimit?: number;
 }) {
   const [position, setPosition] = useState<PositionFilter>('ALL');
+
+  // URLs reflect UI state: /ucl?pos=DEF is shareable (Web Interface Guidelines)
+  useEffect(() => {
+    const pos = new URLSearchParams(window.location.search).get('pos');
+    if (pos && ['GK', 'DEF', 'MID', 'FWD'].includes(pos)) setPosition(pos as PositionFilter);
+  }, []);
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    if (position === 'ALL') q.delete('pos');
+    else q.set('pos', position);
+    const qs = q.toString();
+    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  }, [position]);
 
   const filtered = useMemo(
     () => players.filter((p) => position === 'ALL' || p.position === position),

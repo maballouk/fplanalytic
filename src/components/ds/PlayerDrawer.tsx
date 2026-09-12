@@ -71,7 +71,9 @@ export default function PlayerDrawer({
             ×
           </button>
         </header>
-        <div className="flex-1 space-y-4 overflow-y-auto px-5 py-4">{children}</div>
+        <div className="flex-1 space-y-4 overflow-y-auto overscroll-contain px-5 py-4">
+          {children}
+        </div>
         <footer className="border-t border-line px-5 py-4" data-testid="decision-block">
           <div className="flex items-center gap-3">
             <span

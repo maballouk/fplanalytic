@@ -15,7 +15,10 @@ export default function LivePage() {
   return (
     <AppShell brand="fplanalytic" nav={NAV} activeHref="/live">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold">Live DEFCON tracker</h1>
+        <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
+          FPL
+        </span>
+        <h1 className="mt-2 text-2xl font-semibold">Live DEFCON tracker</h1>
         <p className="mt-1 text-text-muted">
           Every player on the pitch, sorted by who is closest to the threshold.
         </p>

@@ -104,6 +104,13 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      {/* Legacy dashboard, unlisted from the nav; delete at the Phase 2 review (TASKS 1.10) */}
+      <div className="bg-gray-900 px-4 py-2.5 text-center text-sm text-gray-200">
+        This is the old dashboard, kept for reference.{' '}
+        <a href="/" className="font-semibold text-green-400 underline underline-offset-2">
+          The new fplanalytic lives here
+        </a>
+      </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="bg-premier-league-purple">

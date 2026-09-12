@@ -30,6 +30,16 @@
     @apply outline-none ring-2 ring-info;
   }
 
+  /* Web Interface Guidelines: kill the 300ms double-tap delay on interactives */
+  a,
+  button,
+  input,
+  select,
+  summary,
+  [role='tab'] {
+    touch-action: manipulation;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

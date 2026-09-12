@@ -22,7 +22,10 @@ export default function ValuePage() {
   return (
     <AppShell brand="fplanalytic" nav={NAV} activeHref="/value">
       <header className="mb-6">
-        <h1 className="text-2xl font-semibold">Defensive value lens</h1>
+        <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
+          FPL
+        </span>
+        <h1 className="mt-2 text-2xl font-semibold">Defensive value lens</h1>
         <p className="mt-1 text-text-muted">
           Price against DEFCON expected points. Up and left is where the value lives.
         </p>
