@@ -14,6 +14,7 @@ export const ElementSchema = z.object({
   element_type: z.number(), // 1 GKP · 2 DEF · 3 MID · 4 FWD (map via bootstrap element_types)
   now_cost: z.number(), // price * 10
   minutes: z.number(),
+  starts: z.number(),
   form: z.string(),
   selected_by_percent: z.string(),
   status: z.string(), // a=available, d=doubtful, i=injured, s=suspended, u=unavailable
