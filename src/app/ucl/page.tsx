@@ -14,7 +14,9 @@ import { club, uclBadgeUrl } from '@/lib/ucl/clubs';
 import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
 import { topContributors, type UclFixture, type UclPlayer } from '@/lib/ucl/file';
 import { loadLatestMatchday } from '@/lib/ucl/loadMatchday';
+import { pickXI } from '@/lib/ucl/xi';
 import Countdown from './Countdown';
+import PitchXI from './PitchXI';
 import XptsTable from './XptsTable';
 
 export const dynamic = 'force-static';
@@ -175,6 +177,7 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
 
 export default function UclPage() {
   const data = loadLatestMatchday();
+  const xi = data ? pickXI(data.players) : null;
 
   return (
     <AppShell brand="fplanalytic" nav={NAV} activeHref="/ucl">
@@ -227,6 +230,50 @@ export default function UclPage() {
               ))}
             </div>
           </section>
+
+          {xi && (
+            <section className="mb-10">
+              <div className="mb-4 flex items-baseline justify-between">
+                <h2 className="font-display text-xl font-bold">The predicted XI</h2>
+                <span className="num text-xs text-text-faint">
+                  {xi.formation} · {xi.totalXpts.toFixed(1)} xPts combined
+                </span>
+              </div>
+              <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.4fr_1fr]">
+                <PitchXI xi={xi} />
+                <div className="flex flex-col gap-4">
+                  <div className="rounded-card border border-line bg-bg-raised p-5">
+                    <div className="text-xs uppercase tracking-wider text-text-faint">
+                      The captain call
+                    </div>
+                    <div className="mt-2 flex items-baseline gap-2">
+                      <span className="font-display text-2xl font-bold">{xi.captain.name}</span>
+                      <span className="num text-lg text-accent">
+                        {(xi.captain.xpts * 2).toFixed(1)}
+                      </span>
+                      <span className="text-xs text-text-muted">xPts doubled</span>
+                    </div>
+                    <p className="mt-2 text-sm text-text-muted">
+                      {club(xi.captain.team).code} v {club(xi.captain.opponent).code} (
+                      {xi.captain.is_home ? 'H' : 'A'}) · P(start){' '}
+                      <span className="num">{Math.round(xi.captain.p_plays * 100)}%</span>
+                    </p>
+                  </div>
+                  <MethodNote
+                    summary="How we compute this"
+                    methodologyHref="/methodology"
+                    methodologyLabel="Full methodology"
+                  >
+                    <p>
+                      The highest combined xPts across valid formations, with UCL Fantasy&apos;s
+                      maximum of three players per club. It ignores the budget on purpose: this is
+                      the XI we would field, not a purchasable squad.
+                    </p>
+                  </MethodNote>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section className="mb-10">
             <h2 className="mb-4 font-display text-xl font-bold">Match predictions</h2>

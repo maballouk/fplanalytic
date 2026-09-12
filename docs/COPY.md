@@ -27,6 +27,9 @@ adjectives. British football English. No em-dashes. No hype.
 - Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
   closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
   "No DEFCON-relevant minutes yet."
+- Predicted XI pitch (requested by Mohamad 2026-09-12, Scout-Picks benchmark): "The predicted
+  XI", "{formation} · {x} xPts combined", "The captain call", "xPts doubled", captain badge "C",
+  MethodNote body (max three per club, ignores the budget on purpose)
 - Game clarity (requested by Mohamad 2026-09-12): nav group labels "FPL" / "UCL Fantasy";
   page tag chips "FPL" on /live and /value; home chip "FPL · GW{N} brief"; methodology section
   "Two games, one site" (prose in src/app/methodology/page.tsx); /picks banner "This is the
