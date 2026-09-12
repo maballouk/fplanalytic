@@ -79,8 +79,11 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       *(y-axis is DEFCON xPts only until the engine supplies clean-sheet odds (stated in the
       MethodNote). Positions double-encoded: CVD-validated info/warn/danger + circle/triangle/diamond
       shapes. Quadrants split at the medians.)*
-- [ ] **1.8 SEO & sharing.** Titles/descriptions per route, OG image per GW ("Top DEFCON picks GW N"),
+- [x] **1.8 SEO & sharing.** Titles/descriptions per route, OG image per GW ("Top DEFCON picks GW N"),
       sitemap. Target queries: "FPL DEFCON", "defensive contribution stats", "best defensive assets FPL".
+      *(OG image is an edge route (next/og cannot prerender on a Windows build host) reading the new
+      `defcon_latest.json` alias; sitemap.xml + robots.txt added; target queries in the home meta
+      description; metadataBase set to https://fplanalytic.com.)*
 - [ ] **1.9 Analytics.** Privacy-friendly analytics (Plausible/Umami). Events: row_click, drawer_decision_view,
       filter_change, premium_lock_view. Needed to size the funnel before building payments.
 - [ ] **1.10 Old dashboard.** Move the current "Top 25 / Budget picks" content to `/picks`; link from nav

@@ -18,6 +18,7 @@ export const generateViewport = () => {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://fplanalytic.com'),
   title: 'fplanalytic: Defensive Contribution, decoded.',
   description: 'Hit rates, live threshold tracking and value. Built for the DEFCON era.',
   icons: {

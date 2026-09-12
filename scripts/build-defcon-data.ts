@@ -144,15 +144,16 @@ async function main() {
   });
 
   mkdirSync(OUT_DIR, { recursive: true });
-  const outPath = join(OUT_DIR, `defcon_gw${gw}.json`);
-  writeFileSync(
-    outPath,
+  const payload =
     JSON.stringify(
       { schema_version: 1, gw, generated_at: new Date().toISOString(), players: ranked },
       null,
       1
-    ) + '\n'
-  );
+    ) + '\n';
+  const outPath = join(OUT_DIR, `defcon_gw${gw}.json`);
+  writeFileSync(outPath, payload);
+  // Stable alias so runtime consumers (e.g. the OG image) need no directory listing.
+  writeFileSync(join(OUT_DIR, 'defcon_latest.json'), payload);
   console.log(`wrote ${outPath} (${ranked.length} profiles)`);
 
   // Keep the last KEEP_GWS gameweeks only (TASKS.md 1.2)

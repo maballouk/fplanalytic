@@ -6,11 +6,20 @@ import AppShell from '@/components/ds/AppShell';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
 import StatCard from '@/components/ds/StatCard';
+import type { Metadata } from 'next';
 import { loadLatestDefcon } from '@/lib/defcon/data';
 import { NAV } from '@/lib/nav';
 import AssetFinder from './AssetFinder';
 
 export const dynamic = 'force-static';
+
+// Target queries (TASKS.md 1.8): "FPL DEFCON", "defensive contribution stats",
+// "best defensive assets FPL".
+export const metadata: Metadata = {
+  title: 'fplanalytic: FPL DEFCON asset finder',
+  description:
+    'Defensive contribution stats for FPL: DEFCON hit rates, near misses and the best defensive assets, updated twice daily.',
+};
 
 export default function Home() {
   const data = loadLatestDefcon();
