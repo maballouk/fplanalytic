@@ -42,9 +42,10 @@ export async function GET() {
     // Fetch teams data
     const teamsResponse = await fetch(`${BASE_URL}/bootstrap-static/`, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
       },
-      next: { revalidate: 30 } // Revalidate every 30 seconds for live data
+      next: { revalidate: 30 }, // Revalidate every 30 seconds for live data
     });
 
     if (!teamsResponse.ok) {
@@ -62,9 +63,10 @@ export async function GET() {
     // Fetch fixtures for current gameweek
     const fixturesResponse = await fetch(`${BASE_URL}/fixtures/?event=${currentEvent.id}`, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
       },
-      next: { revalidate: 30 } // Revalidate every 30 seconds for live data
+      next: { revalidate: 30 }, // Revalidate every 30 seconds for live data
     });
 
     if (!fixturesResponse.ok) {
@@ -81,16 +83,20 @@ export async function GET() {
       // Convert UTC date to local timezone
       const utcDate = new Date(fixture.kickoff_time);
       const localDate = new Date(utcDate.toLocaleString('en-US', { timeZone: userTimeZone }));
-      
+
       // Get fixture date at midnight for comparison
-      const fixtureDate = new Date(localDate.getFullYear(), localDate.getMonth(), localDate.getDate());
+      const fixtureDate = new Date(
+        localDate.getFullYear(),
+        localDate.getMonth(),
+        localDate.getDate()
+      );
 
       // Format date in "Day DD Month" format using local timezone
       const formatter = new Intl.DateTimeFormat('en-GB', {
         weekday: 'long',
         day: 'numeric',
         month: 'long',
-        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
       const dateStr = formatter.format(localDate);
 
@@ -98,8 +104,8 @@ export async function GET() {
       const isToday = fixtureDate.getTime() === today.getTime();
       const displayDate = isToday ? `${dateStr} (Today)` : dateStr;
 
-      const homeTeam = teams.find(t => t.id === fixture.team_h);
-      const awayTeam = teams.find(t => t.id === fixture.team_a);
+      const homeTeam = teams.find((t) => t.id === fixture.team_h);
+      const awayTeam = teams.find((t) => t.id === fixture.team_a);
 
       if (!homeTeam || !awayTeam) return acc;
 
@@ -115,110 +121,110 @@ export async function GET() {
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
-          timeZone: 'Asia/Riyadh'
+          timeZone: 'Asia/Riyadh',
         });
         displayTime = timeFormatter.format(utcDate);
       }
 
       // Process match events
       const events: MatchEvent[] = [];
-      
+
       if (fixture.stats) {
         // Process goals
-        const goals = fixture.stats.find(s => s.identifier === 'goals');
+        const goals = fixture.stats.find((s) => s.identifier === 'goals');
         if (goals) {
-          goals.h.forEach(g => {
+          goals.h.forEach((g) => {
             const player = teamsData.elements.find((p: any) => p.id === g.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'goal',
-                minute: g.value
+                minute: g.value,
               });
             }
           });
-          goals.a.forEach(g => {
+          goals.a.forEach((g) => {
             const player = teamsData.elements.find((p: any) => p.id === g.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'goal',
-                minute: g.value
+                minute: g.value,
               });
             }
           });
         }
 
         // Process assists
-        const assists = fixture.stats.find(s => s.identifier === 'assists');
+        const assists = fixture.stats.find((s) => s.identifier === 'assists');
         if (assists) {
-          assists.h.forEach(a => {
+          assists.h.forEach((a) => {
             const player = teamsData.elements.find((p: any) => p.id === a.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'assist',
-                minute: a.value
+                minute: a.value,
               });
             }
           });
-          assists.a.forEach(a => {
+          assists.a.forEach((a) => {
             const player = teamsData.elements.find((p: any) => p.id === a.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'assist',
-                minute: a.value
+                minute: a.value,
               });
             }
           });
         }
 
         // Process yellow cards
-        const yellows = fixture.stats.find(s => s.identifier === 'yellow_cards');
+        const yellows = fixture.stats.find((s) => s.identifier === 'yellow_cards');
         if (yellows) {
-          yellows.h.forEach(y => {
+          yellows.h.forEach((y) => {
             const player = teamsData.elements.find((p: any) => p.id === y.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'yellow',
-                minute: y.value
+                minute: y.value,
               });
             }
           });
-          yellows.a.forEach(y => {
+          yellows.a.forEach((y) => {
             const player = teamsData.elements.find((p: any) => p.id === y.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'yellow',
-                minute: y.value
+                minute: y.value,
               });
             }
           });
         }
 
         // Process red cards
-        const reds = fixture.stats.find(s => s.identifier === 'red_cards');
+        const reds = fixture.stats.find((s) => s.identifier === 'red_cards');
         if (reds) {
-          reds.h.forEach(r => {
+          reds.h.forEach((r) => {
             const player = teamsData.elements.find((p: any) => p.id === r.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'red',
-                minute: r.value
+                minute: r.value,
               });
             }
           });
-          reds.a.forEach(r => {
+          reds.a.forEach((r) => {
             const player = teamsData.elements.find((p: any) => p.id === r.element);
             if (player) {
               events.push({
                 player: `${player.first_name} ${player.second_name}`,
                 type: 'red',
-                minute: r.value
+                minute: r.value,
               });
             }
           });
@@ -236,7 +242,7 @@ export async function GET() {
         time: displayTime,
         isLive: fixture.started && !fixture.finished,
         channel: 'bein-sports',
-        events: events.length > 0 ? events : undefined
+        events: events.length > 0 ? events : undefined,
       };
 
       const dateKey = fixtureDate.toISOString();
@@ -244,7 +250,7 @@ export async function GET() {
         acc[dateKey] = {
           date: displayDate,
           matches: [],
-          timestamp: fixtureDate.getTime()
+          timestamp: fixtureDate.getTime(),
         };
       }
 
@@ -267,13 +273,14 @@ export async function GET() {
     });
 
     // Convert to array and sort by date
-    const matchDays = Object.values(groupedFixtures)
-      .sort((a: any, b: any) => a.timestamp - b.timestamp);
+    const matchDays = Object.values(groupedFixtures).sort(
+      (a: any, b: any) => a.timestamp - b.timestamp
+    );
 
     return NextResponse.json({
       matchweek: currentEvent.id,
       data: matchDays,
-      lastUpdated: new Date().toISOString()
+      lastUpdated: new Date().toISOString(),
     });
   } catch (error) {
     console.error('Error fetching live fixtures:', error);
@@ -281,7 +288,7 @@ export async function GET() {
       {
         error: 'Failed to fetch live fixtures',
         details: error instanceof Error ? error.message : 'Unknown error',
-        data: []
+        data: [],
       },
       { status: 500 }
     );

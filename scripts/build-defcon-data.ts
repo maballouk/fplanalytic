@@ -134,7 +134,13 @@ async function main() {
 
   const ranked = rankDefcon(profiles.map((p) => p.profile)).map((profile, i) => {
     const extra = profiles.find((p) => p.profile === profile)!;
-    return { rank: i + 1, ...profile, next5: extra.next5, status: extra.status };
+    return {
+      rank: i + 1,
+      ...profile,
+      minutes: extra.minutes,
+      next5: extra.next5,
+      status: extra.status,
+    };
   });
 
   mkdirSync(OUT_DIR, { recursive: true });

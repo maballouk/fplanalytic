@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation'
+import { notFound } from 'next/navigation';
 
 // Dev-only token gallery (TASKS.md 0.4). Renders every design token and a stub
 // per DESIGN.md §2 component so visual drift is caught early. Hidden in production.
@@ -20,9 +20,17 @@ const COLOR_TOKENS: { name: string; cls: string; hex: string }[] = [
   { name: 'danger', cls: 'bg-danger', hex: '#F87171' },
   { name: 'info', cls: 'bg-info', hex: '#60A5FA' },
   { name: 'premium', cls: 'bg-premium', hex: '#C084FC' },
-]
+];
 
-const TYPE_SCALE = ['text-xs', 'text-sm', 'text-base', 'text-lg', 'text-xl', 'text-2xl', 'text-3xl']
+const TYPE_SCALE = [
+  'text-xs',
+  'text-sm',
+  'text-base',
+  'text-lg',
+  'text-xl',
+  'text-2xl',
+  'text-3xl',
+];
 
 const COMPONENT_STUBS = [
   'AppShell',
@@ -36,10 +44,10 @@ const COMPONENT_STUBS = [
   'MethodNote',
   'EmptyState',
   'SegmentedTabs',
-]
+];
 
 export default function DesignPage() {
-  if (process.env.NODE_ENV === 'production') notFound()
+  if (process.env.NODE_ENV === 'production') notFound();
 
   return (
     <div className="min-h-screen bg-bg font-sans text-base font-normal text-text">
@@ -102,5 +110,5 @@ export default function DesignPage() {
         </section>
       </main>
     </div>
-  )
+  );
 }

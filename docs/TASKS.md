@@ -63,10 +63,14 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       *(All 11 built in `src/components/ds/` with 15 render tests. Copy comes in via props; the
       strings themselves are PROPOSED in `docs/COPY.md` and must be approved before 1.4 bakes
       them into screens.)*
-- [ ] **1.4 Home = Asset Finder** (`DESIGN.md §3.1`). Default sort DEFCON xPts; filters; drawer with
+- [x] **1.4 Home = Asset Finder** (`DESIGN.md §3.1`). Default sort DEFCON xPts; filters; drawer with
       Decision block. Decision logic (`/lib/defcon/decision.ts`): Buy if hit_rate ≥ 0.6 and next-5 mean
       FDR ≤ 3; Hold if 0.4–0.6; Avoid if < 0.4 or minutes risk. Unit-tested. Free shows top 30.
-- [ ] **1.5 Methodology page** (`§3.4`). Plain English. Link from every `MethodNote`.
+      *(Statically rendered from the latest `defcon_gw{N}.json`; the old dashboard moved to `/picks`
+      (the move half of 1.10) and a `/premium` placeholder catches PremiumLock CTAs until Phase 2.
+      Decision reasons use copy additions flagged in `docs/COPY.md`.)*
+- [x] **1.5 Methodology page** (`§3.4`). Plain English. Link from every `MethodNote`.
+      *(Prose flagged for approval in `docs/COPY.md`.)*
 - [ ] **1.6 Live tracker** (`§3.2`). 60s polling of FPL live endpoint on this route only; threshold bars;
       "closest to threshold" sort; last-refreshed stamp. No notifications yet (premium, Phase 2).
 - [ ] **1.7 Value lens** (`§3.3`). Recharts scatter with quadrants; sidebar top-10 with reasons.
@@ -76,6 +80,8 @@ with Mohamad before building. Do not start a phase before the previous phase's "
       filter_change, premium_lock_view. Needed to size the funnel before building payments.
 - [ ] **1.10 Old dashboard.** Move the current "Top 25 / Budget picks" content to `/picks`; link from nav
       as secondary. Do not delete until Phase 2 review.
+      *(Move + secondary nav link done with 1.4; still open: retire the legacy `/api/fpl*` routes and
+      delete `/picks` at the Phase 2 review.)*
 
 **Release gate 1:** all §3 screens live · Lighthouse ≥ 90 perf/a11y on mobile · tests green ·
 r/FantasyPL launch post drafted (copy approved) · analytics receiving events.

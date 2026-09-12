@@ -12,7 +12,12 @@
     @apply antialiased text-gray-900;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-bold;
   }
 
@@ -75,11 +80,12 @@
 
 /* Loading animation for skeletons */
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
-    opacity: .5;
+    opacity: 0.5;
   }
 }
 
@@ -116,6 +122,6 @@
 }
 
 /* Fix for Next.js metadata viewport warnings */
-head > meta[name="viewport"] {
+head > meta[name='viewport'] {
   display: none;
 }

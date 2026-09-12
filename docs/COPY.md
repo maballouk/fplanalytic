@@ -4,7 +4,19 @@ Rule (CLAUDE.md): copy is approved before it is built. This file is the register
 Voice (DESIGN.md §5): direct, expert, calm. Short sentences. Numbers before
 adjectives. British football English. No em-dashes. No hype.
 
-## Status: PROPOSED — awaiting Mohamad's approval (2026-09-12)
+## Status: APPROVED by Mohamad, 2026-09-12
+
+## Additions after approval: PROPOSED (flag to Mohamad)
+
+- Decision fixture notes: "Soft run next." / "Even run next." / "Tough run next." /
+  "No upcoming fixtures." (mean next-5 FDR ≤ 2.5 / ≤ 3.2 / above / none)
+- Decision minutes risk: "Minutes risk: doubtful|injured|suspended|unavailable."
+- Decision low rate: "Hit rate too low."
+- Home MethodNote body: "Hit rate blends the last 5 matches (60%) with the season (40%),
+  counting only matches with 60+ minutes. DEF need 10+ CBIT and tackles; MID and FWD need
+  12+ including recoveries. xPts is the hit probability times 2."
+- Premium page: "Premium launches later this season. The free tier stays complete."
+- Methodology page: full prose at /methodology (src/app/methodology/page.tsx)
 
 ### Hero (home, §3.1)
 
