@@ -9,7 +9,8 @@ import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import type { Metadata } from 'next';
 import { loadLatestDefcon } from '@/lib/defcon/data';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
-import { playerPhotoUrl } from '@/lib/fpl/photos';
+import TeamBadge from '@/components/ds/TeamBadge';
+import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
 import { NAV } from '@/lib/nav';
 import AssetFinder from './AssetFinder';
 
@@ -39,8 +40,10 @@ function PlayerStatCard({
       <PlayerAvatar src={playerPhotoUrl(player.code)} name={player.name} size={44} />
       <div className="min-w-0">
         <div className="text-xs uppercase tracking-wide text-text-faint">{label}</div>
-        <div className="mt-0.5 truncate text-sm font-medium text-text">
-          {player.name} <span className="text-text-faint">· {player.team}</span>
+        <div className="mt-0.5 flex items-center gap-1.5 truncate text-sm font-medium text-text">
+          {player.name}
+          <TeamBadge src={teamBadgeUrl(player.team_code)} alt={player.team} size={16} />
+          <span className="text-text-faint">{player.team}</span>
         </div>
       </div>
       <div className={`num ml-auto text-2xl ${accent ? 'text-accent' : ''}`}>{value}</div>

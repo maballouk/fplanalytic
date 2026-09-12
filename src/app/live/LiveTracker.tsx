@@ -7,7 +7,9 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
+import TeamBadge from '@/components/ds/TeamBadge';
 import ThresholdBar from '@/components/ds/ThresholdBar';
+import { teamBadgeUrl } from '@/lib/fpl/photos';
 import type { LivePayload } from '@/lib/defcon/live';
 
 const POLL_MS = 60_000;
@@ -75,12 +77,14 @@ export default function LiveTracker() {
             className="rounded-card border border-line bg-bg-raised p-5 shadow-card"
           >
             <header className="mb-4 flex items-baseline justify-between">
-              <h2 className="text-lg">
+              <h2 className="flex items-center gap-2 text-lg">
+                <TeamBadge src={teamBadgeUrl(fixture.home_code)} alt={fixture.home} size={22} />
                 {fixture.home}{' '}
                 <span className="num">
                   {fixture.home_score ?? ''}–{fixture.away_score ?? ''}
                 </span>{' '}
                 {fixture.away}
+                <TeamBadge src={teamBadgeUrl(fixture.away_code)} alt={fixture.away} size={22} />
               </h2>
               <span
                 className={`rounded-pill border px-2 py-0.5 text-xs ${
@@ -99,10 +103,11 @@ export default function LiveTracker() {
                     key={p.id}
                     className="grid grid-cols-[minmax(0,14rem)_1fr] items-center gap-3"
                   >
-                    <span className="truncate text-sm">
+                    <span className="flex items-center gap-2 truncate text-sm">
+                      <TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={16} />
                       {p.name}
-                      <span className="ml-2 text-xs text-text-faint">
-                        {p.team} · {p.position} · {p.minutes}&apos;
+                      <span className="text-xs text-text-faint">
+                        {p.position} · {p.minutes}&apos;
                       </span>
                     </span>
                     <ThresholdBar

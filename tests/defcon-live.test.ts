@@ -16,9 +16,9 @@ const bootstrap = {
     },
   ],
   teams: [
-    { id: 1, short_name: 'ARS', name: 'Arsenal' },
-    { id: 2, short_name: 'LIV', name: 'Liverpool' },
-    { id: 3, short_name: 'BOU', name: 'Bournemouth' },
+    { id: 1, code: 3, short_name: 'ARS', name: 'Arsenal' },
+    { id: 2, code: 14, short_name: 'LIV', name: 'Liverpool' },
+    { id: 3, code: 91, short_name: 'BOU', name: 'Bournemouth' },
   ].map((t) => ({
     ...t,
     strength_overall_home: 0,
@@ -125,7 +125,16 @@ describe('buildLivePayload', () => {
   it('includes only started fixtures of the current GW, with scores', () => {
     expect(payload.gw).toBe(3);
     expect(payload.fixtures).toEqual([
-      { id: 100, home: 'ARS', away: 'LIV', home_score: 1, away_score: 0, finished: false },
+      {
+        id: 100,
+        home: 'ARS',
+        away: 'LIV',
+        home_code: 3,
+        away_code: 14,
+        home_score: 1,
+        away_score: 0,
+        finished: false,
+      },
     ]);
   });
 

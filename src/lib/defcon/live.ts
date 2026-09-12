@@ -13,6 +13,8 @@ export interface LiveFixture {
   id: number;
   home: string;
   away: string;
+  home_code: number; // PL media id for the club badge
+  away_code: number;
   home_score: number | null;
   away_score: number | null;
   finished: boolean;
@@ -22,6 +24,7 @@ export interface LivePlayer {
   id: number;
   name: string;
   team: string;
+  team_code: number;
   position: DefconPosition;
   threshold: number;
   actions: number;
@@ -45,6 +48,7 @@ export function buildLivePayload(
   now: Date = new Date()
 ): LivePayload {
   const teamShort = new Map(bootstrap.teams.map((t) => [t.id, t.short_name]));
+  const teamCode = new Map(bootstrap.teams.map((t) => [t.id, t.code]));
   const currentGw = bootstrap.events.find((e) => e.is_current)?.id ?? null;
 
   const upcoming = fixtures
@@ -64,6 +68,8 @@ export function buildLivePayload(
     id: f.id,
     home: teamShort.get(f.team_h) ?? String(f.team_h),
     away: teamShort.get(f.team_a) ?? String(f.team_a),
+    home_code: teamCode.get(f.team_h) ?? 0,
+    away_code: teamCode.get(f.team_a) ?? 0,
     home_score: f.team_h_score ?? null,
     away_score: f.team_a_score ?? null,
     finished: f.finished,
@@ -87,6 +93,7 @@ export function buildLivePayload(
       id: el.id,
       name: el.web_name,
       team: teamShort.get(el.team) ?? String(el.team),
+      team_code: teamCode.get(el.team) ?? 0,
       position,
       threshold: thresholdFor(position),
       actions: stats.defensive_contribution,

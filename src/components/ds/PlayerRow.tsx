@@ -14,6 +14,8 @@ export interface PlayerRowProps {
   price: number;
   /** Optional element before the name, e.g. a PlayerAvatar */
   avatar?: React.ReactNode;
+  /** Optional element before the team label, e.g. a TeamBadge */
+  teamBadge?: React.ReactNode;
   /** Screen-specific stat cells (each a <td>) */
   children?: React.ReactNode;
   onClick?: () => void;
@@ -26,6 +28,7 @@ export default function PlayerRow({
   position,
   price,
   avatar,
+  teamBadge,
   children,
   onClick,
 }: PlayerRowProps) {
@@ -43,6 +46,7 @@ export default function PlayerRow({
         <span className="flex items-center gap-2.5">
           {avatar}
           <span className="text-text">{name}</span>
+          {teamBadge}
           <span className="text-xs text-text-faint">{team}</span>
         </span>
       </td>

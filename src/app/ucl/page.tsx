@@ -5,11 +5,12 @@
 
 import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
+import ClubBadge from '@/components/ds/ClubBadge';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import { NAV } from '@/lib/nav';
-import { club } from '@/lib/ucl/clubs';
+import { club, uclBadgeUrl } from '@/lib/ucl/clubs';
 import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
 import { topContributors, type UclFixture, type UclPlayer } from '@/lib/ucl/file';
 import { loadLatestMatchday } from '@/lib/ucl/loadMatchday';
@@ -26,16 +27,10 @@ export const metadata: Metadata = {
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
-function ClubBadge({ team, size = 40 }: { team: string; size?: number }) {
+function Crest({ team, size = 40 }: { team: string; size?: number }) {
   const c = club(team);
   return (
-    <span
-      className="inline-flex items-center justify-center rounded-pill bg-bg-overlay font-semibold"
-      style={{ width: size, height: size, border: `2px solid ${c.color}`, fontSize: size * 0.3 }}
-      title={team}
-    >
-      {c.code}
-    </span>
+    <ClubBadge src={uclBadgeUrl(team)} code={c.code} ringColor={c.color} size={size} title={team} />
   );
 }
 
@@ -54,12 +49,12 @@ function FixtureCard({ fixture, nFit }: { fixture: UclFixture; nFit: number }) {
       <div className="p-5">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <ClubBadge team={fixture.home} />
+            <Crest team={fixture.home} />
             <span className="num text-xl font-bold">
               {fixture.xg_home.toFixed(1)} <span className="font-medium text-text-faint">–</span>{' '}
               {fixture.xg_away.toFixed(1)}
             </span>
-            <ClubBadge team={fixture.away} />
+            <Crest team={fixture.away} />
           </div>
           <div className="text-right">
             <div className="num text-xs text-text-muted">

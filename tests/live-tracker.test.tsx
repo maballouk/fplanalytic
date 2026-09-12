@@ -17,12 +17,24 @@ afterEach(() => {
 const LIVE: LivePayload = {
   gw: 3,
   generated_at: '2026-09-12T15:00:00Z',
-  fixtures: [{ id: 100, home: 'ARS', away: 'LIV', home_score: 1, away_score: 0, finished: false }],
+  fixtures: [
+    {
+      id: 100,
+      home: 'ARS',
+      away: 'LIV',
+      home_code: 3,
+      away_code: 14,
+      home_score: 1,
+      away_score: 0,
+      finished: false,
+    },
+  ],
   players: [
     {
       id: 11,
       name: 'Rice',
       team: 'ARS',
+      team_code: 3,
       position: 'MID',
       threshold: 12,
       actions: 11,
@@ -33,6 +45,7 @@ const LIVE: LivePayload = {
       id: 10,
       name: 'Gabriel',
       team: 'ARS',
+      team_code: 3,
       position: 'DEF',
       threshold: 10,
       actions: 8,
