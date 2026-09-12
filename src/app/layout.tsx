@@ -1,8 +1,11 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+// Both fonts exposed as CSS variables for the DESIGN.md token fonts
+// (font-sans / font-mono); inter.className keeps the current screens unchanged.
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono' })
 
 // Viewport configuration
 export const generateViewport = () => {
@@ -27,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <body className={`${inter.className} min-h-screen bg-gray-50`}>
         <div className="min-h-screen flex flex-col">
           {/* Header */}

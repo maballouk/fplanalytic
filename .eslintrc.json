@@ -1,0 +1,17 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "rules": {
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "Literal[value=/http:[\\u002F]{2}(?!localhost|127\\.0\\.0\\.1|www\\.w3\\.org)/]",
+        "message": "No http:// URLs in source. Use https:// (mixed content broke the padlock on the live site)."
+      },
+      {
+        "selector": "TemplateElement[value.raw=/http:[\\u002F]{2}(?!localhost|127\\.0\\.0\\.1|www\\.w3\\.org)/]",
+        "message": "No http:// URLs in source. Use https:// (mixed content broke the padlock on the live site)."
+      }
+    ]
+  },
+  "ignorePatterns": ["engine/", "node_modules/", ".next/", "public/data/"]
+}
