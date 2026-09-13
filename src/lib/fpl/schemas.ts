@@ -117,6 +117,31 @@ export const LiveSchema = z.object({
   elements: z.array(LiveElementSchema),
 });
 
+// entry/{id}/ and entry/{id}/event/{gw}/picks/: a manager's public team.
+export const EntrySchema = z.object({
+  id: z.number(),
+  name: z.string(), // team name
+  player_first_name: z.string(),
+  player_last_name: z.string(),
+  summary_overall_points: z.number().nullable(),
+  summary_overall_rank: z.number().nullable(),
+});
+
+export const EntryPicksSchema = z.object({
+  picks: z.array(
+    z.object({
+      element: z.number(),
+      position: z.number(), // 1-11 starters, 12-15 bench
+      multiplier: z.number(), // 0 benched, 1, 2 captain, 3 triple captain
+      is_captain: z.boolean(),
+      is_vice_captain: z.boolean(),
+    })
+  ),
+});
+
+export type Entry = z.infer<typeof EntrySchema>;
+export type EntryPicks = z.infer<typeof EntryPicksSchema>;
+
 export type Element = z.infer<typeof ElementSchema>;
 export type Team = z.infer<typeof TeamSchema>;
 export type Event = z.infer<typeof EventSchema>;

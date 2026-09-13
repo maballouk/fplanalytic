@@ -27,6 +27,13 @@ adjectives. British football English. No em-dashes. No hype.
 - Live page: title "Live DEFCON tracker", sub "Every player on the pitch, sorted by who is
   closest to the threshold.", fixture chip "Live" / "FT", fixture line with no players yet:
   "No DEFCON-relevant minutes yet."
+- My Team (requested by Mohamad 2026-09-13): page sub "Your squad through DEFCON eyes, next to
+  the XI the numbers would field."; input label "Your FPL team ID"; button "Analyse my team";
+  hint "Find it in the FPL site URL: /entry/ID/event/…"; headings "Your XI" / "The DEFCON XI" /
+  "Bench"; GK note "Goalkeepers cannot earn DEFCON, so this XI fields ten outfielders.";
+  "BIGGEST UPGRADE" + "{out} → {in}" + "+{x} DEFCON xPts per GW"; not-found "No team with that
+  ID." / "Check the number in your FPL URL: fantasy.premierleague.com/entry/ID/…"; MethodNote
+  body (public by team ID, no login; GK counts zero; captain doubling not included)
 - Predicted XI pitch (requested by Mohamad 2026-09-12, Scout-Picks benchmark): "The predicted
   XI", "{formation} · {x} xPts combined", "The captain call", "xPts doubled", captain badge "C",
   MethodNote body (max three per club, ignores the budget on purpose)

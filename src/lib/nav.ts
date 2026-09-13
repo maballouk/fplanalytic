@@ -14,6 +14,7 @@ export const NAV: NavItem[] = [
   { href: '/', label: 'DEFCON', group: 'FPL' },
   { href: '/live', label: 'Live', group: 'FPL' },
   { href: '/value', label: 'Value', group: 'FPL' },
+  { href: '/my-team', label: 'My Team', group: 'FPL' },
   { href: '/ucl', label: 'European Nights', group: 'UCL Fantasy' },
   { href: '/methodology', label: 'Methodology' },
 ];

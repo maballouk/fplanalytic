@@ -181,6 +181,11 @@ backtest numbers on methodology page.
   the endpoint TLS-fingerprints plain Python, so the adapter fetches via curl_cffi Chrome
   impersonation with a `--players-file` manual fallback. ClubElo (free hobby API) 502s
   intermittently: the CLI retries 3x then fits without priors.
+- 2026-09-13: "My Team" shipped (beyond the original task list, from the UX flow work):
+  /my-team compares a manager's real squad (public FPL API by team ID, stored in localStorage,
+  no login) with the tool's DEFCON XI on two pitches, plus a biggest-upgrade suggestion.
+  Real login/accounts stay in Phase 2 with Paddle. UEFA Gaming profiles expose no public
+  squad API, so the UCL equivalent needs a manual squad picker (future task).
 - 2026-09-12 (models): with 1 match per team and no Elo priors the unshrunk DC fit produced
   0.6-6.7 xG and home_adv at its -1 bound. Fixes: strength shrinkage ALWAYS applies (flat prior
   when Elo is absent) and home_adv is regularised toward +0.25 (ha_shrink=10). Same family as the

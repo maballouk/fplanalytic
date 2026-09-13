@@ -2,6 +2,7 @@
 // direction): GK at the top, rows per line, captain badged, xPts per player.
 // Server component; selection comes from lib/ucl/xi.ts.
 
+import PitchFrame from '@/components/ds/PitchFrame';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import { club } from '@/lib/ucl/clubs';
 import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
@@ -39,29 +40,14 @@ function PitchPlayer({ player, isCaptain }: { player: UclPlayer; isCaptain: bool
 export default function PitchXI({ xi }: { xi: PredictedXI }) {
   const rows: UclPlayer[][] = [[xi.gk], xi.def, xi.mid, xi.fwd];
   return (
-    <div className="relative overflow-hidden rounded-card border border-line bg-gradient-to-b from-[#0d1a15] via-[#0c1712] to-[#0B0F1A] shadow-card">
-      {/* pitch markings */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-4 rounded-[10px] border border-accent/10"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute left-1/2 top-4 h-16 w-44 -translate-x-1/2 rounded-b-[10px] border border-t-0 border-accent/10"
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -bottom-14 left-1/2 h-28 w-28 -translate-x-1/2 rounded-pill border border-accent/10"
-      />
-      <div className="relative flex flex-col gap-6 px-4 py-8">
-        {rows.map((row, i) => (
-          <div key={i} className="flex items-start justify-center gap-3 sm:gap-6">
-            {row.map((p) => (
-              <PitchPlayer key={p.player_id} player={p} isCaptain={p === xi.captain} />
-            ))}
-          </div>
-        ))}
-      </div>
-    </div>
+    <PitchFrame>
+      {rows.map((row, i) => (
+        <div key={i} className="flex items-start justify-center gap-3 sm:gap-6">
+          {row.map((p) => (
+            <PitchPlayer key={p.player_id} player={p} isCaptain={p === xi.captain} />
+          ))}
+        </div>
+      ))}
+    </PitchFrame>
   );
 }

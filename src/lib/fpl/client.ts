@@ -1,10 +1,14 @@
 import {
   BootstrapSchema,
   ElementSummarySchema,
+  EntryPicksSchema,
+  EntrySchema,
   FixturesSchema,
   LiveSchema,
   type Bootstrap,
   type ElementSummary,
+  type Entry,
+  type EntryPicks,
   type Fixture,
   type Live,
 } from './schemas';
@@ -54,6 +58,18 @@ export async function fixtures(): Promise<Fixture[]> {
 /** In-play stats for a gameweek. 60s cache; poll only from the /live route. */
 export async function live(gw: number): Promise<Live> {
   return LiveSchema.parse(await get(`event/${gw}/live/`, SIXTY_SECONDS));
+}
+
+const FIVE_MINUTES = 5 * 60;
+
+/** A manager's public profile (team name, overall rank). My Team feature. */
+export async function entry(id: number): Promise<Entry> {
+  return EntrySchema.parse(await get(`entry/${id}/`, FIVE_MINUTES));
+}
+
+/** A manager's public picks for one gameweek. My Team feature. */
+export async function entryPicks(id: number, gw: number): Promise<EntryPicks> {
+  return EntryPicksSchema.parse(await get(`entry/${id}/event/${gw}/picks/`, FIVE_MINUTES));
 }
 
 export { FplApiError };
