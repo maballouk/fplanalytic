@@ -235,3 +235,77 @@ def test_one_round_fit_without_priors_stays_sane():
     lam_h, lam_a = expected_goals(params, "B", "A")  # loser hosts winner
     assert 0.3 < lam_h < 3.5
     assert 0.3 < lam_a < 3.5
+
+
+# ------------------------------------------------- 2026-09-13 captain-bias fixes
+def _raw(name, pos, team="A", minutes=90, goals=0, recoveries=0, **kw):
+    from ucl_engine.adapters.uefa_fantasy import RawPlayer
+    return RawPlayer(player_id=name, name=name, team=team, position=pos, price=5.0,
+                     minutes=minutes, goals=goals, assists=0, saves=0,
+                     recoveries=recoveries, yellows=0, reds=0, appearances=1, **kw)
+
+
+def test_recoveries_are_shrunk_toward_position_mean():
+    """
+    2026-09-13 regression: recoveries_per_90 was the raw single-matchday count
+    projected forward with NO shrinkage, so whichever centre-back racked up 11
+    recoveries on MD1 out-ranked every attacker (the "all captains are
+    defenders" bug). One 11-recovery match must read as well under 8/90.
+    """
+    from ucl_engine.adapters.uefa_fantasy import build_profiles
+    raw = [_raw("outlier", "DEF", recoveries=11)] + [
+        _raw(f"cb{i}", "DEF", recoveries=5) for i in range(9)
+    ]
+    profiles = build_profiles(raw, {"A": 2}, matchdays_played=1)
+    outlier = next(p for p in profiles if p.player_id == "outlier")
+    league_mean = 5 * 9 / 10 + 11 / 10  # 5.6
+    assert outlier.recoveries_per_90 < 8.0
+    assert outlier.recoveries_per_90 > league_mean  # still above average, just not 11
+
+
+def test_defender_goal_share_is_capped_without_domestic_data():
+    """A CB who scored his team's only MD1 goal is not a 22%-share scorer."""
+    from ucl_engine.adapters.uefa_fantasy import build_profiles, SHARE_CAP
+    raw = [_raw("bartra", "DEF", goals=1), _raw("cb2", "DEF")]
+    profiles = build_profiles(raw, {"A": 1}, matchdays_played=1)
+    bartra = next(p for p in profiles if p.player_id == "bartra")
+    assert bartra.goal_share <= SHARE_CAP["DEF"][0] + 1e-9
+
+
+def test_domestic_share_overrides_prior_and_escapes_cap():
+    """With a real domestic record the blend uses it and the cap steps aside."""
+    from ucl_engine.adapters.uefa_fantasy import build_profiles
+    raw = [_raw("striker", "FWD", goals=0)]
+    dom = {"striker": {"goal_share": 0.45, "assist_share": 0.10}}
+    with_dom = build_profiles(raw, {"A": 2}, domestic_shares=dom, matchdays_played=1)[0]
+    without = build_profiles(raw, {"A": 2}, matchdays_played=1)[0]
+    assert with_dom.goal_share > without.goal_share
+
+
+def test_feed_availability_flags_cut_p_start():
+    """pStatus I/S/NIS and 'Unlikely to start' must slash the start probability."""
+    from ucl_engine.adapters.uefa_fantasy import build_profiles
+    raw = [
+        _raw("fit", "MID"),
+        _raw("hurt", "MID", status="I"),
+        _raw("benched", "MID", trained="Unlikely to start next game"),
+    ]
+    profiles = {p.player_id: p for p in build_profiles(raw, {"A": 2}, matchdays_played=1)}
+    assert profiles["fit"].p_start > 0.9
+    assert profiles["hurt"].p_start < 0.1
+    assert profiles["benched"].p_start < 0.5
+
+
+def test_consensus_fields_flow_to_output():
+    """selPer / transfer balance must survive from feed to the JSON output."""
+    from ucl_engine.adapters.uefa_fantasy import parse_players, build_profiles
+    payload = {"data": {"value": {"playerList": [{
+        "id": "9", "pDName": "E. Haaland", "tName": "Man City", "skill": 4, "value": 11.0,
+        "minsPlyd": 90, "gS": 2, "assist": 0, "saves": 0, "bR": 0, "yC": 0, "rC": 0,
+        "selPer": 22.0, "mTransferIn": 100, "mTransferOut": 40, "mOM": 1,
+    }]}}}
+    raw = parse_players(payload)
+    assert raw[0].sel_per == 22.0 and raw[0].mom == 1
+    prof = build_profiles(raw, {"Manchester City": 2}, matchdays_played=1)[0]
+    assert prof.sel_per == 22.0 and prof.transfer_balance == 60
+    assert prof.p_potm > 0.2  # MD1 man of the match

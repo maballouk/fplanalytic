@@ -171,6 +171,11 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
           </span>
         ))}
       </div>
+      <p className="mt-3 border-t border-line pt-2.5 text-xs text-text-muted">
+        Picked by <span className="num text-text">{Math.round(player.sel_per)}%</span> of all
+        managers
+        {player.transfer_balance > 1000 && <span className="ml-1 text-accent">· buying now ▲</span>}
+      </p>
     </div>
   );
 }
@@ -221,7 +226,8 @@ export default function UclPage() {
             <div className="mb-4 flex items-baseline justify-between">
               <h2 className="font-display text-xl font-bold">Captain picks</h2>
               <span className="text-xs text-text-faint">
-                Rotation model is v0: P(start) is a minutes proxy until lineups firm up
+                P(start) blends minutes with UEFA&apos;s own availability flags; lineups can still
+                surprise
               </span>
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
@@ -229,6 +235,30 @@ export default function UclPage() {
                 <CaptainCard key={p.player_id} player={p} rank={i + 1} />
               ))}
             </div>
+            {(() => {
+              // Consensus check: when the managers' favourite is not in our
+              // top three, say so instead of pretending the crowd agrees.
+              const crowd = [...data.players].sort((a, b) => b.sel_per - a.sel_per)[0];
+              if (!crowd || crowd.sel_per < 20) return null;
+              if (data.players.slice(0, 3).some((p) => p.player_id === crowd.player_id))
+                return null;
+              return (
+                <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-card border border-line bg-bg-raised px-4 py-3 text-sm">
+                  <span className="rounded-pill bg-[#14204a] px-2.5 py-0.5 text-xs font-semibold text-info">
+                    THE CROWD&apos;S CALL
+                  </span>
+                  <span className="text-text">
+                    {crowd.name} is the most-picked player —{' '}
+                    <span className="num">{Math.round(crowd.sel_per)}%</span> of all managers own
+                    him.
+                  </span>
+                  <span className="text-text-muted">
+                    Our model has him at <span className="num">{crowd.xpts.toFixed(1)}</span> xPts v{' '}
+                    {club(crowd.opponent).code} ({crowd.is_home ? 'H' : 'A'}).
+                  </span>
+                </div>
+              );
+            })()}
           </section>
 
           {xi && (
@@ -307,9 +337,10 @@ export default function UclPage() {
               >
                 <p>
                   xPts multiplies each player&apos;s share of his team&apos;s predicted goals by the
-                  UCL Fantasy scoring rules, plus clean sheets, saves and ball recoveries. Early in
-                  the season shares are shrunk toward position averages, and domestic form is not
-                  yet included: treat small gaps between players as noise.
+                  UCL Fantasy scoring rules, plus clean sheets, saves and ball recoveries. Goal and
+                  assist shares blend his UCL record with his domestic-league record this season;
+                  recoveries and cards are shrunk toward position averages. Picked is the share of
+                  all UCL Fantasy managers holding him. Treat small gaps between players as noise.
                 </p>
               </MethodNote>
             </div>

@@ -46,6 +46,8 @@ describe('XptsTable', () => {
     p_plays: 0.93,
     xpts: 8.4,
     xpts_per_million: 0.76,
+    sel_per: 22,
+    transfer_balance: 0,
     breakdown: { goals: 4.9, assists: 0.6, appearance: 1.9 },
     ...over,
   });

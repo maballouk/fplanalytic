@@ -29,6 +29,10 @@ export const UclPlayerSchema = z.object({
   p_plays: z.number(),
   xpts: z.number(),
   xpts_per_million: z.number(),
+  // Consensus from UEFA's own game: % of ALL managers holding the player and
+  // this matchday's transfer balance (in minus out). Older files lack them.
+  sel_per: z.number().default(0),
+  transfer_balance: z.number().default(0),
   breakdown: z.record(z.string(), z.number()),
 });
 

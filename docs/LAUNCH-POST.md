@@ -36,6 +36,7 @@ DEFCON closely.
 ---
 
 Notes for Mohamad:
+
 - Check current r/FantasyPL self-promotion rules before posting (flair, thread, day).
 - Post after at least one full GW of data on the live site so the tracker has been
   seen working.

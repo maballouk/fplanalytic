@@ -62,6 +62,11 @@ adjectives. British football English. No em-dashes. No hype.
   predicted XI" (GK included), totals "{x} predicted pts", upgrade "+{x} predicted pts per GW",
   GK note replaced by "Best available XI by predicted points, max three per club, likely
   starters only."; GK drawer reason "Predicted {x} pts next GW. P(start) {pct}."
+- UCL consensus (owner direction 2026-09-13): captain cards line "Picked by {pct}% of all
+  managers" + "· buying now ▲" on positive transfer balance; table column "Picked"; strip
+  "THE CROWD'"S CALL" + "{name} is the most-picked player — {pct}% of all managers own him." +
+  "Our model has him at {x} xPts v {OPP} ({H|A})."; captains caveat "P(start) blends minutes
+  with UEFA's own availability flags; lineups can still surprise"
 - Value page: title "Defensive value lens", sub "Price against DEFCON expected points. Up and
   left is where the value lives.", quadrants "Underpriced engines" / "Premium but earned" /
   "Cheap for a reason" / "Paying for attack", sidebar heading "Top 10 by value",

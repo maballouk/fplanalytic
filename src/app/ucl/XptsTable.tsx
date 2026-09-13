@@ -47,6 +47,14 @@ function Row({ player, rank }: { player: UclPlayer; rank: number }) {
       <td className={`num px-3 py-2 font-bold ${rank === 1 ? 'text-accent' : ''}`}>
         {player.xpts.toFixed(2)}
       </td>
+      <td className="num px-3 py-2">
+        {Math.round(player.sel_per)}%
+        {player.transfer_balance > 1000 && (
+          <span className="ml-1 text-xs text-accent" title="Transfer momentum: managers buying">
+            ▲
+          </span>
+        )}
+      </td>
       <td className="num px-3 py-2 text-text-muted">{player.xpts_per_million.toFixed(2)}</td>
       <td className="px-3 py-2">
         <span className="flex gap-1">
@@ -133,6 +141,9 @@ export default function XptsTable({
               </th>
               <th scope="col" className="px-3 py-2" aria-sort="descending">
                 xPts
+              </th>
+              <th scope="col" className="px-3 py-2">
+                Picked
               </th>
               <th scope="col" className="px-3 py-2">
                 /€m

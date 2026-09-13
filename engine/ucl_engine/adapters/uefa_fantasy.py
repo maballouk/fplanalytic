@@ -59,6 +59,12 @@ class RawPlayer:
     yellows: int
     reds: int
     appearances: int
+    mom: int = 0                   # man-of-the-match awards to date (feed mOM)
+    sel_per: float = 0.0           # % of all managers holding him (feed selPer)
+    transfers_in: int = 0
+    transfers_out: int = 0
+    status: str = ""               # feed pStatus: I injured, S suspended, D doubtful, NIS not in squad
+    trained: str = ""              # e.g. "Unlikely to start next game"
     team_goals_when_playing: Optional[int] = None  # filled from fixtures if available
 
 
@@ -116,10 +122,46 @@ def parse_players(payload) -> List[RawPlayer]:
                 recoveries=int(_g(p, "bR", "ballRecoveries", "recoveries", default=0)),
                 yellows=int(_g(p, "yC", "yellowCards", default=0)),
                 reds=int(_g(p, "rC", "redCards", default=0)),
-                appearances=int(_g(p, "mOM", "apps", "appearances", default=0)) or 0,
+                appearances=int(_g(p, "apps", "appearances", default=0)) or 0,
+                mom=int(_g(p, "mOM", default=0)),
+                sel_per=float(_g(p, "selPer", default=0.0)),
+                transfers_in=int(_g(p, "mTransferIn", default=0)),
+                transfers_out=int(_g(p, "mTransferOut", default=0)),
+                status=str(_g(p, "pStatus", default="") or ""),
+                trained=str(_g(p, "trained", default="") or ""),
             )
         )
     return out
+
+
+# Every per-90 rate estimated from a couple of matches is shrunk toward the
+# league mean for the position with this many virtual 90s. Same lesson as the
+# FPL hit rate, DC strengths, rho and home_adv: regularise everything fitted
+# from a handful of matches (TASKS.md decisions log).
+SHRINK_90S = 3.0
+
+# Caps on goal/assist shares while a player has NO domestic-league data. A
+# centre-back who scored his team's only MD1 goal is not a 22%-share scorer;
+# defender goals are worth 6 pts, so this noise decided the captain list.
+SHARE_CAP = {
+    "GK": (0.02, 0.03),
+    "DEF": (0.10, 0.10),
+    "MID": (0.35, 0.35),
+    "FWD": (0.50, 0.35),
+}
+
+# Availability from the feed (pStatus + trained text): the first cut of the
+# rotation model. Multiplies the minutes-based start probability.
+STATUS_FACTOR = {"I": 0.05, "S": 0.0, "NIS": 0.05, "D": 0.5}
+
+
+def _position_mean_per90(raw: List[RawPlayer], attr: str) -> Dict[str, float]:
+    """League mean of a per-90 rate per position, from players with 60+ minutes."""
+    totals: Dict[str, List[float]] = {}
+    for p in raw:
+        if p.minutes >= 60:
+            totals.setdefault(p.position, []).append(getattr(p, attr) * 90.0 / p.minutes)
+    return {pos: (sum(v) / len(v) if v else 0.0) for pos, v in totals.items()}
 
 
 def build_profiles(
@@ -135,23 +177,35 @@ def build_profiles(
     goal_share / assist_share: player's share of his team's goals, blended
         between UCL-to-date (noisy early) and domestic-league shares
         (`domestic_shares[player_id] = {"goal_share":..,"assist_share":..}`,
-        e.g. from the FPL API for Premier League players, FBref/Understat for
-        others). The blend weight moves toward UCL data as matchdays accumulate.
-    p_start: crude rotation proxy from minutes per matchday; REPLACE with the
-        rotation model in TASKS.md (lineup history + fixture congestion) — this
-        is the biggest single source of error in UCL fantasy predictions.
+        from the FPL API for Premier League players and football-data.org
+        scorers for the other big leagues — adapters/domestic.py). The blend
+        weight moves toward UCL data as matchdays accumulate. Without domestic
+        data the fallback is a position prior, and the result is capped
+        (SHARE_CAP) so one lucky matchday cannot make a centre-back the top
+        projected scorer.
+    Per-90 volume rates (recoveries, saves, cards) are shrunk toward the
+        league mean for the position with SHRINK_90S virtual 90s — computed
+        from the feed itself, not hardcoded.
+    p_start: minutes-based proxy times an availability factor from the feed's
+        own flags (injured/suspended/doubtful/not-in-squad, "unlikely to
+        start"). Still v0.5 — the full rotation model is TASKS.md 1.5.3.
     """
     domestic_shares = domestic_shares or {}
     w_ucl = matchdays_played / (matchdays_played + shrink_matches)
-    # Without domestic data the blend must NOT fall back to the raw UCL share
-    # (a defender scoring 1 of his team's 2 MD1 goals would keep a 50% goal
-    # share and absurd xPts). Shrink toward a position prior instead.
     position_prior = {
         "GK": (0.0, 0.01),
         "DEF": (0.03, 0.04),
         "MID": (0.10, 0.12),
         "FWD": (0.22, 0.12),
     }
+    rec_mean = _position_mean_per90(raw, "recoveries")
+    save_mean = _position_mean_per90(raw, "saves")
+    yel_mean = _position_mean_per90(raw, "yellows")
+
+    def shrunk(total: float, minutes: int, prior: float) -> float:
+        n90 = minutes / 90.0
+        return (total + prior * SHRINK_90S) / (n90 + SHRINK_90S)
+
     profiles: List[PlayerProfile] = []
     for p in raw:
         tg = max(team_goals.get(p.team, 0), 1)
@@ -161,17 +215,34 @@ def build_profiles(
         dom = domestic_shares.get(p.player_id, {})
         gs = w_ucl * ucl_gs + (1 - w_ucl) * dom.get("goal_share", prior_gs)
         as_ = w_ucl * ucl_as + (1 - w_ucl) * dom.get("assist_share", prior_as)
+        cap_gs, cap_as = SHARE_CAP.get(p.position, (0.5, 0.35))
+        if "goal_share" not in dom:
+            gs = min(gs, cap_gs)
+        if "assist_share" not in dom:
+            as_ = min(as_, cap_as)
+
         mins_per_md = p.minutes / max(matchdays_played, 1)
         p_start = float(min(max(mins_per_md / 80.0, 0.05), 0.97))
-        per90 = 90.0 / max(p.minutes, 90)
+        factor = STATUS_FACTOR.get(p.status)
+        if factor is not None:
+            p_start *= factor
+        elif "unlikely" in p.trained.lower():
+            p_start *= 0.4
+
+        md = max(matchdays_played, 1)
+        p_potm = min((p.mom + 0.02 * 4.0) / (md + 4.0), 0.35)
+
         profiles.append(
             PlayerProfile(
                 player_id=p.player_id, name=p.name, team=p.team, position=p.position, price=p.price,
                 goal_share=float(min(gs, 0.9)), assist_share=float(min(as_, 0.9)), p_start=p_start,
-                saves_per_90=p.saves * per90 if p.position == "GK" else 0.0,
-                recoveries_per_90=p.recoveries * per90,
-                yellow_per_90=max(p.yellows * per90, 0.05),
-                red_per_90=max(p.reds * per90, 0.003),
+                saves_per_90=shrunk(p.saves, p.minutes, save_mean.get("GK", 3.0)) if p.position == "GK" else 0.0,
+                recoveries_per_90=shrunk(p.recoveries, p.minutes, rec_mean.get(p.position, 4.0)),
+                yellow_per_90=max(shrunk(p.yellows, p.minutes, yel_mean.get(p.position, 0.12)), 0.05),
+                red_per_90=max(shrunk(p.reds, p.minutes, 0.004), 0.003),
+                p_potm=p_potm,
+                sel_per=p.sel_per,
+                transfer_balance=p.transfers_in - p.transfers_out,
             )
         )
     return profiles

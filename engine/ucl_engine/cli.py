@@ -68,12 +68,13 @@ def cmd_demo(args):
 def cmd_predict(args):
     import time
 
-    from .adapters.clubelo import fetch_clubelo
+    from .adapters.clubelo import fallback_elo, fetch_clubelo
     from .adapters.fixtures import fetch_ucl_matches
     from .adapters.uefa_fantasy import fetch_players, build_profiles
 
-    # ClubElo is a free hobby API and goes down; the model runs without the
-    # prior (pipeline handles elo=None), so degrade rather than fail the run.
+    # ClubElo is a free hobby API and goes down for days; degrade to the
+    # bundled static snapshot rather than fitting flat (a flat fit makes Real
+    # Madrid away read like a mid-table side and sinks every attacker).
     notes = []
     elo = None
     for attempt in range(3):
@@ -82,7 +83,10 @@ def cmd_predict(args):
             break
         except Exception as exc:  # noqa: BLE001 - any network/HTTP failure degrades the same way
             if attempt == 2:
-                notes.append(f"ClubElo unavailable ({type(exc).__name__}); fitted without Elo priors")
+                elo = fallback_elo()
+                notes.append(
+                    f"ClubElo unavailable ({type(exc).__name__}); used bundled static Elo snapshot"
+                )
             else:
                 time.sleep(2 * (attempt + 1))
     completed, upcoming = fetch_ucl_matches()
@@ -99,7 +103,18 @@ def cmd_predict(args):
     for m in completed:
         team_goals[m.home] = team_goals.get(m.home, 0) + m.home_goals
         team_goals[m.away] = team_goals.get(m.away, 0) + m.away_goals
-    profiles = build_profiles(raw, team_goals, matchdays_played=max(matchday - 1, 0))
+    # Domestic-league shares (1.5.2): the fix for "every captain is a
+    # defender" — star attackers' real scoring rates instead of position
+    # priors. Fail-soft: without them the model still runs.
+    domestic = {}
+    try:
+        from .adapters.domestic import collect_domestic_shares
+
+        domestic = collect_domestic_shares(raw, notes=notes)
+    except Exception as exc:  # noqa: BLE001
+        notes.append(f"domestic shares skipped ({type(exc).__name__})")
+    profiles = build_profiles(raw, team_goals, domestic_shares=domestic,
+                              matchdays_played=max(matchday - 1, 0))
     out = run_matchday(matchday, completed, fixtures, profiles, elo=elo, notes=notes)
     out_path = args.out.replace("{md}", str(matchday))
     write_json(out, out_path)

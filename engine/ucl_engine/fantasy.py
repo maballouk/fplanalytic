@@ -83,6 +83,8 @@ class PlayerProfile:
     red_per_90: float = 0.005
     pen_taker: bool = False
     p_potm: float = 0.0           # player-of-the-match probability (usually small)
+    sel_per: float = 0.0          # % of ALL UCL Fantasy managers holding him (feed selPer)
+    transfer_balance: int = 0     # transfers in minus out this matchday (momentum)
 
 
 @dataclass
@@ -96,6 +98,8 @@ class PlayerXPts:
     is_home: bool
     p_plays: float
     xpts: float
+    sel_per: float = 0.0          # consensus: % of all managers holding him
+    transfer_balance: int = 0
     breakdown: Dict[str, float] = field(default_factory=dict)
 
     @property
@@ -161,5 +165,6 @@ def expected_points(player: PlayerProfile, pred: MatchPrediction, scoring: Dict 
     total = sum(b.values())
     return PlayerXPts(
         player_id=player.player_id, name=player.name, team=player.team, position=pos,
-        price=player.price, opponent=opp, is_home=is_home, p_plays=p_plays, xpts=total, breakdown=b,
+        price=player.price, opponent=opp, is_home=is_home, p_plays=p_plays, xpts=total,
+        sel_per=player.sel_per, transfer_balance=player.transfer_balance, breakdown=b,
     )

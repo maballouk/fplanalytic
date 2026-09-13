@@ -210,3 +210,19 @@ backtest numbers on methodology page.
   league (id 314) and attaches elite_own/elite_cap per player; shown as "Top-50 own" + C badge and
   used by the brief's differential/trap calls. DEFCON stays as the specialist detail (own column,
   drawer grid, /value lens), not the headline.
+- 2026-09-13 (UCL totals parity, owner direction "نطبق نفس اللي طبقناه في FPL"): the "all
+  captains are defenders" bug had four causes, all fixed in the engine: (1) recoveries/cards/
+  saves per-90 were raw single-matchday counts — now shrunk toward data-driven position means
+  with 3 virtual 90s; (2) defender goal shares kept MD1 noise at 6 pts/goal — shares are now
+  capped by position until a domestic record exists; (3) 1.5.2 DONE: adapters/domestic.py
+  blends real domestic goal/assist shares (FPL API for PL clubs, football-data.org scorers +
+  standings for PD/BL1/SA/FL1/DED/PPL) matched by canonical team + surname + first initial,
+  GKs excluded, min-6-goal denominator against early-season noise; (4) ClubElo has been 502
+  for days and the flat fit sank stars — bundled static Elo snapshot
+  (engine/ucl_engine/data/elo_fallback.json, labeled as-of 2026-01) now backs the live fetch.
+  Also fixed mOM being parsed as "appearances"; mOM now drives a shrunk P(POTM). Consensus à
+  la FPL top-50: UEFA's own selPer (% of ALL managers) + transfer momentum now flow feed →
+  engine → JSON → hub (captain cards, Picked column, and a "THE CROWD'S CALL" strip when the
+  most-picked player is missing from our top 3). P(start) v0.5 uses the feed's own
+  availability flags (pStatus I/S/D/NIS, "Unlikely to start"). Raw feed cache is never
+  committed (UEFA terms). Engine tests 22 → 27.

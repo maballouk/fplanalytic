@@ -85,13 +85,13 @@ in CI). `python -m ucl_engine.cli demo --out public/data/ucl_demo.json` produces
 Checked `bootstrap-static` plus `element-summary/{id}` for two defenders
 (Gabriel id 4, White id 10) and one midfielder (Kamara id 47). Exact field names:
 
-| Field | bootstrap `elements[]` | element-summary `history[]` | live `elements[].stats` |
-|---|---|---|---|
-| `clearances_blocks_interceptions` | season total | per match | in-play |
-| `tackles` | season total | per match | in-play |
-| `recoveries` | season total | per match | in-play |
-| `defensive_contribution` | season total | per match | in-play |
-| `defensive_contribution_per_90` | yes | no | no |
+| Field                             | bootstrap `elements[]` | element-summary `history[]` | live `elements[].stats` |
+| --------------------------------- | ---------------------- | --------------------------- | ----------------------- |
+| `clearances_blocks_interceptions` | season total           | per match                   | in-play                 |
+| `tackles`                         | season total           | per match                   | in-play                 |
+| `recoveries`                      | season total           | per match                   | in-play                 |
+| `defensive_contribution`          | season total           | per match                   | in-play                 |
+| `defensive_contribution_per_90`   | yes                    | no                          | no                      |
 
 **Semantics that must not be gotten wrong:** `defensive_contribution` is the
 position-aware composite **count** for the match, not the points awarded.

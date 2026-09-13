@@ -43,19 +43,19 @@ every icon-only control has an `aria-label`, tables have real `<th scope>`.
 
 ## 2. Components (`/components`)
 
-| Component | Purpose | Notes |
-|---|---|---|
-| `AppShell` | Top nav + content container | Nav: DEFCON · Live · Value · European Nights · (Premium). Sticky, blurred bg. |
-| `StatCard` | Single KPI with label, value, delta | Value in mono 2xl. Optional trend chip. |
-| `PlayerRow` | Dense table row: shirt/badge, name, team, price, key stats, action chip | Hover raises `bg.overlay`. Click opens `PlayerDrawer`. |
-| `PlayerDrawer` | Right-side panel with full profile + "Why this player" | Always ends with a **Decision** block (Buy / Hold / Avoid + one sentence). |
-| `Threshold Bar` | Horizontal bar 0→threshold showing actions in a match | Fill green at/over threshold, amber within 2, grey otherwise. Used everywhere DEFCON is shown. |
-| `FixtureStrip` | Next 5 fixtures as difficulty chips | Reuse FDR colour ramp but muted. |
-| `RankBadge` | 1/2/3 medal-style pill | Only top 3, never beyond. |
-| `PremiumLock` | Blur + lock + one-line value prop + CTA | Never hides the *existence* of data, only detail. |
-| `MethodNote` | Collapsible "How we compute this" | Every model output has one. Transparency is brand. |
-| `EmptyState` | Friendly empty/loading/error | Skeletons for loading, never spinners in tables. |
-| `SegmentedTabs` | Pill tabs | Used for position filters and view switching. |
+| Component       | Purpose                                                                 | Notes                                                                                          |
+| --------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `AppShell`      | Top nav + content container                                             | Nav: DEFCON · Live · Value · European Nights · (Premium). Sticky, blurred bg.                  |
+| `StatCard`      | Single KPI with label, value, delta                                     | Value in mono 2xl. Optional trend chip.                                                        |
+| `PlayerRow`     | Dense table row: shirt/badge, name, team, price, key stats, action chip | Hover raises `bg.overlay`. Click opens `PlayerDrawer`.                                         |
+| `PlayerDrawer`  | Right-side panel with full profile + "Why this player"                  | Always ends with a **Decision** block (Buy / Hold / Avoid + one sentence).                     |
+| `Threshold Bar` | Horizontal bar 0→threshold showing actions in a match                   | Fill green at/over threshold, amber within 2, grey otherwise. Used everywhere DEFCON is shown. |
+| `FixtureStrip`  | Next 5 fixtures as difficulty chips                                     | Reuse FDR colour ramp but muted.                                                               |
+| `RankBadge`     | 1/2/3 medal-style pill                                                  | Only top 3, never beyond.                                                                      |
+| `PremiumLock`   | Blur + lock + one-line value prop + CTA                                 | Never hides the _existence_ of data, only detail.                                              |
+| `MethodNote`    | Collapsible "How we compute this"                                       | Every model output has one. Transparency is brand.                                             |
+| `EmptyState`    | Friendly empty/loading/error                                            | Skeletons for loading, never spinners in tables.                                               |
+| `SegmentedTabs` | Pill tabs                                                               | Used for position filters and view switching.                                                  |
 
 All components: dark-only, typed props, no inline colours, storybook-free but each has a render test.
 
@@ -64,28 +64,32 @@ All components: dark-only, typed props, no inline colours, storybook-free but ea
 ## 3. Screens — Phase 1 (DEFCON)
 
 ### 3.1 `/` Home = DEFCON Asset Finder (the beachhead)
-Hero strip (subtle gradient `bg → bg.raised`): title *"Defensive Contribution, decoded."* + one-line
-promise + "Updated GW N · 12:41". Below, three `StatCard`s: *Top DEFCON DEF this GW*, *Top DEFCON MID*,
-*Best value (xPts/£m)*.
+
+Hero strip (subtle gradient `bg → bg.raised`): title _"Defensive Contribution, decoded."_ + one-line
+promise + "Updated GW N · 12:41". Below, three `StatCard`s: _Top DEFCON DEF this GW_, _Top DEFCON MID_,
+_Best value (xPts/£m)_.
 
 Main table (`PlayerRow`): Rank · Player · Team · Pos · Price · **Hit rate** (season, blended) ·
 **Avg actions** with `ThresholdBar` · **Near-miss %** · **DEFCON xPts/GW** · **Value /£m** · Next 5 (`FixtureStrip`).
 Default sort: DEFCON xPts. Filters: position (DEF/MID/FWD), price ≤, min minutes, team.
-Every row's `PlayerDrawer` ends with a Decision: e.g. *"Buy — 7 of last 8 with 10+ actions, two soft
-fixtures next."* Free tier: full table, top-30 rows; premium: unlimited rows + history chart + alerts toggle.
+Every row's `PlayerDrawer` ends with a Decision: e.g. _"Buy — 7 of last 8 with 10+ actions, two soft
+fixtures next."_ Free tier: full table, top-30 rows; premium: unlimited rows + history chart + alerts toggle.
 
 ### 3.2 `/live` Live DEFCON Tracker (matchday)
+
 List of live/finished fixtures. For each: players on the pitch with a `ThresholdBar` that updates as
 actions accrue; sort by "closest to threshold". Colour: green = hit, amber = 1–2 away, grey otherwise.
 Premium: browser notifications when a watched player reaches threshold-2 and threshold.
 Polling interval 60s from the FPL live endpoint; show "last refreshed" and never auto-scroll.
 
 ### 3.3 `/value` Defensive Value Lens
+
 Scatter (x = price, y = DEFCON xPts + clean-sheet xPts), bubbles sized by minutes, coloured by position.
 Quadrant labels ("Underpriced engines", "Premium but earned", …). Click bubble → `PlayerDrawer`.
 Sidebar: top 10 by value with one-line reasons. Premium: price-change context and ownership overlay.
 
 ### 3.4 `/methodology`
+
 Plain-English page: the DEFCON rule, how hit rate is blended (last 5 vs season), what near-miss means,
 data source and refresh cadence, known limitations. Ends with "What we do not do" (no black-box ML).
 
@@ -94,7 +98,8 @@ data source and refresh cadence, known limitations. Ends with "What we do not do
 ## 4. Screens — Phase 1.5 (European Nights)
 
 ### 4.1 `/ucl` Matchday Hub
-Header: *"European Nights · Matchday N"* + kickoff countdown. Fixture cards (2-col): badges, kickoff,
+
+Header: _"European Nights · Matchday N"_ + kickoff countdown. Fixture cards (2-col): badges, kickoff,
 **xG 1.6 – 1.1**, 1X2 bar (three segments), **Clean-sheet odds** for each side, "Most likely 1-1".
 Each card has a `MethodNote` ("Elo + Dixon-Coles, fitted on N matches").
 
@@ -104,6 +109,7 @@ Free: fixtures + xPts top 40. Premium: full list, rotation risk column (amber wh
 progression odds tab (Monte Carlo, later), alerts.
 
 ### 4.2 `/ucl/player/[id]`
+
 Profile, xPts by remaining matchdays (bar), share-of-team-goals vs price, decision block.
 
 Data source: `public/data/ucl_md{N}.json` written by `engine/` (schema: `fixtures[]`, `players[]`,
@@ -116,10 +122,10 @@ Data source: `public/data/ucl_md{N}.json` written by `engine/` (schema: `fixture
 Direct, expert, calm. Short sentences. Numbers before adjectives. British football English
 ("fixture", "clean sheet", "matchday"). Never hype. Examples:
 
-- Good: *"Gabriel hit 10+ actions in 7 of 8. Two low-block opponents next. Buy."*
-- Bad: *"Gabriel is an absolute must-have this week!!!"*
+- Good: _"Gabriel hit 10+ actions in 7 of 8. Two low-block opponents next. Buy."_
+- Bad: _"Gabriel is an absolute must-have this week!!!"_
 
-Premium copy states what you get, once: *"Alerts, full history and rotation risk. £2.99/month."*
+Premium copy states what you get, once: _"Alerts, full history and rotation risk. £2.99/month."_
 
 ---
 
