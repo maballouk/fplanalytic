@@ -1,8 +1,7 @@
 'use client';
 
-// Composite drawer for a DEFCON profile: stats grid, last-5 threshold bars,
-// next-5 fixtures and the Decision block. Shared by the Asset Finder (home)
-// and the Value Lens (TASKS.md 1.4/1.7).
+// Player drawer: totals first (predicted points with a breakdown a manager
+// can read), elite consensus, then the DEFCON detail for outfielders.
 
 import { useEffect } from 'react';
 import FixtureStrip from '@/components/ds/FixtureStrip';
@@ -17,23 +16,48 @@ import {
   thresholdFor,
   type DefconFilePlayer,
 } from '@/lib/defcon/file';
-import { decide } from '@/lib/defcon/decision';
+import type { Decision } from '@/lib/defcon/decision';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
+
+const BREAKDOWN_LABELS: Record<string, string> = {
+  appearance: 'Minutes',
+  goals: 'Goals',
+  assists: 'Assists',
+  clean_sheet: 'Clean sheet',
+  saves: 'Saves',
+  bonus: 'Bonus',
+  defcon: 'DEFCON',
+  conceded: 'Conceded',
+};
 
 export interface PlayerProfileDrawerProps {
   player: DefconFilePlayer;
   onClose: () => void;
 }
 
+// One rule for every position, on the number the headline shows. The DEFCON
+// grid below stays as detail; it must never contradict the verdict again.
+function makeDecision(player: DefconFilePlayer): Decision {
+  const line = `Predicted ${player.xpts_total.toFixed(1)} pts next GW. P(start) ${pct(player.p_start)}.`;
+  if (player.status !== 'a') {
+    return {
+      verdict: 'Avoid',
+      reason: `Flagged by FPL. Predicted ${player.xpts_total.toFixed(1)} pts next GW.`,
+    };
+  }
+  const fdr = meanNext5Fdr(player);
+  if (player.xpts_total >= 4 && player.p_start >= 0.75 && (fdr === null || fdr <= 3.5)) {
+    return { verdict: 'Buy', reason: line };
+  }
+  if (player.p_start < 0.5 || player.xpts_total < 2.5) {
+    return { verdict: 'Avoid', reason: line };
+  }
+  return { verdict: 'Hold', reason: line };
+}
+
 export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDrawerProps) {
-  const decision = decide({
-    hitRate: player.hit_rate,
-    threshold: thresholdFor(player.position),
-    last5Actions: player.last5_actions,
-    meanNext5Fdr: meanNext5Fdr(player),
-    status: player.status,
-  });
+  const decision = makeDecision(player);
 
   useEffect(() => {
     track('drawer_decision_view', { player: player.name, verdict: decision.verdict });
@@ -46,6 +70,10 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
     Tough: 'border-danger/50 text-danger',
   } as const;
 
+  const breakdown = Object.entries(player.xpts_breakdown)
+    .filter(([, v]) => Math.abs(v) >= 0.15)
+    .sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+
   return (
     <PlayerDrawer
       open
@@ -57,6 +85,46 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
       decisionLabel="Decision"
       closeLabel="Close"
     >
+      {/* Totals first: the number a manager understands */}
+      <div className="rounded-card border border-accent/20 bg-[#0d1a15] p-4">
+        <div className="flex items-baseline justify-between">
+          <span className="text-xs uppercase tracking-wider text-text-faint">
+            Predicted next GW
+          </span>
+          <span className="num text-xs text-text-muted">
+            form {player.form5.toFixed(1)} · P(start) {pct(player.p_start)}
+          </span>
+        </div>
+        <div className="mt-1 flex items-baseline gap-2">
+          <span className="num text-3xl font-bold text-accent">{player.xpts_total.toFixed(1)}</span>
+          <span className="text-sm text-text-muted">points</span>
+        </div>
+        {breakdown.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {breakdown.map(([k, v]) => (
+              <span
+                key={k}
+                className="num rounded-pill bg-bg-overlay px-2 py-0.5 text-xs text-text-muted"
+              >
+                {BREAKDOWN_LABELS[k] ?? k} {v > 0 ? v.toFixed(1) : v.toFixed(1)}
+              </span>
+            ))}
+          </div>
+        )}
+        {(player.elite_own > 0 || player.elite_cap > 0) && (
+          <p className="mt-3 border-t border-line pt-2 text-sm text-text">
+            Owned by <span className="num text-accent">{pct(player.elite_own)}</span> of the
+            world&apos;s top 50 managers
+            {player.elite_cap > 0 && (
+              <>
+                {' '}
+                · captained by <span className="num text-warn">{pct(player.elite_cap)}</span>
+              </>
+            )}
+          </p>
+        )}
+      </div>
+
       {next && (
         <div className="flex items-center gap-2 text-sm text-text-muted">
           <span>Next match:</span>
@@ -70,36 +138,42 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
           </span>
         </div>
       )}
-      <dl className="grid grid-cols-2 gap-3 text-sm">
-        {(
-          [
-            ['Hit rate', pct(player.hit_rate)],
-            ['Avg actions', player.mean_actions.toFixed(1)],
-            ['Near miss', pct(player.near_miss_rate)],
-            ['Consistency', pct(player.consistency)],
-            ['DEFCON xPts', player.defcon_xpts.toFixed(2)],
-            ['Value /£m', player.value_per_million.toFixed(3)],
-          ] as const
-        ).map(([label, value]) => (
-          <div key={label} className="rounded-card border border-line bg-bg-overlay p-3">
-            <dt className="text-xs text-text-muted">{label}</dt>
-            <dd className="num mt-1 text-lg">{value}</dd>
-          </div>
-        ))}
-      </dl>
-      <div>
-        <h3 className="mb-2 text-sm text-text-muted">Last 5 matches</h3>
-        <div className="space-y-1">
-          {player.last5_actions.map((a, i) => (
-            <ThresholdBar
-              key={i}
-              actions={a}
-              threshold={thresholdFor(player.position)}
-              label={`${a} of ${thresholdFor(player.position)} defensive actions`}
-            />
-          ))}
-        </div>
-      </div>
+
+      {player.position !== 'GK' && (
+        <>
+          <dl className="grid grid-cols-2 gap-3 text-sm">
+            {(
+              [
+                ['DEFCON hit rate', pct(player.hit_rate)],
+                ['Avg actions', player.mean_actions.toFixed(1)],
+                ['Near miss', pct(player.near_miss_rate)],
+                ['DEFCON xPts', player.defcon_xpts.toFixed(2)],
+              ] as const
+            ).map(([label, value]) => (
+              <div key={label} className="rounded-card border border-line bg-bg-overlay p-3">
+                <dt className="text-xs text-text-muted">{label}</dt>
+                <dd className="num mt-1 text-lg">{value}</dd>
+              </div>
+            ))}
+          </dl>
+          {player.last5_actions.length > 0 && (
+            <div>
+              <h3 className="mb-2 text-sm text-text-muted">Last 5 matches · defensive actions</h3>
+              <div className="space-y-1">
+                {player.last5_actions.map((a, i) => (
+                  <ThresholdBar
+                    key={i}
+                    actions={a}
+                    threshold={thresholdFor(player.position)}
+                    label={`${a} of ${thresholdFor(player.position)} defensive actions`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </>
+      )}
+
       <div>
         <h3 className="mb-2 text-sm text-text-muted">Next 5</h3>
         <FixtureStrip

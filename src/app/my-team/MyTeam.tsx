@@ -12,8 +12,8 @@ import TeamBadge from '@/components/ds/TeamBadge';
 import { track } from '@/lib/analytics';
 import {
   bestUpgrade,
-  squadDefconTotal,
-  type DefconTeam,
+  squadPredictedTotal,
+  type PredictedTeam,
   type EntryPickView,
 } from '@/lib/defcon/myteam';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
@@ -73,7 +73,7 @@ export default function MyTeam({
   defconTeam,
 }: {
   players: DefconFilePlayer[];
-  defconTeam: DefconTeam | null;
+  defconTeam: PredictedTeam | null;
 }) {
   const [teamId, setTeamId] = useState('');
   const [input, setInput] = useState('');
@@ -130,7 +130,7 @@ export default function MyTeam({
   const rows = (['GKP', 'DEF', 'MID', 'FWD'] as const).map((pos) =>
     starters.filter((p) => p.position === pos)
   );
-  const myTotal = data ? squadDefconTotal(data.picks, byElementId) : 0;
+  const myTotal = data ? squadPredictedTotal(data.picks, byElementId) : 0;
   const upgrade = data ? bestUpgrade(data.picks, byElementId, players) : null;
 
   return (
@@ -202,7 +202,7 @@ export default function MyTeam({
                 <h2 className="font-display text-base font-bold">Your XI</h2>
                 <span className="num text-sm">
                   <span className="text-accent">{myTotal.toFixed(1)}</span>
-                  <span className="ml-1 text-xs text-text-muted">DEFCON xPts</span>
+                  <span className="ml-1 text-xs text-text-muted">predicted pts</span>
                 </span>
               </div>
               <PitchFrame>
@@ -215,7 +215,7 @@ export default function MyTeam({
                             key={p.id}
                             name={p.name}
                             photo={playerPhotoUrl(p.code)}
-                            xpts={byElementId.get(String(p.id))?.defcon_xpts ?? null}
+                            xpts={byElementId.get(String(p.id))?.xpts_total ?? null}
                             isCaptain={p.is_captain}
                             flagged={p.status !== 'a'}
                           />
@@ -231,7 +231,7 @@ export default function MyTeam({
                     <TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={14} />
                     {p.name}
                     <span className="num text-text-faint">
-                      {byElementId.get(String(p.id))?.defcon_xpts.toFixed(1) ?? '—'}
+                      {byElementId.get(String(p.id))?.xpts_total.toFixed(1) ?? '—'}
                     </span>
                   </span>
                 ))}
@@ -241,30 +241,32 @@ export default function MyTeam({
             {defconTeam && (
               <section>
                 <div className="mb-2 flex items-baseline justify-between">
-                  <h2 className="font-display text-base font-bold">The DEFCON XI</h2>
+                  <h2 className="font-display text-base font-bold">The predicted XI</h2>
                   <span className="num text-sm">
                     <span className="text-accent">{defconTeam.total.toFixed(1)}</span>
                     <span className="ml-1 text-xs text-text-muted">
-                      DEFCON xPts · {defconTeam.formation} · outfield only
+                      predicted pts · {defconTeam.formation}
                     </span>
                   </span>
                 </div>
                 <PitchFrame>
-                  {[defconTeam.def, defconTeam.mid, defconTeam.fwd].map((row, i) => (
-                    <div key={i} className="flex items-start justify-center gap-2 sm:gap-4">
-                      {row.map((p) => (
-                        <PitchSpot
-                          key={p.player_id}
-                          name={p.name}
-                          photo={playerPhotoUrl(p.code)}
-                          xpts={p.defcon_xpts}
-                        />
-                      ))}
-                    </div>
-                  ))}
+                  {[[defconTeam.gk], defconTeam.def, defconTeam.mid, defconTeam.fwd].map(
+                    (row, i) => (
+                      <div key={i} className="flex items-start justify-center gap-2 sm:gap-4">
+                        {row.map((p) => (
+                          <PitchSpot
+                            key={p.player_id}
+                            name={p.name}
+                            photo={playerPhotoUrl(p.code)}
+                            xpts={p.xpts_total}
+                          />
+                        ))}
+                      </div>
+                    )
+                  )}
                 </PitchFrame>
                 <div className="mt-2 rounded-card border border-line bg-bg-raised px-3 py-2 text-xs text-text-muted">
-                  Goalkeepers cannot earn DEFCON, so this XI fields ten outfielders.
+                  Best available XI by predicted points, max three per club, likely starters only.
                 </div>
               </section>
             )}
@@ -279,7 +281,7 @@ export default function MyTeam({
                 {upgrade.out.name} <span className="text-text-faint">→</span> {upgrade.in.name}
               </span>
               <span className="num text-sm text-accent">
-                +{upgrade.gain.toFixed(2)} DEFCON xPts per GW
+                +{upgrade.gain.toFixed(1)} predicted pts per GW
               </span>
             </div>
           )}

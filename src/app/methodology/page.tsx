@@ -7,7 +7,8 @@ import { NAV } from '@/lib/nav';
 
 export const metadata: Metadata = {
   title: 'Methodology · fplanalytic',
-  description: 'How fplanalytic computes DEFCON hit rates, near misses and expected points.',
+  description:
+    'How fplanalytic predicts FPL points: match-record rates, fixture difficulty, top-50 manager consensus and the DEFCON detail.',
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -41,6 +42,33 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
+        <Section title="Predicted points (v1)">
+          <p>
+            The headline number for every player is his predicted FPL points for the next gameweek,
+            built only from his own match record. We turn his goals, assists, clean sheets, saves,
+            bonus and defensive contribution into per-90-minute rates, shrink each rate toward the
+            league average for his position (three virtual matches, so a hot two-game start does not
+            read as certainty), then scale by the next fixture: easier opponents raise attacking
+            returns and clean-sheet odds, harder ones lower them, with a small boost at home. A
+            minutes model estimates the chance he starts and how long he plays; every component is
+            multiplied by expected minutes. The breakdown in each player&apos;s profile shows
+            exactly where the number comes from — minutes, goals, assists, clean sheet, saves, bonus
+            and DEFCON, in points.
+          </p>
+        </Section>
+
+        <Section title="What the world's best managers think">
+          <p>
+            Prediction models miss things humans catch: press conferences, eye tests, price
+            momentum. So next to every prediction we show the consensus of the top 50 managers in
+            the world — the current leaders of FPL&apos;s overall ranking, whose squads are public
+            through the official API. &ldquo;Top-50 own&rdquo; is the share of those 50 squads
+            holding the player; the C badge is how many captain him. A player our model rates highly
+            whom the elite ignore is a genuine differential; one the elite pile into despite a tough
+            run is flagged as a trap. Their picks refresh with every data build.
+          </p>
+        </Section>
+
         <Section title="The DEFCON rule">
           <p>
             Since 2025/26, FPL awards 2 points for defensive contribution, at most once per match.
@@ -69,20 +97,24 @@ export default function MethodologyPage() {
           </p>
         </Section>
 
-        <Section title="Expected points and value">
+        <Section title="DEFCON xPts and value">
           <p>
-            DEFCON xPts per match is the blended hit probability times 2. Value is xPts divided by
-            price in millions. Consistency is 1 minus the coefficient of variation of the
-            player&apos;s actions: steadier engines score closer to their average every week.
+            DEFCON xPts per match is the blended hit probability times 2 — it is the defensive slice
+            of the total prediction, kept visible on its own because it is this site&apos;s
+            specialty. Value is DEFCON xPts divided by price in millions. Consistency is 1 minus the
+            coefficient of variation of the player&apos;s actions: steadier engines score closer to
+            their average every week.
           </p>
         </Section>
 
         <Section title="Decisions">
           <p>
-            The Buy, Hold and Avoid calls follow fixed rules. Buy needs a shrunk hit rate of at
-            least 45% and a next-5 fixture run averaging difficulty 3 or easier. Below 25%, or with
-            an injury, suspension or availability flag, the call is Avoid. Everything else is Hold.
-            The one-line reason always shows the numbers behind the call.
+            The Buy, Hold and Avoid calls follow one fixed rule for every position, on the same
+            predicted-points number the page shows. Buy needs 4+ predicted points, a 75%+ chance of
+            starting and a next-5 run that is not brutal (average difficulty 3.5 or easier). An
+            injury, suspension or availability flag, a starting chance under 50%, or fewer than 2.5
+            predicted points is Avoid. Everything else is Hold. The one-line reason always shows the
+            numbers behind the call.
           </p>
         </Section>
 

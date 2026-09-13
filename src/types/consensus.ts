@@ -35,12 +35,12 @@ export const BLOG_SOURCES = [
   'Fantasy Football Geek',
   'Fantasy Football Hub',
   'All About FPL',
-  'FPL Hints'
+  'FPL Hints',
 ];
 
 export const TREND_LABELS = {
   rising: 'Rising Stars',
   falling: 'Falling Stars',
   differential: 'Differentials',
-  stable: 'Consistent Performers'
+  stable: 'Consistent Performers',
 };

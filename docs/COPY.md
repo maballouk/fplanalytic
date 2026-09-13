@@ -49,6 +49,19 @@ adjectives. British football English. No em-dashes. No hype.
   Wait."; deadline banner "GW{N} deadline in {t}" + "Final checks below"; live banner "Closest
   to the +2 right now" + "Open the live tracker"; review "GW{N} full time: the +2 ledger" +
   "Players who keep landing one short are buys, not duds" + "missed by {n}"
+- Totals pivot (owner direction 2026-09-13, supersedes the DEFCON-first strings below where they
+  conflict): hero "Every player's next gameweek, in points." / "Predicted points from each
+  player's match record, checked against the world's top 50 managers. DEFCON detail included.";
+  table columns "Predicted pts" (default sort) / "Form" / "Top-50 own" (+ "C {pct}" captain
+  badge) / "DEFCON" / "DEFCON /£m"; drawer panel "Predicted next GW" + "{x} points" + breakdown
+  chips (Minutes/Goals/Assists/Clean sheet/Saves/Bonus/DEFCON/Conceded) + "Owned by {pct} of the
+  world's top 50 managers · captained by {pct}"; brief reasons — buy "Predicted {x} pts next GW,
+  form {f}. {Soft|Even|Tough} run next.", differential "Predicted {x} pts, owned by {pct} of the
+  top 50 and {pct} overall.", trap "Owned by {pct} of the top 50, but {…}. Wait."; My Team sub
+  "Your real squad, its predicted points, and the XI the numbers would field.", heading "The
+  predicted XI" (GK included), totals "{x} predicted pts", upgrade "+{x} predicted pts per GW",
+  GK note replaced by "Best available XI by predicted points, max three per club, likely
+  starters only."; GK drawer reason "Predicted {x} pts next GW. P(start) {pct}."
 - Value page: title "Defensive value lens", sub "Price against DEFCON expected points. Up and
   left is where the value lives.", quadrants "Underpriced engines" / "Premium but earned" /
   "Cheap for a reason" / "Paying for attack", sidebar heading "Top 10 by value",

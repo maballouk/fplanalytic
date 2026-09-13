@@ -23,9 +23,9 @@ export const dynamic = 'force-static';
 // Target queries (TASKS.md 1.8): "FPL DEFCON", "defensive contribution stats",
 // "best defensive assets FPL".
 export const metadata: Metadata = {
-  title: 'fplanalytic: FPL DEFCON asset finder',
+  title: 'fplanalytic: FPL predicted points',
   description:
-    'Defensive contribution stats for FPL: DEFCON hit rates, near misses and the best defensive assets, updated twice daily.',
+    'Predicted FPL points for every player from his match record, checked against the top 50 managers in the world — plus DEFCON hit rates and live threshold tracking.',
 };
 
 const TAG_TONE: Record<BriefCall['tag'], string> = {
@@ -54,7 +54,9 @@ function BriefCard({ call, lead = false }: { call: BriefCall; lead?: boolean }) 
             {call.verdict}
           </span>
         ) : (
-          <span className="num text-xs text-text-faint">{p.ownership.toFixed(1)}% owned</span>
+          <span className="num text-xs text-text-faint">
+            {Math.round(p.elite_own * 100)}% of top 50
+          </span>
         )}
       </div>
       <div className="mt-4 flex items-center gap-3">
@@ -67,9 +69,7 @@ function BriefCard({ call, lead = false }: { call: BriefCall; lead?: boolean }) 
           </div>
         </div>
         <span className={`num ml-auto text-2xl font-bold ${lead ? 'text-accent' : ''}`}>
-          {call.tag === 'THE DIFFERENTIAL'
-            ? p.value_per_million.toFixed(2)
-            : p.defcon_xpts.toFixed(2)}
+          {p.xpts_total.toFixed(1)}
         </span>
       </div>
       <p className="mt-4 border-t border-line pt-3 text-sm text-text">{call.reason}</p>
@@ -96,10 +96,11 @@ export default function Home() {
                   FPL · GW{data ? (data.calendar?.next_gw ?? data.gw) : ''} brief
                 </span>
                 <h1 className="mt-3 font-display text-4xl font-black tracking-tight">
-                  Defensive Contribution, decoded.
+                  Every player&apos;s next gameweek, in points.
                 </h1>
                 <p className="mt-2 text-lg text-text-muted">
-                  Hit rates, live threshold tracking and value. Built for the DEFCON era.
+                  Predicted points from each player&apos;s match record, checked against the
+                  world&apos;s top 50 managers. DEFCON detail included.
                 </p>
               </div>
               {data && (
@@ -137,10 +138,12 @@ export default function Home() {
                 methodologyLabel="Full methodology"
               >
                 <p>
-                  Hit rate blends the last 5 matches (60%) with the season (40%), counting only
-                  matches with 60+ minutes. DEF need 10+ CBIT and tackles; MID and FWD need 12+
-                  including recoveries. xPts is the hit probability times 2. The brief applies the
-                  same Buy, Hold and Avoid rules as every player drawer.
+                  Predicted points turn each player&apos;s own goals, assists, clean sheets, saves,
+                  bonus and defensive contribution into per-90 rates, shrink them toward league
+                  rates, and scale them by next-fixture difficulty and expected minutes. Top-50 own
+                  is how many of the world&apos;s 50 best managers hold the player right now. The
+                  DEFCON column keeps the defensive slice visible: hit probability times 2, from the
+                  last 5 matches (60%) blended with the season (40%).
                 </p>
               </MethodNote>
             </div>

@@ -50,13 +50,7 @@
         "consistency": 0.8633515635881602,
         "defcon_xpts": 0.88,
         "value_per_million": 0.176,
-        "last5_actions": [
-          12,
-          9,
-          8,
-          11,
-          9
-        ]
+        "last5_actions": [12, 9, 8, 11, 9]
       }
     },
     {
@@ -94,10 +88,7 @@
         "consistency": 0.9090909090909091,
         "defcon_xpts": 1.0,
         "value_per_million": 0.16666666666666666,
-        "last5_actions": [
-          12,
-          10
-        ]
+        "last5_actions": [12, 10]
       }
     },
     {
@@ -133,9 +124,7 @@
         "consistency": 1.0,
         "defcon_xpts": 2,
         "value_per_million": 0.4,
-        "last5_actions": [
-          11
-        ]
+        "last5_actions": [11]
       }
     },
     {
@@ -215,11 +204,7 @@
         "consistency": 0.9183503419072274,
         "defcon_xpts": 1.3333333333333333,
         "value_per_million": 0.2424242424242424,
-        "last5_actions": [
-          9,
-          10,
-          11
-        ]
+        "last5_actions": [9, 10, 11]
       }
     },
     {
@@ -267,13 +252,7 @@
         "consistency": 0.8646275595773306,
         "defcon_xpts": 1.2,
         "value_per_million": 0.3,
-        "last5_actions": [
-          10,
-          9,
-          10,
-          8,
-          12
-        ]
+        "last5_actions": [10, 9, 10, 8, 12]
       }
     },
     {
@@ -341,13 +320,7 @@
         "consistency": 0.603599363237428,
         "defcon_xpts": 1.6,
         "value_per_million": 0.35555555555555557,
-        "last5_actions": [
-          10,
-          11,
-          12,
-          10,
-          11
-        ]
+        "last5_actions": [10, 11, 12, 10, 11]
       }
     },
     {
@@ -395,12 +368,7 @@
         "consistency": 0.8685315603755641,
         "defcon_xpts": 1.0,
         "value_per_million": 0.13333333333333333,
-        "last5_actions": [
-          12,
-          11,
-          13,
-          9
-        ]
+        "last5_actions": [12, 11, 13, 9]
       }
     },
     {
@@ -440,11 +408,7 @@
         "consistency": 0.0,
         "defcon_xpts": 0,
         "value_per_million": 0.0,
-        "last5_actions": [
-          0,
-          0,
-          0
-        ]
+        "last5_actions": [0, 0, 0]
       }
     },
     {
@@ -480,10 +444,7 @@
         "consistency": 0.9090909090909091,
         "defcon_xpts": 2,
         "value_per_million": 0.0,
-        "last5_actions": [
-          10,
-          12
-        ]
+        "last5_actions": [10, 12]
       }
     },
     {
@@ -516,9 +477,7 @@
         "consistency": 1.0,
         "defcon_xpts": 2,
         "value_per_million": 0.4,
-        "last5_actions": [
-          13
-        ]
+        "last5_actions": [13]
       }
     },
     {
@@ -561,11 +520,7 @@
         "consistency": 0.9257730380974795,
         "defcon_xpts": 1.2571428571428573,
         "value_per_million": 0.2793650793650794,
-        "last5_actions": [
-          11,
-          10,
-          12
-        ]
+        "last5_actions": [11, 10, 12]
       }
     },
     {
@@ -676,13 +631,7 @@
         "consistency": 1.0,
         "defcon_xpts": 1.7833333333333332,
         "value_per_million": 0.35666666666666663,
-        "last5_actions": [
-          11,
-          11,
-          11,
-          11,
-          11
-        ]
+        "last5_actions": [11, 11, 11, 11, 11]
       }
     },
     {
@@ -738,13 +687,7 @@
         "consistency": 0.7990793967458902,
         "defcon_xpts": 0.7333333333333334,
         "value_per_million": 0.14666666666666667,
-        "last5_actions": [
-          8,
-          9,
-          10,
-          11,
-          6
-        ]
+        "last5_actions": [8, 9, 10, 11, 6]
       }
     }
   ]

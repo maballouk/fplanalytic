@@ -23,6 +23,12 @@ function player(over: Partial<DefconFilePlayer>): DefconFilePlayer {
     minutes: 270,
     ownership: 15,
     status: 'a',
+    xpts_total: 4.5,
+    xpts_breakdown: {},
+    p_start: 0.9,
+    form5: 4,
+    elite_own: 0.2,
+    elite_cap: 0,
     next5: [{ event: 5, opponent: 'SUN', is_home: true, difficulty: 2 }],
     ...over,
   };
@@ -38,41 +44,47 @@ const CAL: Calendar = {
 };
 
 describe('pickBrief', () => {
+  // The data file arrives sorted by predicted points, so array order is rank
   const players = [
-    player({ player_id: 'buy', name: 'Gabriel', hit_rate: 0.8 }),
+    player({ player_id: 'buy', name: 'Haaland', xpts_total: 6.4, form5: 8.2 }),
     player({
       player_id: 'diff',
       name: 'Mendy',
+      xpts_total: 5.1,
       ownership: 3.1,
-      value_per_million: 0.49,
+      elite_own: 0.05,
       price: 4.1,
     }),
     player({
       player_id: 'trap',
       name: 'Senesi',
-      hit_rate: 0.9,
+      xpts_total: 4.9,
+      elite_own: 0.4,
       next5: [
         { event: 5, opponent: 'LIV', is_home: false, difficulty: 4 },
         { event: 6, opponent: 'MCI', is_home: true, difficulty: 5 },
       ],
     }),
-    player({ player_id: 'rookie', name: 'OneGame', matches_considered: 1, hit_rate: 1 }),
-    player({ player_id: 'injured', name: 'Crocked', status: 'i', hit_rate: 1 }),
+    player({ player_id: 'rookie', name: 'OneGame', matches_considered: 1, xpts_total: 9 }),
+    player({ player_id: 'injured', name: 'Crocked', status: 'i', xpts_total: 9 }),
   ];
   const brief = pickBrief(players);
 
-  it('picks the top eligible buy, skipping small samples and flags', () => {
-    expect(brief.buy?.player.name).toBe('Gabriel');
-    expect(brief.buy?.reason).toContain('10+ actions');
+  it('picks the top eligible player as the buy, skipping small samples and flags', () => {
+    expect(brief.buy?.player.name).toBe('Haaland');
+    expect(brief.buy?.reason).toBe('Predicted 6.4 pts next GW, form 8.2. Soft run next.');
   });
 
-  it('picks a low-ownership differential with the value reason', () => {
+  it('picks a differential the top 50 have not caught yet', () => {
     expect(brief.differential?.player.name).toBe('Mendy');
-    expect(brief.differential?.reason).toBe('70% hit rate at £4.1m, 3.1% owned.');
+    expect(brief.differential?.reason).toBe(
+      'Predicted 5.1 pts, owned by 5% of the top 50 and 3.1% overall.'
+    );
   });
 
-  it('picks a strong profile with a tough run as the trap', () => {
+  it('picks an elite favourite with a tough run as the trap', () => {
     expect(brief.trap?.player.name).toBe('Senesi');
+    expect(brief.trap?.reason).toContain('Owned by 40% of the top 50');
     expect(brief.trap?.reason).toContain('2 of the next 2 are rated 4 or worse. Wait.');
   });
 

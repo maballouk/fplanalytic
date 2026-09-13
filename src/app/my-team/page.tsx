@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
 import MethodNote from '@/components/ds/MethodNote';
 import { loadLatestDefcon } from '@/lib/defcon/data';
-import { pickDefconTeam } from '@/lib/defcon/myteam';
+import { pickPredictedTeam } from '@/lib/defcon/myteam';
 import { NAV } from '@/lib/nav';
 import MyTeam from './MyTeam';
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function MyTeamPage() {
   const data = loadLatestDefcon();
-  const defconTeam = data ? pickDefconTeam(data.players) : null;
+  const defconTeam = data ? pickPredictedTeam(data.players) : null;
 
   return (
     <AppShell brand="fplanalytic" nav={NAV} activeHref="/my-team">
@@ -29,7 +29,7 @@ export default function MyTeamPage() {
         </span>
         <h1 className="mt-2 font-display text-3xl font-black tracking-tight">My Team</h1>
         <p className="mt-1 text-text-muted">
-          Your squad through DEFCON eyes, next to the XI the numbers would field.
+          Your real squad, its predicted points, and the XI the numbers would field.
         </p>
       </header>
 

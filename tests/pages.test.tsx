@@ -10,7 +10,7 @@ import PremiumPage from '@/app/premium/page';
 describe('Home (state-aware DEFCON hub)', () => {
   it('renders the brief hero and the table from the data file', () => {
     render(<Home />);
-    expect(screen.getByText('Defensive Contribution, decoded.')).toBeInTheDocument();
+    expect(screen.getByText("Every player's next gameweek, in points.")).toBeInTheDocument();
     expect(screen.getByText(/GW\d+ brief/)).toBeInTheDocument();
     expect(screen.getByText('THE BUY')).toBeInTheDocument();
     expect(screen.getByText(/Updated GW \d+/)).toBeInTheDocument();

@@ -1,8 +1,8 @@
 'use client';
 
-// DEFCON Asset Finder table (DESIGN.md §3.1): filters, sortable numeric
-// columns, drawer with the Decision block. Free tier: full table, top 30 rows;
-// the rest sits behind an inline PremiumLock. Copy from docs/COPY.md.
+// FPL player table, totals-first (owner direction 2026-09-13): predicted
+// points lead, with form and top-50 ownership beside them; DEFCON stays as
+// one column and the drawer keeps its detail. Filters live in the URL.
 
 import { useEffect, useMemo, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
@@ -12,21 +12,20 @@ import PlayerRow from '@/components/ds/PlayerRow';
 import TeamBadge from '@/components/ds/TeamBadge';
 import PremiumLock from '@/components/ds/PremiumLock';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
-import ThresholdBar from '@/components/ds/ThresholdBar';
 import PlayerProfileDrawer from '@/components/PlayerProfileDrawer';
 import { track } from '@/lib/analytics';
 import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
-import { thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
+import type { DefconFilePlayer } from '@/lib/defcon/file';
 
-type PositionFilter = 'ALL' | 'DEF' | 'MID' | 'FWD';
-type SortKey = 'hit_rate' | 'mean_actions' | 'near_miss_rate' | 'defcon_xpts' | 'value_per_million';
+type PositionFilter = 'ALL' | 'GK' | 'DEF' | 'MID' | 'FWD';
+type SortKey = 'xpts_total' | 'form5' | 'elite_own' | 'defcon_xpts' | 'value_per_million';
 
 const SORTABLE: { key: SortKey; label: string }[] = [
-  { key: 'hit_rate', label: 'Hit rate' },
-  { key: 'mean_actions', label: 'Avg actions' },
-  { key: 'near_miss_rate', label: 'Near miss' },
-  { key: 'defcon_xpts', label: 'xPts' },
-  { key: 'value_per_million', label: 'Value /£m' },
+  { key: 'xpts_total', label: 'Predicted pts' },
+  { key: 'form5', label: 'Form' },
+  { key: 'elite_own', label: 'Top-50 own' },
+  { key: 'defcon_xpts', label: 'DEFCON' },
+  { key: 'value_per_million', label: 'DEFCON /£m' },
 ];
 
 export interface AssetFinderProps {
@@ -41,18 +40,16 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
   const [maxPrice, setMaxPrice] = useState('');
   const [minMinutes, setMinMinutes] = useState('');
   const [team, setTeam] = useState('ALL');
-  const [sortBy, setSortBy] = useState<SortKey>('defcon_xpts');
+  const [sortBy, setSortBy] = useState<SortKey>('xpts_total');
   const [selected, setSelected] = useState<DefconFilePlayer | null>(null);
 
   const teams = useMemo(() => Array.from(new Set(players.map((p) => p.team))).sort(), [players]);
 
-  // URLs reflect UI state (Web Interface Guidelines): filters live in query
-  // params so a filtered view is shareable. history.replaceState keeps the
-  // page static-rendered (no router round trip).
+  // URLs reflect UI state (Web Interface Guidelines)
   useEffect(() => {
     const q = new URLSearchParams(window.location.search);
     const pos = q.get('pos');
-    if (pos && ['DEF', 'MID', 'FWD'].includes(pos)) setPosition(pos as PositionFilter);
+    if (pos && ['GK', 'DEF', 'MID', 'FWD'].includes(pos)) setPosition(pos as PositionFilter);
     if (q.get('price')) setMaxPrice(q.get('price') as string);
     if (q.get('min')) setMinMinutes(q.get('min') as string);
     if (q.get('team')) setTeam(q.get('team') as string);
@@ -68,7 +65,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
     setOrDelete('price', maxPrice, maxPrice === '');
     setOrDelete('min', minMinutes, minMinutes === '');
     setOrDelete('team', team, team === 'ALL');
-    setOrDelete('sort', sortBy, sortBy === 'defcon_xpts');
+    setOrDelete('sort', sortBy, sortBy === 'xpts_total');
     const qs = q.toString();
     window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
   }, [position, maxPrice, minMinutes, team, sortBy]);
@@ -114,6 +111,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
           onChange={changeFilter('position', setPosition)}
           options={[
             { value: 'ALL', label: 'All' },
+            { value: 'GK', label: 'GK' },
             { value: 'DEF', label: 'DEF' },
             { value: 'MID', label: 'MID' },
             { value: 'FWD', label: 'FWD' },
@@ -173,7 +171,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
         />
       ) : (
         <div className="overflow-x-auto rounded-card border border-line bg-bg-raised shadow-card">
-          <table className="w-full min-w-[900px] text-sm">
+          <table className="w-full min-w-[880px] text-sm">
             <thead>
               <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-text-faint">
                 <th scope="col" className="px-3 py-2">
@@ -223,17 +221,24 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
                   teamBadge={<TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={16} />}
                   onClick={() => openPlayer(p)}
                 >
-                  <td className="num px-3 py-2">{pct(p.hit_rate)}</td>
-                  <td className="px-3 py-2">
-                    <ThresholdBar
-                      actions={Math.round(p.mean_actions)}
-                      threshold={thresholdFor(p.position)}
-                      label={`${p.mean_actions.toFixed(1)} of ${thresholdFor(p.position)} defensive actions on average`}
-                    />
+                  <td className="num px-3 py-2 text-base font-bold text-accent">
+                    {p.xpts_total.toFixed(1)}
                   </td>
-                  <td className="num px-3 py-2">{pct(p.near_miss_rate)}</td>
-                  <td className="num px-3 py-2">{p.defcon_xpts.toFixed(2)}</td>
-                  <td className="num px-3 py-2">{p.value_per_million.toFixed(3)}</td>
+                  <td className="num px-3 py-2">{p.form5.toFixed(1)}</td>
+                  <td className="num px-3 py-2">
+                    {pct(p.elite_own)}
+                    {p.elite_cap >= 0.1 && (
+                      <span className="ml-1 text-xs text-warn" title="Captained by the top 50">
+                        C {pct(p.elite_cap)}
+                      </span>
+                    )}
+                  </td>
+                  <td className="num px-3 py-2 text-text-muted">
+                    {p.position === 'GK' ? '—' : p.defcon_xpts.toFixed(2)}
+                  </td>
+                  <td className="num px-3 py-2 text-text-muted">
+                    {p.position === 'GK' ? '—' : p.value_per_million.toFixed(3)}
+                  </td>
                   <td className="px-3 py-2">
                     <FixtureStrip
                       fixtures={p.next5.map((f) => ({
@@ -257,7 +262,7 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
             ctaLabel="Go premium"
             ctaHref="/premium"
           >
-            <table className="w-full min-w-[900px] text-sm">
+            <table className="w-full min-w-[880px] text-sm">
               <tbody>
                 {locked.map((p, i) => (
                   <PlayerRow

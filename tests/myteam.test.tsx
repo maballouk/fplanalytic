@@ -3,8 +3,8 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import MyTeam from '@/app/my-team/MyTeam';
 import {
   bestUpgrade,
-  pickDefconTeam,
-  squadDefconTotal,
+  pickPredictedTeam,
+  squadPredictedTotal,
   type EntryPickView,
 } from '@/lib/defcon/myteam';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
@@ -30,15 +30,23 @@ function player(over: Partial<DefconFilePlayer>): DefconFilePlayer {
     minutes: 270,
     ownership: 15,
     status: 'a',
+    xpts_total: 4.5,
+    xpts_breakdown: {},
+    p_start: 0.9,
+    form5: 4,
+    elite_own: 0.2,
+    elite_cap: 0,
     next5: [{ event: 5, opponent: 'SUN', is_home: true, difficulty: 2 }],
     ...over,
   };
 }
 
-// Enough eligible outfielders for every formation attempt
+// Enough eligible players in every position for every formation attempt
 const POOL: DefconFilePlayer[] = [
+  player({ player_id: 'g0', name: 'Keeper0', team: 'GA', position: 'GK', xpts_total: 4.5 }),
+  player({ player_id: 'g1', name: 'Keeper1', team: 'GB', position: 'GK', xpts_total: 4.0 }),
   ...Array.from({ length: 6 }, (_, i) =>
-    player({ player_id: `d${i}`, name: `Def${i}`, team: `T${i}`, defcon_xpts: 2 - i * 0.1 })
+    player({ player_id: `d${i}`, name: `Def${i}`, team: `T${i}`, xpts_total: 5 - i * 0.1 })
   ),
   ...Array.from({ length: 6 }, (_, i) =>
     player({
@@ -46,7 +54,7 @@ const POOL: DefconFilePlayer[] = [
       name: `Mid${i}`,
       team: `T${i}`,
       position: 'MID',
-      defcon_xpts: 1.8 - i * 0.1,
+      xpts_total: 4.8 - i * 0.1,
     })
   ),
   ...Array.from({ length: 3 }, (_, i) =>
@@ -55,7 +63,7 @@ const POOL: DefconFilePlayer[] = [
       name: `Fwd${i}`,
       team: `U${i}`,
       position: 'FWD',
-      defcon_xpts: 0.5 - i * 0.1,
+      xpts_total: 3.5 - i * 0.1,
     })
   ),
 ];
@@ -73,44 +81,57 @@ const pick = (over: Partial<EntryPickView>): EntryPickView => ({
   ...over,
 });
 
-describe('pickDefconTeam', () => {
-  it('fields ten outfielders in a legal FPL formation, injured players excluded', () => {
-    const team = pickDefconTeam([
+describe('pickPredictedTeam', () => {
+  it('fields a goalkeeper plus ten outfielders; injured and rotation risks excluded', () => {
+    const team = pickPredictedTeam([
       ...POOL,
-      player({ player_id: 'hurt', defcon_xpts: 9, status: 'i' }),
+      player({ player_id: 'hurt', xpts_total: 9, status: 'i' }),
+      player({ player_id: 'benchwarmer', xpts_total: 9, p_start: 0.3 }),
     ]);
     expect(team).not.toBeNull();
+    expect(team!.gk.position).toBe('GK');
+    expect(team!.gk.name).toBe('Keeper0'); // higher predicted of the two
     const [d, m, f] = team!.formation.split('-').map(Number);
     expect(d + m + f).toBe(10);
     expect(d).toBeGreaterThanOrEqual(3);
     expect(f).toBeGreaterThanOrEqual(1);
-    const names = [...team!.def, ...team!.mid, ...team!.fwd].map((p) => p.player_id);
-    expect(names).not.toContain('hurt');
+    const ids = [team!.gk, ...team!.def, ...team!.mid, ...team!.fwd].map((p) => p.player_id);
+    expect(ids).not.toContain('hurt');
+    expect(ids).not.toContain('benchwarmer');
+    expect(ids).toHaveLength(11);
   });
 });
 
-describe('squadDefconTotal / bestUpgrade', () => {
+describe('squadPredictedTotal / bestUpgrade', () => {
   const byId = new Map(POOL.map((p) => [p.player_id, p]));
 
-  it('sums starters only, GK counts zero', () => {
+  it('sums starters only, goalkeeper included', () => {
     const picks = [
       pick({ id: 999, position: 'GKP', pick_position: 1 }),
       pick({ id: 1, name: 'Def0', pick_position: 2 }),
       pick({ id: 2, name: 'BenchGuy', pick_position: 12 }),
     ];
     const map = new Map([
-      ['1', player({ player_id: '1', defcon_xpts: 1.5 })],
-      ['2', player({ player_id: '2', defcon_xpts: 2 })],
+      ['999', player({ player_id: '999', position: 'GK', xpts_total: 4 })],
+      ['1', player({ player_id: '1', xpts_total: 4.2 })],
+      ['2', player({ player_id: '2', xpts_total: 5 })],
     ]);
-    expect(squadDefconTotal(picks, map)).toBeCloseTo(1.5);
+    expect(squadPredictedTotal(picks, map)).toBeCloseTo(8.2);
   });
 
-  it('suggests the biggest like-for-like upgrade among unowned players', () => {
-    const picks = [pick({ id: 42, name: 'WeakDef', pick_position: 2 })]; // not in data: 0 xPts
+  it('suggests the biggest like-for-like upgrade among unowned likely starters', () => {
+    const picks = [pick({ id: 42, name: 'WeakDef', pick_position: 2 })]; // not in data: 0 pts
     const up = bestUpgrade(picks, byId, POOL);
     expect(up).not.toBeNull();
     expect(up!.in.name).toBe('Def0'); // best unowned DEF
-    expect(up!.gain).toBeCloseTo(2);
+    expect(up!.gain).toBeCloseTo(5);
+  });
+
+  it('can upgrade the goalkeeper too', () => {
+    const picks = [pick({ id: 43, name: 'WeakKeeper', position: 'GKP', pick_position: 1 })];
+    const up = bestUpgrade(picks, byId, POOL);
+    expect(up).not.toBeNull();
+    expect(up!.in.name).toBe('Keeper0');
   });
 });
 
@@ -139,10 +160,11 @@ describe('MyTeam component', () => {
         }),
       }))
     );
-    render(<MyTeam players={POOL} defconTeam={pickDefconTeam(POOL)} />);
+    render(<MyTeam players={POOL} defconTeam={pickPredictedTeam(POOL)} />);
     await waitFor(() => expect(screen.getByText('Elmaestro XI')).toBeInTheDocument());
     expect(screen.getByText('Your XI')).toBeInTheDocument();
-    expect(screen.getByText('The DEFCON XI')).toBeInTheDocument();
+    expect(screen.getByText('The predicted XI')).toBeInTheDocument();
+    expect(screen.getByText('Keeper0')).toBeInTheDocument(); // GK on the tool's pitch
     expect(screen.getByText('MyDef')).toBeInTheDocument();
     expect(screen.getByTitle('Captain')).toBeInTheDocument();
     expect(screen.getByText('Benchy')).toBeInTheDocument();

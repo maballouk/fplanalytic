@@ -16,6 +16,11 @@ const gabrielGw2 = {
   tackles: 2,
   recoveries: 5,
   defensive_contribution: 10,
+  goals_scored: 1,
+  assists: 0,
+  clean_sheets: 1,
+  saves: 0,
+  bonus: 2,
 };
 
 const kamaraGw1 = {
@@ -29,6 +34,11 @@ const kamaraGw1 = {
   tackles: 2,
   recoveries: 2,
   defensive_contribution: 7,
+  goals_scored: 0,
+  assists: 0,
+  clean_sheets: 0,
+  saves: 0,
+  bonus: 0,
 };
 
 describe('ElementHistorySchema', () => {

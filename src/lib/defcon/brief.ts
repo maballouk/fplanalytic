@@ -2,8 +2,8 @@
 // three calls for the gameweek, and one home page that knows what week it is.
 // Pure functions, unit-tested; the page only renders what these return.
 
-import { BUY_MIN, decide } from './decision';
-import { meanNext5Fdr, thresholdFor, type Calendar, type DefconFilePlayer } from './file';
+import { meanNext5Fdr, type Calendar, type DefconFilePlayer } from './file';
+import { thresholdFor } from './file';
 
 export interface BriefCall {
   player: DefconFilePlayer;
@@ -20,47 +20,51 @@ export interface Brief {
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
-/** Pick the gameweek's three calls from ranked profiles (already xPts-sorted). */
+/** Pick the gameweek's three calls, totals-first (owner direction 2026-09-13). */
 export function pickBrief(players: DefconFilePlayer[]): Brief {
   // One-match wonders make embarrassing headline calls; ask for a sample.
   const pool = players.filter((p) => p.status === 'a' && p.matches_considered >= 2);
 
-  const buyPlayer = pool.find((p) => p.hit_rate >= BUY_MIN && (meanNext5Fdr(p) ?? 5) <= 3) ?? null;
+  const note = (p: DefconFilePlayer): string => {
+    const fdr = meanNext5Fdr(p);
+    if (fdr === null) return 'No upcoming fixtures.';
+    if (fdr <= 2.5) return 'Soft run next.';
+    if (fdr <= 3.2) return 'Even run next.';
+    return 'Tough run next.';
+  };
+
+  const buyPlayer = pool.find((p) => (meanNext5Fdr(p) ?? 5) <= 3 && p.p_start >= 0.7) ?? null;
   const buy: BriefCall | null = buyPlayer && {
     player: buyPlayer,
     tag: 'THE BUY',
     verdict: 'BUY',
-    reason: decide({
-      hitRate: buyPlayer.hit_rate,
-      threshold: thresholdFor(buyPlayer.position),
-      last5Actions: buyPlayer.last5_actions,
-      meanNext5Fdr: meanNext5Fdr(buyPlayer),
-      status: buyPlayer.status,
-    }).reason,
+    reason: `Predicted ${buyPlayer.xpts_total.toFixed(1)} pts next GW, form ${buyPlayer.form5.toFixed(1)}. ${note(buyPlayer)}`,
   };
 
   const diffPlayer =
     pool
-      .filter((p) => p !== buyPlayer && p.ownership < 10 && p.hit_rate >= BUY_MIN)
-      .sort((a, b) => b.value_per_million - a.value_per_million)[0] ?? null;
+      .filter((p) => p !== buyPlayer && p.elite_own <= 0.1 && p.ownership < 10 && p.p_start >= 0.7)
+      .sort((a, b) => b.xpts_total - a.xpts_total)[0] ?? null;
   const differential: BriefCall | null = diffPlayer && {
     player: diffPlayer,
     tag: 'THE DIFFERENTIAL',
-    reason: `${pct(diffPlayer.hit_rate)} hit rate at £${diffPlayer.price.toFixed(1)}m, ${diffPlayer.ownership.toFixed(1)}% owned.`,
+    reason: `Predicted ${diffPlayer.xpts_total.toFixed(1)} pts, owned by ${Math.round(diffPlayer.elite_own * 100)}% of the top 50 and ${diffPlayer.ownership.toFixed(1)}% overall.`,
   };
 
   const trapPlayer =
     pool
-      .filter((p) => p !== buyPlayer && p !== diffPlayer && p.hit_rate >= BUY_MIN)
-      .filter((p) => (meanNext5Fdr(p) ?? 0) >= 3.4)
-      .sort((a, b) => b.hit_rate - a.hit_rate || b.defcon_xpts - a.defcon_xpts)[0] ?? null;
+      .filter((p) => p !== buyPlayer && p !== diffPlayer && p.elite_own >= 0.3)
+      .filter((p) => (meanNext5Fdr(p) ?? 0) >= 3.4 || p.p_start < 0.7)
+      .sort((a, b) => b.elite_own - a.elite_own)[0] ?? null;
   const trap: BriefCall | null = trapPlayer && {
     player: trapPlayer,
     tag: 'THE TRAP',
     verdict: 'HOLD',
-    reason: `${pct(trapPlayer.hit_rate)} hit rate, but ${
-      trapPlayer.next5.filter((f) => f.difficulty >= 4).length
-    } of the next ${trapPlayer.next5.length} are rated 4 or worse. Wait.`,
+    reason: `Owned by ${Math.round(trapPlayer.elite_own * 100)}% of the top 50, but ${
+      (meanNext5Fdr(trapPlayer) ?? 0) >= 3.4
+        ? `${trapPlayer.next5.filter((f) => f.difficulty >= 4).length} of the next ${trapPlayer.next5.length} are rated 4 or worse`
+        : `P(start) is only ${Math.round(trapPlayer.p_start * 100)}%`
+    }. Wait.`,
   };
 
   return { buy, differential, trap };

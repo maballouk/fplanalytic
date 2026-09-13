@@ -1,10 +1,6 @@
-// My Team (FPL): compare a manager's real XI with the tool's DEFCON XI.
+// My Team (FPL): compare a manager's real XI with the tool's predicted XI on
+// TOTAL predicted points (owner direction 2026-09-13), goalkeeper included.
 // Pure functions; the /my-team page renders what these return.
-//
-// The comparison is deliberately on ONE axis: expected defensive-contribution
-// points. Goalkeepers cannot earn DEFCON, so the tool's XI is 10 outfielders
-// under FPL's formation rules (3-5 DEF, 2-5 MID, 1-3 FWD, max 3 per club) and
-// the manager's GK counts 0. The page says all of this out loud.
 
 import type { DefconFilePlayer } from './file';
 
@@ -32,22 +28,27 @@ const FPL_FORMATIONS: [number, number, number][] = [
 ];
 const MAX_PER_CLUB = 3;
 
-export interface DefconTeam {
+export interface PredictedTeam {
   formation: string;
+  gk: DefconFilePlayer;
   def: DefconFilePlayer[];
   mid: DefconFilePlayer[];
   fwd: DefconFilePlayer[];
   total: number;
 }
 
-/** The tool's best outfield XI by DEFCON xPts under FPL rules. */
-export function pickDefconTeam(players: DefconFilePlayer[]): DefconTeam | null {
+/** The tool's best full XI (GK included) by total predicted points. */
+export function pickPredictedTeam(players: DefconFilePlayer[]): PredictedTeam | null {
+  const eligible = players.filter((p) => p.status === 'a' && p.p_start >= 0.5);
   const byPos = {
-    DEF: players.filter((p) => p.position === 'DEF' && p.status === 'a'),
-    MID: players.filter((p) => p.position === 'MID' && p.status === 'a'),
-    FWD: players.filter((p) => p.position === 'FWD' && p.status === 'a'),
+    GK: eligible.filter((p) => p.position === 'GK'),
+    DEF: eligible.filter((p) => p.position === 'DEF'),
+    MID: eligible.filter((p) => p.position === 'MID'),
+    FWD: eligible.filter((p) => p.position === 'FWD'),
   };
-  let best: DefconTeam | null = null;
+  for (const list of Object.values(byPos)) list.sort((a, b) => b.xpts_total - a.xpts_total);
+
+  let best: PredictedTeam | null = null;
   for (const [d, m, f] of FPL_FORMATIONS) {
     const clubCount = new Map<string, number>();
     const take = (list: DefconFilePlayer[], n: number): DefconFilePlayer[] | null => {
@@ -60,26 +61,27 @@ export function pickDefconTeam(players: DefconFilePlayer[]): DefconTeam | null {
       }
       return out.length === n ? out : null;
     };
-    const def = take(byPos.DEF, d);
+    const gk = take(byPos.GK, 1);
+    const def = gk && take(byPos.DEF, d);
     const mid = def && take(byPos.MID, m);
     const fwd = mid && take(byPos.FWD, f);
-    if (!def || !mid || !fwd) continue;
-    const total = [...def, ...mid, ...fwd].reduce((s, p) => s + p.defcon_xpts, 0);
+    if (!gk || !def || !mid || !fwd) continue;
+    const total = [...gk, ...def, ...mid, ...fwd].reduce((s, p) => s + p.xpts_total, 0);
     if (best === null || total > best.total) {
-      best = { formation: `${d}-${m}-${f}`, def, mid, fwd, total };
+      best = { formation: `${d}-${m}-${f}`, gk: gk[0], def, mid, fwd, total };
     }
   }
   return best;
 }
 
-/** Sum of DEFCON xPts for a manager's starting XI (GK counts 0). */
-export function squadDefconTotal(
+/** Sum of predicted points for a manager's starting XI. */
+export function squadPredictedTotal(
   picks: EntryPickView[],
   byElementId: Map<string, DefconFilePlayer>
 ): number {
   return picks
     .filter((p) => p.pick_position <= 11)
-    .reduce((s, p) => s + (byElementId.get(String(p.id))?.defcon_xpts ?? 0), 0);
+    .reduce((s, p) => s + (byElementId.get(String(p.id))?.xpts_total ?? 0), 0);
 }
 
 export interface UpgradeSuggestion {
@@ -89,8 +91,9 @@ export interface UpgradeSuggestion {
 }
 
 /**
- * The single biggest like-for-like upgrade: the manager's weakest outfield
- * starter against the best same-position player they do not own.
+ * The single biggest like-for-like upgrade on total predicted points:
+ * the manager's weakest starter against the best same-position player
+ * they do not own (goalkeepers included).
  */
 export function bestUpgrade(
   picks: EntryPickView[],
@@ -98,15 +101,18 @@ export function bestUpgrade(
   all: DefconFilePlayer[]
 ): UpgradeSuggestion | null {
   const owned = new Set(picks.map((p) => String(p.id)));
+  const sorted = [...all].sort((a, b) => b.xpts_total - a.xpts_total);
   let best: UpgradeSuggestion | null = null;
-  for (const pick of picks.filter((p) => p.pick_position <= 11 && p.position !== 'GKP')) {
-    const currentXpts = byElementId.get(String(pick.id))?.defcon_xpts ?? 0;
-    const candidate = all.find(
-      (c) => c.position === pick.position && c.status === 'a' && !owned.has(c.player_id)
+  for (const pick of picks.filter((p) => p.pick_position <= 11)) {
+    const dataPos = pick.position === 'GKP' ? 'GK' : pick.position;
+    const currentXpts = byElementId.get(String(pick.id))?.xpts_total ?? 0;
+    const candidate = sorted.find(
+      (c) =>
+        c.position === dataPos && c.status === 'a' && c.p_start >= 0.7 && !owned.has(c.player_id)
     );
     if (!candidate) continue;
-    const gain = candidate.defcon_xpts - currentXpts;
-    if (gain > 0.05 && (best === null || gain > best.gain)) {
+    const gain = candidate.xpts_total - currentXpts;
+    if (gain > 0.2 && (best === null || gain > best.gain)) {
       best = { out: pick, in: candidate, gain };
     }
   }

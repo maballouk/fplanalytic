@@ -12,7 +12,7 @@ export const DefconFilePlayerSchema = z.object({
   team_code: z.number(), // PL media id for the club badge
   name: z.string(),
   team: z.string(),
-  position: z.enum(['DEF', 'MID', 'FWD']),
+  position: z.enum(['GK', 'DEF', 'MID', 'FWD']),
   price: z.number(),
   matches_considered: z.number(),
   hit_rate: z.number(),
@@ -25,6 +25,15 @@ export const DefconFilePlayerSchema = z.object({
   minutes: z.number(),
   ownership: z.number().default(0), // selected_by_percent, e.g. 12.3
   status: z.string(),
+  // Total predicted FPL points for the NEXT gameweek (lib/fpl/xpts.ts v1)
+  xpts_total: z.number().default(0),
+  xpts_breakdown: z.record(z.string(), z.number()).default({}),
+  p_start: z.number().default(0),
+  /** Average actual FPL points over the last 5 appearances */
+  form5: z.number().default(0),
+  /** Share of the world's top 50 managers who own / captain this player */
+  elite_own: z.number().default(0),
+  elite_cap: z.number().default(0),
   next5: z.array(
     z.object({
       event: z.number().nullable(),
