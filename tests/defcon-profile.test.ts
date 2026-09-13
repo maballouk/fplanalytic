@@ -63,6 +63,8 @@ describe('defconProfile — parity with the Python engine fixture', () => {
         minMinutes: (options as Record<string, number>).min_minutes,
         nearMissMargin: (options as Record<string, number>).near_miss_margin,
         recencyWeight: (options as Record<string, number>).recency_weight,
+        priorHitRate: (options as Record<string, number>).prior_hit_rate,
+        priorMatches: (options as Record<string, number>).prior_matches,
       });
       if (c.expected === null) {
         expect(p).toBeNull();

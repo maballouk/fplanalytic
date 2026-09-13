@@ -79,12 +79,18 @@ def defcon_profile(
     min_minutes: int = 60,
     near_miss_margin: int = 2,
     recency_weight: float = 0.6,
+    prior_hit_rate: Optional[float] = None,
+    prior_matches: float = 4.0,
 ) -> Optional[DefconProfile]:
     """
     Build a DEFCON profile from match history. Only matches with >= min_minutes
     count (a 15-minute cameo tells you nothing about a player's engine).
     `recency_weight` blends last-5-match hit rate with season hit rate so the
     number reacts to role changes without being whipsawed by one game.
+    `prior_hit_rate` (typically the league-wide rate for the position) shrinks
+    the blend with `prior_matches` virtual matches, so a 3-of-3 start reads as
+    ~60-something percent instead of certainty (2026-09-13: early-season tables
+    were walls of players at exactly 2.00 xPts).
     """
     thr = THRESHOLD.get(position)
     if thr is None:
@@ -100,6 +106,9 @@ def defcon_profile(
     last5 = acts[-5:]
     last5_hit = mean(a >= thr for a in last5)
     blended_hit = recency_weight * last5_hit + (1 - recency_weight) * season_hit if len(games) >= 5 else season_hit
+    if prior_hit_rate is not None:
+        n = len(games)
+        blended_hit = (blended_hit * n + prior_hit_rate * prior_matches) / (n + prior_matches)
 
     mu = mean(acts)
     sd = pstdev(acts) if len(acts) > 1 else 0.0

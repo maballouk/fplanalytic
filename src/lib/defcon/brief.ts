@@ -2,7 +2,7 @@
 // three calls for the gameweek, and one home page that knows what week it is.
 // Pure functions, unit-tested; the page only renders what these return.
 
-import { decide } from './decision';
+import { BUY_MIN, decide } from './decision';
 import { meanNext5Fdr, thresholdFor, type Calendar, type DefconFilePlayer } from './file';
 
 export interface BriefCall {
@@ -25,7 +25,7 @@ export function pickBrief(players: DefconFilePlayer[]): Brief {
   // One-match wonders make embarrassing headline calls; ask for a sample.
   const pool = players.filter((p) => p.status === 'a' && p.matches_considered >= 2);
 
-  const buyPlayer = pool.find((p) => p.hit_rate >= 0.6 && (meanNext5Fdr(p) ?? 5) <= 3) ?? null;
+  const buyPlayer = pool.find((p) => p.hit_rate >= BUY_MIN && (meanNext5Fdr(p) ?? 5) <= 3) ?? null;
   const buy: BriefCall | null = buyPlayer && {
     player: buyPlayer,
     tag: 'THE BUY',
@@ -41,7 +41,7 @@ export function pickBrief(players: DefconFilePlayer[]): Brief {
 
   const diffPlayer =
     pool
-      .filter((p) => p !== buyPlayer && p.ownership < 10 && p.hit_rate >= 0.6)
+      .filter((p) => p !== buyPlayer && p.ownership < 10 && p.hit_rate >= BUY_MIN)
       .sort((a, b) => b.value_per_million - a.value_per_million)[0] ?? null;
   const differential: BriefCall | null = diffPlayer && {
     player: diffPlayer,
@@ -51,7 +51,7 @@ export function pickBrief(players: DefconFilePlayer[]): Brief {
 
   const trapPlayer =
     pool
-      .filter((p) => p !== buyPlayer && p !== diffPlayer && p.hit_rate >= 0.75)
+      .filter((p) => p !== buyPlayer && p !== diffPlayer && p.hit_rate >= BUY_MIN)
       .filter((p) => (meanNext5Fdr(p) ?? 0) >= 3.4)
       .sort((a, b) => b.hit_rate - a.hit_rate || b.defcon_xpts - a.defcon_xpts)[0] ?? null;
   const trap: BriefCall | null = trapPlayer && {

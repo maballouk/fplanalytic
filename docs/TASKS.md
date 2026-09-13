@@ -181,6 +181,12 @@ backtest numbers on methodology page.
   the endpoint TLS-fingerprints plain Python, so the adapter fetches via curl_cffi Chrome
   impersonation with a `--players-file` manual fallback. ClubElo (free hobby API) 502s
   intermittently: the CLI retries 3x then fits without priors.
+- 2026-09-13 (models): raw hit rates made early-season tables a wall of 2.00 xPts (3-of-3 =
+  "certainty") and the DEFCON XI looked broken. Both implementations now shrink the blended hit
+  rate toward the league rate per position (computed from all qualifying matches in the data
+  build) with 4 virtual matches; parity fixtures extended. Buy/Avoid thresholds recalibrated to
+  the shrunk scale (0.45/0.25, from 0.6/0.4). Same lesson as rho/home_adv: regularise everything
+  that is fitted from a handful of matches.
 - 2026-09-13: "My Team" shipped (beyond the original task list, from the UX flow work):
   /my-team compares a manager's real squad (public FPL API by team ID, stored in localStorage,
   no login) with the tool's DEFCON XI on two pitches, plus a biggest-upgrade suggestion.

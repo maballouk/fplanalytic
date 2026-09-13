@@ -1,6 +1,8 @@
-// Decision logic for the PlayerDrawer (TASKS.md 1.4):
-//   Buy   if blended hit_rate >= 0.6 AND next-5 mean FDR <= 3
-//   Avoid if hit_rate < 0.4 OR minutes risk (FPL status flag not "a")
+// Decision logic for the PlayerDrawer (TASKS.md 1.4, thresholds recalibrated
+// 2026-09-13 when hit rates gained league-prior shrinkage; the original
+// 0.6/0.4 cutoffs were set for raw rates and left everything on Hold):
+//   Buy   if shrunk hit_rate >= BUY_MIN AND next-5 mean FDR <= 3
+//   Avoid if shrunk hit_rate < AVOID_MAX OR minutes risk (status not "a")
 //   Hold  otherwise (including a strong engine facing a tough run)
 // Reason strings follow the approved pattern in docs/COPY.md:
 //   "{hits} of last {n} with {threshold}+ actions. {fixture note}"
@@ -16,6 +18,10 @@ export interface DecisionInput {
   /** FPL status flag: a=available, d=doubtful, i=injured, s=suspended, u=unavailable */
   status: string;
 }
+
+// ~1.7x the league DEF prior; a genuinely bankable profile after shrinkage
+export const BUY_MIN = 0.45;
+export const AVOID_MAX = 0.25;
 
 export interface Decision {
   verdict: Verdict;
@@ -54,13 +60,13 @@ export function decide(input: DecisionInput): Decision {
       reason: `Minutes risk: ${word}. ${engineSentence(input)}`,
     };
   }
-  if (input.hitRate < 0.4) {
+  if (input.hitRate < AVOID_MAX) {
     return {
       verdict: 'Avoid',
       reason: `${engineSentence(input)} Hit rate too low. ${fixtureNote(input.meanNext5Fdr)}`,
     };
   }
-  if (input.hitRate >= 0.6 && input.meanNext5Fdr !== null && input.meanNext5Fdr <= 3) {
+  if (input.hitRate >= BUY_MIN && input.meanNext5Fdr !== null && input.meanNext5Fdr <= 3) {
     return {
       verdict: 'Buy',
       reason: `${engineSentence(input)} ${fixtureNote(input.meanNext5Fdr)}`,

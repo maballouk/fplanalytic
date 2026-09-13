@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { decide, hasMinutesRisk } from '@/lib/defcon/decision';
 
-// TASKS.md 1.4: Buy if hit_rate >= 0.6 and next-5 mean FDR <= 3;
-// Hold if 0.4-0.6; Avoid if < 0.4 or minutes risk.
+// Recalibrated for shrunk hit rates (2026-09-13): Buy if hit_rate >= 0.45
+// and next-5 mean FDR <= 3; Hold between; Avoid if < 0.25 or minutes risk.
 
 const base = {
   threshold: 10,
@@ -18,12 +18,12 @@ describe('decide', () => {
     expect(d.reason).toBe('4 of last 5 with 10+ actions. Even run next.');
   });
 
-  it('Buy boundary: exactly 0.6 and FDR exactly 3', () => {
-    expect(decide({ ...base, hitRate: 0.6, meanNext5Fdr: 3 }).verdict).toBe('Buy');
+  it('Buy boundary: exactly 0.45 and FDR exactly 3', () => {
+    expect(decide({ ...base, hitRate: 0.45, meanNext5Fdr: 3 }).verdict).toBe('Buy');
   });
 
   it('Hold: middling hit rate', () => {
-    expect(decide({ ...base, hitRate: 0.5 }).verdict).toBe('Hold');
+    expect(decide({ ...base, hitRate: 0.35 }).verdict).toBe('Hold');
   });
 
   it('Hold: strong engine but tough run', () => {
@@ -33,7 +33,7 @@ describe('decide', () => {
   });
 
   it('Avoid: hit rate below 0.4', () => {
-    const d = decide({ ...base, hitRate: 0.3, last5Actions: [5, 6, 4, 7, 5] });
+    const d = decide({ ...base, hitRate: 0.2, last5Actions: [5, 6, 4, 7, 5] });
     expect(d.verdict).toBe('Avoid');
     expect(d.reason).toContain('Hit rate too low.');
   });

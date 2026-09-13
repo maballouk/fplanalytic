@@ -90,6 +90,18 @@ CASES = [
         "history": [{"minutes": 60, "cbit": 9, "recoveries": 4}],
     },
     {
+        "label": "shrinkage: 3-of-3 defender pulled toward a 35% position prior",
+        "args": ("14", "Def", "T", "DEF", 4.5),
+        "history": [{"minutes": 90, "cbit": a} for a in [11, 10, 12]],
+        "options": {"prior_hit_rate": 0.35, "prior_matches": 4.0},
+    },
+    {
+        "label": "shrinkage: large sample resists the prior",
+        "args": ("15", "Def", "T", "DEF", 5.0),
+        "history": [{"minutes": 90, "cbit": 11} for _ in range(20)],
+        "options": {"prior_hit_rate": 0.35, "prior_matches": 4.0},
+    },
+    {
         "label": "non-default options: min 45, margin 3, weight 0.5",
         "args": ("13", "Def", "T", "DEF", 5.0),
         "history": [{"minutes": 50, "cbit": a} for a in [7, 8, 9, 10, 11, 6]],

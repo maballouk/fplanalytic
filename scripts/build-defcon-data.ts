@@ -29,6 +29,7 @@ const KEEP_GWS = 3;
 const MAX_FAILURE_SHARE = 0.05; // fail the run rather than publish a thin file
 
 const POSITION: Record<number, DefconPosition> = { 2: 'DEF', 3: 'MID', 4: 'FWD' };
+type DefconPositionKey = DefconPosition;
 
 async function getJson(path: string, retries = 2): Promise<unknown> {
   for (let attempt = 0; ; attempt++) {
@@ -119,6 +120,19 @@ async function main() {
     team_code: number;
     ownership: number;
   }[] = [];
+  // Pass 1: histories plus the league-wide hit rate per position, which
+  // shrinks small samples so a 3-of-3 start does not read as certainty.
+  const prepared: {
+    el: NonNullable<(typeof summaries)[number]>['el'];
+    position: DefconPositionKey;
+    history: DefconMatch[];
+    summary: ElementSummary;
+  }[] = [];
+  const leagueHits: Record<string, { hits: number; games: number }> = {
+    DEF: { hits: 0, games: 0 },
+    MID: { hits: 0, games: 0 },
+    FWD: { hits: 0, games: 0 },
+  };
   for (const s of summaries) {
     if (s === null) continue;
     const { el, summary } = s;
@@ -131,13 +145,33 @@ async function main() {
       opponent: teamById.get(h.opponent_team)?.short_name ?? String(h.opponent_team),
       was_home: h.was_home,
     }));
+    const threshold = position === 'DEF' ? 10 : 12;
+    for (const m of history) {
+      if (m.minutes < 60) continue;
+      const actions = position === 'DEF' ? m.cbit : m.cbit + (m.recoveries ?? 0);
+      leagueHits[position].games += 1;
+      if (actions >= threshold) leagueHits[position].hits += 1;
+    }
+    prepared.push({ el, position, history, summary });
+  }
+  const priorFor = (position: string): number => {
+    const { hits, games } = leagueHits[position];
+    return games > 0 ? hits / games : 0.2;
+  };
+  console.log(
+    'position priors:',
+    Object.fromEntries(Object.keys(leagueHits).map((k) => [k, priorFor(k).toFixed(3)]))
+  );
+
+  for (const { el, position, history, summary } of prepared) {
     const profile = defconProfile(
       String(el.id),
       el.web_name,
       teamById.get(el.team)?.short_name ?? String(el.team),
       position,
       el.now_cost / 10,
-      history
+      history,
+      { priorHitRate: priorFor(position) }
     );
     if (profile === null) continue; // no qualifying matches yet
 

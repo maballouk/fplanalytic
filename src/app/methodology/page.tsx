@@ -55,7 +55,9 @@ export default function MethodologyPage() {
             or more minutes played; a short cameo says nothing about a player&apos;s engine. The
             headline hit rate blends recent form with the season: 60% weight on the last 5
             qualifying matches, 40% on the whole season. With fewer than 5 qualifying matches we use
-            the season rate alone.
+            the season rate alone. The blend is then shrunk toward the league rate for the position
+            with four virtual matches, so a perfect two-match start reads as roughly 50%, not
+            certainty.
           </p>
         </Section>
 
@@ -77,8 +79,8 @@ export default function MethodologyPage() {
 
         <Section title="Decisions">
           <p>
-            The Buy, Hold and Avoid calls follow fixed rules. Buy needs a hit rate of at least 60%
-            and a next-5 fixture run averaging difficulty 3 or easier. Below a 40% hit rate, or with
+            The Buy, Hold and Avoid calls follow fixed rules. Buy needs a shrunk hit rate of at
+            least 45% and a next-5 fixture run averaging difficulty 3 or easier. Below 25%, or with
             an injury, suspension or availability flag, the call is Avoid. Everything else is Hold.
             The one-line reason always shows the numbers behind the call.
           </p>

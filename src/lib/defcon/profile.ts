@@ -56,6 +56,9 @@ export interface DefconProfileOptions {
   minMinutes?: number;
   nearMissMargin?: number;
   recencyWeight?: number;
+  /** League-wide hit rate for the position; shrinks small samples (see defcon.py) */
+  priorHitRate?: number;
+  priorMatches?: number;
 }
 
 function mean(xs: number[]): number {
@@ -81,7 +84,13 @@ export function defconProfile(
   position: DefconPosition,
   price: number,
   history: DefconMatch[],
-  { minMinutes = 60, nearMissMargin = 2, recencyWeight = 0.6 }: DefconProfileOptions = {}
+  {
+    minMinutes = 60,
+    nearMissMargin = 2,
+    recencyWeight = 0.6,
+    priorHitRate,
+    priorMatches = 4,
+  }: DefconProfileOptions = {}
 ): DefconProfile | null {
   const thr = THRESHOLD[position];
   if (thr === null || thr === undefined) return null;
@@ -96,8 +105,12 @@ export function defconProfile(
   const seasonHit = mean(hits);
   const last5 = acts.slice(-5);
   const last5Hit = mean(last5.map((a) => (a >= thr ? 1 : 0)));
-  const blendedHit =
+  let blendedHit =
     games.length >= 5 ? recencyWeight * last5Hit + (1 - recencyWeight) * seasonHit : seasonHit;
+  if (priorHitRate !== undefined) {
+    const n = games.length;
+    blendedHit = (blendedHit * n + priorHitRate * priorMatches) / (n + priorMatches);
+  }
 
   const mu = mean(acts);
   const sd = acts.length > 1 ? pstdev(acts) : 0;
