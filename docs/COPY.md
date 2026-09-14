@@ -6,7 +6,7 @@ adjectives. British football English. No em-dashes. No hype.
 
 ## Status: APPROVED by Mohamad, 2026-09-12
 
-## Additions after approval: PROPOSED (flag to Mohamad)
+## Additions after approval: APPROVED by Mohamad, 2026-09-14 (موافق — covers every entry below)
 
 - Decision fixture notes: "Soft run next." / "Even run next." / "Tough run next." /
   "No upcoming fixtures." (mean next-5 FDR ≤ 2.5 / ≤ 3.2 / above / none)

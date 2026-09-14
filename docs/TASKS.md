@@ -291,3 +291,9 @@ backtest numbers on methodology page.
   mirror src/lib/ucl/canonical.ts (all 36 football-data shortNames verified live, incl.
   "Barça", "Shaktar", "Sl. Bratislava"). REQUIRES FOOTBALL_DATA_TOKEN in the NETLIFY runtime
   env (same value as the GitHub secret) — without it the section just stays hidden.
+- 2026-09-14: Mohamad approved the launch copy ("موافق") — docs/LAUNCH-POST.md (refreshed
+  the same day to the shipped totals-first product before posting) and every PROPOSED
+  addition in docs/COPY.md. RELEASE GATE 1 IS NOW FULLY CLOSED: Lighthouse ✓, CI ✓, Umami ✓,
+  copy ✓, and the live tracker has run through a full gameweek (GW4) in production. Posting
+  to r/FantasyPL is Mohamad's move whenever it suits; the post text is final in
+  docs/LAUNCH-POST.md.
