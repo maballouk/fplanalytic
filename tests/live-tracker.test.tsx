@@ -56,6 +56,7 @@ const LIVE: LivePayload = {
       fixture_id: 100,
     },
   ],
+  ticker: [{ fixture_id: 100, type: 'goal', name: 'Saka', score: 'ARS 1–0 LIV' }],
   next_kickoff: null,
 };
 
@@ -78,6 +79,7 @@ describe('LiveTracker', () => {
       generated_at: '2026-09-12T15:00:00Z',
       fixtures: [],
       players: [],
+      ticker: [],
       next_kickoff: { label: 'BOU v ARS', kickoff_time: '2026-09-13T15:30:00Z' },
     });
     render(<LiveTracker />);

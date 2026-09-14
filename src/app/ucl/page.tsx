@@ -17,6 +17,7 @@ import { topContributors, type UclFixture, type UclPlayer } from '@/lib/ucl/file
 import { loadLatestMatchday } from '@/lib/ucl/loadMatchday';
 import { pickXI } from '@/lib/ucl/xi';
 import Countdown from './Countdown';
+import UclLive from './UclLive';
 import PitchXI from './PitchXI';
 import XptsTable from './XptsTable';
 
@@ -224,6 +225,8 @@ export default function UclPage() {
               </div>
             </div>
           </section>
+
+          <UclLive />
 
           <section className="mb-10">
             <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">

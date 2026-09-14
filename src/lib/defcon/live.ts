@@ -35,11 +35,21 @@ export interface LivePlayer {
   fixture_id: number;
 }
 
+/** One line of the broadcast ticker: goals and reds across live matches. */
+export interface TickerItem {
+  fixture_id: number;
+  type: 'goal' | 'red';
+  name: string;
+  /** e.g. "AVL 1–2 NFO" at the moment of rendering */
+  score: string;
+}
+
 export interface LivePayload {
   gw: number | null;
   generated_at: string;
   fixtures: LiveFixture[];
   players: LivePlayer[];
+  ticker: TickerItem[];
   /** For the empty state: the next fixture to kick off, if any */
   next_kickoff: { label: string; kickoff_time: string } | null;
 }
@@ -83,6 +93,31 @@ export function buildLivePayload(
     minutes: f.minutes,
   }));
 
+  // Broadcast ticker: goals and red cards from every started fixture, newest
+  // fixtures first. FPL publishes no per-event minute, so each line carries
+  // the current score for context instead of a timestamp.
+  const elName = new Map(bootstrap.elements.map((e) => [e.id, e.web_name]));
+  const ticker: TickerItem[] = [];
+  for (const f of [...gwFixtures].reverse()) {
+    const score = `${teamShort.get(f.team_h)} ${f.team_h_score ?? 0}–${f.team_a_score ?? 0} ${teamShort.get(f.team_a)}`;
+    for (const stat of f.stats ?? []) {
+      if (stat.identifier !== 'goals_scored' && stat.identifier !== 'red_cards') continue;
+      const type = stat.identifier === 'goals_scored' ? ('goal' as const) : ('red' as const);
+      for (const row of [...stat.h, ...stat.a]) {
+        if (row.value <= 0) continue;
+        ticker.push({
+          fixture_id: f.id,
+          type,
+          name:
+            row.value > 1
+              ? `${elName.get(row.element) ?? row.element} ×${row.value}`
+              : `${elName.get(row.element) ?? String(row.element)}`,
+          score,
+        });
+      }
+    }
+  }
+
   const fixtureByTeam = new Map<number, number>();
   for (const f of gwFixtures) {
     fixtureByTeam.set(f.team_h, f.id);
@@ -123,6 +158,7 @@ export function buildLivePayload(
     generated_at: now.toISOString(),
     fixtures: liveFixtures,
     players,
+    ticker,
     next_kickoff: nextKickoff,
   };
 }

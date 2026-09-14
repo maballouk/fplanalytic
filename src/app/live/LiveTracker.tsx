@@ -6,13 +6,13 @@
 // fill this page is now a per-card expander. 60s polling on this route only.
 
 import Link from 'next/link';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
 import TeamBadge from '@/components/ds/TeamBadge';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import { track } from '@/lib/analytics';
 import { teamBadgeUrl } from '@/lib/fpl/photos';
-import type { LiveFixture, LivePayload, LivePlayer } from '@/lib/defcon/live';
+import type { LiveFixture, LivePayload, LivePlayer, TickerItem } from '@/lib/defcon/live';
 
 const POLL_MS = 60_000;
 
@@ -23,6 +23,41 @@ function kickoffLabel(iso: string | null): string {
     hour: '2-digit',
     minute: '2-digit',
   });
+}
+
+/** Broadcast lower-third: goals and reds loop across the strip; hover pauses. */
+function Ticker({ items }: { items: TickerItem[] }) {
+  if (items.length === 0) return null;
+  const line = (item: TickerItem, i: number) => (
+    <span key={i} className="flex shrink-0 items-center gap-2 px-5">
+      <span aria-hidden>{item.type === 'goal' ? '⚽' : '🟥'}</span>
+      <span className="font-semibold text-text">{item.name}</span>
+      <span className="num text-xs text-text-muted">{item.score}</span>
+    </span>
+  );
+  return (
+    <div
+      className="relative -mx-5 overflow-hidden border-y border-line bg-bg-raised py-2 md:mx-0 md:rounded-card md:border-x"
+      aria-label="Latest goals and red cards"
+    >
+      <div className="ticker-track flex w-max motion-reduce:w-full motion-reduce:flex-wrap">
+        {items.map(line)}
+        {/* duplicated content makes the loop seamless; hidden from readers */}
+        <span aria-hidden className="flex motion-reduce:hidden">
+          {items.map((item, i) => line(item, i + items.length))}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+function LiveBeacon() {
+  return (
+    <span className="flex items-center gap-1.5 rounded-pill bg-danger/10 px-2 py-0.5 text-[11px] font-bold tracking-widest text-danger">
+      <span className="h-1.5 w-1.5 animate-pulse rounded-pill bg-danger" aria-hidden />
+      LIVE
+    </span>
+  );
 }
 
 function StatusChip({ fixture }: { fixture: LiveFixture }) {
@@ -48,7 +83,15 @@ function StatusChip({ fixture }: { fixture: LiveFixture }) {
   );
 }
 
-function MatchCard({ fixture, players }: { fixture: LiveFixture; players: LivePlayer[] }) {
+function MatchCard({
+  fixture,
+  players,
+  flash,
+}: {
+  fixture: LiveFixture;
+  players: LivePlayer[];
+  flash: boolean;
+}) {
   const closest = players.slice(0, 5);
   return (
     <div className="overflow-hidden rounded-card border border-line bg-bg-raised shadow-card transition-colors duration-hover hover:border-line-strong">
@@ -62,7 +105,9 @@ function MatchCard({ fixture, players }: { fixture: LiveFixture; players: LivePl
             <TeamBadge src={teamBadgeUrl(fixture.home_code)} alt={fixture.home} size={26} />
             <span className="truncate font-semibold">{fixture.home}</span>
           </span>
-          <span className="num shrink-0 text-2xl font-bold">
+          <span
+            className={`num shrink-0 rounded-card px-1.5 text-2xl font-bold ${flash ? 'animate-scoreflash' : ''}`}
+          >
             {fixture.started ? (
               <>
                 {fixture.home_score ?? 0}
@@ -115,18 +160,23 @@ function MatchCard({ fixture, players }: { fixture: LiveFixture; players: LivePl
 
 function Group({
   title,
+  live = false,
   fixtures,
   players,
+  flashes,
 }: {
   title: string;
+  live?: boolean;
   fixtures: LiveFixture[];
   players: LivePlayer[];
+  flashes: Set<number>;
 }) {
   if (fixtures.length === 0) return null;
   return (
     <section>
-      <h2 className="mb-3 text-xs font-semibold uppercase tracking-widest text-text-faint">
-        {title}
+      <h2 className="mb-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-text-faint">
+        {live && <LiveBeacon />}
+        <span>{title}</span>
       </h2>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
         {fixtures.map((f) => (
@@ -134,6 +184,7 @@ function Group({
             key={f.id}
             fixture={f}
             players={players.filter((p) => p.fixture_id === f.id)}
+            flash={flashes.has(f.id)}
           />
         ))}
       </div>
@@ -145,12 +196,27 @@ export default function LiveTracker() {
   const [payload, setPayload] = useState<LivePayload | null>(null);
   const [failed, setFailed] = useState(false);
   const [refreshedAt, setRefreshedAt] = useState<Date | null>(null);
+  const [flashes, setFlashes] = useState<Set<number>>(new Set());
+  const prevScores = useRef(new Map<number, string>());
 
   const refresh = useCallback(async () => {
     try {
       const res = await fetch('/api/defcon/live');
       if (!res.ok) throw new Error(`live endpoint ${res.status}`);
-      setPayload((await res.json()) as LivePayload);
+      const next = (await res.json()) as LivePayload;
+      // A goal landed between polls: flash that card's score for a moment.
+      const changed = new Set<number>();
+      for (const f of next.fixtures) {
+        const key = `${f.home_score}-${f.away_score}`;
+        const prev = prevScores.current.get(f.id);
+        if (prev !== undefined && prev !== key && f.started) changed.add(f.id);
+        prevScores.current.set(f.id, key);
+      }
+      if (changed.size > 0) {
+        setFlashes(changed);
+        setTimeout(() => setFlashes(new Set()), 3000);
+      }
+      setPayload(next);
       setFailed(false);
       setRefreshedAt(new Date());
     } catch {
@@ -196,9 +262,10 @@ export default function LiveTracker() {
           GW{payload.gw} · last refreshed {refreshedAt.toLocaleTimeString('en-GB')}
         </p>
       )}
-      <Group title="Live now" fixtures={liveNow} players={payload.players} />
-      <Group title="Upcoming" fixtures={upcoming} players={payload.players} />
-      <Group title="Full time" fixtures={done} players={payload.players} />
+      {liveNow.length > 0 && <Ticker items={payload.ticker} />}
+      <Group title="Live now" live fixtures={liveNow} players={payload.players} flashes={flashes} />
+      <Group title="Upcoming" fixtures={upcoming} players={payload.players} flashes={flashes} />
+      <Group title="Full time" fixtures={done} players={payload.players} flashes={flashes} />
     </div>
   );
 }

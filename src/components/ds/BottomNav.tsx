@@ -2,6 +2,7 @@
 // 2026-09-14 "look & feel" round). Five slots max; icons are inline SVG.
 
 import Link from 'next/link';
+import LiveDot from './LiveDot';
 
 export interface BottomNavItem {
   href: string;
@@ -74,16 +75,19 @@ export default function BottomNav({
                   active ? 'text-accent' : 'text-text-muted'
                 }`}
               >
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  {ICONS[item.icon]}
-                </svg>
+                <span className="relative">
+                  <svg
+                    width="22"
+                    height="22"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    {ICONS[item.icon]}
+                  </svg>
+                  {item.href === '/live' && <LiveDot />}
+                </span>
                 <span className="max-w-full truncate px-1">{item.label}</span>
               </Link>
             </li>

@@ -276,3 +276,18 @@ backtest numbers on methodology page.
   StateBanner live CTA renamed "Open the live tracker" → "Open Matchday live". Open (accepted
   for now): header DeadlineChip only renders on pages that load the DEFCON file (home/value/
   my-team), not /live //ucl //match.
+- 2026-09-14 (Stadium Broadcast round, owner: "make the app feel more live + a UCL live
+  section"): /live gains the broadcast layer — a lower-third TICKER looping goals/reds across
+  live matches (CSS keyframes, hover pauses, reduced-motion falls back to a static wrap; FPL
+  has no event minutes so each line carries the current score), a red LIVE beacon on the
+  live group, a SCORE FLASH when a goal lands between polls (prev-score diff client-side),
+  and a red LiveDot on the bottom-nav Live item (one cached fetch per page load). NEW UCL
+  "Matchday live" section on /ucl: /api/ucl/live pulls Champions League scores from
+  football-data.org (competition CL, window today±1, ?days=N up to 60 for previews;
+  /ucl?preview_days=45 previews the next matchday) and joins them server-side with OUR
+  pre-match predictions from the latest engine file — each card = live score over "Model
+  said {xG} · most likely {score}" + ghosted win-prob bar, and at FT an honest verdict chip
+  (Exact score called / Right call / Model missed this one). Name matching via the new TS
+  mirror src/lib/ucl/canonical.ts (all 36 football-data shortNames verified live, incl.
+  "Barça", "Shaktar", "Sl. Bratislava"). REQUIRES FOOTBALL_DATA_TOKEN in the NETLIFY runtime
+  env (same value as the GitHub secret) — without it the section just stays hidden.
