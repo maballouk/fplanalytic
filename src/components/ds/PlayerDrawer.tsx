@@ -3,7 +3,7 @@
 // DESIGN.md §2: right-side panel with the full profile and "Why this player".
 // Always ends with a Decision block: Buy / Hold / Avoid + one sentence.
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export type Verdict = 'Buy' | 'Hold' | 'Avoid';
 
@@ -45,6 +45,17 @@ export default function PlayerDrawer({
     return () => window.removeEventListener('keydown', onKey);
   }, [open, onClose]);
 
+  // Slide in on mount: first paint off-canvas, then transition to rest.
+  const [entered, setEntered] = useState(false);
+  useEffect(() => {
+    if (!open) {
+      setEntered(false);
+      return;
+    }
+    const raf = requestAnimationFrame(() => setEntered(true));
+    return () => cancelAnimationFrame(raf);
+  }, [open]);
+
   if (!open) return null;
 
   return (
@@ -52,9 +63,15 @@ export default function PlayerDrawer({
       <button
         aria-label={closeLabel}
         onClick={onClose}
-        className="absolute inset-0 h-full w-full bg-bg/70"
+        className={`absolute inset-0 h-full w-full bg-bg/70 transition-opacity duration-panel motion-reduce:transition-none ${
+          entered ? 'opacity-100' : 'opacity-0'
+        }`}
       />
-      <aside className="absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-line bg-bg-raised shadow-card transition-transform duration-panel">
+      <aside
+        className={`absolute right-0 top-0 flex h-full w-full max-w-md flex-col border-l border-line bg-bg-raised shadow-card transition-transform duration-panel motion-reduce:transition-none ${
+          entered ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
         <header className="flex items-start justify-between border-b border-line px-5 py-4">
           <div className="flex items-center gap-3">
             {leading}

@@ -117,7 +117,41 @@ export default function XptsTable({
           ]}
         />
       </div>
-      <div className="overflow-x-auto rounded-card border border-line bg-bg-raised shadow-card">
+      {/* Phones get cards, not a sideways-scrolling table */}
+      <ol className="space-y-2 md:hidden">
+        {visible.map((p, i) => {
+          const c = club(p.team);
+          return (
+            <li
+              key={p.player_id}
+              className="flex items-center gap-3 rounded-card border border-line bg-bg-raised p-3"
+            >
+              <span className="num w-5 shrink-0 text-center text-xs text-text-faint">{i + 1}</span>
+              <PlayerAvatar
+                src={uclPlayerPhotoUrl(p.player_id)}
+                name={p.name}
+                ringColor={c.color}
+                size={40}
+              />
+              <span className="min-w-0 flex-1">
+                <span className="block truncate font-semibold text-text">{p.name}</span>
+                <span className="mt-0.5 block text-xs text-text-muted">
+                  {c.code} · {p.position} · €{p.price.toFixed(1)}m · v {club(p.opponent).code} (
+                  {p.is_home ? 'H' : 'A'})
+                  <span className="num text-text-faint"> · {Math.round(p.sel_per)}% picked</span>
+                </span>
+              </span>
+              <span className="shrink-0 text-right">
+                <span className="num block text-xl font-bold text-accent">{p.xpts.toFixed(1)}</span>
+                <span className="num block text-[10px] uppercase tracking-wide text-text-faint">
+                  xPts
+                </span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <div className="hidden overflow-x-auto rounded-card border border-line bg-bg-raised shadow-card md:block">
         <table className="w-full min-w-[880px] text-sm">
           <thead>
             <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-text-faint">

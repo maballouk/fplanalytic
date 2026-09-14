@@ -63,8 +63,8 @@ describe('AssetFinder', () => {
   it('filters by position', () => {
     render(<AssetFinder players={PLAYERS} />);
     fireEvent.click(screen.getByRole('tab', { name: 'MID' }));
-    expect(screen.getByText('Adams')).toBeInTheDocument();
-    expect(screen.queryByText('Konsa')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Adams').length).toBeGreaterThan(0);
+    expect(screen.queryAllByText('Konsa')).toHaveLength(0);
   });
 
   it('shows the approved empty state when filters exclude everyone', () => {
@@ -76,7 +76,7 @@ describe('AssetFinder', () => {
 
   it('opens the drawer with a decision on row click', () => {
     render(<AssetFinder players={PLAYERS} />);
-    fireEvent.click(screen.getByText('Konsa'));
+    fireEvent.click(screen.getAllByText('Konsa')[0]);
     const block = screen.getByTestId('decision-block');
     expect(block).toHaveTextContent('Buy');
     expect(block).toHaveTextContent('Predicted 4.5 pts next GW. P(start) 90%.');

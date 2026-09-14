@@ -6,7 +6,7 @@ import AppShell from '@/components/ds/AppShell';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
 import { loadLatestDefcon } from '@/lib/defcon/data';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import ValueLens from './ValueLens';
 
 export const dynamic = 'force-static';
@@ -20,7 +20,17 @@ export default function ValuePage() {
   const data = loadLatestDefcon();
 
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/value">
+    <AppShell
+      brand="fplanalytic"
+      nav={NAV}
+      activeHref="/value"
+      bottomNav={BOTTOM_NAV}
+      deadline={
+        data?.calendar
+          ? { label: `GW${data.calendar.next_gw}`, deadlineUtc: data.calendar.next_deadline }
+          : undefined
+      }
+    >
       <header className="mb-6">
         <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
           FPL

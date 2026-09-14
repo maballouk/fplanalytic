@@ -27,6 +27,10 @@ export const DefconFilePlayerSchema = z.object({
   status: z.string(),
   // Total predicted FPL points for the NEXT gameweek (lib/fpl/xpts.ts v1)
   xpts_total: z.number().default(0),
+  /** Previous build's prediction; drives the movement arrow. Absent on a first build. */
+  xpts_prev: z.number().optional(),
+  /** This GW's price move in £m (FPL cost_change_event / 10). */
+  price_change: z.number().optional(),
   xpts_breakdown: z.record(z.string(), z.number()).default({}),
   p_start: z.number().default(0),
   /** Average actual FPL points over the last 5 appearances */

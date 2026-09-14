@@ -68,8 +68,8 @@ describe('XptsTable', () => {
       />
     );
     fireEvent.click(screen.getByRole('tab', { name: 'GK' }));
-    expect(screen.getByText('Courtois')).toBeInTheDocument();
-    expect(screen.queryByText('Haaland')).not.toBeInTheDocument();
+    expect(screen.getAllByText('Courtois').length).toBeGreaterThan(0);
+    expect(screen.queryAllByText('Haaland')).toHaveLength(0);
     expect(screen.getByText('55%')).toHaveClass('text-warn');
   });
 

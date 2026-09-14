@@ -5,6 +5,7 @@
 // expected defensive points under each, and the single best upgrade.
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import CountUp from '@/components/ds/CountUp';
 import EmptyState from '@/components/ds/EmptyState';
 import PitchFrame from '@/components/ds/PitchFrame';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
@@ -18,6 +19,7 @@ import {
 } from '@/lib/defcon/myteam';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
 import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
+import { renderShareImage, type ShareSpot } from './shareImage';
 
 const STORAGE_KEY = 'fpla_team_id';
 
@@ -133,6 +135,51 @@ export default function MyTeam({
   const myTotal = data ? squadPredictedTotal(data.picks, byElementId) : 0;
   const upgrade = data ? bestUpgrade(data.picks, byElementId, players) : null;
 
+  const [sharing, setSharing] = useState(false);
+  const share = async () => {
+    if (!data || sharing) return;
+    setSharing(true);
+    try {
+      const spot = (p: EntryPickView): ShareSpot => ({
+        name: p.name,
+        pts: byElementId.get(String(p.id))?.xpts_total ?? null,
+        captain: p.is_captain,
+      });
+      const blob = await renderShareImage({
+        teamName: data.entry.team_name,
+        gw: data.gw,
+        myTotal,
+        myRows: rows.map((r) => r.map(spot)),
+        toolTotal: defconTeam?.total ?? null,
+        toolFormation: defconTeam?.formation ?? null,
+        toolRows: defconTeam
+          ? [[defconTeam.gk], defconTeam.def, defconTeam.mid, defconTeam.fwd].map((r) =>
+              r.map((p) => ({ name: p.name, pts: p.xpts_total }))
+            )
+          : [],
+        upgrade: upgrade
+          ? `${upgrade.out.name} → ${upgrade.in.name} (+${upgrade.gain.toFixed(1)})`
+          : null,
+      });
+      track('share_image');
+      const file = new File([blob], `fplanalytic-gw${data.gw}.png`, { type: 'image/png' });
+      if (navigator.canShare?.({ files: [file] })) {
+        await navigator.share({ files: [file], title: 'My FPL team, predicted' });
+      } else {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = file.name;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+    } catch {
+      // an aborted native share sheet lands here too: nothing to clean up
+    } finally {
+      setSharing(false);
+    }
+  };
+
   return (
     <div>
       <form
@@ -189,10 +236,19 @@ export default function MyTeam({
               <span className="font-display text-lg font-bold">{data.entry.team_name}</span>
               <span className="ml-2 text-sm text-text-muted">{data.entry.manager}</span>
             </div>
-            <span className="num text-xs text-text-faint">
-              GW{data.gw}
-              {data.entry.overall_rank !== null &&
-                ` · overall rank ${data.entry.overall_rank.toLocaleString('en-GB')}`}
+            <span className="flex items-center gap-3">
+              <span className="num text-xs text-text-faint">
+                GW{data.gw}
+                {data.entry.overall_rank !== null &&
+                  ` · overall rank ${data.entry.overall_rank.toLocaleString('en-GB')}`}
+              </span>
+              <button
+                onClick={share}
+                disabled={sharing}
+                className="rounded-pill border border-line bg-bg-raised px-3.5 py-1 text-xs font-semibold text-text transition-colors duration-hover hover:bg-bg-overlay disabled:opacity-50"
+              >
+                {sharing ? 'Rendering…' : 'Share as image'}
+              </button>
             </span>
           </div>
 
@@ -201,7 +257,9 @@ export default function MyTeam({
               <div className="mb-2 flex items-baseline justify-between">
                 <h2 className="font-display text-base font-bold">Your XI</h2>
                 <span className="num text-sm">
-                  <span className="text-accent">{myTotal.toFixed(1)}</span>
+                  <span className="text-accent">
+                    <CountUp value={myTotal} />
+                  </span>
                   <span className="ml-1 text-xs text-text-muted">predicted pts</span>
                 </span>
               </div>
@@ -243,7 +301,9 @@ export default function MyTeam({
                 <div className="mb-2 flex items-baseline justify-between">
                   <h2 className="font-display text-base font-bold">The predicted XI</h2>
                   <span className="num text-sm">
-                    <span className="text-accent">{defconTeam.total.toFixed(1)}</span>
+                    <span className="text-accent">
+                      <CountUp value={defconTeam.total} />
+                    </span>
                     <span className="ml-1 text-xs text-text-muted">
                       predicted pts · {defconTeam.formation}
                     </span>

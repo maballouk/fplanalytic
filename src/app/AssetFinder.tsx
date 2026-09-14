@@ -12,7 +12,9 @@ import PlayerRow from '@/components/ds/PlayerRow';
 import TeamBadge from '@/components/ds/TeamBadge';
 import PremiumLock from '@/components/ds/PremiumLock';
 import SegmentedTabs from '@/components/ds/SegmentedTabs';
+import ComparePanel from '@/components/ComparePanel';
 import PlayerProfileDrawer from '@/components/PlayerProfileDrawer';
+import TrendArrow from '@/components/ds/TrendArrow';
 import { track } from '@/lib/analytics';
 import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
 import type { DefconFilePlayer } from '@/lib/defcon/file';
@@ -42,6 +44,8 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
   const [team, setTeam] = useState('ALL');
   const [sortBy, setSortBy] = useState<SortKey>('xpts_total');
   const [selected, setSelected] = useState<DefconFilePlayer | null>(null);
+  const [compareMode, setCompareMode] = useState(false);
+  const [compareSel, setCompareSel] = useState<DefconFilePlayer[]>([]);
 
   const teams = useMemo(() => Array.from(new Set(players.map((p) => p.team))).sort(), [players]);
 
@@ -78,6 +82,15 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
     };
   };
   const openPlayer = (p: DefconFilePlayer) => {
+    if (compareMode) {
+      setCompareSel((sel) => {
+        if (sel.some((s) => s.player_id === p.player_id)) {
+          return sel.filter((s) => s.player_id !== p.player_id);
+        }
+        return sel.length < 2 ? [...sel, p] : [sel[0], p];
+      });
+      return;
+    }
     track('row_click', { player: p.name });
     setSelected(p);
   };
@@ -161,6 +174,34 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
             ))}
           </select>
         </label>
+        <button
+          onClick={() => {
+            setCompareMode((m) => !m);
+            setCompareSel([]);
+          }}
+          aria-pressed={compareMode}
+          className={`rounded-pill border px-3.5 py-1 text-sm transition-colors duration-hover ${
+            compareMode
+              ? 'border-accent/40 bg-accent/10 text-accent'
+              : 'border-line bg-bg-raised text-text-muted hover:text-text'
+          }`}
+        >
+          Compare
+        </button>
+        {compareMode && (
+          <span className="flex items-center gap-1.5 text-xs text-text-muted">
+            {compareSel.length === 0 && 'Pick two players'}
+            {compareSel.map((p) => (
+              <span
+                key={p.player_id}
+                className="rounded-pill bg-bg-overlay px-2 py-0.5 text-xs text-text"
+              >
+                {p.name}
+              </span>
+            ))}
+            {compareSel.length === 1 && 'and one more…'}
+          </span>
+        )}
       </div>
 
       {filtered.length === 0 ? (
@@ -170,89 +211,129 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
           hint="Loosen the price cap or minutes floor."
         />
       ) : (
-        <div className="overflow-x-auto rounded-card border border-line bg-bg-raised shadow-card">
-          <table className="w-full min-w-[880px] text-sm">
-            <thead>
-              <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-text-faint">
-                <th scope="col" className="px-3 py-2">
-                  #
-                </th>
-                <th scope="col" className="px-3 py-2">
-                  Player
-                </th>
-                <th scope="col" className="px-3 py-2">
-                  Pos
-                </th>
-                <th scope="col" className="px-3 py-2">
-                  £m
-                </th>
-                {SORTABLE.map((c) => (
-                  <th
-                    key={c.key}
-                    scope="col"
-                    aria-sort={sortBy === c.key ? 'descending' : 'none'}
-                    className="px-3 py-2"
-                  >
-                    <button
-                      onClick={() => setSortBy(c.key)}
-                      className={`transition-colors duration-hover hover:text-text ${
-                        sortBy === c.key ? 'text-text' : ''
-                      }`}
-                    >
-                      {c.label}
-                    </button>
-                  </th>
-                ))}
-                <th scope="col" className="px-3 py-2">
-                  Next 5
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {visible.map((p, i) => (
-                <PlayerRow
-                  key={p.player_id}
-                  rank={i + 1}
-                  name={p.name}
-                  team={p.team}
-                  position={p.position}
-                  price={p.price}
-                  avatar={<PlayerAvatar src={playerPhotoUrl(p.code)} name={p.name} size={28} />}
-                  teamBadge={<TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={16} />}
+        <>
+          {/* Phones get cards, not a sideways-scrolling table */}
+          <ol className="space-y-2 md:hidden">
+            {visible.map((p, i) => (
+              <li key={p.player_id}>
+                <button
                   onClick={() => openPlayer(p)}
+                  className="flex w-full items-center gap-3 rounded-card border border-line bg-bg-raised p-3 text-left transition-colors duration-hover active:bg-bg-overlay"
                 >
-                  <td className="num px-3 py-2 text-base font-bold text-accent">
-                    {p.xpts_total.toFixed(1)}
-                  </td>
-                  <td className="num px-3 py-2">{p.form5.toFixed(1)}</td>
-                  <td className="num px-3 py-2">
-                    {pct(p.elite_own)}
-                    {p.elite_cap >= 0.1 && (
-                      <span className="ml-1 text-xs text-warn" title="Captained by the top 50">
-                        C {pct(p.elite_cap)}
+                  <span className="num w-5 shrink-0 text-center text-xs text-text-faint">
+                    {i + 1}
+                  </span>
+                  <PlayerAvatar src={playerPhotoUrl(p.code)} name={p.name} size={40} />
+                  <span className="min-w-0 flex-1">
+                    <span className="block truncate font-semibold text-text">{p.name}</span>
+                    <span className="mt-0.5 flex items-center gap-1.5 text-xs text-text-muted">
+                      <TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={13} />
+                      <span className="truncate">
+                        {p.team} · {p.position} · £{p.price.toFixed(1)}m
+                        {p.elite_own >= 0.2 && (
+                          <span className="num text-text-faint"> · top-50 {pct(p.elite_own)}</span>
+                        )}
                       </span>
-                    )}
-                  </td>
-                  <td className="num px-3 py-2 text-text-muted">
-                    {p.position === 'GK' ? '—' : p.defcon_xpts.toFixed(2)}
-                  </td>
-                  <td className="num px-3 py-2 text-text-muted">
-                    {p.position === 'GK' ? '—' : p.value_per_million.toFixed(3)}
-                  </td>
-                  <td className="px-3 py-2">
-                    <FixtureStrip
-                      fixtures={p.next5.map((f) => ({
-                        opponent: f.opponent,
-                        isHome: f.is_home,
-                        difficulty: f.difficulty,
-                      }))}
-                    />
-                  </td>
-                </PlayerRow>
-              ))}
-            </tbody>
-          </table>
-        </div>
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-right">
+                    <span className="num block text-xl font-bold text-accent">
+                      {p.xpts_total.toFixed(1)}
+                      <TrendArrow now={p.xpts_total} prev={p.xpts_prev} />
+                    </span>
+                    <span className="num block text-[10px] uppercase tracking-wide text-text-faint">
+                      pred pts
+                    </span>
+                  </span>
+                </button>
+              </li>
+            ))}
+          </ol>
+          <div className="hidden overflow-x-auto rounded-card border border-line bg-bg-raised shadow-card md:block">
+            <table className="w-full min-w-[880px] text-sm">
+              <thead>
+                <tr className="border-b border-line text-left text-xs uppercase tracking-wide text-text-faint">
+                  <th scope="col" className="px-3 py-2">
+                    #
+                  </th>
+                  <th scope="col" className="px-3 py-2">
+                    Player
+                  </th>
+                  <th scope="col" className="px-3 py-2">
+                    Pos
+                  </th>
+                  <th scope="col" className="px-3 py-2">
+                    £m
+                  </th>
+                  {SORTABLE.map((c) => (
+                    <th
+                      key={c.key}
+                      scope="col"
+                      aria-sort={sortBy === c.key ? 'descending' : 'none'}
+                      className="px-3 py-2"
+                    >
+                      <button
+                        onClick={() => setSortBy(c.key)}
+                        className={`transition-colors duration-hover hover:text-text ${
+                          sortBy === c.key ? 'text-text' : ''
+                        }`}
+                      >
+                        {c.label}
+                      </button>
+                    </th>
+                  ))}
+                  <th scope="col" className="px-3 py-2">
+                    Next 5
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {visible.map((p, i) => (
+                  <PlayerRow
+                    key={p.player_id}
+                    rank={i + 1}
+                    name={p.name}
+                    team={p.team}
+                    position={p.position}
+                    price={p.price}
+                    avatar={<PlayerAvatar src={playerPhotoUrl(p.code)} name={p.name} size={28} />}
+                    teamBadge={<TeamBadge src={teamBadgeUrl(p.team_code)} alt={p.team} size={16} />}
+                    onClick={() => openPlayer(p)}
+                  >
+                    <td className="num px-3 py-2 text-base font-bold text-accent">
+                      {p.xpts_total.toFixed(1)}
+                      <TrendArrow now={p.xpts_total} prev={p.xpts_prev} />
+                    </td>
+                    <td className="num px-3 py-2">{p.form5.toFixed(1)}</td>
+                    <td className="num px-3 py-2">
+                      {pct(p.elite_own)}
+                      {p.elite_cap >= 0.1 && (
+                        <span className="ml-1 text-xs text-warn" title="Captained by the top 50">
+                          C {pct(p.elite_cap)}
+                        </span>
+                      )}
+                    </td>
+                    <td className="num px-3 py-2 text-text-muted">
+                      {p.position === 'GK' ? '—' : p.defcon_xpts.toFixed(2)}
+                    </td>
+                    <td className="num px-3 py-2 text-text-muted">
+                      {p.position === 'GK' ? '—' : p.value_per_million.toFixed(3)}
+                    </td>
+                    <td className="px-3 py-2">
+                      <FixtureStrip
+                        fixtures={p.next5.map((f) => ({
+                          opponent: f.opponent,
+                          isHome: f.is_home,
+                          difficulty: f.difficulty,
+                        }))}
+                      />
+                    </td>
+                  </PlayerRow>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </>
       )}
 
       {locked.length > 0 && (
@@ -281,6 +362,9 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
       )}
 
       {selected && <PlayerProfileDrawer player={selected} onClose={() => setSelected(null)} />}
+      {compareMode && compareSel.length === 2 && (
+        <ComparePanel a={compareSel[0]} b={compareSel[1]} onClose={() => setCompareSel([])} />
+      )}
     </section>
   );
 }

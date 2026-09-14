@@ -4,7 +4,7 @@
 
 import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 
 export const metadata: Metadata = {
   title: 'Premium · fplanalytic',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function PremiumPage() {
   return (
-    <AppShell brand="fplanalytic" nav={NAV}>
+    <AppShell brand="fplanalytic" nav={NAV} bottomNav={BOTTOM_NAV}>
       <div className="mx-auto max-w-xl space-y-4 py-10 text-center">
         <h1 className="text-3xl font-semibold">Premium</h1>
         <p className="text-lg text-text-muted">

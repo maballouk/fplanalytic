@@ -14,6 +14,7 @@ export const ElementSchema = z.object({
   team: z.number(),
   element_type: z.number(), // 1 GKP · 2 DEF · 3 MID · 4 FWD (map via bootstrap element_types)
   now_cost: z.number(), // price * 10
+  cost_change_event: z.number().default(0), // price move this GW, in 0.1m
   minutes: z.number(),
   starts: z.number(),
   form: z.string(),

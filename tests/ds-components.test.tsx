@@ -226,7 +226,7 @@ describe('AppShell', () => {
         <p>content</p>
       </AppShell>
     );
-    expect(screen.getByText('fplanalytic')).toBeInTheDocument();
+    expect(screen.getByLabelText('fplanalytic')).toBeInTheDocument(); // Logo wordmark link
     expect(screen.getByRole('link', { name: 'Live' })).toHaveAttribute('aria-current', 'page');
     expect(screen.getByText('content')).toBeInTheDocument();
   });

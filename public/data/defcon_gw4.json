@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 4,
- "generated_at": "2026-09-13T20:43:49.023Z",
+ "generated_at": "2026-09-14T01:49:13.854Z",
  "calendar": {
   "gw": 4,
   "gw_finished": false,
@@ -36,6 +36,7 @@
    "minutes": 360,
    "ownership": 71.9,
    "xpts_total": 6.81,
+   "xpts_prev": 6.389,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 3.266,
@@ -107,8 +108,9 @@
    "code": 475168,
    "team_code": 8,
    "minutes": 360,
-   "ownership": 74.6,
+   "ownership": 74.7,
    "xpts_total": 6.489,
+   "xpts_prev": 6.489,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.118,
@@ -163,14 +165,14 @@
    "name": "Gvardiol",
    "team": "MCI",
    "position": "DEF",
-   "price": 5.6,
+   "price": 5.7,
    "matches_considered": 4,
    "hit_rate": 0.12732919254658384,
    "mean_actions": 6,
    "near_miss_rate": 0.25,
    "consistency": 0.6091320200147141,
    "defcon_xpts": 0.2546583850931677,
-   "value_per_million": 0.045474711623779945,
+   "value_per_million": 0.044676909665468015,
    "last5_actions": [
     7,
     2,
@@ -180,8 +182,9 @@
    "code": 477424,
    "team_code": 43,
    "minutes": 344,
-   "ownership": 21.2,
+   "ownership": 21.5,
    "xpts_total": 6.436,
+   "xpts_prev": 5.949,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.125,
@@ -254,6 +257,7 @@
    "minutes": 280,
    "ownership": 12.2,
    "xpts_total": 5.977,
+   "xpts_prev": 5.974,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.018,
@@ -323,8 +327,9 @@
    "code": 466052,
    "team_code": 43,
    "minutes": 218,
-   "ownership": 29,
+   "ownership": 28.9,
    "xpts_total": 5.854,
+   "xpts_prev": 6.277,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 1.936,
@@ -396,8 +401,9 @@
    "code": 60307,
    "team_code": 36,
    "minutes": 360,
-   "ownership": 16.8,
+   "ownership": 17,
    "xpts_total": 5.829,
+   "xpts_prev": 4.438,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.403,
@@ -452,14 +458,14 @@
    "name": "Tavernier",
    "team": "BOU",
    "position": "MID",
-   "price": 6,
+   "price": 6.1,
    "matches_considered": 4,
    "hit_rate": 0.06231454005934718,
    "mean_actions": 9,
    "near_miss_rate": 0.25,
    "consistency": 0.8639172365120457,
    "defcon_xpts": 0.12462908011869436,
-   "value_per_million": 0.020771513353115726,
+   "value_per_million": 0.02043099674076957,
    "last5_actions": [
     8,
     11,
@@ -469,8 +475,9 @@
    "code": 201658,
    "team_code": 91,
    "minutes": 350,
-   "ownership": 4.5,
+   "ownership": 4.6,
    "xpts_total": 5.674,
+   "xpts_prev": 5.671,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.022,
@@ -542,8 +549,9 @@
    "code": 222531,
    "team_code": 17,
    "minutes": 360,
-   "ownership": 10.2,
+   "ownership": 10.4,
    "xpts_total": 5.663,
+   "xpts_prev": 5.66,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.104,
@@ -598,14 +606,14 @@
    "name": "Tarkowski",
    "team": "EVE",
    "position": "DEF",
-   "price": 6,
+   "price": 6.1,
    "matches_considered": 4,
    "hit_rate": 0.3773291925465838,
    "mean_actions": 9.75,
    "near_miss_rate": 0.5,
    "consistency": 0.8483056465871893,
    "defcon_xpts": 0.7546583850931676,
-   "value_per_million": 0.12577639751552794,
+   "value_per_million": 0.12371448935953569,
    "last5_actions": [
     9,
     10,
@@ -615,8 +623,9 @@
    "code": 17761,
    "team_code": 11,
    "minutes": 360,
-   "ownership": 12.5,
+   "ownership": 12.6,
    "xpts_total": 5.638,
+   "xpts_prev": 5.645,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.096,
@@ -689,6 +698,7 @@
    "minutes": 237,
    "ownership": 2.2,
    "xpts_total": 5.597,
+   "xpts_prev": 5.597,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.996,
@@ -760,8 +770,9 @@
    "code": 141746,
    "team_code": 1,
    "minutes": 360,
-   "ownership": 42.5,
+   "ownership": 42.4,
    "xpts_total": 5.591,
+   "xpts_prev": 6.146,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.168,
@@ -834,6 +845,7 @@
    "minutes": 232,
    "ownership": 11.5,
    "xpts_total": 5.561,
+   "xpts_prev": 5.557,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.383,
@@ -905,8 +917,9 @@
    "code": 244850,
    "team_code": 8,
    "minutes": 347,
-   "ownership": 36.2,
+   "ownership": 36.3,
    "xpts_total": 5.509,
+   "xpts_prev": 5.506,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.214,
@@ -978,8 +991,9 @@
    "code": 455084,
    "team_code": 40,
    "minutes": 360,
-   "ownership": 5.7,
+   "ownership": 5.8,
    "xpts_total": 5.463,
+   "xpts_prev": 5.47,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.65,
@@ -1051,8 +1065,9 @@
    "code": 223340,
    "team_code": 3,
    "minutes": 336,
-   "ownership": 11.7,
+   "ownership": 11.8,
    "xpts_total": 5.44,
+   "xpts_prev": 5.437,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.254,
@@ -1124,8 +1139,9 @@
    "code": 513418,
    "team_code": 94,
    "minutes": 357,
-   "ownership": 4.8,
+   "ownership": 4.9,
    "xpts_total": 5.369,
+   "xpts_prev": 5.367,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2,
@@ -1199,6 +1215,7 @@
    "minutes": 352,
    "ownership": 26.8,
    "xpts_total": 5.367,
+   "xpts_prev": 5.365,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.548,
@@ -1271,6 +1288,7 @@
    "minutes": 269,
    "ownership": 14.4,
    "xpts_total": 5.331,
+   "xpts_prev": 5.34,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -1341,8 +1359,9 @@
    "code": 540324,
    "team_code": 88,
    "minutes": 312,
-   "ownership": 2.1,
+   "ownership": 2.2,
    "xpts_total": 5.28,
+   "xpts_prev": 5.277,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.655,
@@ -1416,6 +1435,7 @@
    "minutes": 356,
    "ownership": 5.9,
    "xpts_total": 5.25,
+   "xpts_prev": 5.247,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.821,
@@ -1489,6 +1509,7 @@
    "minutes": 333,
    "ownership": 22.5,
    "xpts_total": 5.161,
+   "xpts_prev": 5.161,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 2.213,
@@ -1560,8 +1581,9 @@
    "code": 184029,
    "team_code": 3,
    "minutes": 305,
-   "ownership": 18.8,
+   "ownership": 18.9,
    "xpts_total": 5.15,
+   "xpts_prev": 5.147,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.675,
@@ -1635,6 +1657,7 @@
    "minutes": 360,
    "ownership": 18.5,
    "xpts_total": 5.148,
+   "xpts_prev": 5.497,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.096,
@@ -1708,6 +1731,7 @@
    "minutes": 360,
    "ownership": 2.4,
    "xpts_total": 5.087,
+   "xpts_prev": 5.084,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.403,
@@ -1780,6 +1804,7 @@
    "minutes": 270,
    "ownership": 2.8,
    "xpts_total": 5.005,
+   "xpts_prev": 5.001,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.288,
@@ -1851,8 +1876,9 @@
    "code": 465730,
    "team_code": 36,
    "minutes": 333,
-   "ownership": 22.6,
+   "ownership": 22.7,
    "xpts_total": 4.958,
+   "xpts_prev": 4.705,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.847,
@@ -1924,8 +1950,9 @@
    "code": 446008,
    "team_code": 1,
    "minutes": 360,
-   "ownership": 23.4,
+   "ownership": 23.3,
    "xpts_total": 4.952,
+   "xpts_prev": 5.399,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.529,
@@ -1999,6 +2026,7 @@
    "minutes": 329,
    "ownership": 6.5,
    "xpts_total": 4.924,
+   "xpts_prev": 4.931,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.735,
@@ -2071,6 +2099,7 @@
    "minutes": 270,
    "ownership": 2.7,
    "xpts_total": 4.867,
+   "xpts_prev": 4.864,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.12,
@@ -2141,8 +2170,9 @@
    "code": 513545,
    "team_code": 94,
    "minutes": 300,
-   "ownership": 12.6,
+   "ownership": 12.5,
    "xpts_total": 4.854,
+   "xpts_prev": 4.851,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.253,
@@ -2213,8 +2243,9 @@
    "code": 216646,
    "team_code": 4,
    "minutes": 261,
-   "ownership": 18.5,
+   "ownership": 18.6,
    "xpts_total": 4.85,
+   "xpts_prev": 4.85,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.613,
@@ -2288,6 +2319,7 @@
    "minutes": 359,
    "ownership": 1.7,
    "xpts_total": 4.847,
+   "xpts_prev": 4.855,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -2360,6 +2392,7 @@
    "minutes": 217,
    "ownership": 2.1,
    "xpts_total": 4.704,
+   "xpts_prev": 4.713,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.233,
@@ -2430,8 +2463,9 @@
    "code": 463726,
    "team_code": 4,
    "minutes": 270,
-   "ownership": 3,
+   "ownership": 2.9,
    "xpts_total": 4.606,
+   "xpts_prev": 4.615,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -2505,6 +2539,7 @@
    "minutes": 360,
    "ownership": 2.6,
    "xpts_total": 4.545,
+   "xpts_prev": 4.552,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -2575,8 +2610,9 @@
    "code": 516895,
    "team_code": 1,
    "minutes": 275,
-   "ownership": 1.4,
+   "ownership": 1.5,
    "xpts_total": 4.514,
+   "xpts_prev": 3.971,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.288,
@@ -2649,6 +2685,7 @@
    "minutes": 289,
    "ownership": 0.3,
    "xpts_total": 4.503,
+   "xpts_prev": 4.512,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.995,
@@ -2722,6 +2759,7 @@
    "minutes": 360,
    "ownership": 8.3,
    "xpts_total": 4.496,
+   "xpts_prev": 4.504,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -2794,6 +2832,7 @@
    "minutes": 231,
    "ownership": 3.4,
    "xpts_total": 4.489,
+   "xpts_prev": 3.33,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.765,
@@ -2867,6 +2906,7 @@
    "minutes": 298,
    "ownership": 0.7,
    "xpts_total": 4.432,
+   "xpts_prev": 4.429,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.225,
@@ -2935,6 +2975,7 @@
    "minutes": 360,
    "ownership": 10.5,
    "xpts_total": 4.43,
+   "xpts_prev": 4.43,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -3007,6 +3048,7 @@
    "minutes": 258,
    "ownership": 0.7,
    "xpts_total": 4.419,
+   "xpts_prev": 4.416,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.317,
@@ -3078,8 +3120,9 @@
    "code": 577725,
    "team_code": 54,
    "minutes": 346,
-   "ownership": 1.3,
+   "ownership": 1.4,
    "xpts_total": 4.387,
+   "xpts_prev": 4.385,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.435,
@@ -3152,6 +3195,7 @@
    "minutes": 278,
    "ownership": 0.6,
    "xpts_total": 4.355,
+   "xpts_prev": 2.9,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.156,
@@ -3222,8 +3266,9 @@
    "code": 440993,
    "team_code": 43,
    "minutes": 311,
-   "ownership": 8.4,
+   "ownership": 8.3,
    "xpts_total": 4.352,
+   "xpts_prev": 4.48,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.336,
@@ -3290,8 +3335,9 @@
    "code": 470551,
    "team_code": 4,
    "minutes": 270,
-   "ownership": 1.4,
+   "ownership": 1.5,
    "xpts_total": 4.299,
+   "xpts_prev": 4.299,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -3365,6 +3411,7 @@
    "minutes": 360,
    "ownership": 4.8,
    "xpts_total": 4.289,
+   "xpts_prev": 4.287,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.104,
@@ -3436,8 +3483,9 @@
    "code": 209400,
    "team_code": 31,
    "minutes": 351,
-   "ownership": 0.4,
+   "ownership": 0.5,
    "xpts_total": 4.288,
+   "xpts_prev": 4.285,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.253,
@@ -3510,6 +3558,7 @@
    "minutes": 270,
    "ownership": 1.5,
    "xpts_total": 4.283,
+   "xpts_prev": 4.292,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -3582,6 +3631,7 @@
    "minutes": 326,
    "ownership": 2,
    "xpts_total": 4.21,
+   "xpts_prev": 4.207,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.863,
@@ -3655,6 +3705,7 @@
    "minutes": 347,
    "ownership": 8,
    "xpts_total": 4.164,
+   "xpts_prev": 4.164,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.64,
@@ -3726,6 +3777,7 @@
    "minutes": 249,
    "ownership": 7.7,
    "xpts_total": 4.153,
+   "xpts_prev": 4.163,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.846,
@@ -3799,6 +3851,7 @@
    "minutes": 360,
    "ownership": 2,
    "xpts_total": 4.125,
+   "xpts_prev": 4.132,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -3872,6 +3925,7 @@
    "minutes": 326,
    "ownership": 49.8,
    "xpts_total": 4.122,
+   "xpts_prev": 4.129,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.122,
@@ -3943,8 +3997,9 @@
    "code": 146426,
    "team_code": 88,
    "minutes": 333,
-   "ownership": 13.3,
+   "ownership": 13.4,
    "xpts_total": 4.11,
+   "xpts_prev": 4.118,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.922,
@@ -4017,6 +4072,7 @@
    "minutes": 274,
    "ownership": 7.7,
    "xpts_total": 4.088,
+   "xpts_prev": 4.096,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.133,
@@ -4087,8 +4143,9 @@
    "code": 177815,
    "team_code": 2,
    "minutes": 252,
-   "ownership": 21.8,
+   "ownership": 21.7,
    "xpts_total": 4.066,
+   "xpts_prev": 4.066,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.427,
@@ -4157,6 +4214,7 @@
    "minutes": 270,
    "ownership": 1.8,
    "xpts_total": 4.064,
+   "xpts_prev": 4.064,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -4230,6 +4288,7 @@
    "minutes": 360,
    "ownership": 4.1,
    "xpts_total": 4.059,
+   "xpts_prev": 4.056,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.175,
@@ -4298,6 +4357,7 @@
    "minutes": 360,
    "ownership": 8.7,
    "xpts_total": 4.038,
+   "xpts_prev": 4.038,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -4369,8 +4429,9 @@
    "code": 437730,
    "team_code": 43,
    "minutes": 360,
-   "ownership": 15.9,
+   "ownership": 15.8,
    "xpts_total": 4.028,
+   "xpts_prev": 4.304,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.31,
@@ -4444,6 +4505,7 @@
    "minutes": 327,
    "ownership": 6.4,
    "xpts_total": 4.012,
+   "xpts_prev": 4.012,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.435,
@@ -4516,6 +4578,7 @@
    "minutes": 270,
    "ownership": 1.5,
    "xpts_total": 4.005,
+   "xpts_prev": 4.014,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.145,
@@ -4588,6 +4651,7 @@
    "minutes": 270,
    "ownership": 2.2,
    "xpts_total": 4.003,
+   "xpts_prev": 4.012,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -4660,6 +4724,7 @@
    "minutes": 270,
    "ownership": 0.7,
    "xpts_total": 4.003,
+   "xpts_prev": 4.012,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -4732,6 +4797,7 @@
    "minutes": 270,
    "ownership": 0.2,
    "xpts_total": 4.003,
+   "xpts_prev": 4.012,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -4800,6 +4866,7 @@
    "minutes": 360,
    "ownership": 7.6,
    "xpts_total": 3.995,
+   "xpts_prev": 4.001,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -4873,6 +4940,7 @@
    "minutes": 321,
    "ownership": 12.8,
    "xpts_total": 3.959,
+   "xpts_prev": 3.957,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.266,
@@ -4941,6 +5009,7 @@
    "minutes": 270,
    "ownership": 5.4,
    "xpts_total": 3.952,
+   "xpts_prev": 3.952,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -5007,8 +5076,9 @@
    "code": 85633,
    "team_code": 17,
    "minutes": 360,
-   "ownership": 1.4,
+   "ownership": 1.5,
    "xpts_total": 3.952,
+   "xpts_prev": 3.952,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -5079,8 +5149,9 @@
    "code": 439509,
    "team_code": 3,
    "minutes": 290,
-   "ownership": 15.3,
+   "ownership": 15.2,
    "xpts_total": 3.941,
+   "xpts_prev": 3.938,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.281,
@@ -5149,6 +5220,7 @@
    "minutes": 360,
    "ownership": 3.9,
    "xpts_total": 3.925,
+   "xpts_prev": 3.925,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -5219,8 +5291,9 @@
    "code": 198869,
    "team_code": 3,
    "minutes": 315,
-   "ownership": 7.1,
+   "ownership": 7,
    "xpts_total": 3.903,
+   "xpts_prev": 3.911,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.124,
@@ -5294,6 +5367,7 @@
    "minutes": 360,
    "ownership": 6.6,
    "xpts_total": 3.895,
+   "xpts_prev": 3.903,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -5365,8 +5439,9 @@
    "code": 424876,
    "team_code": 14,
    "minutes": 360,
-   "ownership": 37.4,
+   "ownership": 37.2,
    "xpts_total": 3.894,
+   "xpts_prev": 3.891,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.889,
@@ -5440,6 +5515,7 @@
    "minutes": 334,
    "ownership": 3.3,
    "xpts_total": 3.892,
+   "xpts_prev": 3.892,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.559,
@@ -5513,6 +5589,7 @@
    "minutes": 317,
    "ownership": 6.3,
    "xpts_total": 3.863,
+   "xpts_prev": 4.147,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.268,
@@ -5567,14 +5644,14 @@
    "name": "Palacios",
    "team": "FUL",
    "position": "MID",
-   "price": 5.5,
+   "price": 5.4,
    "matches_considered": 3,
    "hit_rate": 0.0712166172106825,
    "mean_actions": 4.333333333333333,
    "near_miss_rate": 0,
    "consistency": 0.15035684483174905,
    "defcon_xpts": 0.142433234421365,
-   "value_per_million": 0.025896951712975454,
+   "value_per_million": 0.026376524892845365,
    "last5_actions": [
     4,
     9,
@@ -5585,6 +5662,7 @@
    "minutes": 207,
    "ownership": 0.2,
    "xpts_total": 3.852,
+   "xpts_prev": 3.849,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.078,
@@ -5653,6 +5731,7 @@
    "minutes": 270,
    "ownership": 5.1,
    "xpts_total": 3.823,
+   "xpts_prev": 3.823,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -5722,8 +5801,9 @@
    "code": 209244,
    "team_code": 43,
    "minutes": 217,
-   "ownership": 3.6,
+   "ownership": 3.5,
    "xpts_total": 3.816,
+   "xpts_prev": 3.924,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.317,
@@ -5797,6 +5877,7 @@
    "minutes": 356,
    "ownership": 0.4,
    "xpts_total": 3.803,
+   "xpts_prev": 3.8,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.312,
@@ -5870,6 +5951,7 @@
    "minutes": 347,
    "ownership": 3.2,
    "xpts_total": 3.798,
+   "xpts_prev": 4.067,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.827,
@@ -5943,6 +6025,7 @@
    "minutes": 347,
    "ownership": 9.1,
    "xpts_total": 3.794,
+   "xpts_prev": 4.003,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.118,
@@ -6016,6 +6099,7 @@
    "minutes": 360,
    "ownership": 23.6,
    "xpts_total": 3.79,
+   "xpts_prev": 3.798,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -6088,6 +6172,7 @@
    "minutes": 246,
    "ownership": 1.4,
    "xpts_total": 3.758,
+   "xpts_prev": 3.755,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.085,
@@ -6160,6 +6245,7 @@
    "minutes": 258,
    "ownership": 0.2,
    "xpts_total": 3.729,
+   "xpts_prev": 3.726,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.061,
@@ -6232,6 +6318,7 @@
    "minutes": 268,
    "ownership": 1.5,
    "xpts_total": 3.724,
+   "xpts_prev": 3.733,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.167,
@@ -6304,6 +6391,7 @@
    "minutes": 286,
    "ownership": 0.1,
    "xpts_total": 3.72,
+   "xpts_prev": 3.717,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.351,
@@ -6370,8 +6458,9 @@
    "code": 154561,
    "team_code": 3,
    "minutes": 360,
-   "ownership": 39.7,
+   "ownership": 39.8,
    "xpts_total": 3.712,
+   "xpts_prev": 3.712,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -6445,6 +6534,7 @@
    "minutes": 325,
    "ownership": 3,
    "xpts_total": 3.696,
+   "xpts_prev": 3.703,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.122,
@@ -6518,6 +6608,7 @@
    "minutes": 354,
    "ownership": 2.1,
    "xpts_total": 3.69,
+   "xpts_prev": 3.697,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.116,
@@ -6590,6 +6681,7 @@
    "minutes": 306,
    "ownership": 2.6,
    "xpts_total": 3.69,
+   "xpts_prev": 3.699,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.156,
@@ -6661,6 +6753,7 @@
    "minutes": 166,
    "ownership": 0.5,
    "xpts_total": 3.688,
+   "xpts_prev": 3.684,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 1.26,
@@ -6733,6 +6826,7 @@
    "minutes": 270,
    "ownership": 3.9,
    "xpts_total": 3.678,
+   "xpts_prev": 3.687,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.145,
@@ -6806,6 +6900,7 @@
    "minutes": 340,
    "ownership": 0.9,
    "xpts_total": 3.675,
+   "xpts_prev": 3.672,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.258,
@@ -6874,6 +6969,7 @@
    "minutes": 270,
    "ownership": 1.8,
    "xpts_total": 3.674,
+   "xpts_prev": 3.674,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -6945,8 +7041,9 @@
    "code": 95658,
    "team_code": 1,
    "minutes": 360,
-   "ownership": 10.5,
+   "ownership": 10.4,
    "xpts_total": 3.649,
+   "xpts_prev": 3.839,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -7020,6 +7117,7 @@
    "minutes": 360,
    "ownership": 1.4,
    "xpts_total": 3.64,
+   "xpts_prev": 3.082,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.81,
@@ -7093,6 +7191,7 @@
    "minutes": 360,
    "ownership": 1.8,
    "xpts_total": 3.635,
+   "xpts_prev": 3.732,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -7161,6 +7260,7 @@
    "minutes": 360,
    "ownership": 0.6,
    "xpts_total": 3.633,
+   "xpts_prev": 3.633,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -7232,6 +7332,7 @@
    "minutes": 226,
    "ownership": 2.5,
    "xpts_total": 3.626,
+   "xpts_prev": 3.626,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 1.365,
@@ -7305,6 +7406,7 @@
    "minutes": 351,
    "ownership": 1.9,
    "xpts_total": 3.612,
+   "xpts_prev": 3.612,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.592,
@@ -7377,6 +7479,7 @@
    "minutes": 270,
    "ownership": 3.9,
    "xpts_total": 3.608,
+   "xpts_prev": 3.617,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.145,
@@ -7449,6 +7552,7 @@
    "minutes": 243,
    "ownership": 0.4,
    "xpts_total": 3.6,
+   "xpts_prev": 2.066,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.002,
@@ -7522,6 +7626,7 @@
    "minutes": 294,
    "ownership": 1,
    "xpts_total": 3.598,
+   "xpts_prev": 3.595,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.912,
@@ -7595,6 +7700,7 @@
    "minutes": 323,
    "ownership": 4.2,
    "xpts_total": 3.597,
+   "xpts_prev": 3.516,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.329,
@@ -7665,8 +7771,9 @@
    "code": 106760,
    "team_code": 1,
    "minutes": 252,
-   "ownership": 11.2,
+   "ownership": 11,
    "xpts_total": 3.572,
+   "xpts_prev": 3.581,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.139,
@@ -7740,6 +7847,7 @@
    "minutes": 360,
    "ownership": 6.8,
    "xpts_total": 3.559,
+   "xpts_prev": 3.567,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.124,
@@ -7812,6 +7920,7 @@
    "minutes": 227,
    "ownership": 0.1,
    "xpts_total": 3.527,
+   "xpts_prev": 3.523,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.393,
@@ -7884,6 +7993,7 @@
    "minutes": 276,
    "ownership": 2.7,
    "xpts_total": 3.519,
+   "xpts_prev": 3.527,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.143,
@@ -7957,6 +8067,7 @@
    "minutes": 360,
    "ownership": 0.7,
    "xpts_total": 3.51,
+   "xpts_prev": 3.518,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -8028,8 +8139,9 @@
    "code": 219924,
    "team_code": 40,
    "minutes": 360,
-   "ownership": 14.1,
+   "ownership": 14,
    "xpts_total": 3.51,
+   "xpts_prev": 3.518,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -8103,6 +8215,7 @@
    "minutes": 360,
    "ownership": 2.9,
    "xpts_total": 3.51,
+   "xpts_prev": 3.518,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -8174,8 +8287,9 @@
    "code": 97032,
    "team_code": 14,
    "minutes": 360,
-   "ownership": 16.9,
+   "ownership": 16.8,
    "xpts_total": 3.51,
+   "xpts_prev": 3.518,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -8247,6 +8361,7 @@
    "minutes": 239,
    "ownership": 1.1,
    "xpts_total": 3.51,
+   "xpts_prev": 3.506,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.869,
@@ -8316,8 +8431,9 @@
    "code": 463034,
    "team_code": 17,
    "minutes": 187,
-   "ownership": 1.1,
+   "ownership": 1.2,
    "xpts_total": 3.499,
+   "xpts_prev": 3.499,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 1.481,
@@ -8390,6 +8506,7 @@
    "minutes": 238,
    "ownership": 0.1,
    "xpts_total": 3.495,
+   "xpts_prev": 3.492,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.384,
@@ -8461,8 +8578,9 @@
    "code": 514254,
    "team_code": 36,
    "minutes": 348,
-   "ownership": 4.8,
+   "ownership": 4.7,
    "xpts_total": 3.483,
+   "xpts_prev": 3.686,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.233,
@@ -8531,6 +8649,7 @@
    "minutes": 360,
    "ownership": 11.1,
    "xpts_total": 3.42,
+   "xpts_prev": 3.525,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -8604,6 +8723,7 @@
    "minutes": 351,
    "ownership": 2.3,
    "xpts_total": 3.404,
+   "xpts_prev": 3.402,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.253,
@@ -8676,6 +8796,7 @@
    "minutes": 242,
    "ownership": 0.2,
    "xpts_total": 3.393,
+   "xpts_prev": 3.402,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.142,
@@ -8748,6 +8869,7 @@
    "minutes": 270,
    "ownership": 1.3,
    "xpts_total": 3.382,
+   "xpts_prev": 2.428,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.134,
@@ -8816,6 +8938,7 @@
    "minutes": 360,
    "ownership": 18.5,
    "xpts_total": 3.378,
+   "xpts_prev": 3.378,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -8889,6 +9012,7 @@
    "minutes": 286,
    "ownership": 0.2,
    "xpts_total": 3.359,
+   "xpts_prev": 3.356,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.283,
@@ -8960,6 +9084,7 @@
    "minutes": 258,
    "ownership": 1,
    "xpts_total": 3.344,
+   "xpts_prev": 3.354,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.109,
@@ -9033,6 +9158,7 @@
    "minutes": 334,
    "ownership": 0.1,
    "xpts_total": 3.342,
+   "xpts_prev": 3.339,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.323,
@@ -9104,6 +9230,7 @@
    "minutes": 217,
    "ownership": 0.6,
    "xpts_total": 3.339,
+   "xpts_prev": 3.339,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 1.119,
@@ -9177,6 +9304,7 @@
    "minutes": 318,
    "ownership": 0.8,
    "xpts_total": 3.317,
+   "xpts_prev": 3.324,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.113,
@@ -9248,6 +9376,7 @@
    "minutes": 192,
    "ownership": 0.1,
    "xpts_total": 3.315,
+   "xpts_prev": 1.966,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.124,
@@ -9321,6 +9450,7 @@
    "minutes": 328,
    "ownership": 0.1,
    "xpts_total": 3.295,
+   "xpts_prev": 3.293,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.263,
@@ -9389,6 +9519,7 @@
    "minutes": 360,
    "ownership": 0.9,
    "xpts_total": 3.292,
+   "xpts_prev": 3.326,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -9461,6 +9592,7 @@
    "minutes": 270,
    "ownership": 1,
    "xpts_total": 3.291,
+   "xpts_prev": 3.288,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.314,
@@ -9532,6 +9664,7 @@
    "minutes": 226,
    "ownership": 0.5,
    "xpts_total": 3.29,
+   "xpts_prev": 3.286,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.25,
@@ -9605,6 +9738,7 @@
    "minutes": 332,
    "ownership": 7.3,
    "xpts_total": 3.29,
+   "xpts_prev": 3.287,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.261,
@@ -9673,6 +9807,7 @@
    "minutes": 360,
    "ownership": 3,
    "xpts_total": 3.286,
+   "xpts_prev": 3.286,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -9746,6 +9881,7 @@
    "minutes": 360,
    "ownership": 0.4,
    "xpts_total": 3.285,
+   "xpts_prev": 3.293,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -9819,6 +9955,7 @@
    "minutes": 357,
    "ownership": 1.2,
    "xpts_total": 3.266,
+   "xpts_prev": 3.274,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.116,
@@ -9890,8 +10027,9 @@
    "code": 451284,
    "team_code": 9,
    "minutes": 360,
-   "ownership": 10.4,
+   "ownership": 10.3,
    "xpts_total": 3.265,
+   "xpts_prev": 3.391,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -9964,6 +10102,7 @@
    "minutes": 287,
    "ownership": 0.2,
    "xpts_total": 3.257,
+   "xpts_prev": 3.254,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.305,
@@ -10037,6 +10176,7 @@
    "minutes": 346,
    "ownership": 3.8,
    "xpts_total": 3.256,
+   "xpts_prev": 3.256,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 1.028,
@@ -10110,6 +10250,7 @@
    "minutes": 360,
    "ownership": 5.6,
    "xpts_total": 3.253,
+   "xpts_prev": 3.25,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.249,
@@ -10181,6 +10322,7 @@
    "minutes": 197,
    "ownership": 0.5,
    "xpts_total": 3.252,
+   "xpts_prev": 3.248,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.244,
@@ -10235,14 +10377,14 @@
    "name": "Röhl",
    "team": "EVE",
    "position": "MID",
-   "price": 5,
+   "price": 4.9,
    "matches_considered": 3,
    "hit_rate": 0.0712166172106825,
    "mean_actions": 8,
    "near_miss_rate": 0,
    "consistency": 0.8232233047033631,
    "defcon_xpts": 0.142433234421365,
-   "value_per_million": 0.028486646884273,
+   "value_per_million": 0.029068007024768364,
    "last5_actions": [
     9,
     9,
@@ -10253,6 +10395,7 @@
    "minutes": 249,
    "ownership": 0,
    "xpts_total": 3.219,
+   "xpts_prev": 3.216,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.376,
@@ -10324,6 +10467,7 @@
    "minutes": 195,
    "ownership": 0,
    "xpts_total": 3.218,
+   "xpts_prev": 3.215,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.267,
@@ -10396,6 +10540,7 @@
    "minutes": 254,
    "ownership": 0.1,
    "xpts_total": 3.214,
+   "xpts_prev": 3.211,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.748,
@@ -10469,6 +10614,7 @@
    "minutes": 348,
    "ownership": 4.2,
    "xpts_total": 3.202,
+   "xpts_prev": 3.2,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.634,
@@ -10537,6 +10683,7 @@
    "minutes": 360,
    "ownership": 6.5,
    "xpts_total": 3.176,
+   "xpts_prev": 3.176,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -10610,6 +10757,7 @@
    "minutes": 335,
    "ownership": 0.8,
    "xpts_total": 3.168,
+   "xpts_prev": 3.175,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.12,
@@ -10683,6 +10831,7 @@
    "minutes": 344,
    "ownership": 2.4,
    "xpts_total": 3.158,
+   "xpts_prev": 3.156,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.276,
@@ -10754,6 +10903,7 @@
    "minutes": 226,
    "ownership": 8.5,
    "xpts_total": 3.15,
+   "xpts_prev": 3.16,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.813,
@@ -10825,8 +10975,9 @@
    "code": 166989,
    "team_code": 1,
    "minutes": 312,
-   "ownership": 1.7,
+   "ownership": 1.6,
    "xpts_total": 3.148,
+   "xpts_prev": 3.272,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.27,
@@ -10900,6 +11051,7 @@
    "minutes": 346,
    "ownership": 0.8,
    "xpts_total": 3.123,
+   "xpts_prev": 3.121,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.255,
@@ -10969,8 +11121,9 @@
    "code": 472769,
    "team_code": 43,
    "minutes": 158,
-   "ownership": 12.9,
+   "ownership": 12.8,
    "xpts_total": 3.118,
+   "xpts_prev": 2.654,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.166,
@@ -11043,6 +11196,7 @@
    "minutes": 251,
    "ownership": 5.7,
    "xpts_total": 3.11,
+   "xpts_prev": 3.118,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.139,
@@ -11115,6 +11269,7 @@
    "minutes": 251,
    "ownership": 1,
    "xpts_total": 3.11,
+   "xpts_prev": 3.118,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.139,
@@ -11187,6 +11342,7 @@
    "minutes": 270,
    "ownership": 0.2,
    "xpts_total": 3.102,
+   "xpts_prev": 3.111,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.134,
@@ -11259,6 +11415,7 @@
    "minutes": 256,
    "ownership": 1.8,
    "xpts_total": 3.09,
+   "xpts_prev": 2.682,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.138,
@@ -11331,6 +11488,7 @@
    "minutes": 258,
    "ownership": 0.6,
    "xpts_total": 3.089,
+   "xpts_prev": 3.098,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.137,
@@ -11403,6 +11561,7 @@
    "minutes": 272,
    "ownership": 1.1,
    "xpts_total": 3.084,
+   "xpts_prev": 3.093,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.134,
@@ -11475,6 +11634,7 @@
    "minutes": 249,
    "ownership": 2.2,
    "xpts_total": 3.079,
+   "xpts_prev": 3.079,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.765,
@@ -11547,6 +11707,7 @@
    "minutes": 292,
    "ownership": 7.4,
    "xpts_total": 3.077,
+   "xpts_prev": 3.086,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.129,
@@ -11619,6 +11780,7 @@
    "minutes": 295,
    "ownership": 2.6,
    "xpts_total": 3.076,
+   "xpts_prev": 3.085,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.128,
@@ -11692,6 +11854,7 @@
    "minutes": 360,
    "ownership": 3.3,
    "xpts_total": 3.075,
+   "xpts_prev": 3.083,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -11764,6 +11927,7 @@
    "minutes": 236,
    "ownership": 0.2,
    "xpts_total": 3.046,
+   "xpts_prev": 3.042,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.335,
@@ -11837,6 +12001,7 @@
    "minutes": 360,
    "ownership": 0.8,
    "xpts_total": 3.04,
+   "xpts_prev": 3.048,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -11910,6 +12075,7 @@
    "minutes": 360,
    "ownership": 4.5,
    "xpts_total": 3.04,
+   "xpts_prev": 3.048,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -11983,6 +12149,7 @@
    "minutes": 354,
    "ownership": 0.7,
    "xpts_total": 3.022,
+   "xpts_prev": 3.113,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.116,
@@ -12056,6 +12223,7 @@
    "minutes": 360,
    "ownership": 0.3,
    "xpts_total": 3.02,
+   "xpts_prev": 3.028,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -12129,6 +12297,7 @@
    "minutes": 360,
    "ownership": 0.7,
    "xpts_total": 3.02,
+   "xpts_prev": 3.111,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.115,
@@ -12201,6 +12370,7 @@
    "minutes": 224,
    "ownership": 0.1,
    "xpts_total": 3.017,
+   "xpts_prev": 2.155,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.318,
@@ -12273,6 +12443,7 @@
    "minutes": 257,
    "ownership": 0.2,
    "xpts_total": 3.006,
+   "xpts_prev": 3.003,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.322,
@@ -12345,6 +12516,7 @@
    "minutes": 224,
    "ownership": 0.1,
    "xpts_total": 3,
+   "xpts_prev": 2.606,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.318,
@@ -12414,8 +12586,9 @@
    "code": 199798,
    "team_code": 3,
    "minutes": 191,
-   "ownership": 17.5,
+   "ownership": 17.6,
    "xpts_total": 2.988,
+   "xpts_prev": 2.998,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.124,
@@ -12487,6 +12660,7 @@
    "minutes": 202,
    "ownership": 0.4,
    "xpts_total": 2.984,
+   "xpts_prev": 2.994,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.121,
@@ -12559,6 +12733,7 @@
    "minutes": 243,
    "ownership": 0.3,
    "xpts_total": 2.98,
+   "xpts_prev": 2.977,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.306,
@@ -12630,6 +12805,7 @@
    "minutes": 194,
    "ownership": 2.8,
    "xpts_total": 2.97,
+   "xpts_prev": 2.98,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.123,
@@ -12698,6 +12874,7 @@
    "minutes": 360,
    "ownership": 22.1,
    "xpts_total": 2.963,
+   "xpts_prev": 2.819,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -12770,6 +12947,7 @@
    "minutes": 271,
    "ownership": 0.6,
    "xpts_total": 2.954,
+   "xpts_prev": 2.951,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.29,
@@ -12842,6 +13020,7 @@
    "minutes": 275,
    "ownership": 1.6,
    "xpts_total": 2.951,
+   "xpts_prev": 2.563,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.288,
@@ -12914,6 +13093,7 @@
    "minutes": 279,
    "ownership": 1.3,
    "xpts_total": 2.947,
+   "xpts_prev": 2.944,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.286,
@@ -12982,6 +13162,7 @@
    "minutes": 360,
    "ownership": 3.2,
    "xpts_total": 2.92,
+   "xpts_prev": 2.92,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -13055,6 +13236,7 @@
    "minutes": 302,
    "ownership": 0.3,
    "xpts_total": 2.911,
+   "xpts_prev": 2.908,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.275,
@@ -13128,6 +13310,7 @@
    "minutes": 311,
    "ownership": 1,
    "xpts_total": 2.904,
+   "xpts_prev": 2.901,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.27,
@@ -13198,6 +13381,7 @@
    "minutes": 164,
    "ownership": 0.8,
    "xpts_total": 2.892,
+   "xpts_prev": 2.904,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.101,
@@ -13252,14 +13436,14 @@
    "name": "Mukiele",
    "team": "SUN",
    "position": "DEF",
-   "price": 5.5,
+   "price": 5.4,
    "matches_considered": 3,
    "hit_rate": 0.4312333629103815,
    "mean_actions": 13,
    "near_miss_rate": 0,
    "consistency": 0.5881441434818202,
    "defcon_xpts": 0.862466725820763,
-   "value_per_million": 0.15681213196741145,
+   "value_per_million": 0.15971606033717833,
    "last5_actions": [
     19,
     14,
@@ -13270,6 +13454,7 @@
    "minutes": 270,
    "ownership": 2.1,
    "xpts_total": 2.892,
+   "xpts_prev": 2.901,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.094,
@@ -13340,6 +13525,7 @@
    "minutes": 105,
    "ownership": 0.2,
    "xpts_total": 2.878,
+   "xpts_prev": 2.873,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.835,
@@ -13413,6 +13599,7 @@
    "minutes": 353,
    "ownership": 0.1,
    "xpts_total": 2.874,
+   "xpts_prev": 2.969,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.252,
@@ -13486,6 +13673,7 @@
    "minutes": 360,
    "ownership": 0.3,
    "xpts_total": 2.869,
+   "xpts_prev": 2.866,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.249,
@@ -13558,6 +13746,7 @@
    "minutes": 273,
    "ownership": 0.3,
    "xpts_total": 2.836,
+   "xpts_prev": 2.833,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.266,
@@ -13631,6 +13820,7 @@
    "minutes": 273,
    "ownership": 0.3,
    "xpts_total": 2.818,
+   "xpts_prev": 2.815,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.266,
@@ -13702,6 +13892,7 @@
    "minutes": 192,
    "ownership": 0.3,
    "xpts_total": 2.787,
+   "xpts_prev": 2.784,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.247,
@@ -13775,6 +13966,7 @@
    "minutes": 338,
    "ownership": 0.7,
    "xpts_total": 2.771,
+   "xpts_prev": 2.769,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.237,
@@ -13846,6 +14038,7 @@
    "minutes": 213,
    "ownership": 0.1,
    "xpts_total": 2.77,
+   "xpts_prev": 2.766,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.236,
@@ -13919,6 +14112,7 @@
    "minutes": 352,
    "ownership": 10.1,
    "xpts_total": 2.769,
+   "xpts_prev": 2.769,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.542,
@@ -13992,6 +14186,7 @@
    "minutes": 347,
    "ownership": 1.8,
    "xpts_total": 2.766,
+   "xpts_prev": 2.763,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.234,
@@ -14063,6 +14258,7 @@
    "minutes": 181,
    "ownership": 3.3,
    "xpts_total": 2.761,
+   "xpts_prev": 1.758,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.342,
@@ -14134,6 +14330,7 @@
    "minutes": 173,
    "ownership": 0.1,
    "xpts_total": 2.754,
+   "xpts_prev": 2.75,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.348,
@@ -14204,6 +14401,7 @@
    "minutes": 87,
    "ownership": 0.5,
    "xpts_total": 2.691,
+   "xpts_prev": 2.699,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.879,
@@ -14275,6 +14473,7 @@
    "minutes": 178,
    "ownership": 2.1,
    "xpts_total": 2.667,
+   "xpts_prev": 2.677,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.128,
@@ -14346,6 +14545,7 @@
    "minutes": 187,
    "ownership": 0.4,
    "xpts_total": 2.663,
+   "xpts_prev": 2.673,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.125,
@@ -14417,6 +14617,7 @@
    "minutes": 196,
    "ownership": 1.3,
    "xpts_total": 2.658,
+   "xpts_prev": 2.668,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.113,
@@ -14488,6 +14689,7 @@
    "minutes": 153,
    "ownership": 0.3,
    "xpts_total": 2.647,
+   "xpts_prev": 2.643,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.317,
@@ -14559,8 +14761,9 @@
    "code": 441264,
    "team_code": 56,
    "minutes": 309,
-   "ownership": 6.5,
+   "ownership": 6.4,
    "xpts_total": 2.64,
+   "xpts_prev": 2.64,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.444,
@@ -14633,6 +14836,7 @@
    "minutes": 257,
    "ownership": 1.7,
    "xpts_total": 2.635,
+   "xpts_prev": 1.883,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.126,
@@ -14706,6 +14910,7 @@
    "minutes": 343,
    "ownership": 0.2,
    "xpts_total": 2.608,
+   "xpts_prev": 2.606,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.179,
@@ -14776,6 +14981,7 @@
    "minutes": 136,
    "ownership": 0.2,
    "xpts_total": 2.603,
+   "xpts_prev": 2.599,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.269,
@@ -14849,6 +15055,7 @@
    "minutes": 360,
    "ownership": 3,
    "xpts_total": 2.586,
+   "xpts_prev": 2.593,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.081,
@@ -14920,6 +15127,7 @@
    "minutes": 199,
    "ownership": 1.3,
    "xpts_total": 2.584,
+   "xpts_prev": 2.584,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.619,
@@ -14990,6 +15198,7 @@
    "minutes": 107,
    "ownership": 0.2,
    "xpts_total": 2.575,
+   "xpts_prev": 2.587,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.108,
@@ -15061,6 +15270,7 @@
    "minutes": 204,
    "ownership": 0.9,
    "xpts_total": 2.573,
+   "xpts_prev": 2.57,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.283,
@@ -15132,6 +15342,7 @@
    "minutes": 175,
    "ownership": 0.2,
    "xpts_total": 2.567,
+   "xpts_prev": 2.599,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.279,
@@ -15202,6 +15413,7 @@
    "minutes": 139,
    "ownership": 0.1,
    "xpts_total": 2.563,
+   "xpts_prev": 2.575,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.099,
@@ -15275,6 +15487,7 @@
    "minutes": 339,
    "ownership": 1.4,
    "xpts_total": 2.556,
+   "xpts_prev": 2.563,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.109,
@@ -15348,6 +15561,7 @@
    "minutes": 347,
    "ownership": 0.3,
    "xpts_total": 2.554,
+   "xpts_prev": 2.639,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.108,
@@ -15421,6 +15635,7 @@
    "minutes": 360,
    "ownership": 0.1,
    "xpts_total": 2.55,
+   "xpts_prev": 2.558,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -15494,6 +15709,7 @@
    "minutes": 360,
    "ownership": 0.7,
    "xpts_total": 2.55,
+   "xpts_prev": 2.558,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.106,
@@ -15565,6 +15781,7 @@
    "minutes": 216,
    "ownership": 1.3,
    "xpts_total": 2.528,
+   "xpts_prev": 2.525,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.255,
@@ -15636,6 +15853,7 @@
    "minutes": 232,
    "ownership": 0.6,
    "xpts_total": 2.513,
+   "xpts_prev": 2.618,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.578,
@@ -15707,6 +15925,7 @@
    "minutes": 249,
    "ownership": 0.1,
    "xpts_total": 2.502,
+   "xpts_prev": 2.498,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.239,
@@ -15778,6 +15997,7 @@
    "minutes": 165,
    "ownership": 0.2,
    "xpts_total": 2.486,
+   "xpts_prev": 2.482,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.262,
@@ -15919,6 +16139,7 @@
    "minutes": 140,
    "ownership": 0.1,
    "xpts_total": 2.392,
+   "xpts_prev": 2.389,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.263,
@@ -15989,6 +16210,7 @@
    "minutes": 175,
    "ownership": 5.5,
    "xpts_total": 2.388,
+   "xpts_prev": 2.4,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.113,
@@ -16060,6 +16282,7 @@
    "minutes": 163,
    "ownership": 0,
    "xpts_total": 2.369,
+   "xpts_prev": 2.366,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.249,
@@ -16130,6 +16353,7 @@
    "minutes": 167,
    "ownership": 0.7,
    "xpts_total": 2.364,
+   "xpts_prev": 2.364,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.47,
@@ -16201,6 +16425,7 @@
    "minutes": 180,
    "ownership": 9.9,
    "xpts_total": 2.345,
+   "xpts_prev": 2.352,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.119,
@@ -16272,6 +16497,7 @@
    "minutes": 146,
    "ownership": 0.3,
    "xpts_total": 2.34,
+   "xpts_prev": 2.337,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.321,
@@ -16342,6 +16568,7 @@
    "minutes": 181,
    "ownership": 1.3,
    "xpts_total": 2.331,
+   "xpts_prev": 2.327,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.195,
@@ -16396,7 +16623,7 @@
    "name": "Roefs",
    "team": "SUN",
    "position": "GK",
-   "price": 5,
+   "price": 4.9,
    "matches_considered": 4,
    "hit_rate": 0,
    "mean_actions": 0,
@@ -16410,6 +16637,7 @@
    "minutes": 360,
    "ownership": 2.8,
    "xpts_total": 2.33,
+   "xpts_prev": 2.33,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0,
@@ -16550,6 +16778,7 @@
    "minutes": 86,
    "ownership": 0.4,
    "xpts_total": 2.206,
+   "xpts_prev": 2.218,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.123,
@@ -16621,6 +16850,7 @@
    "minutes": 168,
    "ownership": 2.2,
    "xpts_total": 2.203,
+   "xpts_prev": 2.21,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.113,
@@ -16691,6 +16921,7 @@
    "minutes": 105,
    "ownership": 0.9,
    "xpts_total": 2.197,
+   "xpts_prev": 2.197,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.592,
@@ -16762,6 +16993,7 @@
    "minutes": 150,
    "ownership": 0.7,
    "xpts_total": 2.193,
+   "xpts_prev": 2.191,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.277,
@@ -16832,6 +17064,7 @@
    "minutes": 91,
    "ownership": 0.5,
    "xpts_total": 2.192,
+   "xpts_prev": 2.2,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.113,
@@ -16902,6 +17135,7 @@
    "minutes": 97,
    "ownership": 0.6,
    "xpts_total": 2.188,
+   "xpts_prev": 2.2,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.111,
@@ -16972,6 +17206,7 @@
    "minutes": 144,
    "ownership": 0.3,
    "xpts_total": 2.169,
+   "xpts_prev": 2.181,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.098,
@@ -17043,6 +17278,7 @@
    "minutes": 158,
    "ownership": 0.5,
    "xpts_total": 2.151,
+   "xpts_prev": 2.149,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.251,
@@ -17097,14 +17333,14 @@
    "name": "Andrey Santos",
    "team": "MUN",
    "position": "MID",
-   "price": 4.9,
+   "price": 4.8,
    "matches_considered": 1,
    "hit_rate": 0.09970326409495549,
    "mean_actions": 9,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.19940652818991098,
-   "value_per_million": 0.04069520983467571,
+   "value_per_million": 0.04154302670623145,
    "last5_actions": [
     9
    ],
@@ -17113,6 +17349,7 @@
    "minutes": 82,
    "ownership": 0.7,
    "xpts_total": 2.139,
+   "xpts_prev": 2.135,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.25,
@@ -17167,14 +17404,14 @@
    "name": "Hinshelwood",
    "team": "BHA",
    "position": "MID",
-   "price": 6,
+   "price": 5.9,
    "matches_considered": 1,
    "hit_rate": 0.09970326409495549,
    "mean_actions": 3,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.19940652818991098,
-   "value_per_million": 0.03323442136498516,
+   "value_per_million": 0.03379771664235779,
    "last5_actions": [
     3
    ],
@@ -17183,6 +17420,7 @@
    "minutes": 63,
    "ownership": 0.8,
    "xpts_total": 2.121,
+   "xpts_prev": 2.119,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.909,
@@ -17251,8 +17489,9 @@
    "code": 153682,
    "team_code": 2,
    "minutes": 127,
-   "ownership": 2.7,
+   "ownership": 2.6,
    "xpts_total": 2.121,
+   "xpts_prev": 2.117,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.239,
@@ -17323,6 +17562,7 @@
    "minutes": 99,
    "ownership": 0.5,
    "xpts_total": 2.12,
+   "xpts_prev": 2.116,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.238,
@@ -17396,6 +17636,7 @@
    "minutes": 318,
    "ownership": 0.3,
    "xpts_total": 2.104,
+   "xpts_prev": 2.112,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.086,
@@ -17466,6 +17707,7 @@
    "minutes": 154,
    "ownership": 0.6,
    "xpts_total": 2.096,
+   "xpts_prev": 2.092,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.224,
@@ -17539,6 +17781,7 @@
    "minutes": 360,
    "ownership": 0.3,
    "xpts_total": 2.096,
+   "xpts_prev": 2.103,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.081,
@@ -17610,6 +17853,7 @@
    "minutes": 171,
    "ownership": 0.4,
    "xpts_total": 2.093,
+   "xpts_prev": 2.103,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.092,
@@ -17680,6 +17924,7 @@
    "minutes": 137,
    "ownership": 0.8,
    "xpts_total": 2.083,
+   "xpts_prev": 2.129,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.505,
@@ -17750,6 +17995,7 @@
    "minutes": 166,
    "ownership": 0.1,
    "xpts_total": 2.06,
+   "xpts_prev": 2.055,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.202,
@@ -17820,6 +18066,7 @@
    "minutes": 186,
    "ownership": 0.1,
    "xpts_total": 2.045,
+   "xpts_prev": 1.623,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.193,
@@ -17891,6 +18138,7 @@
    "minutes": 156,
    "ownership": 0.2,
    "xpts_total": 2.014,
+   "xpts_prev": 2.02,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.107,
@@ -17962,6 +18210,7 @@
    "minutes": 195,
    "ownership": 3.7,
    "xpts_total": 2.005,
+   "xpts_prev": 2.015,
    "xpts_breakdown": {
     "appearance": 1.647,
     "goals": 0.086,
@@ -18032,6 +18281,7 @@
    "minutes": 131,
    "ownership": 0.1,
    "xpts_total": 1.987,
+   "xpts_prev": 1.999,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.093,
@@ -18102,6 +18352,7 @@
    "minutes": 170,
    "ownership": 0.6,
    "xpts_total": 1.986,
+   "xpts_prev": 1.981,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.183,
@@ -18172,6 +18423,7 @@
    "minutes": 187,
    "ownership": 0.1,
    "xpts_total": 1.974,
+   "xpts_prev": 1.97,
    "xpts_breakdown": {
     "appearance": 1.313,
     "goals": 0.177,
@@ -18242,6 +18494,7 @@
    "minutes": 117,
    "ownership": 0.2,
    "xpts_total": 1.964,
+   "xpts_prev": 1.961,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.199,
@@ -18312,6 +18565,7 @@
    "minutes": 146,
    "ownership": 0,
    "xpts_total": 1.953,
+   "xpts_prev": 1.961,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.086,
@@ -18383,6 +18637,7 @@
    "minutes": 163,
    "ownership": 0.1,
    "xpts_total": 1.906,
+   "xpts_prev": 1.912,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.07,
@@ -18454,6 +18709,7 @@
    "minutes": 180,
    "ownership": 0.1,
    "xpts_total": 1.872,
+   "xpts_prev": 1.879,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.101,
@@ -18524,6 +18780,7 @@
    "minutes": 98,
    "ownership": 0.5,
    "xpts_total": 1.763,
+   "xpts_prev": 1.76,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.241,
@@ -18594,6 +18851,7 @@
    "minutes": 88,
    "ownership": 0.8,
    "xpts_total": 1.713,
+   "xpts_prev": 1.713,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.466,
@@ -18664,6 +18922,7 @@
    "minutes": 123,
    "ownership": 1.1,
    "xpts_total": 1.694,
+   "xpts_prev": 1.702,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.091,
@@ -18734,6 +18993,7 @@
    "minutes": 89,
    "ownership": 0.1,
    "xpts_total": 1.683,
+   "xpts_prev": 1.68,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.215,
@@ -18804,6 +19064,7 @@
    "minutes": 84,
    "ownership": 0.1,
    "xpts_total": 1.661,
+   "xpts_prev": 1.659,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.202,
@@ -18874,6 +19135,7 @@
    "minutes": 97,
    "ownership": 2,
    "xpts_total": 1.65,
+   "xpts_prev": 1.647,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.194,
@@ -18944,6 +19206,7 @@
    "minutes": 128,
    "ownership": 0.2,
    "xpts_total": 1.648,
+   "xpts_prev": 1.645,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.194,
@@ -19014,6 +19277,7 @@
    "minutes": 126,
    "ownership": 0,
    "xpts_total": 1.626,
+   "xpts_prev": 1.623,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.18,
@@ -19085,6 +19349,7 @@
    "minutes": 180,
    "ownership": 0.2,
    "xpts_total": 1.549,
+   "xpts_prev": 1.556,
    "xpts_breakdown": {
     "appearance": 1.333,
     "goals": 0.077,
@@ -19155,6 +19420,7 @@
    "minutes": 90,
    "ownership": 0.5,
    "xpts_total": 1.363,
+   "xpts_prev": 1.363,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.321,
@@ -19225,6 +19491,7 @@
    "minutes": 66,
    "ownership": 0.1,
    "xpts_total": 1.334,
+   "xpts_prev": 1.332,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.147,
@@ -19295,6 +19562,7 @@
    "minutes": 90,
    "ownership": 4.2,
    "xpts_total": 1.297,
+   "xpts_prev": 1.301,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.075,
@@ -19365,6 +19633,7 @@
    "minutes": 90,
    "ownership": 0,
    "xpts_total": 1.288,
+   "xpts_prev": 1.293,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.069,
@@ -19435,6 +19704,7 @@
    "minutes": 67,
    "ownership": 0.8,
    "xpts_total": 1.26,
+   "xpts_prev": 1.26,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.403,
@@ -19503,6 +19773,7 @@
    "minutes": 90,
    "ownership": 0.8,
    "xpts_total": 1.255,
+   "xpts_prev": 1.255,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0,
@@ -19571,6 +19842,7 @@
    "minutes": 90,
    "ownership": 0.1,
    "xpts_total": 1.229,
+   "xpts_prev": 1.229,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0,
@@ -19639,6 +19911,7 @@
    "minutes": 90,
    "ownership": 0.1,
    "xpts_total": 1.229,
+   "xpts_prev": 1.229,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0,
@@ -19709,6 +19982,7 @@
    "minutes": 62,
    "ownership": 1.6,
    "xpts_total": 1.228,
+   "xpts_prev": 1.228,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.379,
@@ -19779,6 +20053,7 @@
    "minutes": 90,
    "ownership": 0.1,
    "xpts_total": 1.163,
+   "xpts_prev": 1.168,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.075,
@@ -19849,6 +20124,7 @@
    "minutes": 72,
    "ownership": 0,
    "xpts_total": 1.161,
+   "xpts_prev": 1.165,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.073,
@@ -19919,6 +20195,7 @@
    "minutes": 90,
    "ownership": 0.3,
    "xpts_total": 1.155,
+   "xpts_prev": 1.159,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.069,
@@ -19989,6 +20266,7 @@
    "minutes": 90,
    "ownership": 0,
    "xpts_total": 1.123,
+   "xpts_prev": 1.127,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.063,
@@ -20059,6 +20337,7 @@
    "minutes": 90,
    "ownership": 0,
    "xpts_total": 1.123,
+   "xpts_prev": 1.127,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.063,
@@ -20129,6 +20408,7 @@
    "minutes": 66,
    "ownership": 2.6,
    "xpts_total": 0.829,
+   "xpts_prev": 0.833,
    "xpts_breakdown": {
     "appearance": 0.667,
     "goals": 0.052,

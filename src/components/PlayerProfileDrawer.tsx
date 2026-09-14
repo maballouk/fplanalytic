@@ -4,19 +4,16 @@
 // can read), elite consensus, then the DEFCON detail for outfielders.
 
 import { useEffect } from 'react';
+import CountUp from '@/components/ds/CountUp';
+import TrendArrow from '@/components/ds/TrendArrow';
 import FixtureStrip from '@/components/ds/FixtureStrip';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PlayerDrawer from '@/components/ds/PlayerDrawer';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import { track } from '@/lib/analytics';
 import { playerPhotoUrl } from '@/lib/fpl/photos';
-import {
-  difficultyWord,
-  meanNext5Fdr,
-  thresholdFor,
-  type DefconFilePlayer,
-} from '@/lib/defcon/file';
-import type { Decision } from '@/lib/defcon/decision';
+import { difficultyWord, thresholdFor, type DefconFilePlayer } from '@/lib/defcon/file';
+import { callPlayer } from '@/lib/defcon/call';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 
@@ -36,28 +33,11 @@ export interface PlayerProfileDrawerProps {
   onClose: () => void;
 }
 
-// One rule for every position, on the number the headline shows. The DEFCON
-// grid below stays as detail; it must never contradict the verdict again.
-function makeDecision(player: DefconFilePlayer): Decision {
-  const line = `Predicted ${player.xpts_total.toFixed(1)} pts next GW. P(start) ${pct(player.p_start)}.`;
-  if (player.status !== 'a') {
-    return {
-      verdict: 'Avoid',
-      reason: `Flagged by FPL. Predicted ${player.xpts_total.toFixed(1)} pts next GW.`,
-    };
-  }
-  const fdr = meanNext5Fdr(player);
-  if (player.xpts_total >= 4 && player.p_start >= 0.75 && (fdr === null || fdr <= 3.5)) {
-    return { verdict: 'Buy', reason: line };
-  }
-  if (player.p_start < 0.5 || player.xpts_total < 2.5) {
-    return { verdict: 'Avoid', reason: line };
-  }
-  return { verdict: 'Hold', reason: line };
-}
+// One rule for every position, on the number the headline shows (shared with
+// the /player pages): lib/defcon/call.ts.
 
 export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDrawerProps) {
-  const decision = makeDecision(player);
+  const decision = callPlayer(player);
 
   useEffect(() => {
     track('drawer_decision_view', { player: player.name, verdict: decision.verdict });
@@ -79,7 +59,11 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
       open
       onClose={onClose}
       title={player.name}
-      subtitle={`${player.team} · ${player.position} · £${player.price.toFixed(1)}m`}
+      subtitle={`${player.team} · ${player.position} · £${player.price.toFixed(1)}m${
+        player.price_change
+          ? ` (${player.price_change > 0 ? '▲' : '▼'}${Math.abs(player.price_change).toFixed(1)})`
+          : ''
+      }`}
       leading={<PlayerAvatar src={playerPhotoUrl(player.code)} name={player.name} size={48} />}
       decision={decision}
       decisionLabel="Decision"
@@ -96,8 +80,11 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
           </span>
         </div>
         <div className="mt-1 flex items-baseline gap-2">
-          <span className="num text-3xl font-bold text-accent">{player.xpts_total.toFixed(1)}</span>
+          <span className="num text-3xl font-bold text-accent">
+            <CountUp value={player.xpts_total} />
+          </span>
           <span className="text-sm text-text-muted">points</span>
+          <TrendArrow now={player.xpts_total} prev={player.xpts_prev} />
         </div>
         {breakdown.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1.5">
@@ -123,6 +110,12 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
             )}
           </p>
         )}
+        <a
+          href={`/player/${player.player_id}`}
+          className="mt-3 inline-block text-xs text-text-muted underline-offset-2 transition-colors duration-hover hover:text-text hover:underline"
+        >
+          Full profile page →
+        </a>
       </div>
 
       {next && (

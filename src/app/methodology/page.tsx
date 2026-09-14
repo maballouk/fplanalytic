@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 
 export const metadata: Metadata = {
   title: 'Methodology · fplanalytic',
@@ -22,7 +22,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default function MethodologyPage() {
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/methodology">
+    <AppShell brand="fplanalytic" nav={NAV} activeHref="/methodology" bottomNav={BOTTOM_NAV}>
       <div className="mx-auto max-w-2xl space-y-10">
         <header>
           <h1 className="text-3xl font-semibold">Methodology</h1>

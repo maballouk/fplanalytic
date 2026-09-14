@@ -5,6 +5,7 @@
 // Copy from docs/COPY.md.
 
 import AppShell from '@/components/ds/AppShell';
+import CountUp from '@/components/ds/CountUp';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
@@ -13,7 +14,7 @@ import type { Metadata } from 'next';
 import { buildLedger, pickBrief, type BriefCall } from '@/lib/defcon/brief';
 import { loadLatestDefcon } from '@/lib/defcon/data';
 import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import AssetFinder from './AssetFinder';
 import FirstVisit from './FirstVisit';
 import StateBanner from './StateBanner';
@@ -69,7 +70,7 @@ function BriefCard({ call, lead = false }: { call: BriefCall; lead?: boolean }) 
           </div>
         </div>
         <span className={`num ml-auto text-2xl font-bold ${lead ? 'text-accent' : ''}`}>
-          {p.xpts_total.toFixed(1)}
+          <CountUp value={p.xpts_total} />
         </span>
       </div>
       <p className="mt-4 border-t border-line pt-3 text-sm text-text">{call.reason}</p>
@@ -84,7 +85,17 @@ export default function Home() {
   const updated = data ? new Date(data.generated_at).toISOString().slice(11, 16) : null;
 
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/">
+    <AppShell
+      brand="fplanalytic"
+      nav={NAV}
+      activeHref="/"
+      bottomNav={BOTTOM_NAV}
+      deadline={
+        data?.calendar
+          ? { label: `GW${data.calendar.next_gw}`, deadlineUtc: data.calendar.next_deadline }
+          : undefined
+      }
+    >
       <div className="-mx-5 -mt-8">
         <FirstVisit />
         {data && <StateBanner calendar={data.calendar} ledger={ledger} />}

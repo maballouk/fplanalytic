@@ -6,7 +6,7 @@
 // old "Twice Daily" ISR cache); the commit it pushes triggers the Netlify deploy.
 // Run locally with: npx tsx scripts/build-defcon-data.ts
 
-import { mkdirSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { defconProfile, type DefconMatch } from '../src/lib/defcon/profile';
 import { computeXpts, type FplPosition } from '../src/lib/fpl/xpts';
@@ -121,6 +121,7 @@ async function main() {
     xpts_breakdown: Record<string, number>;
     p_start: number;
     form5: number;
+    price_change: number;
   }[] = [];
   // Pass 1: histories plus the league-wide hit rate per position, which
   // shrinks small samples so a 3-of-3 start does not read as certainty.
@@ -194,9 +195,17 @@ async function main() {
             value_per_million: 0,
             last5_actions: [] as number[],
           }
-        : defconProfile(String(el.id), el.web_name, shortName, position, el.now_cost / 10, history, {
-            priorHitRate: priorFor(position),
-          });
+        : defconProfile(
+            String(el.id),
+            el.web_name,
+            shortName,
+            position,
+            el.now_cost / 10,
+            history,
+            {
+              priorHitRate: priorFor(position),
+            }
+          );
     if (profile === null) continue; // no qualifying matches yet
 
     // Aggregates for the total-points model
@@ -237,6 +246,7 @@ async function main() {
       code: el.code,
       team_code: teamById.get(el.team)?.code ?? 0,
       ownership: Number.parseFloat(el.selected_by_percent) || 0,
+      price_change: el.cost_change_event / 10,
       xpts_total: Number(xp.total.toFixed(3)),
       xpts_breakdown: Object.fromEntries(
         Object.entries(xp.breakdown).map(([k, v]) => [k, Number(v.toFixed(3))])
@@ -273,6 +283,19 @@ async function main() {
     console.warn('elite consensus unavailable this run:', (err as Error).message);
   }
 
+  // Previous build's predictions, so the UI can show movement arrows.
+  const prevXpts = new Map<string, number>();
+  try {
+    const prev = JSON.parse(readFileSync(join(OUT_DIR, 'defcon_latest.json'), 'utf-8')) as {
+      players?: { player_id: string; xpts_total?: number }[];
+    };
+    for (const p of prev.players ?? []) {
+      if (typeof p.xpts_total === 'number') prevXpts.set(p.player_id, p.xpts_total);
+    }
+  } catch {
+    // first run, or an old file without totals: no arrows this build
+  }
+
   const ranked = [...profiles]
     .sort((a, b) => b.xpts_total - a.xpts_total)
     .map((extra, i) => ({
@@ -283,6 +306,8 @@ async function main() {
       minutes: extra.minutes,
       ownership: extra.ownership,
       xpts_total: extra.xpts_total,
+      xpts_prev: prevXpts.get(extra.profile.player_id),
+      price_change: extra.price_change,
       xpts_breakdown: extra.xpts_breakdown,
       p_start: extra.p_start,
       form5: extra.form5,

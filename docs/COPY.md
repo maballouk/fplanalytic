@@ -64,9 +64,18 @@ adjectives. British football English. No em-dashes. No hype.
   starters only."; GK drawer reason "Predicted {x} pts next GW. P(start) {pct}."
 - UCL consensus (owner direction 2026-09-13): captain cards line "Picked by {pct}% of all
   managers" + "· buying now ▲" on positive transfer balance; table column "Picked"; strip
-  "THE CROWD'"S CALL" + "{name} is the most-picked player — {pct}% of all managers own him." +
+  "THE CROWD'S CALL" + "{name} is the most-picked player — {pct}% of all managers own him." +
   "Our model has him at {x} xPts v {OPP} ({H|A})."; captains caveat "P(start) blends minutes
   with UEFA's own availability flags; lineups can still surprise"
+- Look & feel round (owner approval 2026-09-14): bottom nav labels "DEFCON" / "Live" /
+  "My Team" / "UCL" / "Value"; header countdown chip "GW{N} · {2d 4h}"; mobile card unit
+  label "PRED PTS"; compare button "Compare" + helper "Pick two players" / "and one more…" +
+  panel heading "HEAD TO HEAD" with rows Predicted pts / Form (last 5) / P(start) / Top-50
+  own / Overall own / Price £m / DEFCON xPts / Next-5 difficulty; My Team button "Share as
+  image" / "Rendering…"; share card footer "fplanalytic.com/my-team"; player page back link
+  "← All players", section "DEFCON detail"; drawer link "Full profile page →"; OG footers
+  "Predicted points, top-50 manager consensus and DEFCON · fplanalytic.com" and "Match
+  predictions and expected points for every squad · fplanalytic.com/ucl"
 - Value page: title "Defensive value lens", sub "Price against DEFCON expected points. Up and
   left is where the value lives.", quadrants "Underpriced engines" / "Premium but earned" /
   "Cheap for a reason" / "Paying for attack", sidebar heading "Top 10 by value",

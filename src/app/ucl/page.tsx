@@ -6,10 +6,11 @@
 import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
 import ClubBadge from '@/components/ds/ClubBadge';
+import CountUp from '@/components/ds/CountUp';
 import EmptyState from '@/components/ds/EmptyState';
 import MethodNote from '@/components/ds/MethodNote';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import { club, uclBadgeUrl } from '@/lib/ucl/clubs';
 import { uclPlayerPhotoUrl } from '@/lib/ucl/photos';
 import { topContributors, type UclFixture, type UclPlayer } from '@/lib/ucl/file';
@@ -157,7 +158,9 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
         </span>
       </div>
       <div className="mt-4 flex items-baseline gap-2">
-        <span className={`num text-3xl font-bold ${tone.value}`}>{player.xpts.toFixed(1)}</span>
+        <span className={`num text-3xl font-bold ${tone.value}`}>
+          <CountUp value={player.xpts} />
+        </span>
         <span className="text-sm text-text-muted">xPts</span>
         <span className="num ml-auto text-sm text-text-muted">P(start) {pct(player.p_plays)}</span>
       </div>
@@ -185,7 +188,7 @@ export default function UclPage() {
   const xi = data ? pickXI(data.players) : null;
 
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/ucl">
+    <AppShell brand="fplanalytic" nav={NAV} activeHref="/ucl" bottomNav={BOTTOM_NAV}>
       {data === null ? (
         <EmptyState
           kind="empty"

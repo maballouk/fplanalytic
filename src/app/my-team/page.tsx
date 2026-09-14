@@ -7,7 +7,7 @@ import AppShell from '@/components/ds/AppShell';
 import MethodNote from '@/components/ds/MethodNote';
 import { loadLatestDefcon } from '@/lib/defcon/data';
 import { pickPredictedTeam } from '@/lib/defcon/myteam';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import MyTeam from './MyTeam';
 
 export const dynamic = 'force-static';
@@ -22,7 +22,17 @@ export default function MyTeamPage() {
   const defconTeam = data ? pickPredictedTeam(data.players) : null;
 
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/my-team">
+    <AppShell
+      brand="fplanalytic"
+      nav={NAV}
+      activeHref="/my-team"
+      bottomNav={BOTTOM_NAV}
+      deadline={
+        data?.calendar
+          ? { label: `GW${data.calendar.next_gw}`, deadlineUtc: data.calendar.next_deadline }
+          : undefined
+      }
+    >
       <header className="mb-6">
         <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
           FPL

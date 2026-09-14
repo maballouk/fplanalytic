@@ -226,3 +226,19 @@ backtest numbers on methodology page.
   most-picked player is missing from our top 3). P(start) v0.5 uses the feed's own
   availability flags (pStatus I/S/D/NIS, "Unlikely to start"). Raw feed cache is never
   committed (UEFA terms). Engine tests 22 → 27.
+- 2026-09-14 (look & feel round, all four packages approved by Mohamad): (1) mobile app feel —
+  BottomNav (5 icons, mobile only), header Logo wordmark (rising-bars mark, also app/icon.svg
+  favicon), DeadlineChip live countdown in the header, and card lists replace the
+  sideways-scrolling tables on phones (AssetFinder + UCL XptsTable); (2) identity & sharing —
+  totals-first home OG image, NEW /ucl OG image (captain picks + picked-by %), and My Team
+  "Share as image" (offscreen canvas, initials avatars to avoid CORS taint, Web Share API with
+  download fallback, umami event share_image); (3) motion — CountUp on every headline number
+  (SSR shows the final value; respects prefers-reduced-motion), TrendArrow ▲▼ vs the previous
+  build (build script now carries xpts_prev by reading the outgoing defcon_latest.json), drawer
+  slides in with backdrop fade; (4) depth — Compare mode on the home table (pick two → head-to-
+  head panel, better value in accent, umami compare_view), price_change from bootstrap
+  cost_change_event (drawer subtitle + player page), and static /player/[id] pages for all
+  ~280 players (generateStaticParams from the data file, per-player metadata, in the sitemap;
+  drawer links "Full profile page →"). Decision logic extracted to lib/defcon/call.ts (shared
+  drawer + player pages). Gotcha: never run `next build` while the dev server is serving —
+  they share .next and the dev CSS 404s until the dev server restarts.

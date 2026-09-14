@@ -3,7 +3,7 @@
 
 import type { Metadata } from 'next';
 import AppShell from '@/components/ds/AppShell';
-import { NAV } from '@/lib/nav';
+import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import LiveTracker from './LiveTracker';
 
 export const metadata: Metadata = {
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function LivePage() {
   return (
-    <AppShell brand="fplanalytic" nav={NAV} activeHref="/live">
+    <AppShell brand="fplanalytic" nav={NAV} activeHref="/live" bottomNav={BOTTOM_NAV}>
       <header className="mb-6">
         <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
           FPL

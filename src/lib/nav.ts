@@ -18,3 +18,12 @@ export const NAV: NavItem[] = [
   { href: '/ucl', label: 'European Nights', group: 'UCL Fantasy' },
   { href: '/methodology', label: 'Methodology' },
 ];
+
+/** Mobile bottom bar: five slots, labels short enough for phone widths. */
+export const BOTTOM_NAV = [
+  { href: '/', label: 'DEFCON', icon: 'shield' },
+  { href: '/live', label: 'Live', icon: 'pulse' },
+  { href: '/my-team', label: 'My Team', icon: 'shirt' },
+  { href: '/ucl', label: 'UCL', icon: 'star' },
+  { href: '/value', label: 'Value', icon: 'scatter' },
+] as const;
