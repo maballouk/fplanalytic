@@ -252,3 +252,15 @@ backtest numbers on methodology page.
   and updates <meta theme-color>. Recharts structural colors follow the theme via CSS overrides
   in globals.css (CSS beats SVG presentation attributes). PitchFrame deliberately stays dark in
   light mode — the pitch green is content. OG images and the share card stay dark (brand).
+- 2026-09-14 (Match Centre, owner direction "a Live page should focus on the matches"): /live
+  is now a matchday grid — every current-GW fixture as a card (live with pulsing minute chip,
+  upcoming with kickoff, FT) grouped Live now / Upcoming / Full time; the old DEFCON tracker
+  became a per-card <details> expander ("Closest to the +2"). Each card opens /match/[id], a
+  full Match Centre: scoreboard, events (goals/assists/cards/pens from the fixture stats feed —
+  NOTE: FPL exposes no per-event minutes, so events list without a timeline), the DEFCON race,
+  both squads with live FPL points + provisional bonus, and team news (FPL's own element.news
+  strings). Phase-aware: pre = kickoff + ones to watch (by form) + team news; live = 60s
+  polling; post = FT + settled bonus. All zero-cost: fixtures.stats + event/{gw}/live +
+  bootstrap, composed in the pure builder src/lib/fpl/match.ts (tests in tests/match.test.ts);
+  the API route is /api/fpl/match/[id]. buildLivePayload now returns the WHOLE current GW
+  (started flag + kickoff + minutes) for the grid. Umami event: match_open.

@@ -90,6 +90,9 @@ const live: Live = {
         tackles: 2,
         recoveries: 3,
         defensive_contribution: 8,
+        goals_scored: 0,
+        assists: 0,
+        bonus: 0,
       },
     },
     {
@@ -101,6 +104,9 @@ const live: Live = {
         tackles: 2,
         recoveries: 4,
         defensive_contribution: 11,
+        goals_scored: 1,
+        assists: 0,
+        bonus: 0,
       },
     },
     {
@@ -112,6 +118,9 @@ const live: Live = {
         tackles: 0,
         recoveries: 0,
         defensive_contribution: 0,
+        goals_scored: 0,
+        assists: 0,
+        bonus: 0,
       },
     },
   ],
@@ -122,20 +131,23 @@ const NOW = new Date('2026-09-12T15:00:00Z');
 describe('buildLivePayload', () => {
   const payload = buildLivePayload(bootstrap, fixtures, live, NOW);
 
-  it('includes only started fixtures of the current GW, with scores', () => {
+  it('includes the whole current GW: started with scores, upcoming with kickoff', () => {
     expect(payload.gw).toBe(3);
-    expect(payload.fixtures).toEqual([
-      {
-        id: 100,
-        home: 'ARS',
-        away: 'LIV',
-        home_code: 3,
-        away_code: 14,
-        home_score: 1,
-        away_score: 0,
-        finished: false,
-      },
-    ]);
+    expect(payload.fixtures).toHaveLength(2); // the match grid shows both
+    expect(payload.fixtures[0]).toMatchObject({
+      id: 100,
+      home: 'ARS',
+      away: 'LIV',
+      home_score: 1,
+      away_score: 0,
+      started: true,
+      finished: false,
+    });
+    expect(payload.fixtures[1]).toMatchObject({
+      id: 101,
+      started: false,
+      kickoff_time: '2026-09-13T15:30:00Z',
+    });
   });
 
   it('includes only outfielders with minutes in a live fixture', () => {

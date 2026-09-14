@@ -27,6 +27,9 @@ const LIVE: LivePayload = {
       home_score: 1,
       away_score: 0,
       finished: false,
+      started: true,
+      kickoff_time: '2026-09-12T14:00:00Z',
+      minutes: 63,
     },
   ],
   players: [
@@ -57,12 +60,14 @@ const LIVE: LivePayload = {
 };
 
 describe('LiveTracker', () => {
-  it('renders fixtures with threshold bars and a refreshed stamp', async () => {
+  it('renders the match grid with a Match Centre link and the DEFCON expander', async () => {
     mockFetch(LIVE);
     render(<LiveTracker />);
     await waitFor(() => expect(screen.getByText(/Rice/)).toBeInTheDocument());
-    expect(screen.getByText('Live')).toBeInTheDocument();
-    expect(screen.getByText(/Last refreshed/)).toBeInTheDocument();
+    expect(screen.getByText('Live now')).toBeInTheDocument();
+    expect(screen.getByText("63'")).toBeInTheDocument();
+    expect(screen.getByText('Match Centre →').closest('a')).toHaveAttribute('href', '/match/100');
+    expect(screen.getByText(/last refreshed/)).toBeInTheDocument();
     const meters = screen.getAllByRole('meter');
     expect(meters[0]).toHaveAccessibleName('Rice: 11 of 12 defensive actions');
   });

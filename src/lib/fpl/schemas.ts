@@ -21,6 +21,7 @@ export const ElementSchema = z.object({
   selected_by_percent: z.string(),
   status: z.string(), // a=available, d=doubtful, i=injured, s=suspended, u=unavailable
   chance_of_playing_next_round: z.number().nullable(),
+  news: z.string().default(''), // FPL's own injury/availability line, e.g. "Knock - 75% chance"
   // Season DEFCON totals (per-match values live in element-summary history)
   clearances_blocks_interceptions: z.number(),
   tackles: z.number(),
@@ -68,6 +69,18 @@ export const FixtureSchema = z.object({
   team_a_difficulty: z.number(),
   finished: z.boolean(),
   started: z.boolean().nullable().optional(),
+  minutes: z.number().default(0), // elapsed match minutes while live
+  // Per-fixture event stats: goals_scored / assists / yellow_cards / bonus …
+  // each with home (h) and away (a) entries of {value, element}.
+  stats: z
+    .array(
+      z.object({
+        identifier: z.string(),
+        h: z.array(z.object({ value: z.number(), element: z.number() })),
+        a: z.array(z.object({ value: z.number(), element: z.number() })),
+      })
+    )
+    .default([]),
 });
 
 export const FixturesSchema = z.array(FixtureSchema);
@@ -116,6 +129,9 @@ export const LiveElementSchema = z.object({
     tackles: z.number(),
     recoveries: z.number(),
     defensive_contribution: z.number(),
+    goals_scored: z.number().default(0),
+    assists: z.number().default(0),
+    bonus: z.number().default(0),
   }),
 });
 

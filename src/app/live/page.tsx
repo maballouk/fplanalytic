@@ -7,8 +7,9 @@ import { BOTTOM_NAV, NAV } from '@/lib/nav';
 import LiveTracker from './LiveTracker';
 
 export const metadata: Metadata = {
-  title: 'Live DEFCON tracker · fplanalytic',
-  description: 'Threshold bars for every player on the pitch, refreshed every minute.',
+  title: 'Matchday live · fplanalytic',
+  description:
+    'Every Premier League match this gameweek: live scores, kickoffs and each Match Centre with events, squads and the DEFCON race.',
 };
 
 export default function LivePage() {
@@ -18,9 +19,10 @@ export default function LivePage() {
         <span className="rounded-pill border border-line-strong bg-bg-raised px-2.5 py-0.5 text-xs font-semibold uppercase tracking-widest text-text-muted">
           FPL
         </span>
-        <h1 className="mt-2 text-2xl font-semibold">Live DEFCON tracker</h1>
+        <h1 className="mt-2 font-display text-3xl font-black tracking-tight">Matchday live</h1>
         <p className="mt-1 text-text-muted">
-          Every player on the pitch, sorted by who is closest to the threshold.
+          Scores and kickoffs for the whole gameweek. Open a match for events, squads and the DEFCON
+          race.
         </p>
       </header>
       <LiveTracker />

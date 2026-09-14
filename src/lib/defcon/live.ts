@@ -18,6 +18,9 @@ export interface LiveFixture {
   home_score: number | null;
   away_score: number | null;
   finished: boolean;
+  started: boolean;
+  kickoff_time: string | null;
+  minutes: number;
 }
 
 export interface LivePlayer {
@@ -61,10 +64,12 @@ export function buildLivePayload(
       }
     : null;
 
-  const gwFixtures = fixtures.filter(
-    (f) => currentGw !== null && f.event === currentGw && f.started === true
-  );
-  const liveFixtures: LiveFixture[] = gwFixtures.map((f) => ({
+  // The whole current gameweek: the match grid groups live / upcoming / done.
+  const allGwFixtures = fixtures
+    .filter((f) => currentGw !== null && f.event === currentGw)
+    .sort((a, b) => (a.kickoff_time ?? '').localeCompare(b.kickoff_time ?? ''));
+  const gwFixtures = allGwFixtures.filter((f) => f.started === true);
+  const liveFixtures: LiveFixture[] = allGwFixtures.map((f) => ({
     id: f.id,
     home: teamShort.get(f.team_h) ?? String(f.team_h),
     away: teamShort.get(f.team_a) ?? String(f.team_a),
@@ -73,6 +78,9 @@ export function buildLivePayload(
     home_score: f.team_h_score ?? null,
     away_score: f.team_a_score ?? null,
     finished: f.finished,
+    started: f.started === true,
+    kickoff_time: f.kickoff_time,
+    minutes: f.minutes,
   }));
 
   const fixtureByTeam = new Map<number, number>();
