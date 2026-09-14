@@ -71,7 +71,9 @@ export default function AssetFinder({ players, freeLimit = 30 }: AssetFinderProp
     setOrDelete('team', team, team === 'ALL');
     setOrDelete('sort', sortBy, sortBy === 'xpts_total');
     const qs = q.toString();
-    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    // Preserve history.state: Next's App Router keeps its internal tree there,
+    // and replacing it with null crashes the router on the next interaction.
+    window.history.replaceState(window.history.state, '', qs ? `?${qs}` : window.location.pathname);
   }, [position, maxPrice, minMinutes, team, sortBy]);
 
   // TASKS.md 1.9 funnel events

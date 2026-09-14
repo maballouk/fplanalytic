@@ -102,7 +102,7 @@ export default function StateBanner({
               Closest to the +2 right now
             </span>
             <Link href="/live" className="text-sm text-info hover:underline">
-              Open the live tracker
+              Open Matchday live
             </Link>
           </div>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">

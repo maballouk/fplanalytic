@@ -81,6 +81,7 @@ export default function MyTeam({
   const [input, setInput] = useState('');
   const [data, setData] = useState<EntryResponse | null>(null);
   const [state, setState] = useState<'idle' | 'loading' | 'error' | 'notfound' | 'ready'>('idle');
+  const [inputError, setInputError] = useState(false);
 
   const byElementId = useMemo(() => new Map(players.map((p) => [p.player_id, p])), [players]);
 
@@ -117,7 +118,11 @@ export default function MyTeam({
 
   const save = (id: string) => {
     const clean = id.trim();
-    if (!/^\d{1,10}$/.test(clean)) return;
+    if (!/^\d{1,10}$/.test(clean)) {
+      setInputError(true); // ux-audit 2026-09-14: never fail silently
+      return;
+    }
+    setInputError(false);
     setTeamId(clean);
     try {
       localStorage.setItem(STORAGE_KEY, clean);
@@ -211,6 +216,11 @@ export default function MyTeam({
         <span className="text-xs text-text-faint">
           Find it in the FPL site URL: /entry/<span className="num">ID</span>/event/…
         </span>
+        {inputError && (
+          <span role="alert" className="w-full text-xs text-danger">
+            That does not look like a team ID. Numbers only, e.g. 1234567.
+          </span>
+        )}
       </form>
 
       {state === 'loading' && <EmptyState kind="loading" rows={6} title="Loading" />}

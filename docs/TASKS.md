@@ -264,3 +264,15 @@ backtest numbers on methodology page.
   bootstrap, composed in the pure builder src/lib/fpl/match.ts (tests in tests/match.test.ts);
   the API route is /api/fpl/match/[id]. buildLivePayload now returns the WHOLE current GW
   (started flag + kickoff + minutes) for the grid. Umami event: match_open.
+- 2026-09-14 (ux-audit findings, fixed same session): (1) CRITICAL —
+  window.history.replaceState(null, …) in the URL-state sync (AssetFinder + UCL XptsTable)
+  wiped Next App Router's internal tree from history.state; the whole app crashed to a blank
+  screen ("__PRIVATE_NEXTJS_INTERNALS_TREE" of null) on the next router interaction after any
+  sort/filter. Fix: always pass window.history.state through. LESSON: never call native
+  replaceState/pushState with null state inside the App Router. (2) HIGH — a visible UCL
+  player image 404'd: mirror_ucl_images.py PER_POSITION raised 50 → 70 (+78 images); 3 players
+  remain upstream-403 at img.uefa.com and fall back to initials by design. (3) MEDIUM — an
+  invalid My Team ID was rejected silently; now shows an inline role=alert line. (4) LOW —
+  StateBanner live CTA renamed "Open the live tracker" → "Open Matchday live". Open (accepted
+  for now): header DeadlineChip only renders on pages that load the DEFCON file (home/value/
+  my-team), not /live //ucl //match.

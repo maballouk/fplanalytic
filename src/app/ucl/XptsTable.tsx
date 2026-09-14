@@ -91,7 +91,9 @@ export default function XptsTable({
     if (position === 'ALL') q.delete('pos');
     else q.set('pos', position);
     const qs = q.toString();
-    window.history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+    // Preserve history.state: Next's App Router keeps its internal tree there,
+    // and replacing it with null crashes the router on the next interaction.
+    window.history.replaceState(window.history.state, '', qs ? `?${qs}` : window.location.pathname);
   }, [position]);
 
   const filtered = useMemo(

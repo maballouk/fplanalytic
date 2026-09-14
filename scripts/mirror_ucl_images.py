@@ -28,7 +28,7 @@ DATA_DIR = ROOT / "public" / "data"
 PLAYER_DIR = ROOT / "public" / "img" / "ucl" / "players"
 CLUB_DIR = ROOT / "public" / "img" / "ucl" / "clubs"
 
-PER_POSITION = 50  # table shows top 40 per position + 5 locked previews
+PER_POSITION = 70  # table shows top 40 per position + 5 locked previews; headroom for rank churn between runs (ux-audit 2026-09-14: a visible player 404'd)
 PLAYER_URL = "https://img.uefa.com/imgml/TP/players/1/2027/324x324/{id}.jpg"
 CLUB_URL = "https://img.uefa.com/imgml/TP/teams/logos/70x70/{id}.png"
 HEADERS = {"Referer": "https://gaming.uefa.com/en/uclfantasy"}
