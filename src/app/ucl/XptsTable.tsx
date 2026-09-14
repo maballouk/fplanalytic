@@ -3,6 +3,7 @@
 // UCL xPts table (DESIGN.md §4.1): position filter, P(plays) with rotation
 // amber, breakdown chips. Free tier shows the top 40; more behind the lock.
 
+import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import PlayerAvatar from '@/components/ds/PlayerAvatar';
 import PremiumLock from '@/components/ds/PremiumLock';
@@ -32,7 +33,12 @@ function Row({ player, rank }: { player: UclPlayer; rank: number }) {
             ringColor={c.color}
             size={28}
           />
-          <span className="text-text">{player.name}</span>
+          <Link
+            href={`/ucl/player/${player.player_id}`}
+            className="text-text underline-offset-2 hover:underline"
+          >
+            {player.name}
+          </Link>
           <span className="text-xs text-text-faint">{c.code}</span>
         </span>
       </td>
@@ -136,7 +142,12 @@ export default function XptsTable({
                 size={40}
               />
               <span className="min-w-0 flex-1">
-                <span className="block truncate font-semibold text-text">{p.name}</span>
+                <Link
+                  href={`/ucl/player/${p.player_id}`}
+                  className="block truncate font-semibold text-text underline-offset-2 hover:underline"
+                >
+                  {p.name}
+                </Link>
                 <span className="mt-0.5 block text-xs text-text-muted">
                   {c.code} · {p.position} · €{p.price.toFixed(1)}m · v {club(p.opponent).code} (
                   {p.is_home ? 'H' : 'A'})

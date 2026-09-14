@@ -9,11 +9,13 @@
 import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { defconProfile, type DefconMatch } from '../src/lib/defcon/profile';
+import { BacktestFileSchema, scoreGw, type BacktestFile } from '../src/lib/defcon/backtest';
 import { computeXpts, type FplPosition } from '../src/lib/fpl/xpts';
 import {
   BootstrapSchema,
   ElementSummarySchema,
   FixturesSchema,
+  LiveSchema,
   type Bootstrap,
   type ElementSummary,
 } from '../src/lib/fpl/schemas';
@@ -333,6 +335,64 @@ async function main() {
   // Stable alias so runtime consumers (e.g. the OG image) need no directory listing.
   writeFileSync(join(OUT_DIR, 'defcon_latest.json'), payload);
   console.log(`wrote ${outPath} (${ranked.length} profiles)`);
+
+  // ---- Backtest ledger (TASKS.md 1.5.7): grade finished GWs, stage the next.
+  // The LAST build before the deadline is what gets scored — honest and simple.
+  let backtest: BacktestFile = { schema_version: 1, pending: null, results: [] };
+  try {
+    backtest = BacktestFileSchema.parse(
+      JSON.parse(readFileSync(join(OUT_DIR, 'backtest.json'), 'utf-8'))
+    );
+  } catch {
+    // first run: fresh ledger
+  }
+  const pending = backtest.pending;
+  const pendingEvent = pending ? bootstrap.events.find((e) => e.id === pending.gw) : undefined;
+  if (pending && pendingEvent?.finished) {
+    try {
+      const liveData = LiveSchema.parse(await getJson(`event/${pending.gw}/live/`));
+      const actuals = new Map(
+        liveData.elements.map((e) => [
+          String(e.id),
+          { points: e.stats.total_points, minutes: e.stats.minutes },
+        ])
+      );
+      const result = scoreGw(pending.gw, pending.predictions, actuals, new Date().toISOString());
+      backtest.results = [...backtest.results.filter((r) => r.gw !== result.gw), result].sort(
+        (a, b) => a.gw - b.gw
+      );
+      backtest.pending = null;
+      console.log(
+        `backtest: scored GW${result.gw} — n=${result.n}, MAE=${result.mae}, top10-in-top20=${result.top10_in_top20}`
+      );
+    } catch (err) {
+      console.warn('backtest scoring failed this run:', (err as Error).message);
+    }
+  }
+  if (calendar.next_gw !== null) {
+    const predictions: Record<
+      string,
+      { name: string; team: string; position: string; xpts: number }
+    > = {};
+    for (const r of ranked) {
+      if (r.p_start < 0.5) continue; // grade the players we actually back to play
+      predictions[r.player_id] = {
+        name: r.name,
+        team: r.team,
+        position: r.position,
+        xpts: r.xpts_total,
+      };
+    }
+    backtest.pending = {
+      gw: calendar.next_gw,
+      generated_at: new Date().toISOString(),
+      predictions,
+    };
+  }
+  writeFileSync(join(OUT_DIR, 'backtest.json'), JSON.stringify(backtest, null, 1) + '\n');
+  console.log(
+    `backtest: ${backtest.results.length} scored GW(s), pending GW${backtest.pending?.gw ?? '-'}`
+  );
 
   // Keep the last KEEP_GWS gameweeks only (TASKS.md 1.2)
   for (const file of readdirSync(OUT_DIR)) {

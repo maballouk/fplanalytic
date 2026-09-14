@@ -1,0 +1,1456 @@
+{
+ "schema_version": 1,
+ "pending": {
+  "gw": 5,
+  "generated_at": "2026-09-14T18:22:14.807Z",
+  "predictions": {
+   "1": {
+    "name": "Raya",
+    "team": "ARS",
+    "position": "GK",
+    "xpts": 3.712
+   },
+   "4": {
+    "name": "Gabriel",
+    "team": "ARS",
+    "position": "DEF",
+    "xpts": 3.79
+   },
+   "7": {
+    "name": "Lewis-Skelly",
+    "team": "ARS",
+    "position": "MID",
+    "xpts": 2.954
+   },
+   "8": {
+    "name": "Calafiori",
+    "team": "ARS",
+    "position": "DEF",
+    "xpts": 4.122
+   },
+   "10": {
+    "name": "White",
+    "team": "ARS",
+    "position": "DEF",
+    "xpts": 3.903
+   },
+   "11": {
+    "name": "Mosquera",
+    "team": "ARS",
+    "position": "DEF",
+    "xpts": 2.203
+   },
+   "12": {
+    "name": "Saka",
+    "team": "ARS",
+    "position": "MID",
+    "xpts": 5.44
+   },
+   "13": {
+    "name": "Rice",
+    "team": "ARS",
+    "position": "MID",
+    "xpts": 3.959
+   },
+   "15": {
+    "name": "Ødegaard",
+    "team": "ARS",
+    "position": "MID",
+    "xpts": 5.15
+   },
+   "26": {
+    "name": "Havertz",
+    "team": "ARS",
+    "position": "FWD",
+    "xpts": 4.164
+   },
+   "28": {
+    "name": "Martinez",
+    "team": "CHE",
+    "position": "GK",
+    "xpts": 3.823
+   },
+   "31": {
+    "name": "Konsa",
+    "team": "ARS",
+    "position": "DEF",
+    "xpts": 2.988
+   },
+   "32": {
+    "name": "Cash",
+    "team": "AVL",
+    "position": "DEF",
+    "xpts": 3.11
+   },
+   "34": {
+    "name": "Pau",
+    "team": "AVL",
+    "position": "DEF",
+    "xpts": 2.663
+   },
+   "36": {
+    "name": "Maatsen",
+    "team": "AVL",
+    "position": "DEF",
+    "xpts": 3.168
+   },
+   "37": {
+    "name": "Lindelöf",
+    "team": "AVL",
+    "position": "DEF",
+    "xpts": 3.02
+   },
+   "40": {
+    "name": "Rogers",
+    "team": "CHE",
+    "position": "MID",
+    "xpts": 5.509
+   },
+   "41": {
+    "name": "Buendía",
+    "team": "AVL",
+    "position": "MID",
+    "xpts": 2.904
+   },
+   "43": {
+    "name": "Tielemans",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 3.148
+   },
+   "45": {
+    "name": "McGinn",
+    "team": "AVL",
+    "position": "MID",
+    "xpts": 3.404
+   },
+   "46": {
+    "name": "Barkley",
+    "team": "AVL",
+    "position": "MID",
+    "xpts": 2.911
+   },
+   "47": {
+    "name": "Kamara",
+    "team": "AVL",
+    "position": "MID",
+    "xpts": 2.869
+   },
+   "51": {
+    "name": "George Hemmings",
+    "team": "AVL",
+    "position": "MID",
+    "xpts": 2.947
+   },
+   "57": {
+    "name": "Petrović",
+    "team": "BOU",
+    "position": "GK",
+    "xpts": 2.92
+   },
+   "60": {
+    "name": "Hill",
+    "team": "BOU",
+    "position": "DEF",
+    "xpts": 3.04
+   },
+   "61": {
+    "name": "Truffert",
+    "team": "BOU",
+    "position": "DEF",
+    "xpts": 3.075
+   },
+   "64": {
+    "name": "Smith",
+    "team": "BOU",
+    "position": "DEF",
+    "xpts": 2.55
+   },
+   "67": {
+    "name": "Rayan",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 2.766
+   },
+   "68": {
+    "name": "Tavernier",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 5.674
+   },
+   "69": {
+    "name": "Scott",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 5.25
+   },
+   "70": {
+    "name": "Kluivert",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 3.598
+   },
+   "71": {
+    "name": "Cook",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 2.486
+   },
+   "73": {
+    "name": "Adams",
+    "team": "BOU",
+    "position": "MID",
+    "xpts": 2.787
+   },
+   "79": {
+    "name": "Evanilson",
+    "team": "BOU",
+    "position": "FWD",
+    "xpts": 3.892
+   },
+   "82": {
+    "name": "Kelleher",
+    "team": "BRE",
+    "position": "GK",
+    "xpts": 3.176
+   },
+   "84": {
+    "name": "Collins",
+    "team": "BRE",
+    "position": "DEF",
+    "xpts": 2.658
+   },
+   "86": {
+    "name": "Lewis-Potter",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 4.21
+   },
+   "87": {
+    "name": "Ajer",
+    "team": "BRE",
+    "position": "DEF",
+    "xpts": 3.04
+   },
+   "88": {
+    "name": "Kayode",
+    "team": "BRE",
+    "position": "DEF",
+    "xpts": 3.15
+   },
+   "91": {
+    "name": "Pinnock",
+    "team": "COV",
+    "position": "DEF",
+    "xpts": 3.315
+   },
+   "94": {
+    "name": "Schade",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 5.369
+   },
+   "95": {
+    "name": "O.Dango",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 1.986
+   },
+   "96": {
+    "name": "Damsgaard",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 3.252
+   },
+   "98": {
+    "name": "Janelt",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 5.087
+   },
+   "104": {
+    "name": "Onyeka",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 3.017
+   },
+   "105": {
+    "name": "Anthony",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 1.974
+   },
+   "106": {
+    "name": "Thiago",
+    "team": "BRE",
+    "position": "FWD",
+    "xpts": 2.769
+   },
+   "109": {
+    "name": "Verbruggen",
+    "team": "BHA",
+    "position": "GK",
+    "xpts": 2.963
+   },
+   "110": {
+    "name": "Rushworth",
+    "team": "COV",
+    "position": "GK",
+    "xpts": 3.292
+   },
+   "112": {
+    "name": "Van Hecke",
+    "team": "TOT",
+    "position": "DEF",
+    "xpts": 3.559
+   },
+   "113": {
+    "name": "F.Kadıoğlu",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 2.635
+   },
+   "114": {
+    "name": "Boscagli",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 2.554
+   },
+   "115": {
+    "name": "De Cuyper",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 4.958
+   },
+   "116": {
+    "name": "Dunk",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 3.64
+   },
+   "124": {
+    "name": "Groß",
+    "team": "BHA",
+    "position": "MID",
+    "xpts": 5.829
+   },
+   "127": {
+    "name": "Gomez",
+    "team": "BHA",
+    "position": "MID",
+    "xpts": 3.483
+   },
+   "129": {
+    "name": "Ayari",
+    "team": "BHA",
+    "position": "MID",
+    "xpts": 3.6
+   },
+   "130": {
+    "name": "Wieffer",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 2.014
+   },
+   "138": {
+    "name": "Kostoulas",
+    "team": "BHA",
+    "position": "FWD",
+    "xpts": 4.355
+   },
+   "142": {
+    "name": "James",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 3.077
+   },
+   "144": {
+    "name": "Gusto",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 3.084
+   },
+   "145": {
+    "name": "Fofana",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 3.393
+   },
+   "148": {
+    "name": "Hato",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 3.344
+   },
+   "149": {
+    "name": "Colwill",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 3.11
+   },
+   "151": {
+    "name": "Acheampong",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 2.984
+   },
+   "153": {
+    "name": "Disasi",
+    "team": "CRY",
+    "position": "DEF",
+    "xpts": 2.563
+   },
+   "154": {
+    "name": "Palmer",
+    "team": "CHE",
+    "position": "MID",
+    "xpts": 5.367
+   },
+   "155": {
+    "name": "Enzo",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 2.761
+   },
+   "156": {
+    "name": "Neto",
+    "team": "CHE",
+    "position": "MID",
+    "xpts": 3.758
+   },
+   "161": {
+    "name": "Lavia",
+    "team": "CHE",
+    "position": "MID",
+    "xpts": 3.729
+   },
+   "165": {
+    "name": "João Pedro",
+    "team": "CHE",
+    "position": "FWD",
+    "xpts": 6.489
+   },
+   "166": {
+    "name": "N.Jackson",
+    "team": "AVL",
+    "position": "FWD",
+    "xpts": 2.584
+   },
+   "167": {
+    "name": "Delap",
+    "team": "NFO",
+    "position": "FWD",
+    "xpts": 3.499
+   },
+   "173": {
+    "name": "Thomas",
+    "team": "COV",
+    "position": "DEF",
+    "xpts": 3.794
+   },
+   "175": {
+    "name": "van Ewijk",
+    "team": "COV",
+    "position": "DEF",
+    "xpts": 3.265
+   },
+   "176": {
+    "name": "Dasilva",
+    "team": "COV",
+    "position": "DEF",
+    "xpts": 3.022
+   },
+   "182": {
+    "name": "Amenda",
+    "team": "COV",
+    "position": "DEF",
+    "xpts": 3.02
+   },
+   "183": {
+    "name": "Rudoni",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 3
+   },
+   "184": {
+    "name": "Grimes",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 2.874
+   },
+   "186": {
+    "name": "Mason-Clark",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 2.045
+   },
+   "190": {
+    "name": "Tchaouna",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 2.06
+   },
+   "198": {
+    "name": "Henderson",
+    "team": "CRY",
+    "position": "GK",
+    "xpts": 3.674
+   },
+   "200": {
+    "name": "Lacroix",
+    "team": "CHE",
+    "position": "DEF",
+    "xpts": 4.088
+   },
+   "201": {
+    "name": "Muñoz",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 2.388
+   },
+   "202": {
+    "name": "Richards",
+    "team": "CRY",
+    "position": "DEF",
+    "xpts": 3.51
+   },
+   "203": {
+    "name": "Canvot",
+    "team": "CRY",
+    "position": "DEF",
+    "xpts": 3.102
+   },
+   "204": {
+    "name": "Mitchell",
+    "team": "CRY",
+    "position": "DEF",
+    "xpts": 4.924
+   },
+   "209": {
+    "name": "Johnson",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 2.754
+   },
+   "210": {
+    "name": "Wharton",
+    "team": "CRY",
+    "position": "MID",
+    "xpts": 3.123
+   },
+   "211": {
+    "name": "Yeremy",
+    "team": "CRY",
+    "position": "MID",
+    "xpts": 3.29
+   },
+   "214": {
+    "name": "Kamada",
+    "team": "CRY",
+    "position": "MID",
+    "xpts": 4.288
+   },
+   "222": {
+    "name": "Strand Larsen",
+    "team": "CRY",
+    "position": "FWD",
+    "xpts": 3.339
+   },
+   "224": {
+    "name": "Nketiah",
+    "team": "CRY",
+    "position": "FWD",
+    "xpts": 2.364
+   },
+   "226": {
+    "name": "Pickford",
+    "team": "EVE",
+    "position": "GK",
+    "xpts": 4.038
+   },
+   "229": {
+    "name": "Tarkowski",
+    "team": "EVE",
+    "position": "DEF",
+    "xpts": 5.638
+   },
+   "230": {
+    "name": "Branthwaite",
+    "team": "EVE",
+    "position": "DEF",
+    "xpts": 4.125
+   },
+   "233": {
+    "name": "Mykolenko",
+    "team": "EVE",
+    "position": "DEF",
+    "xpts": 4.545
+   },
+   "236": {
+    "name": "Dewsbury-Hall",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 4.289
+   },
+   "237": {
+    "name": "Ndiaye",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 4.352
+   },
+   "239": {
+    "name": "Garner",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 3.495
+   },
+   "242": {
+    "name": "George",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 4.432
+   },
+   "244": {
+    "name": "Armstrong",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 3.803
+   },
+   "246": {
+    "name": "Röhl",
+    "team": "EVE",
+    "position": "MID",
+    "xpts": 3.219
+   },
+   "249": {
+    "name": "Barry",
+    "team": "EVE",
+    "position": "FWD",
+    "xpts": 4.012
+   },
+   "250": {
+    "name": "Leno",
+    "team": "FUL",
+    "position": "GK",
+    "xpts": 3.286
+   },
+   "253": {
+    "name": "Andersen",
+    "team": "FUL",
+    "position": "DEF",
+    "xpts": 1.872
+   },
+   "254": {
+    "name": "Robinson",
+    "team": "FUL",
+    "position": "DEF",
+    "xpts": 2.556
+   },
+   "257": {
+    "name": "Bassey",
+    "team": "FUL",
+    "position": "DEF",
+    "xpts": 2.55
+   },
+   "258": {
+    "name": "Castagne",
+    "team": "FUL",
+    "position": "DEF",
+    "xpts": 3.317
+   },
+   "259": {
+    "name": "Diop",
+    "team": "IPS",
+    "position": "DEF",
+    "xpts": 3.51
+   },
+   "261": {
+    "name": "Iwobi",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 2.771
+   },
+   "264": {
+    "name": "Bobb",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 2.818
+   },
+   "265": {
+    "name": "Berge",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 2.836
+   },
+   "267": {
+    "name": "Lukić",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 3.295
+   },
+   "268": {
+    "name": "King",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 4.387
+   },
+   "277": {
+    "name": "Egan",
+    "team": "HUL",
+    "position": "DEF",
+    "xpts": 3.895
+   },
+   "279": {
+    "name": "Ajayi",
+    "team": "HUL",
+    "position": "DEF",
+    "xpts": 4.11
+   },
+   "280": {
+    "name": "Coyle",
+    "team": "HUL",
+    "position": "DEF",
+    "xpts": 3.089
+   },
+   "282": {
+    "name": "Giles",
+    "team": "HUL",
+    "position": "DEF",
+    "xpts": 3.69
+   },
+   "286": {
+    "name": "Belloumi",
+    "team": "HUL",
+    "position": "MID",
+    "xpts": 5.28
+   },
+   "289": {
+    "name": "Crooks",
+    "team": "HUL",
+    "position": "MID",
+    "xpts": 2.151
+   },
+   "290": {
+    "name": "Slater",
+    "team": "HUL",
+    "position": "MID",
+    "xpts": 3.253
+   },
+   "295": {
+    "name": "McBurnie",
+    "team": "HUL",
+    "position": "FWD",
+    "xpts": 3.612
+   },
+   "304": {
+    "name": "O'Shea",
+    "team": "IPS",
+    "position": "DEF",
+    "xpts": 3.51
+   },
+   "305": {
+    "name": "Davis",
+    "team": "IPS",
+    "position": "DEF",
+    "xpts": 5.463
+   },
+   "306": {
+    "name": "Greaves",
+    "team": "IPS",
+    "position": "DEF",
+    "xpts": 3.266
+   },
+   "309": {
+    "name": "Núñez",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 2.392
+   },
+   "315": {
+    "name": "Fatawu",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 3.359
+   },
+   "316": {
+    "name": "Emersonn",
+    "team": "IPS",
+    "position": "FWD",
+    "xpts": 5.597
+   },
+   "327": {
+    "name": "Bijol",
+    "team": "LEE",
+    "position": "DEF",
+    "xpts": 2.892
+   },
+   "329": {
+    "name": "Rodon",
+    "team": "LEE",
+    "position": "DEF",
+    "xpts": 1.694
+   },
+   "330": {
+    "name": "Bogle",
+    "team": "LEE",
+    "position": "DEF",
+    "xpts": 4.704
+   },
+   "332": {
+    "name": "Justin",
+    "team": "LEE",
+    "position": "DEF",
+    "xpts": 4.005
+   },
+   "334": {
+    "name": "Muharemović",
+    "team": "LEE",
+    "position": "DEF",
+    "xpts": 3.678
+   },
+   "335": {
+    "name": "Stach",
+    "team": "LEE",
+    "position": "MID",
+    "xpts": 4.867
+   },
+   "336": {
+    "name": "Okafor",
+    "team": "LEE",
+    "position": "MID",
+    "xpts": 2.647
+   },
+   "337": {
+    "name": "Aaronson",
+    "team": "LEE",
+    "position": "MID",
+    "xpts": 2.096
+   },
+   "338": {
+    "name": "Ampadu",
+    "team": "LEE",
+    "position": "MID",
+    "xpts": 3.291
+   },
+   "346": {
+    "name": "Calvert-Lewin",
+    "team": "LEE",
+    "position": "FWD",
+    "xpts": 4.066
+   },
+   "350": {
+    "name": "A.Becker",
+    "team": "LIV",
+    "position": "GK",
+    "xpts": 3.925
+   },
+   "356": {
+    "name": "Virgil",
+    "team": "LIV",
+    "position": "DEF",
+    "xpts": 3.51
+   },
+   "357": {
+    "name": "Frimpong",
+    "team": "LIV",
+    "position": "DEF",
+    "xpts": 2.667
+   },
+   "358": {
+    "name": "Kerkez",
+    "team": "LIV",
+    "position": "DEF",
+    "xpts": 3.076
+   },
+   "362": {
+    "name": "Jacquet",
+    "team": "LIV",
+    "position": "DEF",
+    "xpts": 3.696
+   },
+   "366": {
+    "name": "Wirtz",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 3.29
+   },
+   "367": {
+    "name": "Gakpo",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 5.977
+   },
+   "368": {
+    "name": "Szoboszlai",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 3.894
+   },
+   "371": {
+    "name": "Gravenberch",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 2.331
+   },
+   "372": {
+    "name": "Mac Allister",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 2.528
+   },
+   "377": {
+    "name": "Munoz",
+    "team": "LIV",
+    "position": "MID",
+    "xpts": 3.51
+   },
+   "379": {
+    "name": "Isak",
+    "team": "LIV",
+    "position": "FWD",
+    "xpts": 5.161
+   },
+   "384": {
+    "name": "Donnarumma",
+    "team": "MCI",
+    "position": "GK",
+    "xpts": 3.995
+   },
+   "385": {
+    "name": "Trafford",
+    "team": "LEE",
+    "position": "GK",
+    "xpts": 3.952
+   },
+   "387": {
+    "name": "O'Reilly",
+    "team": "MCI",
+    "position": "DEF",
+    "xpts": 3.118
+   },
+   "388": {
+    "name": "Guéhi",
+    "team": "MCI",
+    "position": "DEF",
+    "xpts": 5.148
+   },
+   "390": {
+    "name": "Rúben",
+    "team": "MCI",
+    "position": "DEF",
+    "xpts": 3.635
+   },
+   "391": {
+    "name": "Gvardiol",
+    "team": "MCI",
+    "position": "DEF",
+    "xpts": 6.436
+   },
+   "393": {
+    "name": "Khusanov",
+    "team": "MCI",
+    "position": "DEF",
+    "xpts": 3.724
+   },
+   "397": {
+    "name": "Semenyo",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 4.028
+   },
+   "398": {
+    "name": "Foden",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 3.816
+   },
+   "399": {
+    "name": "Cherki",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 5.854
+   },
+   "401": {
+    "name": "Marmoush",
+    "team": "TOT",
+    "position": "FWD",
+    "xpts": 3.079
+   },
+   "403": {
+    "name": "Sávio",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 2.193
+   },
+   "405": {
+    "name": "N.Gonzalez",
+    "team": "NEW",
+    "position": "MID",
+    "xpts": 2.34
+   },
+   "411": {
+    "name": "Haaland",
+    "team": "MCI",
+    "position": "FWD",
+    "xpts": 6.81
+   },
+   "412": {
+    "name": "Lammens",
+    "team": "MUN",
+    "position": "GK",
+    "xpts": 3.42
+   },
+   "415": {
+    "name": "Dorgu",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 2.435
+   },
+   "417": {
+    "name": "Dalot",
+    "team": "MUN",
+    "position": "DEF",
+    "xpts": 3.09
+   },
+   "418": {
+    "name": "Maguire",
+    "team": "MUN",
+    "position": "DEF",
+    "xpts": 3.649
+   },
+   "419": {
+    "name": "Martinez",
+    "team": "MUN",
+    "position": "DEF",
+    "xpts": 3.382
+   },
+   "423": {
+    "name": "Shaw",
+    "team": "MUN",
+    "position": "DEF",
+    "xpts": 3.572
+   },
+   "426": {
+    "name": "B.Fernandes",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 5.591
+   },
+   "427": {
+    "name": "Mbeumo",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 4.952
+   },
+   "428": {
+    "name": "Cunha",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 3.863
+   },
+   "429": {
+    "name": "Rashford",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 2.951
+   },
+   "432": {
+    "name": "Mainoo",
+    "team": "MUN",
+    "position": "MID",
+    "xpts": 4.514
+   },
+   "445": {
+    "name": "Thiaw",
+    "team": "NEW",
+    "position": "DEF",
+    "xpts": 4.003
+   },
+   "447": {
+    "name": "Botman",
+    "team": "NEW",
+    "position": "DEF",
+    "xpts": 4.003
+   },
+   "449": {
+    "name": "Hall",
+    "team": "NEW",
+    "position": "DEF",
+    "xpts": 5.331
+   },
+   "453": {
+    "name": "Barnes",
+    "team": "NEW",
+    "position": "MID",
+    "xpts": 5.005
+   },
+   "454": {
+    "name": "Elanga",
+    "team": "NEW",
+    "position": "MID",
+    "xpts": 5.561
+   },
+   "455": {
+    "name": "Tonali",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 3.158
+   },
+   "459": {
+    "name": "L.Miley",
+    "team": "NEW",
+    "position": "MID",
+    "xpts": 3.527
+   },
+   "460": {
+    "name": "Willock",
+    "team": "NEW",
+    "position": "MID",
+    "xpts": 3.688
+   },
+   "464": {
+    "name": "Wissa",
+    "team": "NEW",
+    "position": "FWD",
+    "xpts": 4.85
+   },
+   "467": {
+    "name": "Sels",
+    "team": "NFO",
+    "position": "GK",
+    "xpts": 3.952
+   },
+   "469": {
+    "name": "N.Williams",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 4.496
+   },
+   "471": {
+    "name": "Milenković",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 4.283
+   },
+   "472": {
+    "name": "Murillo",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 4.847
+   },
+   "473": {
+    "name": "Aina",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 3.69
+   },
+   "474": {
+    "name": "Jair Cunha",
+    "team": "NFO",
+    "position": "DEF",
+    "xpts": 4.003
+   },
+   "480": {
+    "name": "Gibbs-White",
+    "team": "NFO",
+    "position": "MID",
+    "xpts": 5.663
+   },
+   "481": {
+    "name": "Anderson",
+    "team": "MCI",
+    "position": "MID",
+    "xpts": 3.597
+   },
+   "483": {
+    "name": "Ndoye",
+    "team": "NFO",
+    "position": "MID",
+    "xpts": 4.419
+   },
+   "486": {
+    "name": "McAtee",
+    "team": "NFO",
+    "position": "MID",
+    "xpts": 3.342
+   },
+   "491": {
+    "name": "Igor Jesus",
+    "team": "NFO",
+    "position": "FWD",
+    "xpts": 3.626
+   },
+   "492": {
+    "name": "Awoniyi",
+    "team": "COV",
+    "position": "FWD",
+    "xpts": 2.513
+   },
+   "496": {
+    "name": "Kinsky",
+    "team": "TOT",
+    "position": "GK",
+    "xpts": 3.378
+   },
+   "499": {
+    "name": "Pedro Porro",
+    "team": "TOT",
+    "position": "DEF",
+    "xpts": 2.345
+   },
+   "501": {
+    "name": "Danso",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 1.549
+   },
+   "502": {
+    "name": "Robertson",
+    "team": "TOT",
+    "position": "DEF",
+    "xpts": 3.519
+   },
+   "503": {
+    "name": "Van de Ven",
+    "team": "TOT",
+    "position": "DEF",
+    "xpts": 3.608
+   },
+   "504": {
+    "name": "Vuskovic",
+    "team": "BHA",
+    "position": "DEF",
+    "xpts": 3.798
+   },
+   "514": {
+    "name": "Tel",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 3.006
+   },
+   "516": {
+    "name": "Bentancur",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 3.257
+   },
+   "519": {
+    "name": "Gallagher",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 1.648
+   },
+   "522": {
+    "name": "Gray",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 3.046
+   },
+   "525": {
+    "name": "Fernandes",
+    "team": "TOT",
+    "position": "MID",
+    "xpts": 2.573
+   },
+   "529": {
+    "name": "Roefs",
+    "team": "SUN",
+    "position": "GK",
+    "xpts": 2.33
+   },
+   "532": {
+    "name": "Ballard",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 2.586
+   },
+   "533": {
+    "name": "Mukiele",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 2.892
+   },
+   "534": {
+    "name": "Hume",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 2.005
+   },
+   "536": {
+    "name": "Reinildo",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 2.096
+   },
+   "541": {
+    "name": "Meunier",
+    "team": "SUN",
+    "position": "DEF",
+    "xpts": 2.104
+   },
+   "542": {
+    "name": "E.Le Fée",
+    "team": "SUN",
+    "position": "MID",
+    "xpts": 3.202
+   },
+   "544": {
+    "name": "Xhaka",
+    "team": "SUN",
+    "position": "MID",
+    "xpts": 4.059
+   },
+   "545": {
+    "name": "Sadiki",
+    "team": "SUN",
+    "position": "MID",
+    "xpts": 2.608
+   },
+   "551": {
+    "name": "N.Angulo",
+    "team": "SUN",
+    "position": "MID",
+    "xpts": 3.214
+   },
+   "552": {
+    "name": "Brobbey",
+    "team": "SUN",
+    "position": "FWD",
+    "xpts": 2.64
+   },
+   "557": {
+    "name": "Tzolis",
+    "team": "ARS",
+    "position": "MID",
+    "xpts": 3.941
+   },
+   "558": {
+    "name": "Schlager",
+    "team": "NFO",
+    "position": "MID",
+    "xpts": 3.72
+   },
+   "562": {
+    "name": "Maeda",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 2.98
+   },
+   "564": {
+    "name": "Scherpen",
+    "team": "IPS",
+    "position": "GK",
+    "xpts": 3.633
+   },
+   "565": {
+    "name": "M.Sangaré",
+    "team": "BRE",
+    "position": "MID",
+    "xpts": 4.854
+   },
+   "566": {
+    "name": "Silva",
+    "team": "BOU",
+    "position": "DEF",
+    "xpts": 3.285
+   },
+   "567": {
+    "name": "Horníček",
+    "team": "NEW",
+    "position": "GK",
+    "xpts": 4.299
+   },
+   "569": {
+    "name": "Gonzalo",
+    "team": "FUL",
+    "position": "FWD",
+    "xpts": 3.256
+   },
+   "570": {
+    "name": "Palacios",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 3.852
+   },
+   "572": {
+    "name": "Tzolakis",
+    "team": "HUL",
+    "position": "GK",
+    "xpts": 4.43
+   },
+   "575": {
+    "name": "Yirenkyi",
+    "team": "COV",
+    "position": "MID",
+    "xpts": 2.567
+   },
+   "576": {
+    "name": "Stroud",
+    "team": "HUL",
+    "position": "MID",
+    "xpts": 2.502
+   },
+   "579": {
+    "name": "Araujo",
+    "team": "LIV",
+    "position": "DEF",
+    "xpts": 2.97
+   },
+   "580": {
+    "name": "Charles",
+    "team": "FUL",
+    "position": "MID",
+    "xpts": 2.77
+   },
+   "586": {
+    "name": "Mendy",
+    "team": "HUL",
+    "position": "DEF",
+    "xpts": 4.153
+   },
+   "588": {
+    "name": "Khalaili",
+    "team": "CRY",
+    "position": "DEF",
+    "xpts": 4.503
+   },
+   "591": {
+    "name": "Enciso",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 3.675
+   },
+   "593": {
+    "name": "Dedić",
+    "team": "NEW",
+    "position": "DEF",
+    "xpts": 4.606
+   },
+   "597": {
+    "name": "Suzuki",
+    "team": "AVL",
+    "position": "GK",
+    "xpts": 4.064
+   },
+   "605": {
+    "name": "Yalcouyé",
+    "team": "BHA",
+    "position": "MID",
+    "xpts": 4.489
+   },
+   "619": {
+    "name": "Palacios",
+    "team": "IPS",
+    "position": "MID",
+    "xpts": 3.218
+   },
+   "644": {
+    "name": "Timber",
+    "team": "CRY",
+    "position": "MID",
+    "xpts": 2.369
+   }
+  }
+ },
+ "results": []
+}

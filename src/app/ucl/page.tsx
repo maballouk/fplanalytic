@@ -4,6 +4,7 @@
 // predictions arrive as commits from the Mon/Thu engine cron.
 
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import AppShell from '@/components/ds/AppShell';
 import ClubBadge from '@/components/ds/ClubBadge';
 import CountUp from '@/components/ds/CountUp';
@@ -147,7 +148,12 @@ function CaptainCard({ player, rank }: { player: UclPlayer; rank: number }) {
             size={48}
           />
           <div>
-            <div className="font-semibold text-text">{player.name}</div>
+            <Link
+              href={`/ucl/player/${player.player_id}`}
+              className="font-semibold text-text underline-offset-2 hover:underline"
+            >
+              {player.name}
+            </Link>
             <div className="text-xs text-text-muted">
               {c.code} · {player.position} · €{player.price.toFixed(1)}m · v{' '}
               {club(player.opponent).code} ({player.is_home ? 'H' : 'A'})

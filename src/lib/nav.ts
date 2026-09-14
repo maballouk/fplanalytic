@@ -17,6 +17,7 @@ export const NAV: NavItem[] = [
   { href: '/my-team', label: 'My Team', group: 'FPL' },
   { href: '/ucl', label: 'European Nights', group: 'UCL Fantasy' },
   { href: '/methodology', label: 'Methodology' },
+  { href: '/backtest', label: 'Backtest' },
 ];
 
 /** Mobile bottom bar: five slots, labels short enough for phone widths. */

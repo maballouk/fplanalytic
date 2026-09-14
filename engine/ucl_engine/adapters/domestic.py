@@ -79,6 +79,9 @@ def fetch_fpl_shares(timeout: int = 30) -> Dict[tuple, Dict[str, float]]:
     r.raise_for_status()
     data = r.json()
     team_name = {t["id"]: canonical(t["name"]) for t in data["teams"]}
+    # Rotation signal (1.5.3): a player's share of possible starts. Every PL
+    # club has played the same number of finished gameweeks, near enough.
+    played = max(sum(1 for ev in data.get("events", []) if ev.get("finished")), 1)
     team_goals: Dict[str, int] = {}
     for e in data["elements"]:
         team_goals[team_name[e["team"]]] = team_goals.get(team_name[e["team"]], 0) + e["goals_scored"]
@@ -92,8 +95,10 @@ def fetch_fpl_shares(timeout: int = 30) -> Dict[tuple, Dict[str, float]]:
         if key in out:
             seen_twice.add(key)  # two same-surname players in one club: don't guess
             continue
-        out[key] = _entry(e["goals_scored"], e["assists"], team_goals.get(team, 0),
-                          _initial(e.get("first_name") or ""))
+        entry = _entry(e["goals_scored"], e["assists"], team_goals.get(team, 0),
+                       _initial(e.get("first_name") or ""))
+        entry["start_share"] = min(e.get("starts", 0) / played, 1.0)
+        out[key] = entry
     for key in seen_twice:
         out.pop(key, None)
     return out
@@ -110,9 +115,11 @@ def fetch_fd_shares(token: str, competitions: Optional[List[str]] = None, timeou
             st = requests.get(f"{FD_BASE}/competitions/{comp}/standings", headers=headers, timeout=timeout)
             st.raise_for_status()
             goals_for: Dict[str, int] = {}
+            played_games: Dict[str, int] = {}
             for table in st.json().get("standings", []):
                 for row in table.get("table", []):
                     goals_for[canonical(row["team"]["name"])] = row.get("goalsFor", 0)
+                    played_games[canonical(row["team"]["name"])] = row.get("playedGames", 0)
             time.sleep(FD_PAUSE_SECONDS)
             sc = requests.get(f"{FD_BASE}/competitions/{comp}/scorers", headers=headers,
                               params={"limit": 60}, timeout=timeout)
@@ -122,8 +129,14 @@ def fetch_fd_shares(token: str, competitions: Optional[List[str]] = None, timeou
                 key = (team, _surname(row["player"]["name"]))
                 if key in out:
                     continue
-                out[key] = _entry(row.get("goals") or 0, row.get("assists") or 0,
-                                  goals_for.get(team, 0), _initial(row["player"]["name"]))
+                entry = _entry(row.get("goals") or 0, row.get("assists") or 0,
+                               goals_for.get(team, 0), _initial(row["player"]["name"]))
+                # playedMatches counts appearances, not starts; damp it a bit
+                tp = max(played_games.get(team, 0), 1)
+                pm = row.get("playedMatches")
+                if isinstance(pm, int) and pm > 0:
+                    entry["start_share"] = min(0.9 * pm / tp, 1.0)
+                out[key] = entry
         except Exception:  # noqa: BLE001 - one broken league must not sink the rest
             continue
     return out
@@ -166,6 +179,8 @@ def collect_domestic_shares(raw: List[RawPlayer], notes: Optional[List[str]] = N
         if ini_feed and ini_dom and ini_feed != ini_dom:
             continue
         out[p.player_id] = {"goal_share": hit["goal_share"], "assist_share": hit["assist_share"]}
+        if "start_share" in hit:
+            out[p.player_id]["start_share"] = hit["start_share"]
         matched += 1
     if notes is not None:
         notes.append(f"domestic shares matched for {matched} players")

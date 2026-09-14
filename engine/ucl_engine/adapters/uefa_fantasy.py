@@ -186,9 +186,15 @@ def build_profiles(
     Per-90 volume rates (recoveries, saves, cards) are shrunk toward the
         league mean for the position with SHRINK_90S virtual 90s — computed
         from the feed itself, not hardcoded.
-    p_start: minutes-based proxy times an availability factor from the feed's
-        own flags (injured/suspended/doubtful/not-in-squad, "unlikely to
-        start"). Still v0.5 — the full rotation model is TASKS.md 1.5.3.
+    p_start (rotation model v1, TASKS.md 1.5.3): a blend of three signals,
+        weighted toward UCL evidence as matchdays accumulate —
+          1. UCL minutes share (minutes / 90 per matchday played),
+          2. the player's DOMESTIC start share this season when we matched one
+             (FPL starts for PL clubs; football-data appearances elsewhere),
+          3. otherwise a squad-depth prior from his price rank inside his own
+             club (the 11 priciest players in a squad mostly start).
+        The blend is then multiplied by the feed's own availability flags
+        (injured/suspended/doubtful/not-in-squad, "unlikely to start").
     """
     domestic_shares = domestic_shares or {}
     w_ucl = matchdays_played / (matchdays_played + shrink_matches)
@@ -198,6 +204,15 @@ def build_profiles(
         "MID": (0.10, 0.12),
         "FWD": (0.22, 0.12),
     }
+    # Squad-depth prior: rank by price within each club (dearest first).
+    price_rank: Dict[str, int] = {}
+    by_team: Dict[str, List[RawPlayer]] = {}
+    for p in raw:
+        by_team.setdefault(p.team, []).append(p)
+    for members in by_team.values():
+        for rank, member in enumerate(sorted(members, key=lambda m: -m.price), start=1):
+            price_rank[member.player_id] = rank
+
     rec_mean = _position_mean_per90(raw, "recoveries")
     save_mean = _position_mean_per90(raw, "saves")
     yel_mean = _position_mean_per90(raw, "yellows")
@@ -221,8 +236,13 @@ def build_profiles(
         if "assist_share" not in dom:
             as_ = min(as_, cap_as)
 
-        mins_per_md = p.minutes / max(matchdays_played, 1)
-        p_start = float(min(max(mins_per_md / 80.0, 0.05), 0.97))
+        # Rotation model v1: UCL minutes, domestic start share, depth prior.
+        ucl_share = min(p.minutes / (90.0 * matchdays_played), 1.0) if matchdays_played > 0 else 0.0
+        rank = price_rank.get(p.player_id, 20)
+        depth_prior = 0.82 if rank <= 11 else 0.45 if rank <= 15 else 0.18
+        baseline = dom.get("start_share", depth_prior)
+        w_mins = matchdays_played / (matchdays_played + 2.0)
+        p_start = float(min(max(w_mins * ucl_share + (1 - w_mins) * baseline, 0.03), 0.95))
         factor = STATUS_FACTOR.get(p.status)
         if factor is not None:
             p_start *= factor

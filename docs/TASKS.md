@@ -297,3 +297,19 @@ backtest numbers on methodology page.
   copy ✓, and the live tracker has run through a full gameweek (GW4) in production. Posting
   to r/FantasyPL is Mohamad's move whenever it suits; the post text is final in
   docs/LAUNCH-POST.md.
+- 2026-09-14 ("خلاص انجز الان" — the queued trio shipped in one round):
+  - 1.5.3 DONE, rotation model v1: p_start blends UCL minutes share (weight grows with
+    matchdays), the player's DOMESTIC start share this season (FPL starts/finished-GWs for PL
+    clubs; football-data scorers' playedMatches/playedGames ×0.9 elsewhere) and a squad-depth
+    prior from price rank inside his club (top-11 0.82 / 12-15 0.45 / else 0.18), all times
+    the feed's availability flags. p_plays deciles moved from "everyone 0.97" to
+    0.11/0.37/0.89. Engine tests 27 → 28. MD2 data regenerated.
+  - 1.5.6 DONE, /ucl/player/[id]: static pages for the top 500 by xPts (club-colour strip,
+    xPts + breakdown chips, P(start), picked-%, transfer momentum, his fixture's prediction
+    bar); linked from the UCL table (both layouts) and captain cards; in the sitemap.
+  - 1.5.7 DONE, /backtest: the data build keeps public/data/backtest.json — the FINAL
+    pre-deadline predictions are staged as pending, and when a GW finishes the next run
+    grades them against event/{gw}/live (MAE, bias, top10-in-top20, best call, worst miss —
+    names included; zero-minute players excluded as rotation misses, not scoring misses).
+    Pure scorer in src/lib/defcon/backtest.ts (unit-tested); page in the nav next to
+    Methodology. GW5 is the first week on the report card.

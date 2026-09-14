@@ -291,7 +291,9 @@ def test_feed_availability_flags_cut_p_start():
         _raw("benched", "MID", trained="Unlikely to start next game"),
     ]
     profiles = {p.player_id: p for p in build_profiles(raw, {"A": 2}, matchdays_played=1)}
-    assert profiles["fit"].p_start > 0.9
+    # Rotation v1 blends UCL minutes with a depth prior, so a 90-minute MD1
+    # starter reads high but no longer near-certain this early.
+    assert profiles["fit"].p_start > 0.8
     assert profiles["hurt"].p_start < 0.1
     assert profiles["benched"].p_start < 0.5
 
@@ -309,3 +311,24 @@ def test_consensus_fields_flow_to_output():
     prof = build_profiles(raw, {"Manchester City": 2}, matchdays_played=1)[0]
     assert prof.sel_per == 22.0 and prof.transfer_balance == 60
     assert prof.p_potm > 0.2  # MD1 man of the match
+
+
+def test_rotation_v1_uses_domestic_start_share_and_depth_prior():
+    """
+    1.5.3: a bench-priced player who starts every domestic match must beat a
+    bench-priced teammate with no domestic record; an expensive non-starter
+    still gets the top-11 depth prior rather than zero.
+    """
+    from ucl_engine.adapters.uefa_fantasy import build_profiles
+    raw = (
+        [_raw(f"star{i}", "MID", minutes=0) for i in range(11)]  # pricey, no UCL minutes yet
+        + [_raw("cheap_starter", "MID", minutes=0), _raw("cheap_unknown", "MID", minutes=0)]
+    )
+    for i, r in enumerate(raw):
+        r.price = 10.0 - i * 0.1  # star0..star10 top-11 by price
+    dom = {"cheap_starter": {"goal_share": 0.1, "assist_share": 0.1, "start_share": 0.95}}
+    profiles = {p.player_id: p for p in build_profiles(raw, {"A": 2}, domestic_shares=dom, matchdays_played=1)}
+    assert profiles["cheap_starter"].p_start > profiles["cheap_unknown"].p_start
+    assert profiles["cheap_starter"].p_start > 0.55
+    assert profiles["star0"].p_start > profiles["cheap_unknown"].p_start  # depth prior
+    assert profiles["cheap_unknown"].p_start < 0.35  # rank 12-15 depth prior, no minutes
