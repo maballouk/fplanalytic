@@ -33,9 +33,29 @@ export const metadata: Metadata = {
   },
 };
 
+// Runs before first paint so a returning light-mode visitor never sees a dark
+// flash (and vice versa). Dark is the default; system preference decides for
+// first-time visitors; ds/ThemeToggle writes fpla_theme.
+const THEME_INIT = `try {
+  var t = localStorage.getItem('fpla_theme');
+  if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+  if (t === 'light') {
+    var m = document.querySelector('meta[name="theme-color"]');
+    if (m) m.setAttribute('content', '#F5F6F8');
+  }
+} catch (e) {}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable} ${archivo.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${jetbrainsMono.variable} ${archivo.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
+      </head>
       <body className={`${inter.className} min-h-screen antialiased`}>
         {children}
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (

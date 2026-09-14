@@ -7,9 +7,66 @@
   --premier-league-green: #00ff87;
 }
 
+/*
+ * Theme tokens (DESIGN.md §1). Values are RGB triplets so Tailwind can apply
+ * alpha (bg-bg/80, accent/10, …). Dark is the brand default; light mode
+ * (2026-09-14) swaps every token via [data-theme='light'], set before paint
+ * by the inline script in layout.tsx and toggled by ds/ThemeToggle.
+ */
+:root,
+[data-theme='dark'] {
+  --bg: 11 15 26;
+  --bg-raised: 17 24 39;
+  --bg-overlay: 22 30 46;
+  --line: 31 41 55;
+  --line-strong: 55 65 81;
+  --text: 229 231 235;
+  --text-muted: 156 163 175;
+  --text-faint: 107 114 128;
+  --accent: 0 255 135;
+  --accent-dim: 0 201 107;
+  --warn: 251 191 36;
+  --danger: 248 113 113;
+  --info: 96 165 250;
+  --premium: 192 132 252;
+  /* Tinted panel backgrounds (the old hand-picked dark blends) */
+  --tint-accent: 13 26 21;
+  --tint-info: 20 32 74;
+  --tint-danger: 43 22 22;
+  --tint-warn: 36 26 13;
+  /* Text/icons sitting ON an accent-filled control */
+  --on-accent: 6 40 26;
+  --shadow-card: 0 1px 0 0 rgb(31 41 55) inset, 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: 245 246 248;
+  --bg-raised: 255 255 255;
+  --bg-overlay: 236 239 244;
+  --line: 226 230 235;
+  --line-strong: 203 209 217;
+  --text: 17 24 39;
+  --text-muted: 71 84 103;
+  --text-faint: 152 160 173;
+  --accent: 0 153 94;
+  --accent-dim: 0 122 74;
+  --warn: 180 83 9;
+  --danger: 220 38 38;
+  --info: 37 99 235;
+  --premium: 126 34 206;
+  --tint-accent: 228 246 237;
+  --tint-info: 229 237 251;
+  --tint-danger: 251 232 232;
+  --tint-warn: 251 241 224;
+  --on-accent: 255 255 255;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.05), 0 8px 24px -14px rgba(16, 24, 40, 0.16);
+  color-scheme: light;
+}
+
 @layer base {
   body {
-    @apply antialiased text-gray-900;
+    @apply antialiased bg-bg text-text;
   }
 
   h1,
@@ -101,6 +158,21 @@
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Recharts structural colors follow the theme (CSS beats presentation
+   attributes, so the hex props inside ValueLens become dark-mode fallbacks) */
+.recharts-cartesian-grid line {
+  stroke: rgb(var(--line));
+}
+.recharts-cartesian-axis line,
+.recharts-cartesian-axis path,
+.recharts-reference-line line {
+  stroke: rgb(var(--line-strong));
+}
+.recharts-cartesian-axis-tick text,
+.recharts-text {
+  fill: rgb(var(--text-muted)) !important;
 }
 
 /* Chart tooltip customization */

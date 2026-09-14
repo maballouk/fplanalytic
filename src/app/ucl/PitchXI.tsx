@@ -22,7 +22,7 @@ function PitchPlayer({ player, isCaptain }: { player: UclPlayer; isCaptain: bool
         />
         {isCaptain && (
           <span
-            className="num absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-pill bg-accent text-[11px] font-bold text-[#06281a]"
+            className="num absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-pill bg-accent text-[11px] font-bold text-on-accent"
             title="Captain"
           >
             C

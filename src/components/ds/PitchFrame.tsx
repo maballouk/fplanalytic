@@ -1,5 +1,7 @@
-// Shared dark pitch surface (markings in faint accent) used by the UCL
-// predicted XI and the FPL My Team comparison.
+// Shared pitch surface (markings in faint accent) used by the UCL predicted
+// XI and the FPL My Team comparison. Deliberately stays dark in light mode:
+// a football pitch is the one place the dark green IS the content, and the
+// name pills / numbers on it read fine in both themes.
 
 export default function PitchFrame({ children }: { children: React.ReactNode }) {
   return (

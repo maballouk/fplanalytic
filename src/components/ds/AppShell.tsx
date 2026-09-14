@@ -7,6 +7,7 @@ import Link from 'next/link';
 import BottomNav, { type BottomNavItem } from './BottomNav';
 import DeadlineChip from './DeadlineChip';
 import Logo from './Logo';
+import ThemeToggle from './ThemeToggle';
 
 export interface AppShellNavItem {
   href: string;
@@ -47,6 +48,9 @@ export default function AppShell({
               <Logo />
             </Link>
             {deadline && <DeadlineChip label={deadline.label} deadlineUtc={deadline.deadlineUtc} />}
+          </span>
+          <span className="flex items-center gap-3 md:order-last">
+            <ThemeToggle />
           </span>
           <nav aria-label="Primary" className="hidden md:block">
             <ul className="flex flex-wrap items-center gap-1">

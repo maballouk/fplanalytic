@@ -197,10 +197,10 @@ export default function UclPage() {
         />
       ) : (
         <>
-          <section className="-mx-5 -mt-8 mb-10 border-b border-line bg-gradient-to-br from-bg via-[#10182b] to-[#14204a] px-5 pb-10 pt-12">
+          <section className="-mx-5 -mt-8 mb-10 border-b border-line bg-gradient-to-br from-bg via-tint-info to-tint-info px-5 pb-10 pt-12">
             <div className="mx-auto flex max-w-content flex-wrap items-end justify-between gap-8">
               <div>
-                <span className="mb-3 inline-block rounded-pill border border-info/30 bg-[#14204a] px-3 py-1 text-xs font-semibold text-info">
+                <span className="mb-3 inline-block rounded-pill border border-info/30 bg-tint-info px-3 py-1 text-xs font-semibold text-info">
                   Champions League Fantasy · league phase
                 </span>
                 <h1 className="font-display text-5xl font-black leading-none tracking-tight text-text">
@@ -226,7 +226,7 @@ export default function UclPage() {
           </section>
 
           <section className="mb-10">
-            <div className="mb-4 flex items-baseline justify-between">
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h2 className="font-display text-xl font-bold">Captain picks</h2>
               <span className="text-xs text-text-faint">
                 P(start) blends minutes with UEFA&apos;s own availability flags; lineups can still
@@ -247,7 +247,7 @@ export default function UclPage() {
                 return null;
               return (
                 <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 rounded-card border border-line bg-bg-raised px-4 py-3 text-sm">
-                  <span className="rounded-pill bg-[#14204a] px-2.5 py-0.5 text-xs font-semibold text-info">
+                  <span className="rounded-pill bg-tint-info px-2.5 py-0.5 text-xs font-semibold text-info">
                     THE CROWD&apos;S CALL
                   </span>
                   <span className="text-text">
@@ -266,7 +266,7 @@ export default function UclPage() {
 
           {xi && (
             <section className="mb-10">
-              <div className="mb-4 flex items-baseline justify-between">
+              <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                 <h2 className="font-display text-xl font-bold">The predicted XI</h2>
                 <span className="num text-xs text-text-faint">
                   {xi.formation} · {xi.totalXpts.toFixed(1)} xPts combined
@@ -324,7 +324,7 @@ export default function UclPage() {
           </section>
 
           <section>
-            <div className="mb-4 flex items-baseline justify-between">
+            <div className="mb-4 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <h2 className="font-display text-xl font-bold">Expected points · all positions</h2>
               <span className="num text-xs text-text-faint">
                 Updated {new Date(data.generated_at).toISOString().slice(0, 16).replace('T', ' ')}{' '}

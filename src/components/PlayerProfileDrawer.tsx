@@ -70,7 +70,7 @@ export default function PlayerProfileDrawer({ player, onClose }: PlayerProfileDr
       closeLabel="Close"
     >
       {/* Totals first: the number a manager understands */}
-      <div className="rounded-card border border-accent/20 bg-[#0d1a15] p-4">
+      <div className="rounded-card border border-accent/20 bg-tint-accent p-4">
         <div className="flex items-baseline justify-between">
           <span className="text-xs uppercase tracking-wider text-text-faint">
             Predicted next GW

@@ -31,8 +31,8 @@ export const metadata: Metadata = {
 
 const TAG_TONE: Record<BriefCall['tag'], string> = {
   'THE BUY': 'bg-accent/10 text-accent',
-  'THE DIFFERENTIAL': 'bg-[#14204a] text-info',
-  'THE TRAP': 'bg-[#2b1616] text-danger',
+  'THE DIFFERENTIAL': 'bg-tint-info text-info',
+  'THE TRAP': 'bg-tint-danger text-danger',
 };
 
 function BriefCard({ call, lead = false }: { call: BriefCall; lead?: boolean }) {
@@ -99,7 +99,7 @@ export default function Home() {
       <div className="-mx-5 -mt-8">
         <FirstVisit />
         {data && <StateBanner calendar={data.calendar} ledger={ledger} />}
-        <section className="border-b border-line bg-gradient-to-b from-bg to-[#0d1a15] px-5 pb-10 pt-10">
+        <section className="border-b border-line bg-gradient-to-b from-bg to-tint-accent px-5 pb-10 pt-10">
           <div className="mx-auto max-w-content">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>

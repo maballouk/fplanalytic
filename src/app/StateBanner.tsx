@@ -75,7 +75,7 @@ export default function StateBanner({
 
   if (state === 'deadline' && calendar) {
     return (
-      <div className="border-b border-warn/25 bg-gradient-to-r from-[#241a0d] to-bg">
+      <div className="border-b border-warn/25 bg-gradient-to-r from-tint-warn to-bg">
         <div className="mx-auto flex max-w-content flex-wrap items-center justify-between gap-3 px-5 py-3">
           <span className="text-sm font-semibold text-warn">
             GW{calendar.next_gw ?? ''} deadline in <span className="num text-lg">{countdown}</span>
@@ -94,7 +94,7 @@ export default function StateBanner({
   if (state === 'live' && live) {
     const closest = live.players.slice(0, 3);
     return (
-      <div className="border-b border-accent/20 bg-gradient-to-r from-[#0d1a15] to-bg">
+      <div className="border-b border-accent/20 bg-gradient-to-r from-tint-accent to-bg">
         <div className="mx-auto max-w-content px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
             <span className="flex items-center gap-2 text-sm font-semibold text-accent">
@@ -132,7 +132,7 @@ export default function StateBanner({
 
   if (state === 'review' && (ledger.banked.length > 0 || ledger.nearMissed.length > 0)) {
     return (
-      <div className="border-b border-line bg-gradient-to-r from-[#101828] to-bg">
+      <div className="border-b border-line bg-gradient-to-r from-tint-info to-bg">
         <div className="mx-auto max-w-content px-5 py-4">
           <div className="mb-3 flex items-center justify-between">
             <span className="text-sm font-semibold text-text">

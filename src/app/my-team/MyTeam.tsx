@@ -53,7 +53,7 @@ function PitchSpot({
         />
         {isCaptain && (
           <span
-            className="num absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-pill bg-accent text-[11px] font-bold text-[#06281a]"
+            className="num absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-pill bg-accent text-[11px] font-bold text-on-accent"
             title="Captain"
           >
             C
@@ -204,7 +204,7 @@ export default function MyTeam({
         />
         <button
           type="submit"
-          className="rounded-pill bg-accent px-5 py-1.5 text-sm font-semibold text-[#06281a] transition-colors duration-hover hover:bg-accent-dim"
+          className="rounded-pill bg-accent px-5 py-1.5 text-sm font-semibold text-on-accent transition-colors duration-hover hover:bg-accent-dim"
         >
           Analyse my team
         </button>
@@ -333,7 +333,7 @@ export default function MyTeam({
           </div>
 
           {upgrade && (
-            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-card border border-accent/25 bg-[#0d1a15] px-4 py-3">
+            <div className="mt-6 flex flex-wrap items-center gap-3 rounded-card border border-accent/25 bg-tint-accent px-4 py-3">
               <span className="rounded-pill bg-accent/10 px-2.5 py-0.5 text-xs font-semibold text-accent">
                 BIGGEST UPGRADE
               </span>

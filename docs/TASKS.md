@@ -242,3 +242,13 @@ backtest numbers on methodology page.
   drawer links "Full profile page →"). Decision logic extracted to lib/defcon/call.ts (shared
   drawer + player pages). Gotcha: never run `next build` while the dev server is serving —
   they share .next and the dev CSS 404s until the dev server restarts.
+- 2026-09-14 (light mode, requested by Mohamad): every DESIGN.md token is now a CSS variable
+  (RGB triplets in globals.css so Tailwind alpha keeps working; tailwind.config uses
+  rgb(var(--x) / <alpha-value>)). Dark stays the brand default; [data-theme='light'] swaps the
+  full palette (accent darkens to #00995E for contrast on white). New semantic tokens replace
+  every hand-picked hex tint: tint-accent/info/danger/warn + on-accent. An inline script in
+  layout.tsx applies the saved theme (localStorage fpla_theme, falling back to
+  prefers-color-scheme) before first paint; ds/ThemeToggle (sun/moon in the header) flips it
+  and updates <meta theme-color>. Recharts structural colors follow the theme via CSS overrides
+  in globals.css (CSS beats SVG presentation attributes). PitchFrame deliberately stays dark in
+  light mode — the pitch green is content. OG images and the share card stay dark (brand).

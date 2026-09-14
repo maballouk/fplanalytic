@@ -22,7 +22,7 @@ export default function FirstVisit() {
   if (!show) return null;
 
   return (
-    <div className="flex items-center justify-between gap-6 border-b border-accent/15 bg-[#0e1a15] px-5 py-3">
+    <div className="flex items-center justify-between gap-6 border-b border-accent/15 bg-tint-accent px-5 py-3">
       <div className="mx-auto flex w-full max-w-content flex-wrap items-center gap-x-7 gap-y-1 text-sm text-text-muted">
         <span>
           <span className="num text-accent">1</span>&nbsp; DEFCON is the new +2 for defensive work

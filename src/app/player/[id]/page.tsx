@@ -100,7 +100,7 @@ export default function PlayerPage({ params }: { params: { id: string } }) {
           </div>
         </header>
 
-        <div className="mt-6 rounded-card border border-accent/20 bg-[#0d1a15] p-5">
+        <div className="mt-6 rounded-card border border-accent/20 bg-tint-accent p-5">
           <div className="flex items-baseline justify-between">
             <span className="text-xs uppercase tracking-wider text-text-faint">
               Predicted GW{gw}

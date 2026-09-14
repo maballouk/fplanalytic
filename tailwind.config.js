@@ -11,15 +11,38 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // DESIGN.md §1 tokens
-        bg: { DEFAULT: '#0B0F1A', raised: '#111827', overlay: '#161E2E' }, // page, card, popover
-        line: { DEFAULT: '#1F2937', strong: '#374151' }, // borders/dividers
-        text: { DEFAULT: '#E5E7EB', muted: '#9CA3AF', faint: '#6B7280' },
-        accent: { DEFAULT: '#00FF87', dim: '#00C96B' }, // "good" signals only, never decoration
-        warn: '#FBBF24', // rotation risk, near-miss
-        danger: '#F87171', // sell / injured / red card
-        info: '#60A5FA', // neutral highlight, links
-        premium: '#C084FC', // premium-only badges and locks
+        // DESIGN.md §1 tokens — CSS variables since light mode (2026-09-14);
+        // the actual values live in globals.css (:root dark, [data-theme=light]).
+        bg: {
+          DEFAULT: 'rgb(var(--bg) / <alpha-value>)',
+          raised: 'rgb(var(--bg-raised) / <alpha-value>)',
+          overlay: 'rgb(var(--bg-overlay) / <alpha-value>)',
+        },
+        line: {
+          DEFAULT: 'rgb(var(--line) / <alpha-value>)',
+          strong: 'rgb(var(--line-strong) / <alpha-value>)',
+        },
+        text: {
+          DEFAULT: 'rgb(var(--text) / <alpha-value>)',
+          muted: 'rgb(var(--text-muted) / <alpha-value>)',
+          faint: 'rgb(var(--text-faint) / <alpha-value>)',
+        },
+        accent: {
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          dim: 'rgb(var(--accent-dim) / <alpha-value>)',
+        }, // "good" signals only, never decoration
+        warn: 'rgb(var(--warn) / <alpha-value>)', // rotation risk, near-miss
+        danger: 'rgb(var(--danger) / <alpha-value>)', // sell / injured / red card
+        info: 'rgb(var(--info) / <alpha-value>)', // neutral highlight, links
+        premium: 'rgb(var(--premium) / <alpha-value>)', // premium-only badges and locks
+        // Tinted panel backgrounds + text on accent-filled controls (light mode)
+        tint: {
+          accent: 'rgb(var(--tint-accent) / <alpha-value>)',
+          info: 'rgb(var(--tint-info) / <alpha-value>)',
+          danger: 'rgb(var(--tint-danger) / <alpha-value>)',
+          warn: 'rgb(var(--tint-warn) / <alpha-value>)',
+        },
+        'on-accent': 'rgb(var(--on-accent) / <alpha-value>)',
         // Legacy (current live screens; remove at Phase 2 review per 1.10)
         'premier-league-purple': '#37003c',
         'premier-league-green': '#00ff87',
@@ -51,7 +74,7 @@ module.exports = {
       boxShadow: {
         // DESIGN.md card shadow (dark). The legacy light-card hover shadow stays
         // under its own key until the old screens are replaced.
-        card: '0 1px 0 0 #1F2937 inset, 0 10px 30px -18px rgba(0,0,0,.8)',
+        card: 'var(--shadow-card)',
         'card-hover': '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
       },
       maxWidth: {
@@ -84,4 +107,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

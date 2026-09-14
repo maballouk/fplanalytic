@@ -67,6 +67,8 @@ adjectives. British football English. No em-dashes. No hype.
   "THE CROWD'S CALL" + "{name} is the most-picked player — {pct}% of all managers own him." +
   "Our model has him at {x} xPts v {OPP} ({H|A})."; captains caveat "P(start) blends minutes
   with UEFA's own availability flags; lineups can still surprise"
+- Light mode (requested 2026-09-14): toggle aria-labels "Switch to light mode" / "Switch to
+  dark mode", titles "Light mode" / "Dark mode"; umami event theme_toggle
 - Look & feel round (owner approval 2026-09-14): bottom nav labels "DEFCON" / "Live" /
   "My Team" / "UCL" / "Value"; header countdown chip "GW{N} · {2d 4h}"; mobile card unit
   label "PRED PTS"; compare button "Compare" + helper "Pick two players" / "and one more…" +
