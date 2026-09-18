@@ -49,6 +49,15 @@ function StatusChip({ m }: { m: UclLiveMatch }) {
       </span>
     );
   }
+  const minsToKo = Math.ceil((Date.parse(m.kickoff_utc) - Date.now()) / 60_000);
+  if (minsToKo > 0 && minsToKo <= 60) {
+    return (
+      <span className="num flex items-center gap-1.5 rounded-pill border border-warn/50 bg-tint-warn px-2 py-0.5 text-xs font-semibold text-warn">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-pill bg-warn" aria-hidden />
+        KO in {minsToKo}m
+      </span>
+    );
+  }
   return (
     <span className="num rounded-pill border border-line px-2 py-0.5 text-xs text-text-muted">
       {new Date(m.kickoff_utc).toLocaleString('en-GB', {

@@ -50,8 +50,16 @@ export interface LivePayload {
   fixtures: LiveFixture[];
   players: LivePlayer[];
   ticker: TickerItem[];
-  /** For the empty state: the next fixture to kick off, if any */
-  next_kickoff: { label: string; kickoff_time: string } | null;
+  /** The next fixture to kick off anywhere in the season: powers the
+   *  between-matches countdown and the empty state. */
+  next_kickoff: {
+    label: string;
+    kickoff_time: string;
+    home: string;
+    away: string;
+    home_code: number;
+    away_code: number;
+  } | null;
 }
 
 export function buildLivePayload(
@@ -71,6 +79,10 @@ export function buildLivePayload(
     ? {
         label: `${teamShort.get(upcoming[0].team_h)} v ${teamShort.get(upcoming[0].team_a)}`,
         kickoff_time: upcoming[0].kickoff_time!,
+        home: teamShort.get(upcoming[0].team_h) ?? String(upcoming[0].team_h),
+        away: teamShort.get(upcoming[0].team_a) ?? String(upcoming[0].team_a),
+        home_code: teamCode.get(upcoming[0].team_h) ?? 0,
+        away_code: teamCode.get(upcoming[0].team_a) ?? 0,
       }
     : null;
 

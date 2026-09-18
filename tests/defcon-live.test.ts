@@ -161,9 +161,11 @@ describe('buildLivePayload', () => {
   });
 
   it('reports the next kickoff for the empty state', () => {
-    expect(payload.next_kickoff).toEqual({
+    expect(payload.next_kickoff).toMatchObject({
       label: 'BOU v ARS',
       kickoff_time: '2026-09-13T15:30:00Z',
+      home: 'BOU',
+      away: 'ARS',
     });
   });
 

@@ -80,7 +80,14 @@ describe('LiveTracker', () => {
       fixtures: [],
       players: [],
       ticker: [],
-      next_kickoff: { label: 'BOU v ARS', kickoff_time: '2026-09-13T15:30:00Z' },
+      next_kickoff: {
+        label: 'BOU v ARS',
+        kickoff_time: '2026-09-13T15:30:00Z',
+        home: 'BOU',
+        away: 'ARS',
+        home_code: 91,
+        away_code: 3,
+      },
     });
     render(<LiveTracker />);
     await waitFor(() =>

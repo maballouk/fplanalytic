@@ -313,3 +313,11 @@ backtest numbers on methodology page.
     names included; zero-minute players excluded as rotation misses, not scoring misses).
     Pure scorer in src/lib/defcon/backtest.ts (unit-tested); page in the nav next to
     Methodology. GW5 is the first week on the report card.
+- 2026-09-18 (Mohamad: pulse effects while waiting for kickoff): KickoffCountdown ds
+  component — when nothing is live, /live opens with a broadcast countdown to the next
+  kickoff (this GW's next match, or between gameweeks the season's next fixture, carried in
+  the payload's enriched next_kickoff): second-by-second HH:MM:SS with pulsing colons, a
+  ping-ring beacon (new kickoff-ping keyframe; all motion dies with reduced-motion), the
+  fixture's badges and the local kickoff time. Labels: "First kickoff of the gameweek in" /
+  "Next kickoff in". Plus "KO in {m}m" amber pulsing chips on upcoming cards inside the
+  final hour, on BOTH /live and the UCL Matchday live cards.

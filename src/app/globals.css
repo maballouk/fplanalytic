@@ -203,6 +203,19 @@
 .ticker-track:hover {
   animation-play-state: paused;
 }
+@keyframes kickoff-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.animate-kickoff-ping {
+  animation: kickoff-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
 
 /* Chart tooltip customization */
 .chartjs-tooltip {

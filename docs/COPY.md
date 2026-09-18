@@ -76,6 +76,8 @@ adjectives. British football English. No em-dashes. No hype.
   closest to the +2", "On the pitch · FPL points", "Ones to watch · form this season",
   "Team news · from the official FPL feed"; status chips "LIVE"/"{n}'"/"FT"/"Full time";
   back link "← Matchday live"
+- Kickoff countdown (Mohamad 2026-09-18): "First kickoff of the gameweek in" / "Next
+  kickoff in" / "Kicking off"; soon-chip "KO in {m}m"
 - Look & feel round (owner approval 2026-09-14): bottom nav labels "DEFCON" / "Live" /
   "My Team" / "UCL" / "Value"; header countdown chip "GW{N} · {2d 4h}"; mobile card unit
   label "PRED PTS"; compare button "Compare" + helper "Pick two players" / "and one more…" +

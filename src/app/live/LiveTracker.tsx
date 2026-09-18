@@ -8,6 +8,7 @@
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import EmptyState from '@/components/ds/EmptyState';
+import KickoffCountdown from '@/components/ds/KickoffCountdown';
 import TeamBadge from '@/components/ds/TeamBadge';
 import ThresholdBar from '@/components/ds/ThresholdBar';
 import { track } from '@/lib/analytics';
@@ -73,6 +74,18 @@ function StatusChip({ fixture }: { fixture: LiveFixture }) {
       <span className="flex items-center gap-1.5 rounded-pill border border-accent-dim/60 bg-tint-accent px-2 py-0.5 text-xs font-semibold text-accent">
         <span className="h-1.5 w-1.5 animate-pulse rounded-pill bg-accent" aria-hidden />
         {fixture.minutes > 0 ? `${fixture.minutes}'` : 'LIVE'}
+      </span>
+    );
+  }
+  // Inside the final hour the chip starts breathing: kickoff is close.
+  const minsToKo = fixture.kickoff_time
+    ? Math.ceil((Date.parse(fixture.kickoff_time) - Date.now()) / 60_000)
+    : null;
+  if (minsToKo !== null && minsToKo > 0 && minsToKo <= 60) {
+    return (
+      <span className="num flex items-center gap-1.5 rounded-pill border border-warn/50 bg-tint-warn px-2 py-0.5 text-xs font-semibold text-warn">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-pill bg-warn" aria-hidden />
+        KO in {minsToKo}m
       </span>
     );
   }
@@ -262,6 +275,34 @@ export default function LiveTracker() {
           GW{payload.gw} · last refreshed {refreshedAt.toLocaleTimeString('en-GB')}
         </p>
       )}
+      {liveNow.length === 0 &&
+        (() => {
+          // Prefer this GW's next match; between gameweeks fall back to the
+          // season's next kickoff (that is the long, empty wait worth filling).
+          const up = upcoming[0]?.kickoff_time
+            ? {
+                home: upcoming[0].home,
+                away: upcoming[0].away,
+                home_code: upcoming[0].home_code,
+                away_code: upcoming[0].away_code,
+                kickoff_time: upcoming[0].kickoff_time,
+              }
+            : payload.next_kickoff
+              ? {
+                  home: payload.next_kickoff.home,
+                  away: payload.next_kickoff.away,
+                  home_code: payload.next_kickoff.home_code,
+                  away_code: payload.next_kickoff.away_code,
+                  kickoff_time: payload.next_kickoff.kickoff_time,
+                }
+              : null;
+          if (!up) return null;
+          const label =
+            done.length > 0 && upcoming.length > 0
+              ? 'Next kickoff in'
+              : 'First kickoff of the gameweek in';
+          return <KickoffCountdown fixture={up} label={label} />;
+        })()}
       {liveNow.length > 0 && <Ticker items={payload.ticker} />}
       <Group title="Live now" live fixtures={liveNow} players={payload.players} flashes={flashes} />
       <Group title="Upcoming" fixtures={upcoming} players={payload.players} flashes={flashes} />
