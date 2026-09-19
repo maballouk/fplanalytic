@@ -99,7 +99,9 @@ export function buildLivePayload(
     away_code: teamCode.get(f.team_a) ?? 0,
     home_score: f.team_h_score ?? null,
     away_score: f.team_a_score ?? null,
-    finished: f.finished,
+    // The final whistle ends the match on screen; FPL's own `finished` waits
+    // for bonus confirmation and can lag by an hour or more.
+    finished: f.finished || f.finished_provisional === true,
     started: f.started === true,
     kickoff_time: f.kickoff_time,
     minutes: f.minutes,

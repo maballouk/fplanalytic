@@ -19,8 +19,11 @@ import {
 
 const BASE = 'https://fantasy.premierleague.com/api';
 
-// Caching decisions (TASKS.md 0.5): slow-moving data revalidates every 6 hours;
-// the live endpoint revalidates every 60 seconds and is polled only on /live.
+// Caching decisions (TASKS.md 0.5, revised 2026-09-19): slow-moving data
+// revalidates every 6 hours. Fixtures are NOT slow-moving — they carry live
+// scores, elapsed minutes, event stats and the finished flags — so they share
+// the live endpoint's 60s window. (The old 6h TTL froze a night match at
+// 2-0/90' for hours: the GW5 opener bug.)
 const SIX_HOURS = 6 * 60 * 60;
 const SIXTY_SECONDS = 60;
 
@@ -52,7 +55,7 @@ export async function elementSummary(id: number): Promise<ElementSummary> {
 
 /** Full season fixture list. Refreshed every 6h. */
 export async function fixtures(): Promise<Fixture[]> {
-  return FixturesSchema.parse(await get('fixtures/', SIX_HOURS));
+  return FixturesSchema.parse(await get('fixtures/', SIXTY_SECONDS));
 }
 
 /** In-play stats for a gameweek. 60s cache; poll only from the /live route. */

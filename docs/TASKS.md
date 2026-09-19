@@ -321,3 +321,14 @@ backtest numbers on methodology page.
   fixture's badges and the local kickoff time. Labels: "First kickoff of the gameweek in" /
   "Next kickoff in". Plus "KO in {m}m" amber pulsing chips on upcoming cards inside the
   final hour, on BOTH /live and the UCL Matchday live cards.
+- 2026-09-19 (GW5 opener bug, reported by Mohamad): the live page froze at BRE 2-0 CHE / 90'
+  while the real match ran past midnight and ended 3-0. NOT a date bug — the `fixtures/`
+  fetch (scores, minutes, event stats, finished flags) still carried its Phase-0 "slow data"
+  6-HOUR TTL, so everything the live surfaces read from fixtures froze for up to 6h; only
+  the DEFCON bars moved (event/live, 60s). Fixes: (1) fixtures/ now revalidates at 60s like
+  the live endpoint — on matchdays it IS live data; (2) new schema field finished_provisional:
+  FPL's `finished` waits for bonus confirmation and lags an hour+, so the payload and the
+  Match Centre now treat the final whistle (finished_provisional) as FT — no more endless
+  "LIVE 90'" tail (which was also the missed warning sign during GW4 verification).
+  Regression tests added; verified against the real feed (BRE 3-0 CHE FT). LESSON: audit
+  every cache TTL when a feed's consumers change character.

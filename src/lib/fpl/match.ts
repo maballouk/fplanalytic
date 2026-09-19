@@ -102,7 +102,8 @@ export function buildMatchPayload(
     };
   };
 
-  const phase: MatchPhase = fixture.finished ? 'post' : fixture.started ? 'live' : 'pre';
+  const phase: MatchPhase =
+    fixture.finished || fixture.finished_provisional ? 'post' : fixture.started ? 'live' : 'pre';
 
   const events: MatchEvent[] = [];
   for (const stat of fixture.stats) {

@@ -120,6 +120,15 @@ describe('buildMatchPayload', () => {
     expect(p.watch.h[0].name).toBe('Gabriel');
   });
 
+  it('post phase: the provisional whistle is enough (bonus lag must not read as live)', () => {
+    const p = buildMatchPayload(
+      bootstrap,
+      { ...baseFixture, started: true, finished: false, finished_provisional: true } as Fixture,
+      live
+    );
+    expect(p.phase).toBe('post');
+  });
+
   it('post phase: finished flag wins and bonus events survive', () => {
     const p = buildMatchPayload(
       bootstrap,

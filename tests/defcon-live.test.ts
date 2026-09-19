@@ -169,6 +169,16 @@ describe('buildLivePayload', () => {
     });
   });
 
+  it('final whistle (finished_provisional) reads as FT even before bonus confirms', () => {
+    // 2026-09-19 regression: the GW5 opener ran past midnight and sat on
+    // "LIVE 90'" — a provisionally finished fixture must group as full time.
+    const provisional = [
+      { ...fixtures[0], finished: false, finished_provisional: true },
+    ] as unknown as Fixture[];
+    const p = buildLivePayload(bootstrap, provisional, live, NOW);
+    expect(p.fixtures[0].finished).toBe(true);
+  });
+
   it('handles no live data at all', () => {
     const empty = buildLivePayload(bootstrap, [], null, NOW);
     expect(empty.fixtures).toEqual([]);

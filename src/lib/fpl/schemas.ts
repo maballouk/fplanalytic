@@ -67,7 +67,8 @@ export const FixtureSchema = z.object({
   team_a_score: z.number().nullable().optional(),
   team_h_difficulty: z.number(),
   team_a_difficulty: z.number(),
-  finished: z.boolean(),
+  finished: z.boolean(), // true only after bonus is confirmed
+  finished_provisional: z.boolean().default(false), // true at the final whistle
   started: z.boolean().nullable().optional(),
   minutes: z.number().default(0), // elapsed match minutes while live
   // Per-fixture event stats: goals_scored / assists / yellow_cards / bonus …
