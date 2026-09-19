@@ -139,3 +139,70 @@ describe('buildMatchPayload', () => {
     expect(p.events).toContainEqual({ type: 'bonus', side: 'h', name: 'Gabriel', value: 3 });
   });
 });
+
+describe('event minutes ledger (self-detected)', () => {
+  it('occurrences expands doubles into nth entries and skips unstarted fixtures', async () => {
+    const { occurrences } = await import('@/lib/fpl/eventLedger');
+    const occ = occurrences([
+      { ...baseFixture, started: true, finished: false } as Fixture,
+      { ...baseFixture, id: 999, started: false, finished: false } as Fixture,
+    ]);
+    expect(occ.has('100:goals_scored:10:1')).toBe(true);
+    expect(occ.has('100:goals_scored:10:2')).toBe(true); // Gabriel's double
+    expect(occ.has('100:yellow_cards:20:1')).toBe(true);
+    expect(Array.from(occ.keys()).some((k) => k.startsWith('999:'))).toBe(false);
+    expect(Array.from(occ.keys()).some((k) => k.includes('bonus'))).toBe(false); // not timeline-worthy
+  });
+
+  it('joined late: the backlog gets minute 0 (unknown), later events get real minutes', async () => {
+    const { recordAndGetEvents, minutesForFixture } = await import('@/lib/fpl/eventLedger');
+    const early = {
+      ...baseFixture,
+      started: true,
+      finished: false,
+      minutes: 12, // first sighting mid-match: we cannot know when this goal fell
+      stats: [{ identifier: 'goals_scored', h: [{ value: 1, element: 10 }], a: [] }],
+    } as unknown as Fixture;
+    await recordAndGetEvents(77, [early]);
+    const later = {
+      ...early,
+      minutes: 78,
+      stats: [{ identifier: 'goals_scored', h: [{ value: 2, element: 10 }], a: [] }],
+    } as unknown as Fixture;
+    const events = await recordAndGetEvents(77, [later]);
+    const mins = minutesForFixture(events, 100)['goals_scored:10'];
+    expect(mins).toEqual([0, 78]); // unknown backlog, real stamp for the new one
+  });
+
+  it('caught from kickoff: everything gets real minutes', async () => {
+    const { recordAndGetEvents, minutesForFixture } = await import('@/lib/fpl/eventLedger');
+    const kickoff = {
+      ...baseFixture,
+      id: 4242,
+      started: true,
+      finished: false,
+      minutes: 1,
+      stats: [] as unknown[],
+    } as unknown as Fixture;
+    await recordAndGetEvents(78, [kickoff]);
+    const goal = {
+      ...kickoff,
+      minutes: 34,
+      stats: [{ identifier: 'goals_scored', h: [], a: [{ value: 1, element: 20 }] }],
+    } as unknown as Fixture;
+    const events = await recordAndGetEvents(78, [goal]);
+    expect(minutesForFixture(events, 4242)['goals_scored:20']).toEqual([34]);
+  });
+
+  it('buildMatchPayload attaches detected minutes to the matching event rows', () => {
+    const p = buildMatchPayload(
+      bootstrap,
+      { ...baseFixture, started: true, finished: false } as Fixture,
+      live,
+      new Date(),
+      { 'goals_scored:10': [12, 78] }
+    );
+    const gabriel = p.events.find((e) => e.type === 'goal' && e.name === 'Gabriel');
+    expect(gabriel?.minutes).toEqual([12, 78]);
+  });
+});

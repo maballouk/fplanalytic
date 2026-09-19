@@ -49,6 +49,11 @@ function EventLine({ e }: { e: MatchEvent }) {
         {e.name}
         {e.type === 'goal' && e.value > 1 && <span className="num"> ×{e.value}</span>}
         {e.type === 'bonus' && <span className="num text-warn"> +{e.value}</span>}
+        {e.minutes && e.minutes.length > 0 && (
+          <span className="num ml-1.5 text-xs text-text-faint">
+            {e.minutes.map((m) => `${m}'`).join(' ')}
+          </span>
+        )}
       </span>
     </li>
   );
@@ -79,6 +84,11 @@ function EventsPanel({ payload }: { payload: MatchPayload }) {
           ))}
         </ul>
       </div>
+      {payload.events.some((e) => e.minutes && e.minutes.length > 0) && (
+        <p className="mt-3 border-t border-line pt-2 text-xs text-text-faint">
+          Minutes are detected by our own tracker as events land (±1&apos;); FPL publishes none.
+        </p>
+      )}
     </section>
   );
 }

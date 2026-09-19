@@ -5,6 +5,7 @@
 import { NextResponse } from 'next/server';
 import { bootstrap, fixtures, live } from '@/lib/fpl/client';
 import { buildLivePayload } from '@/lib/defcon/live';
+import { recordAndGetEvents } from '@/lib/fpl/eventLedger';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,6 +14,13 @@ export async function GET() {
     const [boot, fix] = await Promise.all([bootstrap(), fixtures()]);
     const currentGw = boot.events.find((e) => e.is_current)?.id ?? null;
     const liveData = currentGw !== null ? await live(currentGw) : null;
+    if (currentGw !== null) {
+      // Fire-and-forget minute detection; the payload does not need the result.
+      await recordAndGetEvents(
+        currentGw,
+        fix.filter((f) => f.event === currentGw)
+      );
+    }
     return NextResponse.json(buildLivePayload(boot, fix, liveData));
   } catch (err) {
     const message = err instanceof Error ? err.message : 'unknown error';

@@ -23,6 +23,9 @@ export interface MatchEvent {
   name: string;
   /** goals scored / cards / bonus points, depending on type */
   value: number;
+  /** match minutes detected by our own 60s tracker (~±1'); absent when the
+   *  event happened before the tracker was watching */
+  minutes?: number[];
 }
 
 export interface MatchPlayer {
@@ -85,7 +88,8 @@ export function buildMatchPayload(
   bootstrap: Bootstrap,
   fixture: Fixture,
   live: Live | null,
-  now: Date = new Date()
+  now: Date = new Date(),
+  eventMinutes: Record<string, number[]> = {}
 ): MatchPayload {
   const teamById = new Map(bootstrap.teams.map((t) => [t.id, t]));
   const elById = new Map(bootstrap.elements.map((e) => [e.id, e]));
@@ -112,11 +116,15 @@ export function buildMatchPayload(
     for (const side of ['h', 'a'] as const) {
       for (const row of stat[side]) {
         if (row.value <= 0) continue;
+        const minutes = (eventMinutes[`${stat.identifier}:${row.element}`] ?? []).filter(
+          (m) => m > 0
+        );
         events.push({
           type,
           side,
           name: elById.get(row.element)?.web_name ?? String(row.element),
           value: row.value,
+          ...(minutes.length > 0 ? { minutes } : {}),
         });
       }
     }

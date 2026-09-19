@@ -332,3 +332,16 @@ backtest numbers on methodology page.
   "LIVE 90'" tail (which was also the missed warning sign during GW4 verification).
   Regression tests added; verified against the real feed (BRE 3-0 CHE FT). LESSON: audit
   every cache TTL when a feed's consumers change character.
+- 2026-09-19 (event minutes, Mohamad: "at which minute did it happen?"): verified that NEITHER
+  source publishes event minutes — FPL's fixture stats never had them, and football-data's
+  free tier returns goals:null even on /v4/matches/{id} (paid feature). Solution with zero
+  cost and zero scraping: WE detect them. src/lib/fpl/eventLedger.ts — every 60s poll of the
+  live surfaces diffs fixture stats against a per-GW ledger in Netlify Blobs (free; local dev
+  falls back to a process map) and stamps each newly-appeared goal/own-goal/pen/card with the
+  fixture's elapsed `minutes` at that snapshot (~±1'). Honesty rule: a fixture first sighted
+  mid-match (deploy, nobody polling) gets its backlog stamped minute 0 = unknown — only
+  events after our baseline (or fixtures caught from kickoff, ≤2') get real minutes. The
+  Match Centre shows them as faint "34'" chips with the footnote "Minutes are detected by
+  our own tracker as events land (±1'); FPL publishes none." Assists share the goal's
+  minute; bonus is not timeline-worthy. Recording happens in both /api/defcon/live and
+  /api/fpl/match/[id], so minutes accumulate while anyone watches any live surface.
