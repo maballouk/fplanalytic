@@ -345,3 +345,7 @@ backtest numbers on methodology page.
   our own tracker as events land (±1'); FPL publishes none." Assists share the goal's
   minute; bonus is not timeline-worthy. Recording happens in both /api/defcon/live and
   /api/fpl/match/[id], so minutes accumulate while anyone watches any live surface.
+- 2026-09-19 (coverage insurance): .github/workflows/live-pulse.yml pings /api/defcon/live
+  every 5 minutes inside typical kickoff windows (Sat/Sun 11-22 UTC, weekday 17-22 UTC), so
+  the minute ledger captures events even with zero visitors (worst case ±5'). Note GH cron
+  can lag a few minutes under load; visitors polling at 60s remain the precision path.

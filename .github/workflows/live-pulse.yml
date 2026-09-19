@@ -1,0 +1,26 @@
+# Matchday pulse (2026-09-19): the event-minute ledger stamps events when the
+# live endpoints are polled. Visitors do that on matchdays, but this free ping
+# guarantees capture even with zero traffic (worst-case accuracy ±5' instead
+# of ±1'). Windows cover typical PL kickoff hours, UTC; outside a gameweek the
+# endpoint is a cheap cached read and the run is a no-op.
+
+name: Matchday live pulse
+
+on:
+  schedule:
+    # Sat + Sun: lunchtime through the late kickoff
+    - cron: '*/5 11-22 * * 6,0'
+    # Weekday evening matches (Fri night openers, midweek rounds)
+    - cron: '*/5 17-22 * * 1-5'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  pulse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Poll the live endpoint (stamps event minutes server-side)
+        run: |
+          curl -sS --max-time 25 https://fplanalytic.com/api/defcon/live -o /dev/null \
+            -w "defcon/live %{http_code} in %{time_total}s\n"
