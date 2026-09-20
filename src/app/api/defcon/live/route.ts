@@ -21,7 +21,11 @@ export async function GET() {
         fix.filter((f) => f.event === currentGw)
       );
     }
-    return NextResponse.json(buildLivePayload(boot, fix, liveData));
+    return NextResponse.json(buildLivePayload(boot, fix, liveData), {
+      headers: {
+        'Netlify-CDN-Cache-Control': 'public, max-age=0, s-maxage=15, stale-while-revalidate=30',
+      },
+    });
   } catch (err) {
     const message = err instanceof Error ? err.message : 'unknown error';
     return NextResponse.json({ error: message }, { status: 502 });

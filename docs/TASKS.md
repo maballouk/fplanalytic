@@ -349,3 +349,14 @@ backtest numbers on methodology page.
   every 5 minutes inside typical kickoff windows (Sat/Sun 11-22 UTC, weekday 17-22 UTC), so
   the minute ledger captures events even with zero visitors (worst case ±5'). Note GH cron
   can lag a few minutes under load; visitors polling at 60s remain the precision path.
+- 2026-09-20 (live lag, reported by Mohamad: MCI stuck 2-2 while 3-2 for ~5'): three stacked
+  delays. Unfixable floor: FPL's own feed runs 1-2' behind the pitch (every fantasy tool
+  shares this). Fixed: (1) Next's data-cache revalidate is stale-WHILE-revalidate — every
+  consumer of fixtures/ and event/live was served one full window behind; both feeds now
+  fetch cache:'no-store', and freshness moved to the API responses via
+  Netlify-CDN-Cache-Control s-maxage=15 (CDN serves FRESH-first and coalesces viewers).
+  (2) Browser polling is adaptive: 30s while any match is live, 90s otherwise (both /live
+  and the Match Centre). (3) Honesty: the stamp now shows the PAYLOAD's generated_at as
+  "data as of HH:MM:SS · FPL's own feed runs 1-2' behind the pitch" instead of the client
+  clock, so real staleness is visible instead of masked. Expected worst chain now ~15s CDN
+  - 30s poll on top of FPL's floor.

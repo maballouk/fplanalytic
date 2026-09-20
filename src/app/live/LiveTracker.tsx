@@ -15,7 +15,9 @@ import { track } from '@/lib/analytics';
 import { teamBadgeUrl } from '@/lib/fpl/photos';
 import type { LiveFixture, LivePayload, LivePlayer, TickerItem } from '@/lib/defcon/live';
 
-const POLL_MS = 60_000;
+// Adaptive polling: matches in play deserve 30s; quiet hours can relax.
+const POLL_LIVE_MS = 30_000;
+const POLL_IDLE_MS = 90_000;
 
 function kickoffLabel(iso: string | null): string {
   if (!iso) return 'TBC';
@@ -208,7 +210,6 @@ function Group({
 export default function LiveTracker() {
   const [payload, setPayload] = useState<LivePayload | null>(null);
   const [failed, setFailed] = useState(false);
-  const [refreshedAt, setRefreshedAt] = useState<Date | null>(null);
   const [flashes, setFlashes] = useState<Set<number>>(new Set());
   const prevScores = useRef(new Map<number, string>());
 
@@ -231,16 +232,27 @@ export default function LiveTracker() {
       }
       setPayload(next);
       setFailed(false);
-      setRefreshedAt(new Date());
+      return next;
     } catch {
       setFailed(true);
+      return null;
     }
   }, []);
 
   useEffect(() => {
-    refresh();
-    const id = setInterval(refresh, POLL_MS);
-    return () => clearInterval(id);
+    let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
+    const tick = async () => {
+      const next = await refresh();
+      if (cancelled) return;
+      const anyLive = (next?.fixtures ?? []).some((f) => f.started && !f.finished);
+      timer = setTimeout(tick, anyLive ? POLL_LIVE_MS : POLL_IDLE_MS);
+    };
+    tick();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [refresh]);
 
   if (failed && payload === null) {
@@ -270,11 +282,10 @@ export default function LiveTracker() {
 
   return (
     <div className="space-y-8">
-      {refreshedAt && (
-        <p className="num text-xs text-text-faint" role="status">
-          GW{payload.gw} · last refreshed {refreshedAt.toLocaleTimeString('en-GB')}
-        </p>
-      )}
+      <p className="num text-xs text-text-faint" role="status">
+        GW{payload.gw} · data as of {new Date(payload.generated_at).toLocaleTimeString('en-GB')} ·
+        FPL&apos;s own feed runs 1&#8211;2&apos; behind the pitch
+      </p>
       {liveNow.length === 0 &&
         (() => {
           // Prefer this GW's next match; between gameweeks fall back to the

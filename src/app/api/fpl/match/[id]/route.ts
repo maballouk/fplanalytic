@@ -27,7 +27,12 @@ export async function GET(_req: Request, { params }: { params: { id: string } })
     const ledger =
       fixture.event !== null ? await recordAndGetEvents(fixture.event, gwFixtures) : [];
     return NextResponse.json(
-      buildMatchPayload(boot, fixture, liveData, new Date(), minutesForFixture(ledger, fixture.id))
+      buildMatchPayload(boot, fixture, liveData, new Date(), minutesForFixture(ledger, fixture.id)),
+      {
+        headers: {
+          'Netlify-CDN-Cache-Control': 'public, max-age=0, s-maxage=15, stale-while-revalidate=30',
+        },
+      }
     );
   } catch (err) {
     const message = err instanceof Error ? err.message : 'unknown error';

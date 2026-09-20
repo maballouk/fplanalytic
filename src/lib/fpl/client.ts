@@ -43,6 +43,16 @@ async function get(path: string, revalidate: number): Promise<unknown> {
   return res.json();
 }
 
+// Live feeds skip Next's data cache: its revalidate is stale-WHILE-revalidate,
+// so every consumer was served one polling window behind reality (the MCI 2-2
+// vs 3-2 lag, 2026-09-20). Freshness control lives on the API responses'
+// s-maxage instead, where the CDN serves fresh-first and coalesces viewers.
+async function getFresh(path: string): Promise<unknown> {
+  const res = await fetch(`${BASE}/${path}`, { cache: 'no-store' });
+  if (!res.ok) throw new FplApiError(path, res.status);
+  return res.json();
+}
+
 /** Players, teams and gameweeks. Refreshed every 6h. */
 export async function bootstrap(): Promise<Bootstrap> {
   return BootstrapSchema.parse(await get('bootstrap-static/', SIX_HOURS));
@@ -55,12 +65,12 @@ export async function elementSummary(id: number): Promise<ElementSummary> {
 
 /** Full season fixture list. Refreshed every 6h. */
 export async function fixtures(): Promise<Fixture[]> {
-  return FixturesSchema.parse(await get('fixtures/', SIXTY_SECONDS));
+  return FixturesSchema.parse(await getFresh('fixtures/'));
 }
 
 /** In-play stats for a gameweek. 60s cache; poll only from the /live route. */
 export async function live(gw: number): Promise<Live> {
-  return LiveSchema.parse(await get(`event/${gw}/live/`, SIXTY_SECONDS));
+  return LiveSchema.parse(await getFresh(`event/${gw}/live/`));
 }
 
 const FIVE_MINUTES = 5 * 60;

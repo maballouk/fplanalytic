@@ -16,7 +16,8 @@ import ThresholdBar from '@/components/ds/ThresholdBar';
 import { playerPhotoUrl, teamBadgeUrl } from '@/lib/fpl/photos';
 import type { MatchEvent, MatchPayload, MatchPlayer } from '@/lib/fpl/match';
 
-const POLL_MS = 60_000;
+const POLL_LIVE_MS = 30_000;
+const POLL_IDLE_MS = 90_000;
 
 const EVENT_ICON: Record<MatchEvent['type'], string> = {
   goal: '⚽',
@@ -175,17 +176,29 @@ export default function MatchCenter({ fixtureId }: { fixtureId: string }) {
     try {
       const res = await fetch(`/api/fpl/match/${fixtureId}`);
       if (!res.ok) throw new Error(String(res.status));
-      setPayload((await res.json()) as MatchPayload);
+      const next = (await res.json()) as MatchPayload;
+      setPayload(next);
       setFailed(false);
+      return next;
     } catch {
       setFailed(true);
+      return null;
     }
   }, [fixtureId]);
 
   useEffect(() => {
-    refresh();
-    const id = setInterval(refresh, POLL_MS);
-    return () => clearInterval(id);
+    let timer: ReturnType<typeof setTimeout>;
+    let cancelled = false;
+    const tick = async () => {
+      const next = await refresh();
+      if (cancelled) return;
+      timer = setTimeout(tick, next?.phase === 'live' ? POLL_LIVE_MS : POLL_IDLE_MS);
+    };
+    tick();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [refresh]);
 
   if (failed && payload === null) {

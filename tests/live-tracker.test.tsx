@@ -68,7 +68,7 @@ describe('LiveTracker', () => {
     expect(screen.getByText('Live now')).toBeInTheDocument();
     expect(screen.getByText("63'")).toBeInTheDocument();
     expect(screen.getByText('Match Centre →').closest('a')).toHaveAttribute('href', '/match/100');
-    expect(screen.getByText(/last refreshed/)).toBeInTheDocument();
+    expect(screen.getByText(/data as of/)).toBeInTheDocument();
     const meters = screen.getAllByRole('meter');
     expect(meters[0]).toHaveAccessibleName('Rice: 11 of 12 defensive actions');
   });
