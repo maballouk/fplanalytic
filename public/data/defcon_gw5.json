@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 5,
- "generated_at": "2026-09-30T12:28:21.649Z",
+ "generated_at": "2026-09-30T22:11:30.148Z",
  "calendar": {
   "gw": 5,
   "gw_finished": true,
@@ -35,7 +35,7 @@
    "code": 60307,
    "team_code": 36,
    "minutes": 450,
-   "ownership": 28.8,
+   "ownership": 28.9,
    "xpts_total": 6.919,
    "xpts_prev": 6.919,
    "price_change": 0.1,
@@ -127,7 +127,7 @@
    },
    "p_start": 0.97,
    "form5": 8.6,
-   "elite_own": 0.52,
+   "elite_own": 0.54,
    "elite_cap": 0.02,
    "next5": [
     {
@@ -279,7 +279,7 @@
    },
    "p_start": 0.97,
    "form5": 6.2,
-   "elite_own": 0.5,
+   "elite_own": 0.52,
    "elite_cap": 0,
    "next5": [
     {
@@ -355,7 +355,7 @@
    },
    "p_start": 0.97,
    "form5": 7.8,
-   "elite_own": 0.22,
+   "elite_own": 0.24,
    "elite_cap": 0,
    "next5": [
     {
@@ -566,7 +566,7 @@
    "code": 475168,
    "team_code": 8,
    "minutes": 360,
-   "ownership": 65.2,
+   "ownership": 65.1,
    "xpts_total": 5.56,
    "xpts_prev": 5.56,
    "price_change": -0.1,
@@ -718,7 +718,7 @@
    "code": 465730,
    "team_code": 36,
    "minutes": 423,
-   "ownership": 27.7,
+   "ownership": 27.8,
    "xpts_total": 5.326,
    "xpts_prev": 5.326,
    "price_change": 0.1,
@@ -810,7 +810,7 @@
    },
    "p_start": 0.97,
    "form5": 5.8,
-   "elite_own": 0.44,
+   "elite_own": 0.42,
    "elite_cap": 0,
    "next5": [
     {
@@ -3293,7 +3293,7 @@
    },
    "p_start": 0.97,
    "form5": 2,
-   "elite_own": 0.06,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
@@ -3363,7 +3363,7 @@
    },
    "p_start": 0.97,
    "form5": 5,
-   "elite_own": 0.14,
+   "elite_own": 0.16,
    "elite_cap": 0,
    "next5": [
     {
@@ -6222,7 +6222,7 @@
    },
    "p_start": 0.97,
    "form5": 2.8,
-   "elite_own": 0.04,
+   "elite_own": 0.02,
    "elite_cap": 0,
    "next5": [
     {
@@ -7030,7 +7030,7 @@
    "code": 469142,
    "team_code": 6,
    "minutes": 450,
-   "ownership": 6.6,
+   "ownership": 6.5,
    "xpts_total": 3.519,
    "xpts_prev": 3.519,
    "price_change": 0,
@@ -7080,7 +7080,7 @@
      "difficulty": 3
     }
    ],
-   "status": "a"
+   "status": "d"
   },
   {
    "rank": 95,
@@ -7937,7 +7937,7 @@
    },
    "p_start": 0.97,
    "form5": 4.6,
-   "elite_own": 0.32,
+   "elite_own": 0.3,
    "elite_cap": 0,
    "next5": [
     {
