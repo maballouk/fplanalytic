@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 5,
- "generated_at": "2026-10-01T22:38:25.891Z",
+ "generated_at": "2026-10-02T12:25:59.445Z",
  "calendar": {
   "gw": 5,
   "gw_finished": true,
@@ -6650,7 +6650,7 @@
    "code": 424876,
    "team_code": 14,
    "minutes": 440,
-   "ownership": 32.8,
+   "ownership": 32.7,
    "xpts_total": 3.554,
    "xpts_prev": 3.554,
    "price_change": 0,
@@ -7105,7 +7105,7 @@
    "code": 439509,
    "team_code": 3,
    "minutes": 362,
-   "ownership": 12.2,
+   "ownership": 12.1,
    "xpts_total": 3.472,
    "xpts_prev": 3.472,
    "price_change": -0.1,
