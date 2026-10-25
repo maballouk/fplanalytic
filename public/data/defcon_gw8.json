@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 8,
- "generated_at": "2026-10-24T20:42:52.182Z",
+ "generated_at": "2026-10-25T11:17:34.681Z",
  "calendar": {
   "gw": 8,
   "gw_finished": false,
@@ -35,9 +35,9 @@
    "code": 223094,
    "team_code": 43,
    "minutes": 709,
-   "ownership": 77.6,
+   "ownership": 77.7,
    "xpts_total": 7.002,
-   "xpts_prev": 6.925,
+   "xpts_prev": 7.002,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -111,9 +111,9 @@
    "code": 201658,
    "team_code": 91,
    "minutes": 574,
-   "ownership": 14.2,
+   "ownership": 14.4,
    "xpts_total": 5.773,
-   "xpts_prev": 5.772,
+   "xpts_prev": 5.773,
    "price_change": 0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -187,7 +187,7 @@
    "code": 475168,
    "team_code": 8,
    "minutes": 521,
-   "ownership": 73.5,
+   "ownership": 73.1,
    "xpts_total": 5.531,
    "xpts_prev": 5.531,
    "price_change": 0,
@@ -204,7 +204,7 @@
    "p_start": 0.857,
    "form5": 7.2,
    "elite_own": 0.98,
-   "elite_cap": 0.04,
+   "elite_cap": 0.02,
    "next5": [
     {
      "event": 9,
@@ -263,9 +263,9 @@
    "code": 60307,
    "team_code": 36,
    "minutes": 610,
-   "ownership": 46.5,
+   "ownership": 46.6,
    "xpts_total": 5.457,
-   "xpts_prev": 5.456,
+   "xpts_prev": 5.457,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -341,7 +341,7 @@
    "minutes": 720,
    "ownership": 7.3,
    "xpts_total": 5.211,
-   "xpts_prev": 5.208,
+   "xpts_prev": 5.211,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -355,7 +355,7 @@
    },
    "p_start": 0.97,
    "form5": 3.8,
-   "elite_own": 0.08,
+   "elite_own": 0.1,
    "elite_cap": 0,
    "next5": [
     {
@@ -416,7 +416,7 @@
    "minutes": 437,
    "ownership": 39.1,
    "xpts_total": 5.21,
-   "xpts_prev": 5.068,
+   "xpts_prev": 5.21,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -430,7 +430,7 @@
    },
    "p_start": 0.857,
    "form5": 4.4,
-   "elite_own": 0.18,
+   "elite_own": 0.16,
    "elite_cap": 0,
    "next5": [
     {
@@ -548,14 +548,14 @@
    "name": "N.Jackson",
    "team": "AVL",
    "position": "FWD",
-   "price": 6.6,
+   "price": 6.7,
    "matches_considered": 6,
    "hit_rate": 0.0028169014084507044,
    "mean_actions": 3.5,
    "near_miss_rate": 0,
    "consistency": 0.5120499635257334,
    "defcon_xpts": 0.005633802816901409,
-   "value_per_million": 0.0008536064874093043,
+   "value_per_million": 0.0008408660920748371,
    "last5_actions": [
     2,
     4,
@@ -566,10 +566,10 @@
    "code": 517052,
    "team_code": 7,
    "minutes": 547,
-   "ownership": 5.7,
+   "ownership": 6.3,
    "xpts_total": 5.087,
-   "xpts_prev": 3.518,
-   "price_change": 0,
+   "xpts_prev": 5.087,
+   "price_change": 0.1,
    "xpts_breakdown": {
     "appearance": 1.837,
     "goals": 2.322,
@@ -642,7 +642,7 @@
    "code": 219168,
    "team_code": 14,
    "minutes": 491,
-   "ownership": 14,
+   "ownership": 14.1,
    "xpts_total": 5.064,
    "xpts_prev": 5.064,
    "price_change": 0,
@@ -718,7 +718,7 @@
    "code": 444102,
    "team_code": 91,
    "minutes": 592,
-   "ownership": 6.2,
+   "ownership": 6.3,
    "xpts_total": 5.046,
    "xpts_prev": 5.046,
    "price_change": 0.1,
@@ -794,9 +794,9 @@
    "code": 17761,
    "team_code": 11,
    "minutes": 720,
-   "ownership": 18.2,
+   "ownership": 18.3,
    "xpts_total": 5.001,
-   "xpts_prev": 5.104,
+   "xpts_prev": 5.001,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -810,7 +810,7 @@
    },
    "p_start": 0.97,
    "form5": 5.4,
-   "elite_own": 0.1,
+   "elite_own": 0.08,
    "elite_cap": 0,
    "next5": [
     {
@@ -870,9 +870,9 @@
    "code": 469142,
    "team_code": 6,
    "minutes": 720,
-   "ownership": 6.8,
+   "ownership": 6.9,
    "xpts_total": 4.987,
-   "xpts_prev": 5.006,
+   "xpts_prev": 4.987,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -886,7 +886,7 @@
    },
    "p_start": 0.97,
    "form5": 5.6,
-   "elite_own": 0.1,
+   "elite_own": 0.12,
    "elite_cap": 0,
    "next5": [
     {
@@ -948,7 +948,7 @@
    "minutes": 577,
    "ownership": 27.4,
    "xpts_total": 4.965,
-   "xpts_prev": 4.82,
+   "xpts_prev": 4.965,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -1024,7 +1024,7 @@
    "minutes": 629,
    "ownership": 20.4,
    "xpts_total": 4.935,
-   "xpts_prev": 4.932,
+   "xpts_prev": 4.935,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1098,9 +1098,9 @@
    "code": 122806,
    "team_code": 7,
    "minutes": 634,
-   "ownership": 2.8,
+   "ownership": 2.9,
    "xpts_total": 4.85,
-   "xpts_prev": 4.311,
+   "xpts_prev": 4.85,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1174,9 +1174,9 @@
    "code": 513418,
    "team_code": 94,
    "minutes": 543,
-   "ownership": 15.1,
+   "ownership": 15.2,
    "xpts_total": 4.811,
-   "xpts_prev": 4.81,
+   "xpts_prev": 4.811,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -1190,7 +1190,7 @@
    },
    "p_start": 0.857,
    "form5": 5.4,
-   "elite_own": 0.32,
+   "elite_own": 0.36,
    "elite_cap": 0,
    "next5": [
     {
@@ -1252,7 +1252,7 @@
    "minutes": 630,
    "ownership": 22,
    "xpts_total": 4.807,
-   "xpts_prev": 4.806,
+   "xpts_prev": 4.807,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1266,7 +1266,7 @@
    },
    "p_start": 0.97,
    "form5": 5.6,
-   "elite_own": 0.24,
+   "elite_own": 0.22,
    "elite_cap": 0,
    "next5": [
     {
@@ -1398,7 +1398,7 @@
    "minutes": 700,
    "ownership": 49.9,
    "xpts_total": 4.707,
-   "xpts_prev": 4.941,
+   "xpts_prev": 4.707,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1474,7 +1474,7 @@
    "minutes": 630,
    "ownership": 1.8,
    "xpts_total": 4.705,
-   "xpts_prev": 4.704,
+   "xpts_prev": 4.705,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1550,7 +1550,7 @@
    "minutes": 540,
    "ownership": 10.9,
    "xpts_total": 4.677,
-   "xpts_prev": 4.674,
+   "xpts_prev": 4.677,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1624,7 +1624,7 @@
    "code": 177815,
    "team_code": 2,
    "minutes": 599,
-   "ownership": 22.2,
+   "ownership": 22.1,
    "xpts_total": 4.662,
    "xpts_prev": 4.662,
    "price_change": 0,
@@ -1696,7 +1696,7 @@
    "minutes": 630,
    "ownership": 2.2,
    "xpts_total": 4.654,
-   "xpts_prev": 4.075,
+   "xpts_prev": 4.654,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1772,7 +1772,7 @@
    "minutes": 591,
    "ownership": 3.7,
    "xpts_total": 4.626,
-   "xpts_prev": 4.357,
+   "xpts_prev": 4.626,
    "price_change": 0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -1846,9 +1846,9 @@
    "code": 437730,
    "team_code": 43,
    "minutes": 553,
-   "ownership": 8.4,
+   "ownership": 8.3,
    "xpts_total": 4.625,
-   "xpts_prev": 4.624,
+   "xpts_prev": 4.625,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -1924,7 +1924,7 @@
    "minutes": 720,
    "ownership": 2.9,
    "xpts_total": 4.618,
-   "xpts_prev": 4.615,
+   "xpts_prev": 4.618,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2000,7 +2000,7 @@
    "minutes": 599,
    "ownership": 5.5,
    "xpts_total": 4.514,
-   "xpts_prev": 4.511,
+   "xpts_prev": 4.514,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2014,7 +2014,7 @@
    },
    "p_start": 0.97,
    "form5": 5.4,
-   "elite_own": 0.04,
+   "elite_own": 0.02,
    "elite_cap": 0,
    "next5": [
     {
@@ -2076,7 +2076,7 @@
    "minutes": 503,
    "ownership": 6.3,
    "xpts_total": 4.506,
-   "xpts_prev": 4.505,
+   "xpts_prev": 4.506,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -2150,9 +2150,9 @@
    "code": 244851,
    "team_code": 8,
    "minutes": 698,
-   "ownership": 28.4,
+   "ownership": 28.2,
    "xpts_total": 4.501,
-   "xpts_prev": 4.713,
+   "xpts_prev": 4.501,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2166,7 +2166,7 @@
    },
    "p_start": 0.97,
    "form5": 3.2,
-   "elite_own": 0.78,
+   "elite_own": 0.76,
    "elite_cap": 0.04,
    "next5": [
     {
@@ -2228,7 +2228,7 @@
    "minutes": 630,
    "ownership": 0.8,
    "xpts_total": 4.427,
-   "xpts_prev": 4.423,
+   "xpts_prev": 4.427,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2302,9 +2302,9 @@
    "code": 146426,
    "team_code": 88,
    "minutes": 603,
-   "ownership": 13.1,
+   "ownership": 13,
    "xpts_total": 4.372,
-   "xpts_prev": 4.369,
+   "xpts_prev": 4.372,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2380,7 +2380,7 @@
    "minutes": 630,
    "ownership": 7.4,
    "xpts_total": 4.358,
-   "xpts_prev": 4.357,
+   "xpts_prev": 4.358,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2456,7 +2456,7 @@
    "minutes": 548,
    "ownership": 1.9,
    "xpts_total": 4.343,
-   "xpts_prev": 4.342,
+   "xpts_prev": 4.343,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -2532,7 +2532,7 @@
    "minutes": 559,
    "ownership": 1.3,
    "xpts_total": 4.341,
-   "xpts_prev": 4.414,
+   "xpts_prev": 4.341,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2608,7 +2608,7 @@
    "minutes": 523,
    "ownership": 3.5,
    "xpts_total": 4.275,
-   "xpts_prev": 4.276,
+   "xpts_prev": 4.275,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -2682,9 +2682,9 @@
    "code": 222531,
    "team_code": 17,
    "minutes": 630,
-   "ownership": 12.3,
+   "ownership": 12.2,
    "xpts_total": 4.26,
-   "xpts_prev": 4.259,
+   "xpts_prev": 4.26,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2758,9 +2758,9 @@
    "code": 215413,
    "team_code": 11,
    "minutes": 715,
-   "ownership": 5.9,
+   "ownership": 6,
    "xpts_total": 4.246,
-   "xpts_prev": 4.438,
+   "xpts_prev": 4.246,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2834,9 +2834,9 @@
    "code": 141746,
    "team_code": 1,
    "minutes": 630,
-   "ownership": 25.9,
+   "ownership": 25.8,
    "xpts_total": 4.23,
-   "xpts_prev": 4.229,
+   "xpts_prev": 4.23,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -2926,7 +2926,7 @@
    },
    "p_start": 0.857,
    "form5": 7,
-   "elite_own": 0.08,
+   "elite_own": 0.06,
    "elite_cap": 0,
    "next5": [
     {
@@ -2988,7 +2988,7 @@
    "minutes": 645,
    "ownership": 0.8,
    "xpts_total": 4.198,
-   "xpts_prev": 4.197,
+   "xpts_prev": 4.198,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3061,9 +3061,9 @@
    "code": 614071,
    "team_code": 7,
    "minutes": 319,
-   "ownership": 3.3,
+   "ownership": 3.4,
    "xpts_total": 4.195,
-   "xpts_prev": 3.518,
+   "xpts_prev": 4.195,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -3139,7 +3139,7 @@
    "minutes": 498,
    "ownership": 2.1,
    "xpts_total": 4.169,
-   "xpts_prev": 3.771,
+   "xpts_prev": 4.169,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -3213,9 +3213,9 @@
    "code": 108416,
    "team_code": 88,
    "minutes": 617,
-   "ownership": 7.2,
+   "ownership": 7.1,
    "xpts_total": 4.168,
-   "xpts_prev": 4.165,
+   "xpts_prev": 4.168,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3291,7 +3291,7 @@
    "minutes": 580,
    "ownership": 42.4,
    "xpts_total": 4.155,
-   "xpts_prev": 4.152,
+   "xpts_prev": 4.155,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3365,9 +3365,9 @@
    "code": 223340,
    "team_code": 3,
    "minutes": 596,
-   "ownership": 9.7,
+   "ownership": 9.6,
    "xpts_total": 4.154,
-   "xpts_prev": 4.153,
+   "xpts_prev": 4.154,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3443,7 +3443,7 @@
    "minutes": 630,
    "ownership": 5.5,
    "xpts_total": 4.153,
-   "xpts_prev": 4.15,
+   "xpts_prev": 4.153,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3519,7 +3519,7 @@
    "minutes": 610,
    "ownership": 0.7,
    "xpts_total": 4.145,
-   "xpts_prev": 4.144,
+   "xpts_prev": 4.145,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3595,7 +3595,7 @@
    "minutes": 618,
    "ownership": 2.2,
    "xpts_total": 4.112,
-   "xpts_prev": 4.109,
+   "xpts_prev": 4.112,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3741,7 +3741,7 @@
    "minutes": 676,
    "ownership": 9.7,
    "xpts_total": 4.101,
-   "xpts_prev": 4.139,
+   "xpts_prev": 4.101,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3755,7 +3755,7 @@
    },
    "p_start": 0.97,
    "form5": 3.4,
-   "elite_own": 0.2,
+   "elite_own": 0.18,
    "elite_cap": 0,
    "next5": [
     {
@@ -3811,7 +3811,7 @@
    "minutes": 720,
    "ownership": 14.7,
    "xpts_total": 4.079,
-   "xpts_prev": 3.865,
+   "xpts_prev": 4.079,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3885,9 +3885,9 @@
    "code": 209036,
    "team_code": 43,
    "minutes": 675,
-   "ownership": 17.5,
+   "ownership": 17.4,
    "xpts_total": 4.064,
-   "xpts_prev": 4.15,
+   "xpts_prev": 4.064,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -3963,7 +3963,7 @@
    "minutes": 657,
    "ownership": 4.5,
    "xpts_total": 4.061,
-   "xpts_prev": 3.95,
+   "xpts_prev": 4.061,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4039,7 +4039,7 @@
    "minutes": 598,
    "ownership": 5.4,
    "xpts_total": 4.05,
-   "xpts_prev": 3.716,
+   "xpts_prev": 4.05,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -4053,7 +4053,7 @@
    },
    "p_start": 0.97,
    "form5": 3.4,
-   "elite_own": 0.12,
+   "elite_own": 0.14,
    "elite_cap": 0,
    "next5": [
     {
@@ -4113,9 +4113,9 @@
    "code": 219924,
    "team_code": 40,
    "minutes": 720,
-   "ownership": 10.9,
+   "ownership": 10.8,
    "xpts_total": 4.012,
-   "xpts_prev": 4.009,
+   "xpts_prev": 4.012,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4267,7 +4267,7 @@
    "minutes": 555,
    "ownership": 0.6,
    "xpts_total": 4.007,
-   "xpts_prev": 3.924,
+   "xpts_prev": 4.007,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4343,7 +4343,7 @@
    "minutes": 720,
    "ownership": 0.4,
    "xpts_total": 3.98,
-   "xpts_prev": 4.02,
+   "xpts_prev": 3.98,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4395,6 +4395,82 @@
   },
   {
    "rank": 59,
+   "player_id": "4",
+   "name": "Gabriel",
+   "team": "ARS",
+   "position": "DEF",
+   "price": 7.9,
+   "matches_considered": 8,
+   "hit_rate": 0.4641417497231451,
+   "mean_actions": 9,
+   "near_miss_rate": 0.125,
+   "consistency": 0.6399588500884522,
+   "defcon_xpts": 0.9282834994462902,
+   "value_per_million": 0.11750424043623926,
+   "last5_actions": [
+    11,
+    9,
+    5,
+    12,
+    14
+   ],
+   "code": 226597,
+   "team_code": 3,
+   "minutes": 720,
+   "ownership": 21.4,
+   "xpts_total": 3.968,
+   "xpts_prev": 3.879,
+   "price_change": 0,
+   "xpts_breakdown": {
+    "appearance": 1.95,
+    "goals": 0.477,
+    "assists": 0.031,
+    "clean_sheet": 0.815,
+    "conceded": -0.728,
+    "saves": 0,
+    "bonus": 0.512,
+    "defcon": 0.91
+   },
+   "p_start": 0.97,
+   "form5": 7.4,
+   "elite_own": 0.24,
+   "elite_cap": 0.04,
+   "next5": [
+    {
+     "event": 9,
+     "opponent": "LIV",
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 10,
+     "opponent": "HUL",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 11,
+     "opponent": "NEW",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 12,
+     "opponent": "MCI",
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 13,
+     "opponent": "BRE",
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "status": "a"
+  },
+  {
+   "rank": 60,
    "player_id": "469",
    "name": "N.Williams",
    "team": "NFO",
@@ -4419,7 +4495,7 @@
    "minutes": 713,
    "ownership": 6.2,
    "xpts_total": 3.963,
-   "xpts_prev": 3.96,
+   "xpts_prev": 3.963,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4433,7 +4509,7 @@
    },
    "p_start": 0.97,
    "form5": 3.2,
-   "elite_own": 0.06,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
@@ -4470,7 +4546,7 @@
    "status": "d"
   },
   {
-   "rank": 60,
+   "rank": 61,
    "player_id": "87",
    "name": "Ajer",
    "team": "BRE",
@@ -4495,7 +4571,7 @@
    "minutes": 630,
    "ownership": 4.2,
    "xpts_total": 3.933,
-   "xpts_prev": 3.93,
+   "xpts_prev": 3.933,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4546,7 +4622,7 @@
    "status": "a"
   },
   {
-   "rank": 61,
+   "rank": 62,
    "player_id": "544",
    "name": "Xhaka",
    "team": "SUN",
@@ -4571,7 +4647,7 @@
    "minutes": 630,
    "ownership": 3,
    "xpts_total": 3.928,
-   "xpts_prev": 3.927,
+   "xpts_prev": 3.928,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4622,19 +4698,19 @@
    "status": "a"
   },
   {
-   "rank": 62,
+   "rank": 63,
    "player_id": "13",
    "name": "Rice",
    "team": "ARS",
    "position": "MID",
-   "price": 7.3,
+   "price": 7.4,
    "matches_considered": 8,
    "hit_rate": 0.07760814249363868,
    "mean_actions": 8.125,
    "near_miss_rate": 0.25,
    "consistency": 0.6957889241033048,
    "defcon_xpts": 0.15521628498727735,
-   "value_per_million": 0.02126250479277772,
+   "value_per_million": 0.02097517364692937,
    "last5_actions": [
     10,
     8,
@@ -4645,10 +4721,10 @@
    "code": 204480,
    "team_code": 3,
    "minutes": 670,
-   "ownership": 12.2,
+   "ownership": 12.3,
    "xpts_total": 3.926,
-   "xpts_prev": 4.092,
-   "price_change": 0,
+   "xpts_prev": 3.926,
+   "price_change": 0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.142,
@@ -4698,7 +4774,7 @@
    "status": "a"
   },
   {
-   "rank": 63,
+   "rank": 64,
    "player_id": "176",
    "name": "Dasilva",
    "team": "COV",
@@ -4723,7 +4799,7 @@
    "minutes": 714,
    "ownership": 1.5,
    "xpts_total": 3.921,
-   "xpts_prev": 4.059,
+   "xpts_prev": 3.921,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4774,7 +4850,7 @@
    "status": "a"
   },
   {
-   "rank": 64,
+   "rank": 65,
    "player_id": "472",
    "name": "Murillo",
    "team": "NFO",
@@ -4799,7 +4875,7 @@
    "minutes": 719,
    "ownership": 2.2,
    "xpts_total": 3.89,
-   "xpts_prev": 3.887,
+   "xpts_prev": 3.89,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -4850,82 +4926,6 @@
    "status": "a"
   },
   {
-   "rank": 65,
-   "player_id": "4",
-   "name": "Gabriel",
-   "team": "ARS",
-   "position": "DEF",
-   "price": 7.9,
-   "matches_considered": 8,
-   "hit_rate": 0.4641417497231451,
-   "mean_actions": 8.75,
-   "near_miss_rate": 0.125,
-   "consistency": 0.6680299988965072,
-   "defcon_xpts": 0.9282834994462902,
-   "value_per_million": 0.11750424043623926,
-   "last5_actions": [
-    11,
-    9,
-    5,
-    12,
-    12
-   ],
-   "code": 226597,
-   "team_code": 3,
-   "minutes": 720,
-   "ownership": 21.3,
-   "xpts_total": 3.879,
-   "xpts_prev": 3.114,
-   "price_change": 0,
-   "xpts_breakdown": {
-    "appearance": 1.95,
-    "goals": 0.477,
-    "assists": 0.031,
-    "clean_sheet": 0.815,
-    "conceded": -0.728,
-    "saves": 0,
-    "bonus": 0.423,
-    "defcon": 0.91
-   },
-   "p_start": 0.97,
-   "form5": 7.2,
-   "elite_own": 0.2,
-   "elite_cap": 0.02,
-   "next5": [
-    {
-     "event": 9,
-     "opponent": "LIV",
-     "is_home": false,
-     "difficulty": 4
-    },
-    {
-     "event": 10,
-     "opponent": "HUL",
-     "is_home": true,
-     "difficulty": 2
-    },
-    {
-     "event": 11,
-     "opponent": "NEW",
-     "is_home": false,
-     "difficulty": 3
-    },
-    {
-     "event": 12,
-     "opponent": "MCI",
-     "is_home": true,
-     "difficulty": 4
-    },
-    {
-     "event": 13,
-     "opponent": "BRE",
-     "is_home": false,
-     "difficulty": 3
-    }
-   ],
-   "status": "a"
-  },
-  {
    "rank": 66,
    "player_id": "257",
    "name": "Bassey",
@@ -4949,9 +4949,9 @@
    "code": 232892,
    "team_code": 54,
    "minutes": 720,
-   "ownership": 1.1,
+   "ownership": 1.2,
    "xpts_total": 3.848,
-   "xpts_prev": 3.687,
+   "xpts_prev": 3.848,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5027,7 +5027,7 @@
    "minutes": 630,
    "ownership": 0.6,
    "xpts_total": 3.837,
-   "xpts_prev": 3.834,
+   "xpts_prev": 3.837,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5103,7 +5103,7 @@
    "minutes": 540,
    "ownership": 1.8,
    "xpts_total": 3.834,
-   "xpts_prev": 3.831,
+   "xpts_prev": 3.834,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -5177,9 +5177,9 @@
    "code": 184029,
    "team_code": 3,
    "minutes": 646,
-   "ownership": 18.3,
+   "ownership": 18.2,
    "xpts_total": 3.83,
-   "xpts_prev": 4.005,
+   "xpts_prev": 3.83,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5255,7 +5255,7 @@
    "minutes": 697,
    "ownership": 1.8,
    "xpts_total": 3.822,
-   "xpts_prev": 3.852,
+   "xpts_prev": 3.822,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5331,7 +5331,7 @@
    "minutes": 446,
    "ownership": 2.5,
    "xpts_total": 3.819,
-   "xpts_prev": 3.818,
+   "xpts_prev": 3.819,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -5407,7 +5407,7 @@
    "minutes": 529,
    "ownership": 2.8,
    "xpts_total": 3.808,
-   "xpts_prev": 3.805,
+   "xpts_prev": 3.808,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -5483,7 +5483,7 @@
    "minutes": 610,
    "ownership": 4,
    "xpts_total": 3.799,
-   "xpts_prev": 3.798,
+   "xpts_prev": 3.799,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5559,7 +5559,7 @@
    "minutes": 630,
    "ownership": 0.7,
    "xpts_total": 3.795,
-   "xpts_prev": 3.792,
+   "xpts_prev": 3.795,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5635,7 +5635,7 @@
    "minutes": 627,
    "ownership": 2.1,
    "xpts_total": 3.795,
-   "xpts_prev": 3.794,
+   "xpts_prev": 3.795,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5649,7 +5649,7 @@
    },
    "p_start": 0.97,
    "form5": 2.8,
-   "elite_own": 0,
+   "elite_own": 0.02,
    "elite_cap": 0,
    "next5": [
     {
@@ -5711,7 +5711,7 @@
    "minutes": 713,
    "ownership": 0.3,
    "xpts_total": 3.79,
-   "xpts_prev": 3.643,
+   "xpts_prev": 3.79,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -5856,7 +5856,7 @@
    "minutes": 401,
    "ownership": 1,
    "xpts_total": 3.756,
-   "xpts_prev": 3.751,
+   "xpts_prev": 3.756,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -5932,7 +5932,7 @@
    "minutes": 588,
    "ownership": 1.2,
    "xpts_total": 3.745,
-   "xpts_prev": 3.319,
+   "xpts_prev": 3.745,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6002,7 +6002,7 @@
    "minutes": 720,
    "ownership": 4.5,
    "xpts_total": 3.738,
-   "xpts_prev": 3.606,
+   "xpts_prev": 3.738,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6078,7 +6078,7 @@
    "minutes": 630,
    "ownership": 0.9,
    "xpts_total": 3.724,
-   "xpts_prev": 3.72,
+   "xpts_prev": 3.724,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6152,9 +6152,9 @@
    "code": 586309,
    "team_code": 11,
    "minutes": 682,
-   "ownership": 7.7,
+   "ownership": 7.6,
    "xpts_total": 3.723,
-   "xpts_prev": 3.908,
+   "xpts_prev": 3.723,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6224,7 +6224,7 @@
    "minutes": 720,
    "ownership": 0.9,
    "xpts_total": 3.715,
-   "xpts_prev": 3.778,
+   "xpts_prev": 3.715,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6300,7 +6300,7 @@
    "minutes": 566,
    "ownership": 4.1,
    "xpts_total": 3.698,
-   "xpts_prev": 3,
+   "xpts_prev": 3.698,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -6376,7 +6376,7 @@
    "minutes": 449,
    "ownership": 0.3,
    "xpts_total": 3.695,
-   "xpts_prev": 3.694,
+   "xpts_prev": 3.695,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -6452,7 +6452,7 @@
    "minutes": 527,
    "ownership": 0.7,
    "xpts_total": 3.666,
-   "xpts_prev": 3.665,
+   "xpts_prev": 3.666,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -6504,82 +6504,6 @@
   },
   {
    "rank": 87,
-   "player_id": "31",
-   "name": "Konsa",
-   "team": "ARS",
-   "position": "DEF",
-   "price": 4.6,
-   "matches_considered": 6,
-   "hit_rate": 0.26097009966777407,
-   "mean_actions": 6.5,
-   "near_miss_rate": 0.16666666666666666,
-   "consistency": 0.5320951899770601,
-   "defcon_xpts": 0.5219401993355481,
-   "value_per_million": 0.11346526072511917,
-   "last5_actions": [
-    8,
-    4,
-    10,
-    5,
-    2
-   ],
-   "code": 199798,
-   "team_code": 3,
-   "minutes": 551,
-   "ownership": 19,
-   "xpts_total": 3.653,
-   "xpts_prev": 2.677,
-   "price_change": 0,
-   "xpts_breakdown": {
-    "appearance": 1.837,
-    "goals": 0.531,
-    "assists": 0.035,
-    "clean_sheet": 0.72,
-    "conceded": -0.643,
-    "saves": 0,
-    "bonus": 0.661,
-    "defcon": 0.512
-   },
-   "p_start": 0.857,
-   "form5": 7,
-   "elite_own": 0.88,
-   "elite_cap": 0,
-   "next5": [
-    {
-     "event": 9,
-     "opponent": "LIV",
-     "is_home": false,
-     "difficulty": 4
-    },
-    {
-     "event": 10,
-     "opponent": "HUL",
-     "is_home": true,
-     "difficulty": 2
-    },
-    {
-     "event": 11,
-     "opponent": "NEW",
-     "is_home": false,
-     "difficulty": 3
-    },
-    {
-     "event": 12,
-     "opponent": "MCI",
-     "is_home": true,
-     "difficulty": 4
-    },
-    {
-     "event": 13,
-     "opponent": "BRE",
-     "is_home": false,
-     "difficulty": 3
-    }
-   ],
-   "status": "a"
-  },
-  {
-   "rank": 88,
    "player_id": "565",
    "name": "M.Sangaré",
    "team": "BRE",
@@ -6602,7 +6526,7 @@
    "minutes": 404,
    "ownership": 6.8,
    "xpts_total": 3.633,
-   "xpts_prev": 3.631,
+   "xpts_prev": 3.633,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -6653,7 +6577,7 @@
    "status": "a"
   },
   {
-   "rank": 89,
+   "rank": 88,
    "player_id": "261",
    "name": "Iwobi",
    "team": "FUL",
@@ -6678,7 +6602,7 @@
    "minutes": 657,
    "ownership": 1.4,
    "xpts_total": 3.633,
-   "xpts_prev": 3.761,
+   "xpts_prev": 3.633,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6729,7 +6653,7 @@
    "status": "a"
   },
   {
-   "rank": 90,
+   "rank": 89,
    "player_id": "504",
    "name": "Vuskovic",
    "team": "BHA",
@@ -6752,9 +6676,9 @@
    "code": 610799,
    "team_code": 36,
    "minutes": 617,
-   "ownership": 6.3,
+   "ownership": 6.4,
    "xpts_total": 3.626,
-   "xpts_prev": 3.623,
+   "xpts_prev": 3.626,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6768,7 +6692,7 @@
    },
    "p_start": 0.97,
    "form5": 9,
-   "elite_own": 0.12,
+   "elite_own": 0.14,
    "elite_cap": 0,
    "next5": [
     {
@@ -6805,7 +6729,7 @@
    "status": "a"
   },
   {
-   "rank": 91,
+   "rank": 90,
    "player_id": "175",
    "name": "van Ewijk",
    "team": "COV",
@@ -6830,7 +6754,7 @@
    "minutes": 630,
    "ownership": 7.3,
    "xpts_total": 3.623,
-   "xpts_prev": 3.245,
+   "xpts_prev": 3.623,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6881,7 +6805,7 @@
    "status": "a"
   },
   {
-   "rank": 92,
+   "rank": 91,
    "player_id": "230",
    "name": "Branthwaite",
    "team": "EVE",
@@ -6906,7 +6830,7 @@
    "minutes": 630,
    "ownership": 2.4,
    "xpts_total": 3.616,
-   "xpts_prev": 3.613,
+   "xpts_prev": 3.616,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6957,7 +6881,7 @@
    "status": "a"
   },
   {
-   "rank": 93,
+   "rank": 92,
    "player_id": "8",
    "name": "Calafiori",
    "team": "ARS",
@@ -6980,9 +6904,9 @@
    "code": 466075,
    "team_code": 3,
    "minutes": 609,
-   "ownership": 54.6,
+   "ownership": 54.2,
    "xpts_total": 3.606,
-   "xpts_prev": 3.663,
+   "xpts_prev": 3.606,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -6996,7 +6920,7 @@
    },
    "p_start": 0.97,
    "form5": 4.6,
-   "elite_own": 0.86,
+   "elite_own": 0.84,
    "elite_cap": 0,
    "next5": [
     {
@@ -7033,7 +6957,7 @@
    "status": "d"
   },
   {
-   "rank": 94,
+   "rank": 93,
    "player_id": "552",
    "name": "Brobbey",
    "team": "SUN",
@@ -7109,7 +7033,7 @@
    "status": "d"
   },
   {
-   "rank": 95,
+   "rank": 94,
    "player_id": "82",
    "name": "Kelleher",
    "team": "BRE",
@@ -7179,7 +7103,7 @@
    "status": "a"
   },
   {
-   "rank": 96,
+   "rank": 95,
    "player_id": "106",
    "name": "Thiago",
    "team": "BRE",
@@ -7255,7 +7179,7 @@
    "status": "a"
   },
   {
-   "rank": 97,
+   "rank": 96,
    "player_id": "588",
    "name": "Khalaili",
    "team": "CRY",
@@ -7280,7 +7204,7 @@
    "minutes": 559,
    "ownership": 0.3,
    "xpts_total": 3.561,
-   "xpts_prev": 3.557,
+   "xpts_prev": 3.561,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -7331,6 +7255,82 @@
    "status": "a"
   },
   {
+   "rank": 97,
+   "player_id": "31",
+   "name": "Konsa",
+   "team": "ARS",
+   "position": "DEF",
+   "price": 4.6,
+   "matches_considered": 6,
+   "hit_rate": 0.26097009966777407,
+   "mean_actions": 6.5,
+   "near_miss_rate": 0.16666666666666666,
+   "consistency": 0.5320951899770601,
+   "defcon_xpts": 0.5219401993355481,
+   "value_per_million": 0.11346526072511917,
+   "last5_actions": [
+    8,
+    4,
+    10,
+    5,
+    2
+   ],
+   "code": 199798,
+   "team_code": 3,
+   "minutes": 551,
+   "ownership": 19.2,
+   "xpts_total": 3.555,
+   "xpts_prev": 3.653,
+   "price_change": 0,
+   "xpts_breakdown": {
+    "appearance": 1.837,
+    "goals": 0.531,
+    "assists": 0.035,
+    "clean_sheet": 0.72,
+    "conceded": -0.643,
+    "saves": 0,
+    "bonus": 0.564,
+    "defcon": 0.512
+   },
+   "p_start": 0.857,
+   "form5": 6.8,
+   "elite_own": 0.86,
+   "elite_cap": 0,
+   "next5": [
+    {
+     "event": 9,
+     "opponent": "LIV",
+     "is_home": false,
+     "difficulty": 4
+    },
+    {
+     "event": 10,
+     "opponent": "HUL",
+     "is_home": true,
+     "difficulty": 2
+    },
+    {
+     "event": 11,
+     "opponent": "NEW",
+     "is_home": false,
+     "difficulty": 3
+    },
+    {
+     "event": 12,
+     "opponent": "MCI",
+     "is_home": true,
+     "difficulty": 4
+    },
+    {
+     "event": 13,
+     "opponent": "BRE",
+     "is_home": false,
+     "difficulty": 3
+    }
+   ],
+   "status": "a"
+  },
+  {
    "rank": 98,
    "player_id": "503",
    "name": "Van de Ven",
@@ -7356,7 +7356,7 @@
    "minutes": 556,
    "ownership": 3.6,
    "xpts_total": 3.555,
-   "xpts_prev": 3.098,
+   "xpts_prev": 3.555,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -7496,7 +7496,7 @@
    "minutes": 720,
    "ownership": 8.6,
    "xpts_total": 3.525,
-   "xpts_prev": 3.568,
+   "xpts_prev": 3.525,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -7570,7 +7570,7 @@
    "code": 216646,
    "team_code": 4,
    "minutes": 608,
-   "ownership": 12.4,
+   "ownership": 12.3,
    "xpts_total": 3.513,
    "xpts_prev": 3.513,
    "price_change": 0,
@@ -7648,7 +7648,7 @@
    "minutes": 444,
    "ownership": 1.2,
    "xpts_total": 3.503,
-   "xpts_prev": 3.502,
+   "xpts_prev": 3.503,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -7724,7 +7724,7 @@
    "minutes": 552,
    "ownership": 0.1,
    "xpts_total": 3.473,
-   "xpts_prev": 2.944,
+   "xpts_prev": 3.473,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -7794,7 +7794,7 @@
    "minutes": 720,
    "ownership": 7.7,
    "xpts_total": 3.471,
-   "xpts_prev": 3.569,
+   "xpts_prev": 3.471,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -7870,7 +7870,7 @@
    "minutes": 613,
    "ownership": 2.6,
    "xpts_total": 3.47,
-   "xpts_prev": 3.237,
+   "xpts_prev": 3.47,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -7884,7 +7884,7 @@
    },
    "p_start": 0.97,
    "form5": 3.6,
-   "elite_own": 0.02,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
@@ -7946,7 +7946,7 @@
    "minutes": 630,
    "ownership": 0.8,
    "xpts_total": 3.469,
-   "xpts_prev": 3.468,
+   "xpts_prev": 3.469,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8022,7 +8022,7 @@
    "minutes": 443,
    "ownership": 0.1,
    "xpts_total": 3.461,
-   "xpts_prev": 3.46,
+   "xpts_prev": 3.461,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -8097,7 +8097,7 @@
    "minutes": 370,
    "ownership": 6.6,
    "xpts_total": 3.456,
-   "xpts_prev": 3.455,
+   "xpts_prev": 3.456,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -8173,7 +8173,7 @@
    "minutes": 575,
    "ownership": 0.4,
    "xpts_total": 3.435,
-   "xpts_prev": 2.737,
+   "xpts_prev": 3.435,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8249,7 +8249,7 @@
    "minutes": 621,
    "ownership": 0.1,
    "xpts_total": 3.417,
-   "xpts_prev": 3.416,
+   "xpts_prev": 3.417,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8325,7 +8325,7 @@
    "minutes": 557,
    "ownership": 5.1,
    "xpts_total": 3.414,
-   "xpts_prev": 3.413,
+   "xpts_prev": 3.414,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8401,7 +8401,7 @@
    "minutes": 680,
    "ownership": 0.1,
    "xpts_total": 3.413,
-   "xpts_prev": 3.412,
+   "xpts_prev": 3.413,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8475,9 +8475,9 @@
    "code": 198869,
    "team_code": 3,
    "minutes": 532,
-   "ownership": 4.3,
+   "ownership": 4.4,
    "xpts_total": 3.408,
-   "xpts_prev": 2.75,
+   "xpts_prev": 3.408,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -8553,7 +8553,7 @@
    "minutes": 630,
    "ownership": 1.8,
    "xpts_total": 3.405,
-   "xpts_prev": 3.401,
+   "xpts_prev": 3.405,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8627,9 +8627,9 @@
    "code": 438234,
    "team_code": 6,
    "minutes": 513,
-   "ownership": 1.9,
+   "ownership": 2,
    "xpts_total": 3.389,
-   "xpts_prev": 3.023,
+   "xpts_prev": 3.389,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -8705,7 +8705,7 @@
    "minutes": 634,
    "ownership": 6.3,
    "xpts_total": 3.388,
-   "xpts_prev": 3.08,
+   "xpts_prev": 3.388,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8773,9 +8773,9 @@
    "code": 154561,
    "team_code": 3,
    "minutes": 720,
-   "ownership": 45.5,
+   "ownership": 45.6,
    "xpts_total": 3.377,
-   "xpts_prev": 3.422,
+   "xpts_prev": 3.377,
    "price_change": 0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -8927,7 +8927,7 @@
    "minutes": 482,
    "ownership": 0.1,
    "xpts_total": 3.366,
-   "xpts_prev": 3.365,
+   "xpts_prev": 3.366,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -9003,7 +9003,7 @@
    "minutes": 598,
    "ownership": 0.2,
    "xpts_total": 3.354,
-   "xpts_prev": 3.008,
+   "xpts_prev": 3.354,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9149,7 +9149,7 @@
    "minutes": 586,
    "ownership": 5.9,
    "xpts_total": 3.32,
-   "xpts_prev": 3.375,
+   "xpts_prev": 3.32,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9224,7 +9224,7 @@
    "minutes": 425,
    "ownership": 0.9,
    "xpts_total": 3.32,
-   "xpts_prev": 3.319,
+   "xpts_prev": 3.32,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -9300,7 +9300,7 @@
    "minutes": 543,
    "ownership": 1.3,
    "xpts_total": 3.312,
-   "xpts_prev": 3.311,
+   "xpts_prev": 3.312,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -9376,7 +9376,7 @@
    "minutes": 623,
    "ownership": 2.7,
    "xpts_total": 3.309,
-   "xpts_prev": 3.306,
+   "xpts_prev": 3.309,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9452,7 +9452,7 @@
    "minutes": 606,
    "ownership": 3.8,
    "xpts_total": 3.302,
-   "xpts_prev": 3.335,
+   "xpts_prev": 3.302,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9526,7 +9526,7 @@
    "minutes": 339,
    "ownership": 5.1,
    "xpts_total": 3.274,
-   "xpts_prev": 3.27,
+   "xpts_prev": 3.274,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -9672,7 +9672,7 @@
    "minutes": 528,
    "ownership": 0.6,
    "xpts_total": 3.266,
-   "xpts_prev": 3.262,
+   "xpts_prev": 3.266,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -9748,7 +9748,7 @@
    "minutes": 500,
    "ownership": 0.7,
    "xpts_total": 3.233,
-   "xpts_prev": 3.232,
+   "xpts_prev": 3.233,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -9824,7 +9824,7 @@
    "minutes": 585,
    "ownership": 4.7,
    "xpts_total": 3.233,
-   "xpts_prev": 3.232,
+   "xpts_prev": 3.233,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9838,7 +9838,7 @@
    },
    "p_start": 0.97,
    "form5": 2,
-   "elite_own": 0.16,
+   "elite_own": 0.14,
    "elite_cap": 0,
    "next5": [
     {
@@ -9900,7 +9900,7 @@
    "minutes": 616,
    "ownership": 0.7,
    "xpts_total": 3.232,
-   "xpts_prev": 3.231,
+   "xpts_prev": 3.232,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -9976,7 +9976,7 @@
    "minutes": 592,
    "ownership": 4.2,
    "xpts_total": 3.228,
-   "xpts_prev": 3.225,
+   "xpts_prev": 3.228,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -10052,7 +10052,7 @@
    "minutes": 442,
    "ownership": 0.4,
    "xpts_total": 3.218,
-   "xpts_prev": 3.217,
+   "xpts_prev": 3.218,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -10128,7 +10128,7 @@
    "minutes": 474,
    "ownership": 7,
    "xpts_total": 3.211,
-   "xpts_prev": 3.207,
+   "xpts_prev": 3.211,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -10204,7 +10204,7 @@
    "minutes": 609,
    "ownership": 1.3,
    "xpts_total": 3.204,
-   "xpts_prev": 2.666,
+   "xpts_prev": 3.204,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -10333,9 +10333,9 @@
    "price": 5,
    "matches_considered": 8,
    "hit_rate": 0.190941475826972,
-   "mean_actions": 8.875,
+   "mean_actions": 9,
    "near_miss_rate": 0.125,
-   "consistency": 0.5074448323930786,
+   "consistency": 0.49386480115865006,
    "defcon_xpts": 0.381882951653944,
    "value_per_million": 0.0763765903307888,
    "last5_actions": [
@@ -10343,14 +10343,14 @@
     5,
     11,
     5,
-    15
+    16
    ],
    "code": 609873,
    "team_code": 11,
    "minutes": 697,
    "ownership": 0.3,
    "xpts_total": 3.19,
-   "xpts_prev": 3.041,
+   "xpts_prev": 3.19,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -10426,7 +10426,7 @@
    "minutes": 440,
    "ownership": 0.6,
    "xpts_total": 3.184,
-   "xpts_prev": 3.185,
+   "xpts_prev": 3.184,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -10501,7 +10501,7 @@
    "minutes": 375,
    "ownership": 1.5,
    "xpts_total": 3.175,
-   "xpts_prev": 3.25,
+   "xpts_prev": 3.175,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -10515,7 +10515,7 @@
    },
    "p_start": 0.571,
    "form5": 3.2,
-   "elite_own": 0.02,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
@@ -10577,7 +10577,7 @@
    "minutes": 460,
    "ownership": 1,
    "xpts_total": 3.162,
-   "xpts_prev": 3.016,
+   "xpts_prev": 3.162,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -10653,7 +10653,7 @@
    "minutes": 630,
    "ownership": 15.1,
    "xpts_total": 3.15,
-   "xpts_prev": 3.147,
+   "xpts_prev": 3.15,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -10728,7 +10728,7 @@
    "minutes": 427,
    "ownership": 0.3,
    "xpts_total": 3.13,
-   "xpts_prev": 3.129,
+   "xpts_prev": 3.13,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -10802,7 +10802,7 @@
    "minutes": 397,
    "ownership": 0.6,
    "xpts_total": 3.127,
-   "xpts_prev": 3.125,
+   "xpts_prev": 3.127,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -10878,7 +10878,7 @@
    "minutes": 429,
    "ownership": 0.2,
    "xpts_total": 3.123,
-   "xpts_prev": 3.119,
+   "xpts_prev": 3.123,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -10954,7 +10954,7 @@
    "minutes": 458,
    "ownership": 0.5,
    "xpts_total": 3.099,
-   "xpts_prev": 2.965,
+   "xpts_prev": 3.099,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -11030,7 +11030,7 @@
    "minutes": 522,
    "ownership": 0.2,
    "xpts_total": 3.097,
-   "xpts_prev": 3.094,
+   "xpts_prev": 3.097,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -11106,7 +11106,7 @@
    "minutes": 450,
    "ownership": 1.2,
    "xpts_total": 3.094,
-   "xpts_prev": 3.091,
+   "xpts_prev": 3.094,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -11180,7 +11180,7 @@
    "minutes": 338,
    "ownership": 2.7,
    "xpts_total": 3.085,
-   "xpts_prev": 2.887,
+   "xpts_prev": 3.085,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -11256,7 +11256,7 @@
    "minutes": 490,
    "ownership": 0.1,
    "xpts_total": 3.079,
-   "xpts_prev": 3.078,
+   "xpts_prev": 3.079,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -11330,9 +11330,9 @@
    "code": 95658,
    "team_code": 1,
    "minutes": 630,
-   "ownership": 6.4,
+   "ownership": 6.3,
    "xpts_total": 3.078,
-   "xpts_prev": 3.075,
+   "xpts_prev": 3.078,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -11408,7 +11408,7 @@
    "minutes": 426,
    "ownership": 0.2,
    "xpts_total": 3.062,
-   "xpts_prev": 3.061,
+   "xpts_prev": 3.062,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -11483,7 +11483,7 @@
    "minutes": 348,
    "ownership": 0.2,
    "xpts_total": 3.036,
-   "xpts_prev": 1.814,
+   "xpts_prev": 3.036,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -11629,7 +11629,7 @@
    "minutes": 553,
    "ownership": 0.1,
    "xpts_total": 2.985,
-   "xpts_prev": 2.816,
+   "xpts_prev": 2.985,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -11775,7 +11775,7 @@
    "minutes": 527,
    "ownership": 4.7,
    "xpts_total": 2.963,
-   "xpts_prev": 2.959,
+   "xpts_prev": 2.963,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -11851,7 +11851,7 @@
    "minutes": 540,
    "ownership": 0.2,
    "xpts_total": 2.955,
-   "xpts_prev": 2.952,
+   "xpts_prev": 2.955,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -11927,7 +11927,7 @@
    "minutes": 590,
    "ownership": 0.2,
    "xpts_total": 2.95,
-   "xpts_prev": 2.949,
+   "xpts_prev": 2.95,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -12078,7 +12078,7 @@
    "minutes": 577,
    "ownership": 0.2,
    "xpts_total": 2.919,
-   "xpts_prev": 2.543,
+   "xpts_prev": 2.919,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -12154,7 +12154,7 @@
    "minutes": 595,
    "ownership": 0.1,
    "xpts_total": 2.897,
-   "xpts_prev": 2.893,
+   "xpts_prev": 2.897,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -12210,14 +12210,14 @@
    "name": "Gonzalo",
    "team": "FUL",
    "position": "FWD",
-   "price": 6.1,
+   "price": 6,
    "matches_considered": 8,
    "hit_rate": 0.002347417840375587,
    "mean_actions": 3.125,
    "near_miss_rate": 0,
    "consistency": 0.4588900296612527,
    "defcon_xpts": 0.004694835680751174,
-   "value_per_million": 0.0007696451935657663,
+   "value_per_million": 0.000782472613458529,
    "last5_actions": [
     3,
     2,
@@ -12228,10 +12228,10 @@
    "code": 551466,
    "team_code": 54,
    "minutes": 668,
-   "ownership": 6.2,
+   "ownership": 6.1,
    "xpts_total": 2.881,
-   "xpts_prev": 2.96,
-   "price_change": 0,
+   "xpts_prev": 2.881,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.95,
     "goals": 0.735,
@@ -12306,7 +12306,7 @@
    "minutes": 544,
    "ownership": 0.1,
    "xpts_total": 2.878,
-   "xpts_prev": 2.877,
+   "xpts_prev": 2.878,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -12382,7 +12382,7 @@
    "minutes": 480,
    "ownership": 3.9,
    "xpts_total": 2.875,
-   "xpts_prev": 2.518,
+   "xpts_prev": 2.875,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -12458,7 +12458,7 @@
    "minutes": 720,
    "ownership": 2,
    "xpts_total": 2.857,
-   "xpts_prev": 2.888,
+   "xpts_prev": 2.857,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -12610,7 +12610,7 @@
    "minutes": 457,
    "ownership": 0.3,
    "xpts_total": 2.842,
-   "xpts_prev": 2.841,
+   "xpts_prev": 2.842,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -12683,7 +12683,7 @@
    "minutes": 227,
    "ownership": 0.2,
    "xpts_total": 2.825,
-   "xpts_prev": 2.823,
+   "xpts_prev": 2.825,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.266,
@@ -12739,14 +12739,14 @@
    "name": "Szoboszlai",
    "team": "LIV",
    "position": "MID",
-   "price": 6.8,
+   "price": 6.7,
    "matches_considered": 5,
    "hit_rate": 0.17014418999151826,
    "mean_actions": 8.2,
    "near_miss_rate": 0,
    "consistency": 0.6782705863835874,
    "defcon_xpts": 0.3402883799830365,
-   "value_per_million": 0.050042408821034785,
+   "value_per_million": 0.05078931044522933,
    "last5_actions": [
     7,
     13,
@@ -12757,10 +12757,10 @@
    "code": 424876,
    "team_code": 14,
    "minutes": 471,
-   "ownership": 15.9,
+   "ownership": 15.8,
    "xpts_total": 2.821,
-   "xpts_prev": 2.82,
-   "price_change": 0,
+   "xpts_prev": 2.821,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.571,
     "goals": 0.542,
@@ -12835,7 +12835,7 @@
    "minutes": 556,
    "ownership": 0.3,
    "xpts_total": 2.815,
-   "xpts_prev": 2.84,
+   "xpts_prev": 2.815,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -12909,7 +12909,7 @@
    "minutes": 362,
    "ownership": 0.5,
    "xpts_total": 2.812,
-   "xpts_prev": 2.396,
+   "xpts_prev": 2.812,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -12985,7 +12985,7 @@
    "minutes": 405,
    "ownership": 0.3,
    "xpts_total": 2.811,
-   "xpts_prev": 2.81,
+   "xpts_prev": 2.811,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -13061,7 +13061,7 @@
    "minutes": 441,
    "ownership": 0.4,
    "xpts_total": 2.78,
-   "xpts_prev": 2.777,
+   "xpts_prev": 2.78,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -13137,7 +13137,7 @@
    "minutes": 447,
    "ownership": 1.1,
    "xpts_total": 2.777,
-   "xpts_prev": 2.774,
+   "xpts_prev": 2.777,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -13213,7 +13213,7 @@
    "minutes": 534,
    "ownership": 0.2,
    "xpts_total": 2.764,
-   "xpts_prev": 2.761,
+   "xpts_prev": 2.764,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -13286,9 +13286,9 @@
    "code": 56979,
    "team_code": 8,
    "minutes": 360,
-   "ownership": 1.4,
+   "ownership": 1.5,
    "xpts_total": 2.762,
-   "xpts_prev": 2.257,
+   "xpts_prev": 2.762,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -13363,7 +13363,7 @@
    "minutes": 412,
    "ownership": 0.8,
    "xpts_total": 2.742,
-   "xpts_prev": 2.31,
+   "xpts_prev": 2.742,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -13419,14 +13419,14 @@
    "name": "Hume",
    "team": "SUN",
    "position": "DEF",
-   "price": 4.3,
+   "price": 4.2,
    "matches_considered": 4,
    "hit_rate": 0.2612126245847176,
    "mean_actions": 7,
    "near_miss_rate": 0.25,
    "consistency": 0.68056171750003,
    "defcon_xpts": 0.5224252491694352,
-   "value_per_million": 0.12149424399289192,
+   "value_per_million": 0.12438696408796077,
    "last5_actions": [
     4,
     6,
@@ -13438,8 +13438,8 @@
    "minutes": 386,
    "ownership": 2,
    "xpts_total": 2.735,
-   "xpts_prev": 2.731,
-   "price_change": 0,
+   "xpts_prev": 2.735,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.429,
     "goals": 0.087,
@@ -13514,7 +13514,7 @@
    "minutes": 425,
    "ownership": 0.3,
    "xpts_total": 2.722,
-   "xpts_prev": 2.227,
+   "xpts_prev": 2.722,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -13590,7 +13590,7 @@
    "minutes": 612,
    "ownership": 1.5,
    "xpts_total": 2.716,
-   "xpts_prev": 2.715,
+   "xpts_prev": 2.716,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -13664,7 +13664,7 @@
    "minutes": 359,
    "ownership": 0.6,
    "xpts_total": 2.693,
-   "xpts_prev": 1.939,
+   "xpts_prev": 2.693,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -13740,7 +13740,7 @@
    "minutes": 705,
    "ownership": 0.1,
    "xpts_total": 2.671,
-   "xpts_prev": 2.714,
+   "xpts_prev": 2.671,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -13814,7 +13814,7 @@
    "minutes": 267,
    "ownership": 3.2,
    "xpts_total": 2.656,
-   "xpts_prev": 2.655,
+   "xpts_prev": 2.656,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -13890,7 +13890,7 @@
    "minutes": 450,
    "ownership": 0.7,
    "xpts_total": 2.656,
-   "xpts_prev": 2.207,
+   "xpts_prev": 2.656,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -13974,7 +13974,7 @@
    },
    "p_start": 0.97,
    "form5": 6.4,
-   "elite_own": 0.36,
+   "elite_own": 0.34,
    "elite_cap": 0,
    "next5": [
     {
@@ -14036,7 +14036,7 @@
    "minutes": 611,
    "ownership": 0.8,
    "xpts_total": 2.639,
-   "xpts_prev": 2.158,
+   "xpts_prev": 2.639,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -14110,7 +14110,7 @@
    "minutes": 308,
    "ownership": 1.5,
    "xpts_total": 2.624,
-   "xpts_prev": 2.621,
+   "xpts_prev": 2.624,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -14186,7 +14186,7 @@
    "minutes": 467,
    "ownership": 0.1,
    "xpts_total": 2.614,
-   "xpts_prev": 2.466,
+   "xpts_prev": 2.614,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -14262,7 +14262,7 @@
    "minutes": 491,
    "ownership": 0.4,
    "xpts_total": 2.613,
-   "xpts_prev": 2.311,
+   "xpts_prev": 2.613,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -14337,7 +14337,7 @@
    "minutes": 381,
    "ownership": 0.1,
    "xpts_total": 2.608,
-   "xpts_prev": 2.607,
+   "xpts_prev": 2.608,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -14413,7 +14413,7 @@
    "minutes": 501,
    "ownership": 0.1,
    "xpts_total": 2.551,
-   "xpts_prev": 2.548,
+   "xpts_prev": 2.551,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -14486,7 +14486,7 @@
    "minutes": 334,
    "ownership": 0.5,
    "xpts_total": 2.544,
-   "xpts_prev": 2.542,
+   "xpts_prev": 2.544,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.266,
@@ -14560,7 +14560,7 @@
    "minutes": 298,
    "ownership": 0.4,
    "xpts_total": 2.539,
-   "xpts_prev": 2.536,
+   "xpts_prev": 2.539,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -14711,7 +14711,7 @@
    "minutes": 486,
    "ownership": 1.3,
    "xpts_total": 2.51,
-   "xpts_prev": 2.509,
+   "xpts_prev": 2.51,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -14784,7 +14784,7 @@
    "minutes": 267,
    "ownership": 0.2,
    "xpts_total": 2.508,
-   "xpts_prev": 2.266,
+   "xpts_prev": 2.508,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -14859,7 +14859,7 @@
    "minutes": 366,
    "ownership": 0.1,
    "xpts_total": 2.475,
-   "xpts_prev": 2.029,
+   "xpts_prev": 2.475,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -15002,9 +15002,9 @@
    "code": 222683,
    "team_code": 91,
    "minutes": 322,
-   "ownership": 0.6,
+   "ownership": 0.7,
    "xpts_total": 2.469,
-   "xpts_prev": 2.468,
+   "xpts_prev": 2.469,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -15078,7 +15078,7 @@
    "minutes": 296,
    "ownership": 0.3,
    "xpts_total": 2.455,
-   "xpts_prev": 2.454,
+   "xpts_prev": 2.455,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -15152,7 +15152,7 @@
    "minutes": 247,
    "ownership": 0.1,
    "xpts_total": 2.454,
-   "xpts_prev": 2.239,
+   "xpts_prev": 2.454,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -15303,7 +15303,7 @@
    "minutes": 432,
    "ownership": 0.1,
    "xpts_total": 2.435,
-   "xpts_prev": 2.432,
+   "xpts_prev": 2.435,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -15374,9 +15374,9 @@
    "code": 248875,
    "team_code": 43,
    "minutes": 215,
-   "ownership": 3.6,
+   "ownership": 3.7,
    "xpts_total": 2.422,
-   "xpts_prev": 1.802,
+   "xpts_prev": 2.422,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -15452,7 +15452,7 @@
    "minutes": 379,
    "ownership": 0.1,
    "xpts_total": 2.412,
-   "xpts_prev": 2.244,
+   "xpts_prev": 2.412,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -15527,7 +15527,7 @@
    "minutes": 403,
    "ownership": 3.2,
    "xpts_total": 2.394,
-   "xpts_prev": 2.389,
+   "xpts_prev": 2.394,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -15603,7 +15603,7 @@
    "minutes": 467,
    "ownership": 1.4,
    "xpts_total": 2.39,
-   "xpts_prev": 2.386,
+   "xpts_prev": 2.39,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.694,
@@ -15679,7 +15679,7 @@
    "minutes": 495,
    "ownership": 1.1,
    "xpts_total": 2.39,
-   "xpts_prev": 2.387,
+   "xpts_prev": 2.39,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -15821,7 +15821,7 @@
    "minutes": 237,
    "ownership": 2.4,
    "xpts_total": 2.354,
-   "xpts_prev": 2.093,
+   "xpts_prev": 2.354,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -15896,7 +15896,7 @@
    "minutes": 354,
    "ownership": 0.2,
    "xpts_total": 2.35,
-   "xpts_prev": 2.37,
+   "xpts_prev": 2.35,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -15968,7 +15968,7 @@
    "minutes": 207,
    "ownership": 0.9,
    "xpts_total": 2.342,
-   "xpts_prev": 2.343,
+   "xpts_prev": 2.342,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1,
@@ -16043,7 +16043,7 @@
    "minutes": 376,
    "ownership": 0.1,
    "xpts_total": 2.327,
-   "xpts_prev": 2.324,
+   "xpts_prev": 2.327,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -16119,7 +16119,7 @@
    "minutes": 479,
    "ownership": 1.4,
    "xpts_total": 2.326,
-   "xpts_prev": 2.323,
+   "xpts_prev": 2.326,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -16195,7 +16195,7 @@
    "minutes": 565,
    "ownership": 1.9,
    "xpts_total": 2.312,
-   "xpts_prev": 2.308,
+   "xpts_prev": 2.312,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.837,
@@ -16270,7 +16270,7 @@
    "minutes": 362,
    "ownership": 4.2,
    "xpts_total": 2.291,
-   "xpts_prev": 2.29,
+   "xpts_prev": 2.291,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -16344,7 +16344,7 @@
    "minutes": 271,
    "ownership": 0,
    "xpts_total": 2.284,
-   "xpts_prev": 2.283,
+   "xpts_prev": 2.284,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -16420,7 +16420,7 @@
    "minutes": 584,
    "ownership": 0.6,
    "xpts_total": 2.273,
-   "xpts_prev": 2.27,
+   "xpts_prev": 2.273,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.95,
@@ -16493,7 +16493,7 @@
    "minutes": 273,
    "ownership": 0.2,
    "xpts_total": 2.261,
-   "xpts_prev": 2.255,
+   "xpts_prev": 2.261,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -16642,7 +16642,7 @@
    "minutes": 378,
    "ownership": 1,
    "xpts_total": 2.25,
-   "xpts_prev": 2.247,
+   "xpts_prev": 2.25,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -16717,7 +16717,7 @@
    "minutes": 379,
    "ownership": 0.1,
    "xpts_total": 2.232,
-   "xpts_prev": 2.083,
+   "xpts_prev": 2.232,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.551,
@@ -16791,7 +16791,7 @@
    "minutes": 277,
    "ownership": 0.2,
    "xpts_total": 2.226,
-   "xpts_prev": 2.225,
+   "xpts_prev": 2.226,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -16867,7 +16867,7 @@
    "minutes": 425,
    "ownership": 4.7,
    "xpts_total": 2.206,
-   "xpts_prev": 2.203,
+   "xpts_prev": 2.206,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -16942,7 +16942,7 @@
    "minutes": 288,
    "ownership": 8.7,
    "xpts_total": 2.197,
-   "xpts_prev": 2.193,
+   "xpts_prev": 2.197,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -17014,7 +17014,7 @@
    "minutes": 193,
    "ownership": 0.6,
    "xpts_total": 2.186,
-   "xpts_prev": 1.983,
+   "xpts_prev": 2.186,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -17088,7 +17088,7 @@
    "minutes": 358,
    "ownership": 1.2,
    "xpts_total": 2.174,
-   "xpts_prev": 2.17,
+   "xpts_prev": 2.174,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -17162,7 +17162,7 @@
    "minutes": 264,
    "ownership": 0,
    "xpts_total": 2.162,
-   "xpts_prev": 2.161,
+   "xpts_prev": 2.162,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -17237,7 +17237,7 @@
    "minutes": 372,
    "ownership": 1.2,
    "xpts_total": 2.162,
-   "xpts_prev": 1.58,
+   "xpts_prev": 2.162,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -17312,7 +17312,7 @@
    "minutes": 343,
    "ownership": 0.5,
    "xpts_total": 2.159,
-   "xpts_prev": 2.155,
+   "xpts_prev": 2.159,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -17388,7 +17388,7 @@
    "minutes": 400,
    "ownership": 0.5,
    "xpts_total": 2.151,
-   "xpts_prev": 1.798,
+   "xpts_prev": 2.151,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.571,
@@ -17532,7 +17532,7 @@
    "minutes": 258,
    "ownership": 0.1,
    "xpts_total": 2.086,
-   "xpts_prev": 2.085,
+   "xpts_prev": 2.086,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.409,
@@ -17607,7 +17607,7 @@
    "minutes": 360,
    "ownership": 0.8,
    "xpts_total": 2.067,
-   "xpts_prev": 2.064,
+   "xpts_prev": 2.067,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -17683,7 +17683,7 @@
    "minutes": 429,
    "ownership": 0,
    "xpts_total": 2.059,
-   "xpts_prev": 1.694,
+   "xpts_prev": 2.059,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -17757,7 +17757,7 @@
    "minutes": 290,
    "ownership": 0.3,
    "xpts_total": 2.054,
-   "xpts_prev": 1.563,
+   "xpts_prev": 2.054,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -17833,7 +17833,7 @@
    "minutes": 512,
    "ownership": 1.7,
    "xpts_total": 2.054,
-   "xpts_prev": 2.051,
+   "xpts_prev": 2.054,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.714,
@@ -17906,7 +17906,7 @@
    "minutes": 232,
    "ownership": 0.4,
    "xpts_total": 2.046,
-   "xpts_prev": 1.474,
+   "xpts_prev": 2.046,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -17981,7 +17981,7 @@
    "minutes": 345,
    "ownership": 3.5,
    "xpts_total": 2.042,
-   "xpts_prev": 2.041,
+   "xpts_prev": 2.042,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -18056,7 +18056,7 @@
    "minutes": 334,
    "ownership": 0.6,
    "xpts_total": 2.014,
-   "xpts_prev": 2.013,
+   "xpts_prev": 2.014,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -18130,7 +18130,7 @@
    "minutes": 246,
    "ownership": 0.1,
    "xpts_total": 2.003,
-   "xpts_prev": 2.002,
+   "xpts_prev": 2.003,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -18205,7 +18205,7 @@
    "minutes": 352,
    "ownership": 1.1,
    "xpts_total": 1.975,
-   "xpts_prev": 1.974,
+   "xpts_prev": 1.975,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.429,
@@ -18280,7 +18280,7 @@
    "minutes": 388,
    "ownership": 1.7,
    "xpts_total": 1.972,
-   "xpts_prev": 1.969,
+   "xpts_prev": 1.972,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -18336,14 +18336,14 @@
    "name": "Hackney",
    "team": "EVE",
    "position": "MID",
-   "price": 5.4,
+   "price": 5.3,
    "matches_considered": 1,
    "hit_rate": 0.10625954198473282,
    "mean_actions": 7,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.21251908396946564,
-   "value_per_million": 0.039355385920271414,
+   "value_per_million": 0.04009794037159729,
    "last5_actions": [
     7
    ],
@@ -18352,8 +18352,8 @@
    "minutes": 165,
    "ownership": 0.2,
    "xpts_total": 1.938,
-   "xpts_prev": 1.755,
-   "price_change": 0,
+   "xpts_prev": 1.938,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.123,
     "goals": 0.154,
@@ -18497,9 +18497,9 @@
    "code": 114283,
    "team_code": 11,
    "minutes": 304,
-   "ownership": 0.5,
+   "ownership": 0.4,
    "xpts_total": 1.875,
-   "xpts_prev": 1.874,
+   "xpts_prev": 1.875,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.286,
@@ -18572,7 +18572,7 @@
    "minutes": 251,
    "ownership": 0.9,
    "xpts_total": 1.854,
-   "xpts_prev": 1.852,
+   "xpts_prev": 1.854,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -18645,7 +18645,7 @@
    "minutes": 326,
    "ownership": 0.1,
    "xpts_total": 1.842,
-   "xpts_prev": 1.684,
+   "xpts_prev": 1.842,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.266,
@@ -18718,7 +18718,7 @@
    "minutes": 298,
    "ownership": 0.2,
    "xpts_total": 1.826,
-   "xpts_prev": 1.821,
+   "xpts_prev": 1.826,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -18793,7 +18793,7 @@
    "minutes": 330,
    "ownership": 0.6,
    "xpts_total": 1.823,
-   "xpts_prev": 1.822,
+   "xpts_prev": 1.823,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -18865,7 +18865,7 @@
    "minutes": 216,
    "ownership": 0.1,
    "xpts_total": 1.807,
-   "xpts_prev": 1.8,
+   "xpts_prev": 1.807,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.123,
@@ -18938,7 +18938,7 @@
    "minutes": 275,
    "ownership": 0.1,
    "xpts_total": 1.806,
-   "xpts_prev": 1.805,
+   "xpts_prev": 1.806,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -19013,7 +19013,7 @@
    "minutes": 312,
    "ownership": 0.2,
    "xpts_total": 1.798,
-   "xpts_prev": 1.795,
+   "xpts_prev": 1.798,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -19159,7 +19159,7 @@
    "minutes": 152,
    "ownership": 0.3,
    "xpts_total": 1.79,
-   "xpts_prev": 1.785,
+   "xpts_prev": 1.79,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -19234,7 +19234,7 @@
    "minutes": 360,
    "ownership": 0.5,
    "xpts_total": 1.789,
-   "xpts_prev": 1.787,
+   "xpts_prev": 1.789,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -19381,7 +19381,7 @@
    "minutes": 248,
    "ownership": 0.4,
    "xpts_total": 1.728,
-   "xpts_prev": 1.307,
+   "xpts_prev": 1.728,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -19453,7 +19453,7 @@
    "minutes": 171,
    "ownership": 0.4,
    "xpts_total": 1.718,
-   "xpts_prev": 1.717,
+   "xpts_prev": 1.718,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -19525,7 +19525,7 @@
    "minutes": 242,
    "ownership": 0.5,
    "xpts_total": 1.711,
-   "xpts_prev": 1.705,
+   "xpts_prev": 1.711,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -19598,7 +19598,7 @@
    "minutes": 285,
    "ownership": 0.3,
    "xpts_total": 1.679,
-   "xpts_prev": 1.503,
+   "xpts_prev": 1.679,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -19670,7 +19670,7 @@
    "minutes": 247,
    "ownership": 0.4,
    "xpts_total": 1.677,
-   "xpts_prev": 1.675,
+   "xpts_prev": 1.677,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.123,
@@ -19742,7 +19742,7 @@
    "minutes": 211,
    "ownership": 0.4,
    "xpts_total": 1.663,
-   "xpts_prev": 1.664,
+   "xpts_prev": 1.663,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -19815,7 +19815,7 @@
    "minutes": 223,
    "ownership": 4.7,
    "xpts_total": 1.643,
-   "xpts_prev": 1.419,
+   "xpts_prev": 1.643,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -19874,19 +19874,20 @@
    "price": 5.7,
    "matches_considered": 1,
    "hit_rate": 0.10625954198473282,
-   "mean_actions": 3,
+   "mean_actions": 4,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.21251908396946564,
    "value_per_million": 0.037284049819204496,
    "last5_actions": [
-    3
+    4
    ],
    "code": 195384,
    "team_code": 3,
    "minutes": 173,
    "ownership": 0.4,
    "xpts_total": 1.64,
+   "xpts_prev": 1.64,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1.123,
@@ -20028,7 +20029,7 @@
    "minutes": 159,
    "ownership": 0.1,
    "xpts_total": 1.615,
-   "xpts_prev": 1.614,
+   "xpts_prev": 1.615,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -20101,7 +20102,7 @@
    "minutes": 159,
    "ownership": 0.3,
    "xpts_total": 1.577,
-   "xpts_prev": 1.574,
+   "xpts_prev": 1.577,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -20175,7 +20176,7 @@
    "minutes": 274,
    "ownership": 0.8,
    "xpts_total": 1.569,
-   "xpts_prev": 1.565,
+   "xpts_prev": 1.569,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.143,
@@ -20247,7 +20248,7 @@
    "minutes": 168,
    "ownership": 0.6,
    "xpts_total": 1.569,
-   "xpts_prev": 1.564,
+   "xpts_prev": 1.569,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -20319,7 +20320,7 @@
    "minutes": 95,
    "ownership": 0.7,
    "xpts_total": 1.551,
-   "xpts_prev": 1.346,
+   "xpts_prev": 1.551,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -20392,7 +20393,7 @@
    "minutes": 223,
    "ownership": 0.1,
    "xpts_total": 1.524,
-   "xpts_prev": 1.523,
+   "xpts_prev": 1.524,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -20464,7 +20465,7 @@
    "minutes": 116,
    "ownership": 0.7,
    "xpts_total": 1.518,
-   "xpts_prev": 1.519,
+   "xpts_prev": 1.518,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -20536,7 +20537,7 @@
    "minutes": 158,
    "ownership": 0.1,
    "xpts_total": 1.509,
-   "xpts_prev": 1.505,
+   "xpts_prev": 1.509,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -20608,7 +20609,7 @@
    "minutes": 239,
    "ownership": 0.1,
    "xpts_total": 1.507,
-   "xpts_prev": 1.505,
+   "xpts_prev": 1.507,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -20664,14 +20665,14 @@
    "name": "Aaronson",
    "team": "LEE",
    "position": "MID",
-   "price": 5.3,
+   "price": 5.2,
    "matches_considered": 1,
    "hit_rate": 0.10625954198473282,
    "mean_actions": 7,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.21251908396946564,
-   "value_per_million": 0.04009794037159729,
+   "value_per_million": 0.04086905460951262,
    "last5_actions": [
     7
    ],
@@ -20680,8 +20681,8 @@
    "minutes": 213,
    "ownership": 0.4,
    "xpts_total": 1.502,
-   "xpts_prev": 1.5,
-   "price_change": 0,
+   "xpts_prev": 1.502,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1,
     "goals": 0.126,
@@ -20825,6 +20826,7 @@
    "minutes": 209,
    "ownership": 1.1,
    "xpts_total": 1.461,
+   "xpts_prev": 1.461,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -20883,22 +20885,22 @@
    "price": 5.3,
    "matches_considered": 3,
    "hit_rate": 0.07589967284623773,
-   "mean_actions": 8.333333333333334,
+   "mean_actions": 8.666666666666666,
    "near_miss_rate": 0.6666666666666666,
-   "consistency": 0.6290552601801719,
+   "consistency": 0.6192501947457052,
    "defcon_xpts": 0.15179934569247547,
    "value_per_million": 0.028641385979712355,
    "last5_actions": [
     11,
     4,
-    10
+    11
    ],
    "code": 486672,
    "team_code": 8,
    "minutes": 264,
    "ownership": 1.1,
    "xpts_total": 1.455,
-   "xpts_prev": 1.086,
+   "xpts_prev": 1.455,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -20971,7 +20973,7 @@
    "minutes": 199,
    "ownership": 1.4,
    "xpts_total": 1.445,
-   "xpts_prev": 1.441,
+   "xpts_prev": 1.445,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 1,
@@ -21043,6 +21045,7 @@
    "minutes": 147,
    "ownership": 3.1,
    "xpts_total": 1.432,
+   "xpts_prev": 1.432,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21114,6 +21117,7 @@
    "minutes": 118,
    "ownership": 0.3,
    "xpts_total": 1.415,
+   "xpts_prev": 1.415,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -21186,7 +21190,7 @@
    "minutes": 174,
    "ownership": 0.1,
    "xpts_total": 1.395,
-   "xpts_prev": 1.394,
+   "xpts_prev": 1.395,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21258,7 +21262,7 @@
    "minutes": 93,
    "ownership": 0,
    "xpts_total": 1.394,
-   "xpts_prev": 1.393,
+   "xpts_prev": 1.394,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -21330,9 +21334,9 @@
    "code": 225796,
    "team_code": 8,
    "minutes": 292,
-   "ownership": 3.8,
+   "ownership": 3.7,
    "xpts_total": 1.364,
-   "xpts_prev": 1.361,
+   "xpts_prev": 1.364,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1,
@@ -21404,6 +21408,7 @@
    "minutes": 102,
    "ownership": 0,
    "xpts_total": 1.353,
+   "xpts_prev": 1.353,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21459,14 +21464,14 @@
    "name": "I.Sangaré",
    "team": "NFO",
    "position": "MID",
-   "price": 4.8,
+   "price": 4.7,
    "matches_considered": 1,
    "hit_rate": 0.10625954198473282,
    "mean_actions": 6,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.21251908396946564,
-   "value_per_million": 0.044274809160305344,
+   "value_per_million": 0.04521682637648205,
    "last5_actions": [
     6
    ],
@@ -21475,8 +21480,8 @@
    "minutes": 145,
    "ownership": 0.3,
    "xpts_total": 1.328,
-   "xpts_prev": 1.327,
-   "price_change": 0,
+   "xpts_prev": 1.328,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 0.857,
     "goals": 0.128,
@@ -21547,7 +21552,7 @@
    "minutes": 170,
    "ownership": 0.5,
    "xpts_total": 1.327,
-   "xpts_prev": 1.323,
+   "xpts_prev": 1.327,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -21620,7 +21625,7 @@
    "minutes": 222,
    "ownership": 0.1,
    "xpts_total": 1.323,
-   "xpts_prev": 0.923,
+   "xpts_prev": 1.323,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21692,7 +21697,7 @@
    "minutes": 164,
    "ownership": 1.2,
    "xpts_total": 1.319,
-   "xpts_prev": 1.318,
+   "xpts_prev": 1.319,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21764,7 +21769,7 @@
    "minutes": 107,
    "ownership": 0.1,
    "xpts_total": 1.319,
-   "xpts_prev": 1.318,
+   "xpts_prev": 1.319,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21837,7 +21842,7 @@
    "minutes": 196,
    "ownership": 0.8,
    "xpts_total": 1.312,
-   "xpts_prev": 1.31,
+   "xpts_prev": 1.312,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -21909,7 +21914,7 @@
    "minutes": 152,
    "ownership": 0.5,
    "xpts_total": 1.296,
-   "xpts_prev": 1.295,
+   "xpts_prev": 1.296,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -21981,7 +21986,7 @@
    "minutes": 82,
    "ownership": 0.6,
    "xpts_total": 1.292,
-   "xpts_prev": 1.291,
+   "xpts_prev": 1.292,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -22053,7 +22058,7 @@
    "minutes": 127,
    "ownership": 0.2,
    "xpts_total": 1.283,
-   "xpts_prev": 1.013,
+   "xpts_prev": 1.283,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -22198,7 +22203,7 @@
    "minutes": 172,
    "ownership": 0.5,
    "xpts_total": 1.273,
-   "xpts_prev": 1.272,
+   "xpts_prev": 1.273,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.857,
@@ -22271,7 +22276,7 @@
    "minutes": 178,
    "ownership": 3.1,
    "xpts_total": 1.23,
-   "xpts_prev": 1.229,
+   "xpts_prev": 1.23,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -22343,7 +22348,7 @@
    "minutes": 142,
    "ownership": 0.1,
    "xpts_total": 1.187,
-   "xpts_prev": 1.183,
+   "xpts_prev": 1.187,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22415,7 +22420,7 @@
    "minutes": 143,
    "ownership": 0.1,
    "xpts_total": 1.18,
-   "xpts_prev": 1.179,
+   "xpts_prev": 1.18,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22487,7 +22492,7 @@
    "minutes": 189,
    "ownership": 0.2,
    "xpts_total": 1.173,
-   "xpts_prev": 1.169,
+   "xpts_prev": 1.173,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22560,7 +22565,7 @@
    "minutes": 190,
    "ownership": 0.2,
    "xpts_total": 1.164,
-   "xpts_prev": 1.162,
+   "xpts_prev": 1.164,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22632,7 +22637,7 @@
    "minutes": 122,
    "ownership": 0.2,
    "xpts_total": 1.145,
-   "xpts_prev": 1.144,
+   "xpts_prev": 1.145,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22704,7 +22709,7 @@
    "minutes": 139,
    "ownership": 0.1,
    "xpts_total": 1.128,
-   "xpts_prev": 1.125,
+   "xpts_prev": 1.128,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -22776,7 +22781,7 @@
    "minutes": 130,
    "ownership": 0.1,
    "xpts_total": 1.126,
-   "xpts_prev": 1.125,
+   "xpts_prev": 1.126,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22848,7 +22853,7 @@
    "minutes": 160,
    "ownership": 0,
    "xpts_total": 1.125,
-   "xpts_prev": 1.121,
+   "xpts_prev": 1.125,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -22920,6 +22925,7 @@
    "minutes": 99,
    "ownership": 0,
    "xpts_total": 1.114,
+   "xpts_prev": 1.114,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -22991,7 +22997,7 @@
    "minutes": 211,
    "ownership": 0.1,
    "xpts_total": 1.107,
-   "xpts_prev": 1.106,
+   "xpts_prev": 1.107,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -23063,7 +23069,7 @@
    "minutes": 142,
    "ownership": 0.4,
    "xpts_total": 1.103,
-   "xpts_prev": 1.098,
+   "xpts_prev": 1.103,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -23208,7 +23214,7 @@
    "minutes": 134,
    "ownership": 0.1,
    "xpts_total": 1.082,
-   "xpts_prev": 1.081,
+   "xpts_prev": 1.082,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23280,7 +23286,7 @@
    "minutes": 101,
    "ownership": 0.3,
    "xpts_total": 1.064,
-   "xpts_prev": 1.061,
+   "xpts_prev": 1.064,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23352,7 +23358,7 @@
    "minutes": 154,
    "ownership": 0.1,
    "xpts_total": 1.028,
-   "xpts_prev": 1.024,
+   "xpts_prev": 1.028,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.714,
@@ -23424,7 +23430,7 @@
    "minutes": 81,
    "ownership": 0,
    "xpts_total": 0.979,
-   "xpts_prev": 0.978,
+   "xpts_prev": 0.979,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23496,7 +23502,7 @@
    "minutes": 138,
    "ownership": 0,
    "xpts_total": 0.964,
-   "xpts_prev": 0.963,
+   "xpts_prev": 0.964,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23568,7 +23574,7 @@
    "minutes": 126,
    "ownership": 0.2,
    "xpts_total": 0.958,
-   "xpts_prev": 0.729,
+   "xpts_prev": 0.958,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23640,7 +23646,7 @@
    "minutes": 115,
    "ownership": 0.1,
    "xpts_total": 0.896,
-   "xpts_prev": 0.895,
+   "xpts_prev": 0.896,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -23712,7 +23718,7 @@
    "minutes": 75,
    "ownership": 0.1,
    "xpts_total": 0.836,
-   "xpts_prev": 0.834,
+   "xpts_prev": 0.836,
    "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -23784,7 +23790,7 @@
    "minutes": 97,
    "ownership": 2.4,
    "xpts_total": 0.827,
-   "xpts_prev": 0.825,
+   "xpts_prev": 0.827,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -23856,7 +23862,7 @@
    "minutes": 107,
    "ownership": 0,
    "xpts_total": 0.825,
-   "xpts_prev": 0.823,
+   "xpts_prev": 0.825,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -23929,7 +23935,7 @@
    "minutes": 168,
    "ownership": 1.3,
    "xpts_total": 0.806,
-   "xpts_prev": 0.804,
+   "xpts_prev": 0.806,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -24073,7 +24079,7 @@
    "minutes": 91,
    "ownership": 1.2,
    "xpts_total": 0.735,
-   "xpts_prev": 0.736,
+   "xpts_prev": 0.735,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24146,7 +24152,7 @@
    "minutes": 156,
    "ownership": 0.1,
    "xpts_total": 0.731,
-   "xpts_prev": 0.729,
+   "xpts_prev": 0.731,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.571,
@@ -24218,7 +24224,7 @@
    "minutes": 123,
    "ownership": 0.5,
    "xpts_total": 0.73,
-   "xpts_prev": 0.728,
+   "xpts_prev": 0.73,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24290,7 +24296,7 @@
    "minutes": 74,
    "ownership": 0.1,
    "xpts_total": 0.72,
-   "xpts_prev": 0.719,
+   "xpts_prev": 0.72,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24434,7 +24440,7 @@
    "minutes": 104,
    "ownership": 0.3,
    "xpts_total": 0.677,
-   "xpts_prev": 0.676,
+   "xpts_prev": 0.677,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24504,6 +24510,7 @@
    "minutes": 105,
    "ownership": 0.2,
    "xpts_total": 0.669,
+   "xpts_prev": 0.669,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24575,7 +24582,7 @@
    "minutes": 148,
    "ownership": 0.3,
    "xpts_total": 0.665,
-   "xpts_prev": 0.664,
+   "xpts_prev": 0.665,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24647,7 +24654,7 @@
    "minutes": 91,
    "ownership": 0.2,
    "xpts_total": 0.659,
-   "xpts_prev": 0.657,
+   "xpts_prev": 0.659,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.429,
@@ -24861,7 +24868,7 @@
    "minutes": 90,
    "ownership": 0,
    "xpts_total": 0.556,
-   "xpts_prev": 0.555,
+   "xpts_prev": 0.556,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.286,
@@ -24933,7 +24940,7 @@
    "minutes": 70,
    "ownership": 0.1,
    "xpts_total": 0.505,
-   "xpts_prev": 0.504,
+   "xpts_prev": 0.505,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.286,
@@ -25005,7 +25012,7 @@
    "minutes": 72,
    "ownership": 0,
    "xpts_total": 0.501,
-   "xpts_prev": 0.5,
+   "xpts_prev": 0.501,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.286,
@@ -25077,7 +25084,7 @@
    "minutes": 90,
    "ownership": 0.6,
    "xpts_total": 0.499,
-   "xpts_prev": 0.498,
+   "xpts_prev": 0.499,
    "price_change": 0,
    "xpts_breakdown": {
     "appearance": 0.286,
