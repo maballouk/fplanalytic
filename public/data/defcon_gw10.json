@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 10,
- "generated_at": "2026-11-15T22:46:09.835Z",
+ "generated_at": "2026-11-16T15:35:59.606Z",
  "calendar": {
   "gw": 10,
   "gw_finished": true,
@@ -187,7 +187,7 @@
    "code": 465730,
    "team_code": 36,
    "minutes": 822,
-   "ownership": 47.9,
+   "ownership": 48,
    "xpts_total": 6.111,
    "xpts_prev": 6.111,
    "price_change": 0.1,
@@ -279,7 +279,7 @@
    },
    "p_start": 0.97,
    "form5": 8.6,
-   "elite_own": 0.18,
+   "elite_own": 0.2,
    "elite_cap": 0.02,
    "next5": [
     {
@@ -431,7 +431,7 @@
    },
    "p_start": 0.97,
    "form5": 5.4,
-   "elite_own": 0.6,
+   "elite_own": 0.58,
    "elite_cap": 0.02,
    "next5": [
     {
@@ -491,7 +491,7 @@
    "code": 469142,
    "team_code": 6,
    "minutes": 900,
-   "ownership": 14.8,
+   "ownership": 14.9,
    "xpts_total": 5.604,
    "xpts_prev": 5.604,
    "price_change": 0.1,
@@ -507,7 +507,7 @@
    },
    "p_start": 0.97,
    "form5": 6.6,
-   "elite_own": 0.48,
+   "elite_own": 0.5,
    "elite_cap": 0,
    "next5": [
     {
@@ -567,7 +567,7 @@
    "code": 517052,
    "team_code": 7,
    "minutes": 722,
-   "ownership": 31.4,
+   "ownership": 31.5,
    "xpts_total": 5.508,
    "xpts_prev": 5.508,
    "price_change": 0.1,
@@ -1099,7 +1099,7 @@
    "code": 477424,
    "team_code": 43,
    "minutes": 700,
-   "ownership": 22.5,
+   "ownership": 22.4,
    "xpts_total": 4.82,
    "xpts_prev": 4.82,
    "price_change": -0.1,
@@ -2087,7 +2087,7 @@
    "code": 480457,
    "team_code": 9,
    "minutes": 730,
-   "ownership": 1.2,
+   "ownership": 1.3,
    "xpts_total": 4.323,
    "xpts_prev": 4.323,
    "price_change": 0,
@@ -2103,7 +2103,7 @@
    },
    "p_start": 0.9,
    "form5": 5.2,
-   "elite_own": 0.04,
+   "elite_own": 0.06,
    "elite_cap": 0,
    "next5": [
     {
@@ -2249,7 +2249,7 @@
    },
    "p_start": 0.97,
    "form5": 6,
-   "elite_own": 0.02,
+   "elite_own": 0,
    "elite_cap": 0,
    "next5": [
     {
@@ -2449,7 +2449,7 @@
    "code": 475168,
    "team_code": 8,
    "minutes": 521,
-   "ownership": 31.5,
+   "ownership": 31.4,
    "xpts_total": 4.227,
    "xpts_prev": 4.227,
    "price_change": -0.1,
@@ -2997,7 +2997,7 @@
    },
    "p_start": 0.97,
    "form5": 4.2,
-   "elite_own": 0.02,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
@@ -3361,7 +3361,7 @@
    "code": 17761,
    "team_code": 11,
    "minutes": 900,
-   "ownership": 19.3,
+   "ownership": 19.2,
    "xpts_total": 4.003,
    "xpts_prev": 4.003,
    "price_change": 0,
@@ -4119,7 +4119,7 @@
    },
    "p_start": 0.97,
    "form5": 3.2,
-   "elite_own": 0.16,
+   "elite_own": 0.18,
    "elite_cap": 0,
    "next5": [
     {
@@ -4635,7 +4635,7 @@
    "code": 177815,
    "team_code": 2,
    "minutes": 863,
-   "ownership": 17.5,
+   "ownership": 17.4,
    "xpts_total": 3.807,
    "xpts_prev": 3.807,
    "price_change": -0.1,
@@ -4651,7 +4651,7 @@
    },
    "p_start": 0.97,
    "form5": 3.4,
-   "elite_own": 0.08,
+   "elite_own": 0.06,
    "elite_cap": 0,
    "next5": [
     {
@@ -4787,7 +4787,7 @@
    "code": 216616,
    "team_code": 40,
    "minutes": 900,
-   "ownership": 2.8,
+   "ownership": 2.7,
    "xpts_total": 3.778,
    "xpts_prev": 3.778,
    "price_change": 0,
@@ -4933,7 +4933,7 @@
    "code": 209036,
    "team_code": 43,
    "minutes": 720,
-   "ownership": 14,
+   "ownership": 13.9,
    "xpts_total": 3.77,
    "xpts_prev": 3.77,
    "price_change": 0,
@@ -5469,7 +5469,7 @@
    },
    "p_start": 0.97,
    "form5": 6,
-   "elite_own": 0.72,
+   "elite_own": 0.74,
    "elite_cap": 0,
    "next5": [
     {
@@ -9686,7 +9686,7 @@
    },
    "p_start": 0.9,
    "form5": 4,
-   "elite_own": 0.04,
+   "elite_own": 0.02,
    "elite_cap": 0,
    "next5": [
     {
@@ -10581,7 +10581,7 @@
    "code": 216646,
    "team_code": 4,
    "minutes": 707,
-   "ownership": 8.3,
+   "ownership": 8.2,
    "xpts_total": 2.859,
    "xpts_prev": 2.859,
    "price_change": -0.1,
@@ -11875,7 +11875,7 @@
    },
    "p_start": 0.7,
    "form5": 3.6,
-   "elite_own": 0.06,
+   "elite_own": 0.04,
    "elite_cap": 0,
    "next5": [
     {
