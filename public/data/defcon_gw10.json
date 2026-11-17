@@ -1,7 +1,7 @@
 {
  "schema_version": 1,
  "gw": 10,
- "generated_at": "2026-11-16T15:35:59.606Z",
+ "generated_at": "2026-11-17T01:50:54.425Z",
  "calendar": {
   "gw": 10,
   "gw_finished": true,
@@ -263,7 +263,7 @@
    "code": 444102,
    "team_code": 91,
    "minutes": 837,
-   "ownership": 24,
+   "ownership": 24.1,
    "xpts_total": 5.751,
    "xpts_prev": 5.751,
    "price_change": 0.1,
@@ -567,7 +567,7 @@
    "code": 517052,
    "team_code": 7,
    "minutes": 722,
-   "ownership": 31.5,
+   "ownership": 31.6,
    "xpts_total": 5.508,
    "xpts_prev": 5.508,
    "price_change": 0.1,
@@ -643,7 +643,7 @@
    "code": 610799,
    "team_code": 36,
    "minutes": 887,
-   "ownership": 9.5,
+   "ownership": 9.6,
    "xpts_total": 5.288,
    "xpts_prev": 5.288,
    "price_change": 0.1,
@@ -1251,7 +1251,7 @@
    "code": 586309,
    "team_code": 11,
    "minutes": 851,
-   "ownership": 10.8,
+   "ownership": 10.9,
    "xpts_total": 4.629,
    "xpts_prev": 4.629,
    "price_change": 0.1,
@@ -3209,7 +3209,7 @@
    "code": 199798,
    "team_code": 3,
    "minutes": 731,
-   "ownership": 24.7,
+   "ownership": 24.8,
    "xpts_total": 4.078,
    "xpts_prev": 4.078,
    "price_change": 0.1,
@@ -3875,7 +3875,7 @@
    "code": 487838,
    "team_code": 4,
    "minutes": 899,
-   "ownership": 18.2,
+   "ownership": 18.1,
    "xpts_total": 3.977,
    "xpts_prev": 3.977,
    "price_change": -0.1,
@@ -5383,7 +5383,7 @@
    "code": 219847,
    "team_code": 3,
    "minutes": 731,
-   "ownership": 6,
+   "ownership": 5.9,
    "xpts_total": 3.696,
    "xpts_prev": 3.696,
    "price_change": 0,
@@ -6733,7 +6733,7 @@
    "code": 84450,
    "team_code": 56,
    "minutes": 813,
-   "ownership": 2.6,
+   "ownership": 2.5,
    "xpts_total": 3.439,
    "xpts_prev": 3.439,
    "price_change": -0.1,
@@ -7645,7 +7645,7 @@
    "code": 494521,
    "team_code": 91,
    "minutes": 893,
-   "ownership": 3.3,
+   "ownership": 3.4,
    "xpts_total": 3.317,
    "xpts_prev": 3.317,
    "price_change": 0,
@@ -7721,7 +7721,7 @@
    "code": 577725,
    "team_code": 54,
    "minutes": 806,
-   "ownership": 3.3,
+   "ownership": 3.2,
    "xpts_total": 3.294,
    "xpts_prev": 3.294,
    "price_change": 0,
@@ -8151,7 +8151,7 @@
      "difficulty": 3
     }
    ],
-   "status": "a"
+   "status": "d"
   },
   {
    "rank": 109,
@@ -9065,7 +9065,7 @@
    "code": 465247,
    "team_code": 1,
    "minutes": 900,
-   "ownership": 7.2,
+   "ownership": 7.1,
    "xpts_total": 3.063,
    "xpts_prev": 3.063,
    "price_change": 0,
@@ -11909,7 +11909,7 @@
      "difficulty": 3
     }
    ],
-   "status": "a"
+   "status": "d"
   },
   {
    "rank": 159,
@@ -15991,14 +15991,14 @@
    "name": "Cook",
    "team": "BOU",
    "position": "MID",
-   "price": 5,
+   "price": 4.9,
    "matches_considered": 4,
    "hit_rate": 0.06727480045610035,
    "mean_actions": 5.25,
    "near_miss_rate": 0,
    "consistency": 0.6102212965775023,
    "defcon_xpts": 0.1345496009122007,
-   "value_per_million": 0.02690992018244014,
+   "value_per_million": 0.027459102226979733,
    "last5_actions": [
     7,
     2,
@@ -16011,7 +16011,7 @@
    "ownership": 0.1,
    "xpts_total": 2.19,
    "xpts_prev": 2.19,
-   "price_change": 0,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 1.38,
     "goals": 0.159,
@@ -23095,7 +23095,7 @@
    "code": 232413,
    "team_code": 3,
    "minutes": 230,
-   "ownership": 1.1,
+   "ownership": 1,
    "xpts_total": 1.189,
    "xpts_prev": 1.189,
    "price_change": 0,
@@ -23873,7 +23873,7 @@
      "difficulty": 3
     }
    ],
-   "status": "a"
+   "status": "d"
   },
   {
    "rank": 320,
@@ -24822,14 +24822,14 @@
    "name": "Mingueza",
    "team": "CRY",
    "position": "DEF",
-   "price": 4.3,
+   "price": 4.2,
    "matches_considered": 1,
    "hit_rate": 0.22771535580524344,
    "mean_actions": 5,
    "near_miss_rate": 0,
    "consistency": 1,
    "defcon_xpts": 0.45543071161048687,
-   "value_per_million": 0.105914118979183,
+   "value_per_million": 0.10843588371678259,
    "last5_actions": [
     5
    ],
@@ -24839,7 +24839,7 @@
    "ownership": 0,
    "xpts_total": 0.899,
    "xpts_prev": 0.899,
-   "price_change": 0,
+   "price_change": -0.1,
    "xpts_breakdown": {
     "appearance": 0.5,
     "goals": 0.039,
